@@ -44,7 +44,13 @@ $ npm install
 Créer un ficher .env et un fichier .env.test
 
 ```bash
-$ cp .env.sample .env
+$ cp .env .env.test
+```
+
+Créer un ficher .gitignore 
+
+```bash
+$ cp .gitignore
 ```
 
 
