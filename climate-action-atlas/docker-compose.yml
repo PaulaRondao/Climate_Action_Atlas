@@ -8,6 +8,8 @@ services:
       POSTGRES_DB: climate-db
       POSTGRES_USER: climate-db
       POSTGRES_PASSWORD: climate-db
+    volumes:
+      - climate-postgres-data:/var/lib/postgresql/data
 
   web:
     image: node:22-alpine
@@ -22,3 +24,6 @@ services:
       - .:/app
     depends_on:
       - climate-db
+
+volumes:
+  climate-postgres-data:
