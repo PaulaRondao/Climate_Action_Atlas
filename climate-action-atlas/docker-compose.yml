@@ -1,4 +1,3 @@
-version: "3.8"
 services:
   climate-db:
     image: postgres:12.20
