@@ -1,0 +1,91 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Initiative {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  location Int
+  spokenLanguages ResponseOption @map("spoken_languages")
+  financialParticipation ResponseOption @map("financial_participation")
+  registrationRequired ResponseOption @map("registration_required")
+  accessibility ResponseOption
+  openToCitizens ResponseOption @map("open_to_citizens")
+  type String
+  email String @unique
+  webSite String                     
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @updatedAt
+  isActive Boolean @map("is_active") @default(true)
+  reporterId Int @map("reporter_id")
+  organizerId Int @map("organizer_id")
+
+  reporter UserAccount @relation(fields: [reporterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+  organizer CompanyAccount @relation(fields: [organizerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
+
+  @@index([type, location, spokenLanguages, openToCitizens ])
+  Location Location[]
+}
+
+model Location {
+  id Int @id @default(autoincrement())
+  initiativeId Int
+  latitude Float
+  longitude Float
+
+  initiative Initiative @relation(fields: [initiativeId], references: [id], onDelete: Cascade)
+
+  @@index([longitude])
+}
+
+model UserAccount {
+  id Int @id @default(autoincrement())
+  userAccountName String @map("user_account_name")
+  email String @unique
+  password String
+  role UserRole @default(REPORTER)
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @updatedAt
+  lastConnect DateTime @map("last_connect")
+
+  Initiative Initiative[]
+}
+
+model CompanyAccount {
+  id Int @id @default(autoincrement())
+  companyName String @map("company_name")
+  phoneNumber String @map("phone_number")
+  email String @unique
+  password String
+  locationId Int
+  role UserRole @default(ORGANIZER)
+  siret String @unique
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @updatedAt
+
+  Initiative Initiative[]
+}
+
+enum ResponseOption {
+  OUI
+  NON
+  INDEFINI
+}
+
+enum UserRole {
+  ADMIN
+  REPORTER
+  ORGANIZER
+}
