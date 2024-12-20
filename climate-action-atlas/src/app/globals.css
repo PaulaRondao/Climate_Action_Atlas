@@ -9,7 +9,7 @@
   --line-height: 1.6rem;
   --letter-spacing: 0.125rem;
 
-  --foreground-dark-blue: #151D2B;
+  --foreground-dark-blue: #010020;
   --foreground-grey-black: #151d2b;
   --foreground-white: #ffffff;
 
@@ -43,7 +43,6 @@ body {
 }
 
 body {
-  display: flex;
   min-height: 100%;
   max-width: 100%;
   margin: 0;

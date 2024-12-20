@@ -2,10 +2,10 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Script from 'next/script';
-import { PAGE_TITLE } from '../../../../types/enums/page';
+import { PageTitle } from '../../../../types/enums/page';
 
 interface AppHeadProps {
-  title: PAGE_TITLE|string,
+  title: PageTitle|string,
   metaTag?: string,
   canonical?: string ,
 }
@@ -18,7 +18,6 @@ declare global {
 }
 
 const AppHead = ({ title, metaTag, canonical }: AppHeadProps): JSX.Element => {
-  const router = useRouter();
 
 
   return (
