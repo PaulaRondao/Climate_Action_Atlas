@@ -14,57 +14,48 @@ datasource db {
 }
 
 model Initiative {
-  id Int @id @default(autoincrement())
+  initiativeId Int @id @default(autoincrement())
   name String
   description String
-  location Int
   spokenLanguages ResponseOption @map("spoken_languages")
   financialParticipation ResponseOption @map("financial_participation")
   registrationRequired ResponseOption @map("registration_required")
   accessibility ResponseOption
   openToCitizens ResponseOption @map("open_to_citizens")
-  type String
+  type InitiativeType
+  address String
+  postcode String
+  city String
+  country String
   email String @unique
   webSite String                     
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
   isActive Boolean @map("is_active") @default(true)
-  reporterId Int @map("reporter_id")
-  organizerId Int @map("organizer_id")
+  responsableId Int
+  responsableRole UserRole 
+  
+  contributor UserAccount @relation("ContributorInitiative", fields: [responsableId], references: [userAccountId], onDelete: Cascade, onUpdate: Cascade, map: "Initiative_responsableId_user_fkey") 
+  organizer CompanyAccount @relation("OrganizerInitiative", fields: [responsableId], references: [companyAccountId], onDelete: Cascade, onUpdate: Cascade, map: "Initiative_responsableId_company_fkey")
 
-  reporter UserAccount @relation(fields: [reporterId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-  organizer CompanyAccount @relation(fields: [organizerId], references: [id], onDelete: Cascade, onUpdate: Cascade)
-
-  @@index([type, location, spokenLanguages, openToCitizens ])
-  Location Location[]
-}
-
-model Location {
-  id Int @id @default(autoincrement())
-  initiativeId Int
-  latitude Float
-  longitude Float
-
-  initiative Initiative @relation(fields: [initiativeId], references: [id], onDelete: Cascade)
-
-  @@index([longitude])
+  @@index([type, country, openToCitizens ])
 }
 
 model UserAccount {
-  id Int @id @default(autoincrement())
-  userAccountName String @map("user_account_name")
+  userAccountId Int @id @default(autoincrement())
+  userName String @map("user_name")
   email String @unique
   password String
-  role UserRole @default(REPORTER)
+  role UserRole @default(CONTRIBUTOR)
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
   lastConnect DateTime @map("last_connect")
 
-  Initiative Initiative[]
+  initiative Initiative[] @relation("ContributorInitiative")
 }
 
 model CompanyAccount {
-  id Int @id @default(autoincrement())
+  companyAccountId Int @id @default(autoincrement())
   companyName String @map("company_name")
   phoneNumber String @map("phone_number")
   email String @unique
@@ -75,7 +66,7 @@ model CompanyAccount {
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
 
-  Initiative Initiative[]
+  initiative Initiative[] @relation("OrganizerInitiative")
 }
 
 enum ResponseOption {
@@ -85,7 +76,19 @@ enum ResponseOption {
 }
 
 enum UserRole {
-  ADMIN
-  REPORTER
+  CONTRIBUTOR
   ORGANIZER
+}
+
+enum InitiativeType {
+  ACTIONS_CLIMATIQUE
+  CONSERVATION_DE_LA_BIODIVERSITE
+  GESTION_DURABLE_DES_NUTRIMENTS
+  REDUCTION_DE_LA_POLLUTION
+  QUALITE_DE_L_AIR
+  PROTECTION_DE_DE_LA_COUCHE_D_OZONE
+  PROTECTIONS_DES_OCEANS
+  GESTION_DURABLE_DE_L_EAU
+  GESTION_DURABLE_DES_TERRITOIRES
+  EQUITE_SOCIALE_ET_EDUCATION
 }
