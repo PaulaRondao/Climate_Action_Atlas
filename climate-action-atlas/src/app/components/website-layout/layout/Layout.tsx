@@ -1,9 +1,9 @@
 // import NavBar from 'components/nav-bar/NavBar';
 import React, { useEffect } from 'react';
-import AppHead from '../appHead/AppHead';
-import { PageTitle } from '../../../../types/enums/page';
-import NavbarApp from '../navbar/NavbarApp';
-import Footer  from '../footer/Footer';
+import AppHead from '../../modules/appHead/AppHead';
+import { PageTitle } from '../../../../../types/enums/page';
+import Navbar from '../../modules/navbar/Navbar';
+import Footer  from '../../modules/footer/Footer';
 import Wrapper from '../wrapper/Wrapper';
 // import { User } from 'types/NextAuth';
 
@@ -15,19 +15,18 @@ interface LayoutProps<T> {
   canonical?: string,
 }
 
-const Layout = ({
+export default function Layout ({
   children,
   title,
   connected,
   metaTag,
   canonical,
-}: LayoutProps<string>): JSX.Element => {
-
+}: LayoutProps<string>): JSX.Element {
   return (
     <>
       <AppHead title={title} metaTag={metaTag} canonical={canonical} />
         <header>
-          <NavbarApp
+          <Navbar
           // connected={connected}
           // user={user}
           // empty={emptyNavBar}
@@ -52,4 +51,3 @@ Layout.defaultProps = {
   footer: null,
   canonical: null,
 };
-export default Layout;

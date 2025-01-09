@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { Container } from '../wrapper/wrapper.styles';
 import { Background, Title } from './header.styles';
-import { PageTitle } from '../../../../types/enums/page';
-import { Description } from '../../../../types/enums/description';
+import { PageTitle } from '../../../../../types/enums/page';
+import { Description } from '../../../../../types/enums/description';
 import Wrapper from '../wrapper/Wrapper';
 
 
@@ -13,13 +13,13 @@ interface HeaderProps {
   backgroundImageSize?: string,
   backgroundPosition?: string,
 }
-export const Header = ({
+export default function Header ({
   pageTitle,
   description,
   backgroundImage,
   backgroundImageSize,
   backgroundPosition,
-}: HeaderProps) => {
+}: HeaderProps): JSX.Element {
 
   return (
       <Background

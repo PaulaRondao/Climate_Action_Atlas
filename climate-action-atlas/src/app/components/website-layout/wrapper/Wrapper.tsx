@@ -6,14 +6,14 @@ interface WrapperProps {
       children: React.ReactNode,
 }
 
-export default function Wrapper({
+const Wrapper = ({
   children,
-}: WrapperProps): JSX.Element {
-  return (
+}: WrapperProps): JSX.Element => (
     <Container>
       <Content>
         {children}
       </Content>
     </Container>
   );
-};
+
+export default Wrapper;

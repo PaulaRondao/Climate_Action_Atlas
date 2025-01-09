@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
-import { PageTitle} from '../../../../types/enums/page';
+import { PageTitle} from '../../../../../types/enums/page';
 import Layout from '../layout/Layout';
-import { Header } from '../header/Header';
-import { Description } from '../../../../types/enums/description';
+import  Header from '../header/Header';
+import { Description } from '../../../../../types/enums/description';
 
 
 interface HomepageLayoutProps {
@@ -12,13 +12,14 @@ interface HomepageLayoutProps {
   pageTitle?: PageTitle,
   description?: Description,
 }
-export const HomepageLayout = ({
+export default function HomepageLayout ({
   title,
   children,
   canonical,
   pageTitle,
   description,
-}: HomepageLayoutProps) => (
+}: HomepageLayoutProps): JSX.Element {
+  return (
     <Layout
       title={title}
       fluid
@@ -31,7 +32,8 @@ export const HomepageLayout = ({
     />
       {children}
     </Layout>
-);
+  );
+};
 
 HomepageLayout.defaultProps = {
   title: null,

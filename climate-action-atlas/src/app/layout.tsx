@@ -22,9 +22,10 @@ export default function RootLayout({
 }: Readonly<{children: React.ReactNode;
 }>) {
   return (
-    <html lang="fr">
+    <html lang="fr" suppressHydrationWarning>
+      <head />
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+          {children}
       </body>
     </html>
   );

@@ -2,7 +2,7 @@ import React from 'react'
 import {
   MainFooterContainer,
   MainInfoContainer,
-} from '../second-footer/secondFooter.styles';
+} from './secondFooter.styles';
 import ContentInfo from '../content-info/ContentInfo';
 
 const SecondFooter = (): JSX.Element => (
