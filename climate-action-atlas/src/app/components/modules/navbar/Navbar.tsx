@@ -1,48 +1,98 @@
-'use client'
-import react from 'react';
-import { ListItem, MenuBurger, Nav, StyledLink } from './navbar.styles';
+'use client';
+
+import React, { useState } from "react";
+import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button, useMediaQuery, Drawer, List, ListItem, ListItemText, Divider, Box } from '@mui/material';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
+import { useTheme } from '@mui/material/styles';
 import Link from 'next/link';
 
+const NavBar: React.FC = () => {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
-export default function NavBar():JSX.Element {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Pour les écrans plus petits que "md" (960px)
 
-const hamburger = document.querySelector(".hamburger");
-const navMenu = document.querySelector(".nav-menu");
+  // Ouvrir/fermer le menu hamburger
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
 
-hamburger.addEventListener("click", mobileMenu);
+  const handleCloseMenu = () => {
+    setAnchorEl(null);
+  };
 
-function mobileMenu() {
-hamburger.classList.toggle("active");
-navMenu.classList.toggle("active");
+  const toggleDrawer = (open: boolean) => {
+    setDrawerOpen(open);
+  };
 
-const navLink = document.querySelectorAll(".nav-link");
+  const renderNavLinks = () => (
+    <Box display="flex" alignItems="center" gap={2}>
+      <Link href="/news" passHref>
+        <Button color="inherit">S&apos;engager</Button>
+      </Link>
+      <Link href="/about-us" passHref>
+        <Button color="inherit">Ajouter une initiative</Button>
+      </Link>
+      <Link href="/get-started" passHref>
+        <Button color="primary" variant="contained">
+          Connexion
+        </Button>
+      </Link>
+    </Box>
+  );
 
-navLink.forEach(n => n.addEventListener("click", closeMenu));
+  const renderDrawer = () => (
+    <Drawer anchor="left" open={drawerOpen} onClose={() => toggleDrawer(false)}>
+      <Box width={250} role="presentation" onClick={() => toggleDrawer(false)} onKeyDown={() => toggleDrawer(false)}>
+        <List>
+          <ListItem>
+            <ListItemText primary={<Link href="/news" passHref>S&apos;engager</Link>} />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary={<Link href="/about-us" passHref>Ajouter une initiative</Link>} />
+          </ListItem>
+          <ListItem>
+            <ListItemText primary={<Link href="/location" passHref>Connexion</Link>} />
+          </ListItem>
+          <Divider />
+        </List>
+      </Box>
+    </Drawer>
+  );
 
-function closeMenu() {
-hamburger.classList.remove("active");
-navMenu.classList.remove("active");
-}
-}
   return (
-        <Nav>
-            <Link href="#">WebDev.</Link>
-            <ul>
-                <ListItem>
-                    <Link href="#" passHref><StyledLink>S&apos;engager</StyledLink></Link>
-                </ListItem>
-                <ListItem>
-                    <Link href="#" passHref><StyledLink>Ajouter une initiative</StyledLink></Link>
-                </ListItem>
-                <ListItem>
-                    <Link href="#" passHref><StyledLink>Connexion</StyledLink></Link>
-                </ListItem>
-            </ul>
-            <MenuBurger>
-                <span></span>
-                <span></span>
-                <span></span>
-            </MenuBurger>
-        </Nav>
+    <AppBar position="sticky">
+      <Toolbar>
+        <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+          My Website
+        </Typography>
+
+        {isMobile ? (
+          <>
+            <IconButton edge="start" color="inherit" onClick={() => toggleDrawer(true)} aria-label="menu">
+              <MenuIcon />
+            </IconButton>
+
+            {renderDrawer()}
+          </>
+        ) : (
+          renderNavLinks()
+        )}
+
+        {/* Menu hamburger (pour petits écrans) */}
+        <Menu
+          anchorEl={anchorEl}
+          open={Boolean(anchorEl)}
+          onClose={handleCloseMenu}
+        >
+          <MenuItem onClick={handleCloseMenu}>S&apos;engager</MenuItem>
+          <MenuItem onClick={handleCloseMenu}>Ajouter une iniative</MenuItem>
+          <MenuItem onClick={handleCloseMenu}>Connexion</MenuItem>
+        </Menu>
+      </Toolbar>
+    </AppBar>
   );
 };
+
+export default NavBar;
