@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react'
 import {
   MainFooterContainer,
@@ -5,7 +7,7 @@ import {
 } from './secondFooter.styles';
 import ContentInfo from '../content-info/ContentInfo';
 
-const SecondFooter = (): JSX.Element => (
+const SecondFooter : React.FC = () => (
     <MainFooterContainer>
     <MainInfoContainer>
       <ContentInfo isMainFooter={false} />

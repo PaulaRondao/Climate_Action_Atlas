@@ -1,10 +1,12 @@
-import React, { ReactNode } from 'react';
+'use client';
+
+import React from 'react';
 import { Container } from '../wrapper/wrapper.styles';
-import { Background, Title } from './header.styles';
-import { PageTitle } from '../../../../../types/enums/page';
+import { Title } from './header.styles';
+import { PageTitle } from '../../../../../types/enums/pageTitle';
 import { Description } from '../../../../../types/enums/description';
 import Wrapper from '../wrapper/Wrapper';
-
+import BackgroundLayout from '../background-image/BackgroundLayout';
 
 interface HeaderProps {
   pageTitle?: PageTitle,
@@ -14,15 +16,15 @@ interface HeaderProps {
   backgroundPosition?: string,
 }
 export default function Header ({
-  pageTitle,
-  description,
-  backgroundImage,
-  backgroundImageSize,
-  backgroundPosition,
-}: HeaderProps): JSX.Element {
+  pageTitle = undefined,
+  description = undefined,
+  backgroundImage = '',
+  backgroundImageSize = '',
+  backgroundPosition = '',
+}: HeaderProps) {
 
   return (
-      <Background
+      <BackgroundLayout
         backgroundImage={backgroundImage}
         backgroundImageSize={backgroundImageSize}
         backgroundPosition={backgroundPosition}
@@ -35,14 +37,6 @@ export default function Header ({
               {description}
             </Wrapper>
       </Container>
-      </Background>
+      </BackgroundLayout>
   );
 };
-
-Header.default = {
-  title: null,
-  description: null,
-  backgroundImage: null,
-  backgroundImageSize: null,
-  backgroundPosition: null,
-}

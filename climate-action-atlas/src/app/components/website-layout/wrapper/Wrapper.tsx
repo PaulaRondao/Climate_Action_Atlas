@@ -1,14 +1,16 @@
+'use client';
+
 import React from 'react';
 
 import { Container, Content } from './wrapper.styles';
 
 interface WrapperProps {
-      children: React.ReactNode,
+  children: React.ReactNode,
 }
 
-const Wrapper = ({
+const Wrapper : React.FC<WrapperProps> = ({
   children,
-}: WrapperProps): JSX.Element => (
+}) => (
     <Container>
       <Content>
         {children}

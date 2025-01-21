@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Script from 'next/script';
-import { PageTitle } from '../../../../types/enums/page';
+import { PageTitle } from '../../../../../types/enums/pageTitle';
 
 interface AppHeadProps {
   title: PageTitle|string,
@@ -17,7 +19,7 @@ declare global {
   }
 }
 
-const AppHead = ({ title, metaTag, canonical }: AppHeadProps): JSX.Element => {
+const AppHead = ({ title, metaTag = '', canonical = ''}: AppHeadProps): JSX.Element => {
 
 
   return (
@@ -40,11 +42,6 @@ const AppHead = ({ title, metaTag, canonical }: AppHeadProps): JSX.Element => {
       )}
   </>
   );
-};
-
-AppHead.defaultProps = {
-  metaTag: '',
-  canonical: null,
 };
 
 export default AppHead;
