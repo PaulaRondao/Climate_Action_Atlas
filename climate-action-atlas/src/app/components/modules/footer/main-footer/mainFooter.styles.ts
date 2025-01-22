@@ -4,7 +4,7 @@ import { BREAK_POINT, DEVICE_QUERY } from '../../../../../../types/enums/viewpor
 export const MainFooterContainer = styled.div`
   display: flex;
   flex-flow: column nowrap;
-  margin: 20px 0 40px;
+  padding: 20px 0 30px;
   gap: 16px;
 
   @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
