@@ -5,18 +5,16 @@ import Image from 'next/image';
 import {
   MainFooterContainer,
   MainInfoContainer,
-  Logo,
 } from './mainFooter.styles';
 import ContentInfo from '../content-info/ContentInfo';
+import SVGIMG from '../../../../public/svg/logo-climate.svg';
 
 const MainFooter : React.FC = () => (
   <MainFooterContainer>
-      <Logo>
-        <Image src="./svg/Climate-Action-Atlas.svg" alt="logo Climate Action Atlas" width={20} height={20} />
-      </Logo>
     <MainInfoContainer>
       <ContentInfo isMainFooter={true} />
     </MainInfoContainer>
+        <Image src={SVGIMG} alt="logo Climate Action Atlas" width={140} height={70} />
   </MainFooterContainer>
 );
 

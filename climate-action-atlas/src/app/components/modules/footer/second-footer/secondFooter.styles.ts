@@ -15,7 +15,6 @@ export const MainFooterContainer = styled.div`
   @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
     flex-flow: row nowrap;
     justify-content: space-between;
-    height: 72px;
   }
 `;
 
