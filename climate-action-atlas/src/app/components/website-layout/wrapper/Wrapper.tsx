@@ -2,7 +2,8 @@
 
 import React from 'react';
 
-import { Container, Content } from './wrapper.styles';
+import { Content } from './wrapper.styles';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface WrapperProps {
   children: React.ReactNode,

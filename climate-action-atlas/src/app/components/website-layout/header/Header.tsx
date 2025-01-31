@@ -1,41 +1,37 @@
 'use client';
 
 import React from 'react';
-import { Container } from '../wrapper/wrapper.styles';
-import { Title } from './header.styles';
+import { TitleSection, WelcomeSection, Wrapper } from './header.styles';
 import { PageTitle } from '../../../../../types/enums/pageTitle';
 import { Description } from '../../../../../types/enums/description';
-import Wrapper from '../wrapper/Wrapper';
 import BackgroundLayout from '../background-image/BackgroundLayout';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface HeaderProps {
   pageTitle?: PageTitle,
   description?: Description,
-  backgroundImage?: string,
-  backgroundImageSize?: string,
-  backgroundPosition?: string,
 }
+
 export default function Header ({
   pageTitle = undefined,
   description = undefined,
-  backgroundImage = '',
-  backgroundImageSize = '',
-  backgroundPosition = '',
 }: HeaderProps) {
 
   return (
       <BackgroundLayout
-        backgroundImage={backgroundImage}
-        backgroundImageSize={backgroundImageSize}
-        backgroundPosition={backgroundPosition}
-      >
+        width={1920}
+        height={500}
+        src='/images/Header.png'
+        >
       <Container>
-            <Title>
-              {pageTitle}
-            </Title>
-            <Wrapper>
-              {description}
-            </Wrapper>
+        <WelcomeSection>
+          <TitleSection>
+            <h1>{pageTitle}</h1>
+          </TitleSection>
+          <Wrapper>
+            <p>{description}</p>
+          </Wrapper>
+        </WelcomeSection>
       </Container>
       </BackgroundLayout>
   );

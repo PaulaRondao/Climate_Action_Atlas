@@ -1,23 +1,31 @@
+'use client'
+
 import React from 'react';
+import { BackgroundContainer, BackgroundImage } from './backgroundLayout.style';
+import Image from 'next/image';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface BackgroundLayoutProps {
-  backgroundImage: string;
-  backgroundImageSize: string;
-  backgroundPosition: string;
-  children: React.ReactNode;
+  width: number | `${number}`,
+  height: number | `${number}`,
+  src: string,
+  children: React.ReactNode,
+
 }
 
 export default function BackgroundLayout ({
-  backgroundImage,
-  backgroundImageSize,
-  backgroundPosition,
+  width,
+  height,
+  src,
   children,
 }:BackgroundLayoutProps ) {
-  const backgroundStyle = {
-    backgroundImage: `url(${backgroundImage})`,
-    backgroundSize: backgroundImageSize,
-    backgroundPosition: backgroundPosition,
-  };
-
-  return <div style={backgroundStyle}>{children}</div>;
+  return (
+  <BackgroundContainer>
+    <picture>
+      <source width={width} height={height}></source>
+      <BackgroundImage alt='' width={width} height={height} src={src} />
+    </picture>
+    {children}
+  </BackgroundContainer>
+  );
 };

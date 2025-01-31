@@ -20,7 +20,6 @@ export default function HeaderLayout ({
   return (
     <>
       <AppHead title={title} metaTag={metaTag} canonical={canonical} />
-        <header>
           <Navbar
           // connected={connected}
           // user={user}
@@ -28,7 +27,6 @@ export default function HeaderLayout ({
           // steps={steps}
           // activeStep={activeStep}
           />
-        </header>
     </>
   );
 };

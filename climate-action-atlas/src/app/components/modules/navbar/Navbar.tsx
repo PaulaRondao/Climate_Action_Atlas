@@ -5,6 +5,8 @@ import { AppBar, Toolbar, Typography, IconButton, Menu, MenuItem, Button, useMed
 import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
+import SVGIMG from '../../../public/svg/logo-climate.svg';
+import Image from 'next/image';
 
 const NavBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
@@ -107,9 +109,9 @@ const themeColor = createTheme({
   return (
     <AppBar position="sticky" style={{ backgroundColor: themeColor.palette.secondary.main  }}>
       <Toolbar>
-        <Typography variant="h6" component="div" sx={{ flexGrow: 1, color: "#fefcf6" }}>
-          My Website
-        </Typography>
+        <Box sx={{ flexGrow: 1, color: "#fefcf6" }}>
+      <Image  src={SVGIMG} alt="logo Climate Action Atlas" width={40} height={40} />
+        </Box>
 
         {isMobile ? (
           <>
