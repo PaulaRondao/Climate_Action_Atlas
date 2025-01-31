@@ -25,7 +25,7 @@
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
   --text-xxl: 1.625rem;
-  --text-xxxl: 2.625rem;
+  --text-xxxl: 2.375rem;
   --text-xxxxl: 3.375rem;
   --text-xxxxxl: 5.625rem;
 }
@@ -33,6 +33,7 @@
 main {
   max-width: 100%;
   margin: auto;
+  flex-grow: 1;
 }
 
 html,
@@ -40,6 +41,8 @@ body {
   max-width: 100vw;
   height: 100%;
   overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
 body {
@@ -140,6 +143,7 @@ video {
   font: inherit;
   vertical-align: baseline;
   line-height: normal;
+  font-style: normal;
 }
 
 ol,
@@ -166,4 +170,35 @@ textarea {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+h1 {
+  font-size: var(--text-xxxl);
+  font-weight: 400;
+  line-height: 2.1rem;
+  letter-spacing: 1.5px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h2 {
+  font-size: var(--text-xxl);
+  font-weight: 400;
+  line-height: 2.1rem;
+  letter-spacing: 1.5px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+h3 {
+  font-size: var(--text-xl);
+  font-weight: 400;
+  line-height: 2.1rem;
+  letter-spacing: 1.5px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+p {
+  line-height: 1.5rem;
+  font-weight: 500;
+  font-size: var(--text-md);
+  font-family: 'Tahoma, Geneva, Verdana, sans-serif';
 }

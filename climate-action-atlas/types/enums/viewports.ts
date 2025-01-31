@@ -1,5 +1,5 @@
 export enum BREAK_POINT {
-  DESKTOP = 1200,
+  DESKTOP = 900,
   MOBILE = 600,
 }
 
