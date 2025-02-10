@@ -12,7 +12,7 @@ import { Container } from '../../ui/global-styles/globalStyle.style';
 import BackgroundLayout from '../background-image/BackgroundLayout';
 import Wrapper from '../wrapper/Wrapper';
 import { TitleSection } from '../header/header.styles';
-import Button from '../../elements/button/button/Button';
+import Button from '../../elements/dropdown-button/button/Button';
 import { ButtonContainer } from './homepageLayout.styles';
 
 interface HomepageLayoutProps {
