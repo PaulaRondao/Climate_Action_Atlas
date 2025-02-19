@@ -36,7 +36,8 @@
     "eslint": "^8.57.1",
     "eslint-config-next": "14.2.12",
     "prisma": "^5.22.0",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "prettier": "^2.0.5"
   },
   "prisma": {
     "seed": "ts-node --compiler-options {\"module\":\"CommonJS\"} prisma/seed.ts"
