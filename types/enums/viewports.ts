@@ -3,4 +3,5 @@ export enum BREAK_POINT {
   MOBILE = 600,
 }
 
-export const DEVICE_QUERY = (breakpoint: BREAK_POINT) => `(min-width: ${breakpoint}px)`;
+export const DEVICE_QUERY = (breakpoint: BREAK_POINT) =>
+  `(min-width: ${breakpoint}px)`;

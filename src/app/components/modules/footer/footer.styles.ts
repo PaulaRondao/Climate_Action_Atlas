@@ -1,9 +1,9 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const FooterContainer = styled.footer`
-background-color: var(--foreground-dark-blue);
-color: var(--color-background-beige);
-padding: 0 2rem;
+  background-color: var(--foreground-dark-blue);
+  color: var(--color-background-beige);
+  padding: 0 2rem;
 `;
 
 export const MainFooterWrapper = styled.div`

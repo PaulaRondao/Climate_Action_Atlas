@@ -18,9 +18,9 @@
   --color-background-green: #6ee7b7;
   --color-background-king-blue: #211bff;
 
-  --text-xs: .6875rem;
-  --text-sm: .8125rem;
-  --text-smd: .875rem;
+  --text-xs: 0.6875rem;
+  --text-sm: 0.8125rem;
+  --text-smd: 0.875rem;
   --text-md: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.25rem;
@@ -177,7 +177,7 @@ h1 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 h2 {
@@ -185,7 +185,7 @@ h2 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 h3 {
@@ -193,12 +193,12 @@ h3 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
 }
 
 p {
   line-height: 1.5rem;
   font-weight: 500;
   font-size: var(--text-md);
-  font-family: 'Tahoma, Geneva, Verdana, sans-serif';
+  font-family: "Tahoma, Geneva, Verdana, sans-serif";
 }

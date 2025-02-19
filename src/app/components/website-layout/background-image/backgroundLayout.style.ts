@@ -1,9 +1,9 @@
-import styled, { css } from 'styled-components';
+import styled, { css } from "styled-components";
 
 interface BackgroundContainerProps {
-  backgroundImage?: string,
-  backgroundImageSize?: string,
-  backgroundPosition?: string,
+  backgroundImage?: string;
+  backgroundImageSize?: string;
+  backgroundPosition?: string;
 }
 
 export const BackgroundContainer = styled.div<BackgroundContainerProps>`

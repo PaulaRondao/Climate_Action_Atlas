@@ -1,5 +1,8 @@
-import styled from 'styled-components';
-import { BREAK_POINT, DEVICE_QUERY } from '../../../../../types/enums/viewports';
+import styled from "styled-components";
+import {
+  BREAK_POINT,
+  DEVICE_QUERY,
+} from "../../../../../types/enums/viewports";
 
 export const Content = styled.div`
   width: 100%;
@@ -28,12 +31,12 @@ export const Content = styled.div`
     font-weight: 600;
     line-height: 3.5rem;
   }
-    @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
-      p {
-        font-size: 3.5rem;
-        line-height: 4.5rem;
-      }
-      margin: auto;
-      padding: 0;
+  @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
+    p {
+      font-size: 3.5rem;
+      line-height: 4.5rem;
     }
+    margin: auto;
+    padding: 0;
+  }
 `;

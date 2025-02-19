@@ -1,12 +1,16 @@
-import bcrypt from 'bcrypt';
+import bcrypt from "bcrypt";
 import { faker } from "@faker-js/faker";
-import { InitiativeType, ResponseOption, PrismaClient, UserRole } from "@prisma/client";
+import {
+  InitiativeType,
+  ResponseOption,
+  PrismaClient,
+  UserRole,
+} from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 const seedDatabase = async () => {
   try {
-    
     const createdAt = faker.date.between({
       from: new Date("2020-01-01"),
       to: new Date(),
@@ -19,16 +23,18 @@ const seedDatabase = async () => {
     ];
 
     const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password, 10);    
+    const hashedPassword = await bcrypt.hash(password, 10);
 
-    const userAccountsPromises = Array.from({ length: 5 }).map(async() => {
+    const userAccountsPromises = Array.from({ length: 5 }).map(async () => {
       const email = faker.internet.email();
       // Essayer de supprimer un utilisateur existant avec le même email
-      await prisma.userAccount.delete({
-        where: { email }
-      }).catch(() => {
-        // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
-      });
+      await prisma.userAccount
+        .delete({
+          where: { email },
+        })
+        .catch(() => {
+          // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
+        });
 
       return prisma.userAccount.create({
         data: {
@@ -45,11 +51,11 @@ const seedDatabase = async () => {
         },
       });
     });
-    
+
     const userAccounts = await Promise.all(userAccountsPromises);
 
     const companyName = [
-      "EcoSphère",  
+      "EcoSphère",
       "TerraVerde",
       "GreenPulse",
       "Alliance Naturelle",
@@ -59,14 +65,16 @@ const seedDatabase = async () => {
       "Planète Bleu",
     ];
 
-    const companyAccountsPromises = Array.from({ length: 3 }).map(async() => {
+    const companyAccountsPromises = Array.from({ length: 3 }).map(async () => {
       const email = faker.internet.email();
       // Essayer de supprimer un utilisateur existant avec le même email
-      await prisma.userAccount.delete({
-        where: { email }
-      }).catch(() => {
-        // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
-      });
+      await prisma.userAccount
+        .delete({
+          where: { email },
+        })
+        .catch(() => {
+          // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
+        });
 
       return prisma.companyAccount.create({
         data: {
@@ -86,7 +94,7 @@ const seedDatabase = async () => {
       });
     });
 
-    const companyAccounts = await Promise.all((companyAccountsPromises));
+    const companyAccounts = await Promise.all(companyAccountsPromises);
 
     const initiativeTypeArray = [
       InitiativeType.ACTIONS_CLIMATIQUE,
@@ -98,16 +106,13 @@ const seedDatabase = async () => {
       InitiativeType.PROTECTIONS_DES_OCEANS,
       InitiativeType.GESTION_DURABLE_DE_L_EAU,
       InitiativeType.GESTION_DURABLE_DES_TERRITOIRES,
-      InitiativeType.EQUITE_SOCIALE_ET_EDUCATION
+      InitiativeType.EQUITE_SOCIALE_ET_EDUCATION,
     ];
 
-    const userRoleArray = [
-      UserRole.CONTRIBUTOR,
-      UserRole.ORGANIZER
-    ];
+    const userRoleArray = [UserRole.CONTRIBUTOR, UserRole.ORGANIZER];
 
     const initiativeName = [
-      "Récifs Sauvages",  
+      "Récifs Sauvages",
       "Révolution Climatique",
       "Objectif Zéro Carbone",
       "Gardiens de la Nature",
@@ -117,14 +122,14 @@ const seedDatabase = async () => {
       "Planète Bleu",
     ];
 
-    const initiativesPromises = Array.from({ length: 8}).map(async () => {
-
+    const initiativesPromises = Array.from({ length: 8 }).map(async () => {
       return prisma.initiative.create({
         data: {
           name: faker.helpers.arrayElement(initiativeName),
           description: faker.lorem.paragraph(),
           spokenLanguages: faker.helpers.arrayElement(responseOptionArray),
-          financialParticipation: faker.helpers.arrayElement(responseOptionArray),
+          financialParticipation:
+            faker.helpers.arrayElement(responseOptionArray),
           registrationRequired: faker.helpers.arrayElement(responseOptionArray),
           accessibility: faker.helpers.arrayElement(responseOptionArray),
           openToCitizens: faker.helpers.arrayElement(responseOptionArray),
@@ -141,18 +146,15 @@ const seedDatabase = async () => {
       });
     });
 
-    const initiatives = await Promise.all((initiativesPromises));
+    const initiatives = await Promise.all(initiativesPromises);
 
-    console.log('seeding conpleted successfully');
+    console.log("seeding conpleted successfully");
   } catch (error) {
-      console.warn("Error While generating Seed: \n", error);
-      process.exit(1);
-    } finally {
-      await prisma.$disconnect()
-    };
-}
+    console.warn("Error While generating Seed: \n", error);
+    process.exit(1);
+  } finally {
+    await prisma.$disconnect();
+  }
+};
 
 export default seedDatabase();
-
-
-

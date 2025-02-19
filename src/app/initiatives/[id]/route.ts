@@ -1,12 +1,14 @@
-import { NextRequest, NextResponse } from 'next/server';
-import { PrismaClient } from '@prisma/client';
+import { NextRequest, NextResponse } from "next/server";
+import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
 //GET request: Récupérer une initiative spécifique par ID
 
-
-export async function Test(req: NextRequest, { params }: { params: { id: string } }) {
+export async function Test(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const { id } = params;
 
   const initiativeSelect = await prisma.initiative.findUnique({
@@ -14,18 +16,22 @@ export async function Test(req: NextRequest, { params }: { params: { id: string 
   });
 
   if (!initiativeSelect) {
-    return NextResponse.json({message: 'Initiative not found'}, {status: 404});
+    return NextResponse.json(
+      { message: "Initiative not found" },
+      { status: 404 }
+    );
   }
-  console.log(initiativeSelect)
- return NextResponse.json(initiativeSelect);
+  console.log(initiativeSelect);
+  return NextResponse.json(initiativeSelect);
 }
-
-  
 
 // type MyPostPayload = prisma.PostGetPayload<{ select: typeof initiativeSelect }>
 
 // PUT request: Mettre à jour une initiative spécifique par ID
-export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const { id } = params;
   const data = await req.json();
   const updatedInitiative = await prisma.initiative.update({
@@ -36,12 +42,15 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
 }
 
 // DELETE request: Supprimer une initiative spécifique par ID
-export async function DELETE(req: NextRequest, { params }: { params: { id: string } }) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   const { id } = params;
   await prisma.initiative.delete({
     where: { id: Number(id) },
   });
-  return NextResponse.json({ message: 'Initiative supprimée avec succès' });
+  return NextResponse.json({ message: "Initiative supprimée avec succès" });
 }
 
 // export default async function handler(
@@ -58,13 +67,12 @@ export async function DELETE(req: NextRequest, { params }: { params: { id: strin
 //       }
 
 //       const addressBeneficiaire = await prisma.clients.findUnique({
-//           where: { 
+//           where: {
 //               id : data?.clientId  || 0
 //       }})
 //       const fluxIdsArray = Array.isArray(data?.fluxIds) ? data?.fluxIds as number[] : [];
 //       const fluxId = fluxIdsArray.length > 0 ? fluxIdsArray[0] : null;
-      
-      
+
 //       let infoFlux = null;
 //       if (fluxId !== null) {
 //           infoFlux = await prisma.cee_flux.findUnique({

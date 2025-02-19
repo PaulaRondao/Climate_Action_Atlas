@@ -1,5 +1,8 @@
-import styled from 'styled-components';
-import { BREAK_POINT, DEVICE_QUERY } from '../../../../../../types/enums/viewports';
+import styled from "styled-components";
+import {
+  BREAK_POINT,
+  DEVICE_QUERY,
+} from "../../../../../../types/enums/viewports";
 
 export const MainFooterContainer = styled.div`
   display: flex;

@@ -55,8 +55,6 @@ $ cp .gitignore
 
 ### Logs
 
-
-
 ### Docker
 
 Démarrer une base de données PostgreSQL conteneurisée dans une image Docker :
@@ -86,7 +84,6 @@ npx prisma migrate dev --name <un nom parlant de migration>
 ```
 
 <un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"
-
 
 ### Pour lancer l'éditeur graphique de Prisma
 

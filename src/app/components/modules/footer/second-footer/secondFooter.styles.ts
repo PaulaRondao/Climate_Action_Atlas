@@ -1,5 +1,8 @@
-import styled from 'styled-components';
-import { BREAK_POINT, DEVICE_QUERY } from '../../../../../../types/enums/viewports';
+import styled from "styled-components";
+import {
+  BREAK_POINT,
+  DEVICE_QUERY,
+} from "../../../../../../types/enums/viewports";
 
 export const MainFooterContainer = styled.div`
   display: flex;
@@ -9,7 +12,7 @@ export const MainFooterContainer = styled.div`
   gap: 16px;
 
   p {
-  font-size: 13px;
+    font-size: 13px;
   }
 
   @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {

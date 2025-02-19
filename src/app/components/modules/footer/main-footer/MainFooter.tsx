@@ -1,20 +1,22 @@
-'use client';
+"use client";
 
-import React from 'react';
-import Image from 'next/image';
-import {
-  MainFooterContainer,
-  MainInfoContainer,
-} from './mainFooter.styles';
-import ContentInfo from '../content-info/ContentInfo';
-import SVGIMG from '../../../../public/svg/logo-climate.svg';
+import React from "react";
+import Image from "next/image";
+import { MainFooterContainer, MainInfoContainer } from "./mainFooter.styles";
+import ContentInfo from "../content-info/ContentInfo";
+import SVGIMG from "../../../../public/svg/logo-climate.svg";
 
-const MainFooter : React.FC = () => (
+const MainFooter: React.FC = () => (
   <MainFooterContainer>
     <MainInfoContainer>
       <ContentInfo isMainFooter={true} />
     </MainInfoContainer>
-        <Image src={SVGIMG} alt="logo Climate Action Atlas" width={140} height={70} />
+    <Image
+      src={SVGIMG}
+      alt="logo Climate Action Atlas"
+      width={140}
+      height={70}
+    />
   </MainFooterContainer>
 );
 

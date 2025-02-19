@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const ButtonContainer = styled.button`
   position: relative;
@@ -16,11 +16,11 @@ export const ButtonContainer = styled.button`
     },
   transition: color 0.3s ease;
 }}
-`
+`;
 
 export const SpanContainer = styled.span`
   > {
     text-transform: uppercase;
     font-size: 1rem;
   }
-`
+`;
