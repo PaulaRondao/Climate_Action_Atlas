@@ -1,4 +1,5 @@
 # Climate_Action_Atlas
+
 Projet RNCP - Cartographier les effets du changement climatique, connecter les initiatives et agir pour un avenir durable.
 
 ## Installation
@@ -26,13 +27,11 @@ Ensuite, installez node dans sa version v20 :
 $ nvm install 20
 ```
 
-
 Pour basculer sur nvm v20 :
 
 ```bash
 $ nvm use 20
 ```
-
 
 Enfin, installez les dépendances du projet :
 
@@ -41,20 +40,56 @@ $ npm install
 ```
 
 ### Environnement
+
 Créer un ficher .env et un fichier .env.test
 
 ```bash
-$ cp .env .env.test
+$ cp .env .envsample .env.test
 ```
 
-Créer un ficher .gitignore 
+Créer un ficher .gitignore et ajouter .env dedans
 
 ```bash
 $ cp .gitignore
 ```
 
+### Logs
 
 
 
+### Docker
+
+Démarrer une base de données PostgreSQL conteneurisée dans une image Docker :
+
+```bash
+docker-compose up -d
+```
+
+Pour arrêter la base de données :
+
+```bash
+docker-compose down
+```
+
+### Base de données
+
+Appliquer les scripts de migration sur la base de données PostgreSQL démarrée :
+
+```bash
+npm run db:migrate
+```
+
+#### Créer une nouvelle migration
+
+```
+npx prisma migrate dev --name <un nom parlant de migration>
+```
+
+<un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"
 
 
+### Pour lancer l'éditeur graphique de Prisma
+
+```
+npx prisma studio
+```
