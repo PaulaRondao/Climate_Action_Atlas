@@ -1,8 +1,8 @@
-"use client";
+'use client';
 
-import React from "react";
-import AppHead from "../../modules/appHead/AppHead";
-import Navbar from "../../modules/navbar/Navbar";
+import React from 'react';
+import AppHead from '../../modules/appHead/AppHead';
+import Navbar from '../../modules/navbar/Navbar';
 
 interface HeaderLayoutProps {
   title: string;
@@ -14,8 +14,8 @@ interface HeaderLayoutProps {
 export default function HeaderLayout({
   title,
   connected = false,
-  metaTag = "",
-  canonical = "",
+  metaTag = '',
+  canonical = '',
 }: HeaderLayoutProps) {
   return (
     <>

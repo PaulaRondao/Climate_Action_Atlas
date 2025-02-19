@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import { BackgroundContainer, BackgroundImage } from "./backgroundLayout.style";
-import Image from "next/image";
-import { Container } from "../../ui/global-styles/globalStyle.style";
+import React from 'react';
+import { BackgroundContainer, BackgroundImage } from './backgroundLayout.style';
+import Image from 'next/image';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface BackgroundLayoutProps {
   width: number | `${number}`;

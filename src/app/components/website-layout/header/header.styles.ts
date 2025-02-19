@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import {
   BREAK_POINT,
   DEVICE_QUERY,
-} from "../../../../../types/enums/viewports";
+} from '../../../../../types/enums/viewports';
 
 export const WelcomeSection = styled.div`
   display: flex;

@@ -1,8 +1,8 @@
-"use client";
-import Image from "next/image";
-import styles from "./page.module.css";
-import { useEffect, useState } from "react";
-import HomePage from "./components/homepage/Homepage";
+'use client';
+import Image from 'next/image';
+import styles from './page.module.css';
+import { useEffect, useState } from 'react';
+import HomePage from './components/homepage/Homepage';
 // import { seedDatabase }  from '';
 
 export default function Home() {

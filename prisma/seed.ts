@@ -1,18 +1,18 @@
-import bcrypt from "bcrypt";
-import { faker } from "@faker-js/faker";
+import bcrypt from 'bcrypt';
+import { faker } from '@faker-js/faker';
 import {
   InitiativeType,
   ResponseOption,
   PrismaClient,
   UserRole,
-} from "@prisma/client";
+} from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 const seedDatabase = async () => {
   try {
     const createdAt = faker.date.between({
-      from: new Date("2020-01-01"),
+      from: new Date('2020-01-01'),
       to: new Date(),
     });
 
@@ -41,7 +41,7 @@ const seedDatabase = async () => {
           userName: faker.person.firstName(),
           email: email,
           password: hashedPassword,
-          role: "CONTRIBUTOR",
+          role: 'CONTRIBUTOR',
           createdAt: createdAt,
           updatedAt: faker.date.between({
             from: createdAt,
@@ -55,14 +55,14 @@ const seedDatabase = async () => {
     const userAccounts = await Promise.all(userAccountsPromises);
 
     const companyName = [
-      "EcoSphère",
-      "TerraVerde",
-      "GreenPulse",
-      "Alliance Naturelle",
-      "Horizons Écologiques",
-      "ÉcoCitoyens",
-      "Biosphère Unifiée",
-      "Planète Bleu",
+      'EcoSphère',
+      'TerraVerde',
+      'GreenPulse',
+      'Alliance Naturelle',
+      'Horizons Écologiques',
+      'ÉcoCitoyens',
+      'Biosphère Unifiée',
+      'Planète Bleu',
     ];
 
     const companyAccountsPromises = Array.from({ length: 3 }).map(async () => {
@@ -83,7 +83,7 @@ const seedDatabase = async () => {
           email: email,
           password: hashedPassword,
           locationId: faker.number.int({ min: 1, max: 1000 }),
-          role: "ORGANIZER",
+          role: 'ORGANIZER',
           siret: faker.string.numeric(14),
           createdAt: createdAt,
           updatedAt: faker.date.between({
@@ -112,14 +112,14 @@ const seedDatabase = async () => {
     const userRoleArray = [UserRole.CONTRIBUTOR, UserRole.ORGANIZER];
 
     const initiativeName = [
-      "Récifs Sauvages",
-      "Révolution Climatique",
-      "Objectif Zéro Carbone",
-      "Gardiens de la Nature",
-      "Réseau Solaire",
-      "ÉcoCitoyens",
-      "Biosphère Unifiée",
-      "Planète Bleu",
+      'Récifs Sauvages',
+      'Révolution Climatique',
+      'Objectif Zéro Carbone',
+      'Gardiens de la Nature',
+      'Réseau Solaire',
+      'ÉcoCitoyens',
+      'Biosphère Unifiée',
+      'Planète Bleu',
     ];
 
     const initiativesPromises = Array.from({ length: 8 }).map(async () => {
@@ -148,9 +148,9 @@ const seedDatabase = async () => {
 
     const initiatives = await Promise.all(initiativesPromises);
 
-    console.log("seeding conpleted successfully");
+    console.log('seeding conpleted successfully');
   } catch (error) {
-    console.warn("Error While generating Seed: \n", error);
+    console.warn('Error While generating Seed: \n', error);
     process.exit(1);
   } finally {
     await prisma.$disconnect();

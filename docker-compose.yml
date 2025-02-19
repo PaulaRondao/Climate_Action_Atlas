@@ -2,7 +2,7 @@ services:
   climate-db:
     image: postgres:12.20
     ports:
-      - "5432:5432"
+      - '5432:5432'
     environment:
       POSTGRES_DB: climate-db
       POSTGRES_USER: climate-db
@@ -17,7 +17,7 @@ services:
     env_file:
       - .env
     ports:
-      - "3000:3000"
+      - '3000:3000'
     working_dir: /app
     volumes:
       - .:/app

@@ -3,7 +3,7 @@ import {
   ResponseOption,
   PrismaClient,
   Initiative,
-} from "@prisma/client";
+} from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -14,9 +14,9 @@ async function resetSeedDatabase() {
     await prisma.initiative.deleteMany();
     await prisma.initiativeLocation.deleteMany();
 
-    console.log("Seeds have been deleted");
+    console.log('Seeds have been deleted');
   } catch (error) {
-    console.error("Error While generating Seed: \n", error);
+    console.error('Error While generating Seed: \n', error);
     await prisma.$disconnect();
     process.exit(1);
   } finally {

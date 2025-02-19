@@ -1,5 +1,5 @@
-import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
+import { NextRequest, NextResponse } from 'next/server';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -7,7 +7,7 @@ const prisma = new PrismaClient();
 
 export async function Test(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
 
@@ -17,8 +17,8 @@ export async function Test(
 
   if (!initiativeSelect) {
     return NextResponse.json(
-      { message: "Initiative not found" },
-      { status: 404 }
+      { message: 'Initiative not found' },
+      { status: 404 },
     );
   }
   console.log(initiativeSelect);
@@ -30,7 +30,7 @@ export async function Test(
 // PUT request: Mettre à jour une initiative spécifique par ID
 export async function PUT(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
   const data = await req.json();
@@ -44,13 +44,13 @@ export async function PUT(
 // DELETE request: Supprimer une initiative spécifique par ID
 export async function DELETE(
   req: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: { id: string } },
 ) {
   const { id } = params;
   await prisma.initiative.delete({
     where: { id: Number(id) },
   });
-  return NextResponse.json({ message: "Initiative supprimée avec succès" });
+  return NextResponse.json({ message: 'Initiative supprimée avec succès' });
 }
 
 // export default async function handler(

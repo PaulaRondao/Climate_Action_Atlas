@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { TitleSection, WelcomeSection, Wrapper } from "./header.styles";
-import { PageTitle } from "../../../../../types/enums/pageTitle";
-import { Description } from "../../../../../types/enums/description";
-import BackgroundLayout from "../background-image/BackgroundLayout";
-import { Container } from "../../ui/global-styles/globalStyle.style";
+import React from 'react';
+import { TitleSection, WelcomeSection, Wrapper } from './header.styles';
+import { PageTitle } from '../../../../../types/enums/pageTitle';
+import { Description } from '../../../../../types/enums/description';
+import BackgroundLayout from '../background-image/BackgroundLayout';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface HeaderProps {
   pageTitle?: PageTitle;

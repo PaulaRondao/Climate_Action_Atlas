@@ -1,19 +1,19 @@
-"use client";
+'use client';
 
-import React from "react";
-import HeaderLayout from "../header-layout/HeaderLayout";
-import { PageTitle } from "../../../../../types/enums/pageTitle";
-import { Description } from "../../../../../types/enums/description";
-import MainLayout from "../main-layout/MainLayout";
-import Footer from "../../modules/footer/Footer";
-import CardSection from "../card/CardSection";
-import { InitiativeOptions } from "../../../../../types/enums/initiative";
-import { Container } from "../../ui/global-styles/globalStyle.style";
-import BackgroundLayout from "../background-image/BackgroundLayout";
-import Wrapper from "../wrapper/Wrapper";
-import { TitleSection } from "../header/header.styles";
-import Button from "../../elements/dropdown-button/button/Button";
-import { ButtonContainer } from "./homepageLayout.styles";
+import React from 'react';
+import HeaderLayout from '../header-layout/HeaderLayout';
+import { PageTitle } from '../../../../../types/enums/pageTitle';
+import { Description } from '../../../../../types/enums/description';
+import MainLayout from '../main-layout/MainLayout';
+import Footer from '../../modules/footer/Footer';
+import CardSection from '../card/CardSection';
+import { InitiativeOptions } from '../../../../../types/enums/initiative';
+import { Container } from '../../ui/global-styles/globalStyle.style';
+import BackgroundLayout from '../background-image/BackgroundLayout';
+import Wrapper from '../wrapper/Wrapper';
+import { TitleSection } from '../header/header.styles';
+import Button from '../../elements/dropdown-button/button/Button';
+import { ButtonContainer } from './homepageLayout.styles';
 
 interface HomepageLayoutProps {
   title: string;
@@ -26,11 +26,11 @@ interface HomepageLayoutProps {
 
 export default function HomepageLayout({
   title,
-  canonical = "",
+  canonical = '',
   pageTitle = undefined,
   description = undefined,
-  padding = "",
-  marginbottom = "",
+  padding = '',
+  marginbottom = '',
 }: HomepageLayoutProps) {
   return (
     <>

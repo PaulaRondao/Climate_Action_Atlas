@@ -177,7 +177,7 @@ h1 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 h2 {
@@ -185,7 +185,7 @@ h2 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 h3 {
@@ -193,12 +193,12 @@ h3 {
   font-weight: 400;
   line-height: 2.1rem;
   letter-spacing: 1.5px;
-  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
 }
 
 p {
   line-height: 1.5rem;
   font-weight: 500;
   font-size: var(--text-md);
-  font-family: "Tahoma, Geneva, Verdana, sans-serif";
+  font-family: 'Tahoma, Geneva, Verdana, sans-serif';
 }

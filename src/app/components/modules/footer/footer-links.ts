@@ -1,16 +1,16 @@
 export const SecondFooterLinks = {
   links: [
     {
-      label: "Mentions Légales",
-      url: "/mentions-legales",
+      label: 'Mentions Légales',
+      url: '/mentions-legales',
     },
     {
-      label: "Politique de confidentialité",
-      url: "/politique-confidentialite",
+      label: 'Politique de confidentialité',
+      url: '/politique-confidentialite',
     },
     {
-      label: "Politique de cookies",
-      url: "/politique-cookies",
+      label: 'Politique de cookies',
+      url: '/politique-cookies',
     },
   ],
 };
@@ -18,16 +18,16 @@ export const SecondFooterLinks = {
 export const MainFooterLinks = {
   links: [
     {
-      label: "Contact",
-      url: "/contact",
+      label: 'Contact',
+      url: '/contact',
     },
     {
-      label: "FAQs",
-      url: "/faqs",
+      label: 'FAQs',
+      url: '/faqs',
     },
     {
-      label: "Accessibilité",
-      url: "/accessibilité",
+      label: 'Accessibilité',
+      url: '/accessibilité',
     },
   ],
 };

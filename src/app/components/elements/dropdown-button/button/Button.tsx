@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import React from "react";
-import { useRouter } from "next/router";
-import Link from "next/link";
-import { ButtonContainer, SpanContainer } from "./button.styles";
+import React from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { ButtonContainer, SpanContainer } from './button.styles';
 
-export type ButtonType = "button" | "submit" | "reset";
+export type ButtonType = 'button' | 'submit' | 'reset';
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
@@ -23,9 +23,9 @@ const Button = ({
   children,
   onClick = () => {},
   disabled = false,
-  asLink = "",
+  asLink = '',
   externalLink = false,
-  type = "button",
+  type = 'button',
   eventTracking = () => {},
   ...otherProps
 }: ButtonProps): JSX.Element => {
@@ -39,7 +39,7 @@ const Button = ({
         }
         if (asLink) {
           if (externalLink) {
-            window.open(asLink, "_blank");
+            window.open(asLink, '_blank');
           } else {
             router.push(asLink);
           }

@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
-import { Content } from "./wrapper.styles";
-import { Container } from "../../ui/global-styles/globalStyle.style";
+import { Content } from './wrapper.styles';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface WrapperProps {
   children: React.ReactNode;

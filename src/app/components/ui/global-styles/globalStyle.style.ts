@@ -1,8 +1,8 @@
-import styled, { css } from "styled-components";
+import styled, { css } from 'styled-components';
 import {
   BREAK_POINT,
   DEVICE_QUERY,
-} from "../../../../../types/enums/viewports";
+} from '../../../../../types/enums/viewports';
 
 interface ContainerProps {
   backgroundImage?: string;
@@ -100,7 +100,7 @@ export const CardTitle = styled.h2<CardTitleProps>`
     `}
 `;
 
-export const CardSubTitle = styled(CardTitle).attrs({ as: "h3" })`
+export const CardSubTitle = styled(CardTitle).attrs({ as: 'h3' })`
   font-size: var(--text-lg);
   text-align: start;
   ${({ fontSize }) =>
@@ -220,7 +220,7 @@ export const ButtonWrapper = styled.div<ButtonContainerProps>`
 `;
 
 interface FlexContainerProps {
-  flexDirection?: "row" | "column";
+  flexDirection?: 'row' | 'column';
   gap?: string;
   alignItems?: string;
   justifyContent?: string;

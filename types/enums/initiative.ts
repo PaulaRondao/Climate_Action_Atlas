@@ -1,26 +1,26 @@
 export enum Initiative {
-  ClimateAction = "Action climatique",
-  ConservationOfBiodiversity = "Conservation de la biodoversité",
-  SustainableNutrienManagment = "Gestion durable des nutriments",
-  ReductionOfChemicalPollution = "Réduction de la pollution chimique",
+  ClimateAction = 'Action climatique',
+  ConservationOfBiodiversity = 'Conservation de la biodoversité',
+  SustainableNutrienManagment = 'Gestion durable des nutriments',
+  ReductionOfChemicalPollution = 'Réduction de la pollution chimique',
   AirQuality = "Qualité de l'air",
   ProtectionOfTheOzoneLayer = "Protection de la couche d'ozone",
-  OceanProtection = "Protection des océans",
+  OceanProtection = 'Protection des océans',
   SustainableWaterMangement = "Gestion durable de l'eau",
-  SustainableManagmentOfTerritories = "Gestion durable des territoires",
-  SocialEquityAndEducation = "Équité sociale et éducation",
+  SustainableManagmentOfTerritories = 'Gestion durable des territoires',
+  SocialEquityAndEducation = 'Équité sociale et éducation',
 }
 
 export const InitiativeOptions: { label: Initiative; description: string }[] = [
   {
     label: Initiative.ClimateAction,
     description:
-      "Actions visant à réduire les émissions de gaz à effet de serre et à limiter le réchauffement climatique, tout en promouvant la résilience des écosystèmes et des sociétés.",
+      'Actions visant à réduire les émissions de gaz à effet de serre et à limiter le réchauffement climatique, tout en promouvant la résilience des écosystèmes et des sociétés.',
   },
   {
     label: Initiative.ConservationOfBiodiversity,
     description:
-      "Protection des espèces et des écosystèmes pour préserver la diversité biologique et garantir le bon fonctionnement des systèmes naturels vitaux.",
+      'Protection des espèces et des écosystèmes pour préserver la diversité biologique et garantir le bon fonctionnement des systèmes naturels vitaux.',
   },
   {
     label: Initiative.SustainableNutrienManagment,
@@ -45,7 +45,7 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
   {
     label: Initiative.OceanProtection,
     description:
-      "Préservation des océans et des ressources marines contre la pollution, la surpêche et les effets du changement climatique, pour garantir un équilibre écologique.",
+      'Préservation des océans et des ressources marines contre la pollution, la surpêche et les effets du changement climatique, pour garantir un équilibre écologique.',
   },
   {
     label: Initiative.SustainableWaterMangement,
@@ -55,7 +55,7 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
   {
     label: Initiative.SustainableManagmentOfTerritories,
     description:
-      "Aménagement du territoire qui respecte les limites écologiques, en préservant les espaces naturels et en favorisant des pratiques humaines responsables et résilientes.",
+      'Aménagement du territoire qui respecte les limites écologiques, en préservant les espaces naturels et en favorisant des pratiques humaines responsables et résilientes.',
   },
   {
     label: Initiative.SocialEquityAndEducation,

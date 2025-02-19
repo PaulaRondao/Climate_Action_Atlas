@@ -1,10 +1,10 @@
-"use client";
+'use client';
 
-import react, { ReactNode } from "react";
-import { Card, CardContainer, CardTitle } from "./cardSection.style";
-import { Initiative } from "../../../../../types/enums/initiative";
-import { TitleSection } from "../header/header.styles";
-import { Container } from "../../ui/global-styles/globalStyle.style";
+import react, { ReactNode } from 'react';
+import { Card, CardContainer, CardTitle } from './cardSection.style';
+import { Initiative } from '../../../../../types/enums/initiative';
+import { TitleSection } from '../header/header.styles';
+import { Container } from '../../ui/global-styles/globalStyle.style';
 
 interface CardSectionProps {
   initiatives: { label: Initiative; description: string }[];

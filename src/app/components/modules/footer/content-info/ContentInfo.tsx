@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import React from "react";
-import Link from "next/link";
-import { ContentInfoLink, ContentInfoContainer } from "./contentInfo.styles";
-import { MainFooterLinks, SecondFooterLinks } from "../footer-links";
+import React from 'react';
+import Link from 'next/link';
+import { ContentInfoLink, ContentInfoContainer } from './contentInfo.styles';
+import { MainFooterLinks, SecondFooterLinks } from '../footer-links';
 
 interface ContenteInfoProps {
   isMainFooter: boolean;

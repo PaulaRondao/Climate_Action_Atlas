@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React, { useState } from "react";
+import React, { useState } from 'react';
 import {
   AppBar,
   Toolbar,
@@ -16,27 +16,27 @@ import {
   ListItemText,
   Divider,
   Box,
-} from "@mui/material";
-import { Menu as MenuIcon, Close as CloseIcon } from "@mui/icons-material";
-import { useTheme, createTheme, ThemeProvider } from "@mui/material/styles";
-import Link from "next/link";
-import SVGIMG from "../../../public/svg/logo-climate.svg";
-import Image from "next/image";
+} from '@mui/material';
+import { Menu as MenuIcon, Close as CloseIcon } from '@mui/icons-material';
+import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import Link from 'next/link';
+import SVGIMG from '../../../public/svg/logo-climate.svg';
+import Image from 'next/image';
 
 const NavBar: React.FC = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down("md")); // Pour les écrans plus petits que "md" (960px)
+  const isMobile = useMediaQuery(theme.breakpoints.down('md')); // Pour les écrans plus petits que "md" (960px)
 
   const themeColor = createTheme({
     palette: {
       primary: {
-        main: "#fefcf6",
+        main: '#fefcf6',
       },
       secondary: {
-        main: "#010020",
+        main: '#010020',
       },
     },
   });
@@ -60,13 +60,13 @@ const NavBar: React.FC = () => {
         <Link href="/news" passHref>
           <Button
             sx={{
-              fontSize: "12px",
-              "&:hover": {
-                color: "#6ee7b7",
-                backgroundColor: "transparent",
-                WebkitTextStroke: "0.5px #6ee7b7",
+              fontSize: '12px',
+              '&:hover': {
+                color: '#6ee7b7',
+                backgroundColor: 'transparent',
+                WebkitTextStroke: '0.5px #6ee7b7',
               },
-              transition: "color 0.3s ease",
+              transition: 'color 0.3s ease',
             }}
           >
             S&apos;engager
@@ -75,13 +75,13 @@ const NavBar: React.FC = () => {
         <Link href="/about-us" passHref>
           <Button
             sx={{
-              fontSize: "12px",
-              "&:hover": {
-                color: "#6ee7b7",
-                backgroundColor: "transparent",
-                WebkitTextStroke: "0.5px #6ee7b7",
+              fontSize: '12px',
+              '&:hover': {
+                color: '#6ee7b7',
+                backgroundColor: 'transparent',
+                WebkitTextStroke: '0.5px #6ee7b7',
               },
-              transition: "color 0.3s ease",
+              transition: 'color 0.3s ease',
             }}
           >
             Ajouter une initiative
@@ -90,18 +90,18 @@ const NavBar: React.FC = () => {
         <Link href="/get-started" passHref>
           <Button
             sx={{
-              fontSize: "12px",
-              color: "#fefcf6",
-              backgroundColor: "transparent",
-              border: "1px solid #fefcf6",
-              borderRadius: "25px",
-              padding: "8px 20px",
-              "&:hover": {
-                borderColor: "#6ee7b7",
-                color: "#6ee7b7",
-                WebkitTextStroke: "0.5px #6ee7b7",
+              fontSize: '12px',
+              color: '#fefcf6',
+              backgroundColor: 'transparent',
+              border: '1px solid #fefcf6',
+              borderRadius: '25px',
+              padding: '8px 20px',
+              '&:hover': {
+                borderColor: '#6ee7b7',
+                color: '#6ee7b7',
+                WebkitTextStroke: '0.5px #6ee7b7',
               },
-              transition: "color 0.3s ease",
+              transition: 'color 0.3s ease',
             }}
           >
             Connexion
@@ -165,7 +165,7 @@ const NavBar: React.FC = () => {
       style={{ backgroundColor: themeColor.palette.secondary.main }}
     >
       <Toolbar>
-        <Box sx={{ flexGrow: 1, color: "#fefcf6" }}>
+        <Box sx={{ flexGrow: 1, color: '#fefcf6' }}>
           <Image
             src={SVGIMG}
             alt="logo Climate Action Atlas"
@@ -180,7 +180,7 @@ const NavBar: React.FC = () => {
               edge="start"
               onClick={() => toggleDrawer(true)}
               aria-label="menu"
-              sx={{ color: "#fefcf6" }}
+              sx={{ color: '#fefcf6' }}
             >
               <MenuIcon />
             </IconButton>
