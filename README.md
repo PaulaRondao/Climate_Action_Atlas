@@ -1,6 +1,7 @@
 # Climate_Action_Atlas
 <img align="left" alt="badge ci" src="https://github.com/PaulaRondao/Climate_Action_Atlas/actions/workflows/node.js.yml/badge.svg" />
 
+
 Projet RNCP - Cartographier les effets du changement climatique, connecter les initiatives et agir pour un avenir durable.
 
 ## Installation
