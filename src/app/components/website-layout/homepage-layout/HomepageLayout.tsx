@@ -14,6 +14,7 @@ import Wrapper from '../wrapper/Wrapper';
 import { TitleSection } from '../header/header.styles';
 import Button from '../../elements/dropdown-button/button/Button';
 import { ButtonContainer } from './homepageLayout.styles';
+import MapView from '../../modules/map/MapView';
 
 interface HomepageLayoutProps {
   title: string;
@@ -40,7 +41,7 @@ export default function HomepageLayout({
           pageTitle={pageTitle}
           description={description}
         ></MainLayout>
-
+        <MapView></MapView>
         <CardSection initiatives={InitiativeOptions}>
           <h2>Ce que nous pouvons faire</h2>
         </CardSection>
