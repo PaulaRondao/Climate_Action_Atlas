@@ -30,21 +30,19 @@ export default function HomepageLayout({}) {
           <h2>Ce que nous pouvons faire</h2>
         </CardSection>
 
-        <Container>
-          <Wrapper>
-            <TitleSection>
-              <h3>Votre engagement</h3>
-              <hr></hr>
-            </TitleSection>
-            <p>
-              L’engagement de chacun est essentiel pour préserver notre planète.
-              Agissez dès aujourd&apos;hui pour un futur plus vert.
-            </p>
-            <ButtonContainer>
-              <Button>Explorer</Button>
-            </ButtonContainer>
-          </Wrapper>
-        </Container>
+        <Wrapper>
+          <TitleSection>
+            <h3>Votre engagement</h3>
+            <hr></hr>
+          </TitleSection>
+          <p>
+            L’engagement de chacun est essentiel pour préserver notre planète.
+            Agissez dès aujourd&apos;hui pour un futur plus vert.
+          </p>
+          <ButtonContainer>
+            <Button>Explorer</Button>
+          </ButtonContainer>
+        </Wrapper>
       </main>
       <Footer />
     </>

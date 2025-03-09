@@ -6,7 +6,7 @@ interface BackgroundContainerProps {
   backgroundPosition?: string;
 }
 
-export const BackgroundContainer = styled.div<BackgroundContainerProps>`
+export const BackgroundContainer = styled.section<BackgroundContainerProps>`
   position: relative;
   height: 500px;
 `;

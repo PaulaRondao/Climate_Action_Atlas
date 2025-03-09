@@ -6,13 +6,23 @@ export const WelcomeSection = styled.div`
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  padding: 32px 0px;
+  padding: 2rem 2rem;
   gap: 32px;
   transform: translateY(50%);
   color: var(--color-background-beige);
+
   p {
     font-weight: bold;
     font-size: 1rem;
+  }
+  h1 {
+    text-align: center;
+  }
+
+  @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
+    max-width: 77%;
+    margin-right: auto;
+    margin-left: auto;
   }
 `;
 
@@ -23,7 +33,6 @@ export const TitleSection = styled.div`
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   text-transform: uppercase;
   text-align: center;
-  padding: 35px 15px;
   margin-bottom: 40px;
 `;
 
