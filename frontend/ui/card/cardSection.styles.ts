@@ -1,14 +1,22 @@
 import styled from 'styled-components';
+import { BREAK_POINT, DEVICE_QUERY } from '../../../types/enums/viewports';
 
 export const CardContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 10px;
   background-color: var(--color-background-beige);
   max-width: 800px;
   margin: 1em auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(4, auto);
+
   gap: 40px;
+
+  @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, auto);
+  }
 `;
 
 export const CardTitle = styled.div`

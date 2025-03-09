@@ -11,7 +11,7 @@ interface ContainerProps {
   gap?: string;
 }
 
-export const Container = styled.div<ContainerProps>`
+export const Container = styled.section<ContainerProps>`
   display: flex;
   flex-direction: column;
   padding: 16px;
