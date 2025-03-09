@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  BREAK_POINT,
-  DEVICE_QUERY,
-} from '../../../../types/enums/viewports';
+import { BREAK_POINT, DEVICE_QUERY } from '../../../../types/enums/viewports';
 
 export const WelcomeSection = styled.div`
   display: flex;
@@ -14,9 +11,9 @@ export const WelcomeSection = styled.div`
   transform: translateY(50%);
   color: var(--color-background-beige);
   p {
-      font-weight: bold;
-      font-size: 1rem;
-    }
+    font-weight: bold;
+    font-size: 1rem;
+  }
 `;
 
 export const TitleSection = styled.div`

@@ -15,13 +15,11 @@ import AppHead from '../../../components/public-pages/appHead/AppHead';
 import NavBar from '../../../components/public-pages/navbar/Navbar';
 import HeaderPublicPage from '../../../ui/layout/header/HeaderPublicPage';
 
-
-export default function HomepageLayout({
-}) {
+export default function HomepageLayout({}) {
   return (
     <>
       <AppHead title="Homepage, Climate Action Atlas" canonical=""></AppHead>
-      <NavBar/>
+      <NavBar />
       <main>
         <HeaderPublicPage
           pageTitle={PageTitle.MovementForChange}
@@ -33,19 +31,19 @@ export default function HomepageLayout({
         </CardSection>
 
         <Container>
-            <Wrapper>
-              <TitleSection>
-                <h3>Votre engagement</h3>
-                <hr></hr>
-              </TitleSection>
-              <p>
-                L’engagement de chacun est essentiel pour préserver notre
-                planète. Agissez dès aujourd&apos;hui pour un futur plus vert.
-              </p>
-              <ButtonContainer>
-                <Button>Explorer</Button>
-              </ButtonContainer>
-            </Wrapper>
+          <Wrapper>
+            <TitleSection>
+              <h3>Votre engagement</h3>
+              <hr></hr>
+            </TitleSection>
+            <p>
+              L’engagement de chacun est essentiel pour préserver notre planète.
+              Agissez dès aujourd&apos;hui pour un futur plus vert.
+            </p>
+            <ButtonContainer>
+              <Button>Explorer</Button>
+            </ButtonContainer>
+          </Wrapper>
         </Container>
       </main>
       <Footer />

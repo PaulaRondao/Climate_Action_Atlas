@@ -1,7 +1,10 @@
 'use client';
 
 import React from 'react';
-import { BackgroundContainer, BackgroundImage } from './backgroundLayout.styles';
+import {
+  BackgroundContainer,
+  BackgroundImage,
+} from './backgroundLayout.styles';
 
 interface BackgroundLayoutProps {
   width: number | `${number}`;

@@ -1,8 +1,5 @@
 import styled, { css } from 'styled-components';
-import {
-  BREAK_POINT,
-  DEVICE_QUERY,
-} from '../../types/enums/viewports';
+import { BREAK_POINT, DEVICE_QUERY } from '../../types/enums/viewports';
 
 interface ContainerProps {
   backgroundImage?: string;
