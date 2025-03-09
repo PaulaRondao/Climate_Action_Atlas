@@ -16,5 +16,5 @@ export const BackgroundImage = styled.img<BackgroundContainerProps>`
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  z-index: 1;
+  z-index: -1;
 `;

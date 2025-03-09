@@ -46,7 +46,6 @@ export const Container = styled.div<ContainerProps>`
 
   @media ${DEVICE_QUERY(BREAK_POINT.DESKTOP)} {
     padding: 32px 64px;
-    margin-bottom: 64px;
     ${({ padding }) =>
       padding &&
       css`

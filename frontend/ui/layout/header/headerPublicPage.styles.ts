@@ -12,31 +12,24 @@ export const WelcomeSection = styled.div`
   padding: 32px 0px;
   gap: 32px;
   transform: translateY(50%);
+  color: var(--color-background-beige);
+  p {
+      font-weight: bold;
+      font-size: 1rem;
+    }
 `;
-interface TitleSectionProps {
-  marginbottom?: string;
-  padding?: string;
-}
 
-export const TitleSection = styled.div<TitleSectionProps>`
+export const TitleSection = styled.div`
   position: relative;
   width: 100%;
   min-height: 1px;
   text-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
   text-transform: uppercase;
   text-align: center;
-  padding: 32px 0px 0px;
-  ${({ padding }) =>
-    padding &&
-    css`
-      padding: ${padding};
-    `}
-  ${({ marginbottom }) =>
-    marginbottom &&
-    css`
-      margin-bottom: ${marginbottom};
-    `}
+  padding: 35px 15px;
+  margin-bottom: 40px;
 `;
+
 export const Wrapper = styled.div`
   position: relative;
   width: 100%;
