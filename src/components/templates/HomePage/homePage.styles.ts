@@ -26,7 +26,7 @@ export const HeroContent = styled.div`
   color: ${theme.colors.white};
   width: 90%;
   max-width: 800px;
-`
+`;
 
 export const Section = styled.section`
   padding: ${theme.spacing.xxl} ${theme.spacing.md};
