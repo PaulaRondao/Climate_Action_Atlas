@@ -26,7 +26,7 @@ export const theme = {
     },
     lineHeights: {
       normal: '1',
-      heading: '2.1rem',
+      heading: '2.5rem',
       body: '1.5rem',
     },
     letterSpacing: {
@@ -38,8 +38,9 @@ export const theme = {
     maxWidth: 'var(--max-width)', // 1100px
   },
   spacing: {
-    xs: '4px',
-    sm: '8px',
+    xxs: '4px',
+    xs: '8px',
+    sm: '12px',
     md: '16px',
     lg: '24px',
     xl: '32px',
@@ -48,7 +49,7 @@ export const theme = {
   borderRadius: {
     small: '4px',
     medium: '8px',
-    large: '12px',
+    large: '25px',
   },
   transitions: {
     default: 'all 0.3s ease-in-out',

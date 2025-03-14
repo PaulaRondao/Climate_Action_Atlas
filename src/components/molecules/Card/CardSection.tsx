@@ -52,7 +52,7 @@ interface CardSectionProps {
 }
 
 const CardSection: React.FC<CardSectionProps> = ({ initiatives, children }) => (
-  <Container>
+  <>
     <CardTitle>{children}</CardTitle>
     <CardContainer>
       {initiatives.map((initiative, index) => (
@@ -62,7 +62,7 @@ const CardSection: React.FC<CardSectionProps> = ({ initiatives, children }) => (
         </Card>
       ))}
     </CardContainer>
-  </Container>
+  </>
 );
 
 export default CardSection;

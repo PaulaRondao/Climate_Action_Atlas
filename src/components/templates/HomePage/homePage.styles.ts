@@ -14,7 +14,6 @@ export const ImageWrapper = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  background-color: red; // Debug: pour voir si le wrapper s'affiche
 `;
 
 export const HeroContent = styled.div`
@@ -26,6 +25,14 @@ export const HeroContent = styled.div`
   color: ${theme.colors.white};
   width: 90%;
   max-width: 800px;
+
+  h1 {
+    margin-bottom: ${theme.spacing.xl};
+  }
+
+  p {
+    font-weight: bold;
+  }
 `;
 
 export const Section = styled.section`
@@ -33,17 +40,6 @@ export const Section = styled.section`
 
   ${mediaQueries.desktop} {
     padding: ${theme.spacing.xxl};
-  }
-`;
-
-export const SectionTitle = styled.div`
-  text-align: center;
-  margin-bottom: ${theme.spacing.xl};
-
-  h2 {
-    font-size: ${theme.typography.fontSizes.xxl};
-    color: ${theme.colors.darkBlue};
-    text-transform: uppercase;
   }
 `;
 
@@ -82,10 +78,11 @@ export const EngagementSection = styled.div`
   margin: 0 auto;
   text-align: center;
 
-  h3 {
+  h2 {
     font-size: ${theme.typography.fontSizes.xl};
     color: ${theme.colors.darkBlue};
     margin-bottom: ${theme.spacing.md};
+    text-transform: uppercase;
   }
 
   hr {
@@ -97,6 +94,9 @@ export const EngagementSection = styled.div`
 
   p {
     margin-bottom: ${theme.spacing.xl};
-    line-height: ${theme.typography.lineHeights.body};
+    line-height: ${theme.typography.lineHeights.heading};
+    font-size: ${theme.typography.fontSizes.xxxl};
+    letter-spacing: ${theme.typography.letterSpacing.heading};
+    text-align: center;
   }
 `;

@@ -13,19 +13,20 @@ const StyledButton = styled.button<StyledButtonProps>`
   position: relative;
   margin-top: ${theme.spacing.lg};
   padding: ${theme.spacing.sm} ${theme.spacing.xl};
-  color: var(--foreground-dark-blue);
+  color: ${theme.colors.darkBlue};
   background-color: transparent;
-  border: 2px solid var(--foreground-dark-blue);
+  border: 2px solid ${theme.colors.darkBlue};
   border-radius: ${theme.borderRadius.large};
   transition: ${theme.transitions.default};
   text-transform: uppercase;
-  font-size: var(--text-md);
+  font-size: ${theme.typography.fontSizes.md};
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
 
   &:hover {
-    border-color: var(--color-background-green);
-    color: var(--color-background-green);
-    -webkit-text-stroke: 0.5px var(--color-background-green);
+    border-color: ${theme.colors.backgroundGreen};
+    color: ${theme.colors.backgroundKingBlue};
+    background-color: ${theme.colors.backgroundGreen};
+    -webkit-text-stroke: 0.5px ${theme.colors.backgroundKingBlue};
   }
 
   &:disabled {
@@ -38,6 +39,7 @@ const StyledButton = styled.button<StyledButtonProps>`
     gap: ${theme.spacing.sm};
     justify-content: center;
     align-items: center;
+    letter-spacing: ${theme.typography.letterSpacing.default};
   }
 `;
 
@@ -84,8 +86,6 @@ const Button = ({
     }
   };
 
-  const { fullWidth: _, ...restProps } = otherProps;
-
   return (
     <StyledButton
       onClick={handleClick}
@@ -93,7 +93,6 @@ const Button = ({
       disabled={disabled}
       variant={variant}
       $fullWidth={fullWidth}
-      {...restProps}
     >
       <span>{children}</span>
     </StyledButton>

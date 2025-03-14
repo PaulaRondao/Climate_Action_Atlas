@@ -11,8 +11,6 @@ export const mediaQueries = {
 export const GlobalStyle = createGlobalStyle`
   :root {
     --max-width: 1100px;
-    --line-height: 1.6rem;
-    --letter-spacing: 0.125rem;
 
     --foreground-dark-blue: #010020;
     --foreground-grey-black: #151d2b;

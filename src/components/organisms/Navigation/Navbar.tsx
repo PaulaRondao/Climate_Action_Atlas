@@ -22,7 +22,7 @@ import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
-import SVGIMG from '../../../app/public/svg/logo-climate.svg';
+import SVGIMG from '../../../../public/logo/logo-climate-black.svg';
 import { Header } from '@/components/organisms';
 
 interface NavbarProps {
@@ -73,7 +73,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
   const themeColor = createTheme({
     palette: {
       primary: {
-        main: '#fefcf6',
+        main: '#010020',
       },
     },
   });
@@ -123,7 +123,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
               onClick={handleMenu}
               color="inherit"
             >
-              <Avatar sx={{ bgcolor: '#6ee7b7', width: 32, height: 32 }}>
+              <Avatar sx={{ bgcolor: '#010020', width: 32, height: 32 }}>
                 {user.userName.charAt(0)}
               </Avatar>
             </IconButton>
@@ -253,7 +253,6 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
           <IconButton
             size="large"
             edge="start"
-            color="inherit"
             aria-label="menu"
             sx={{ mr: 2 }}
             onClick={() => toggleDrawer(true)}
@@ -268,10 +267,10 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             display: 'flex',
             alignItems: 'center',
             textDecoration: 'none',
-            color: 'inherit',
+            color: '#010020',
           }}
         >
-          <Image src={SVGIMG} alt="Logo" width={40} height={40} />
+          <Image src={SVGIMG} alt="Climate Action Atlas" width={40} height={40} />
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         {!isMobile && renderNavLinks()}

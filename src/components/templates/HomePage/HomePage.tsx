@@ -13,9 +13,9 @@ import {
   HeroSection,
   ImageWrapper,
   Section,
-  SectionTitle,
   TitleSection,
 } from './homePage.styles';
+import { Button } from '@/components/atoms';
 
 export default function HomePage() {
   return (
@@ -64,7 +64,7 @@ export default function HomePage() {
         <Section>
           <EngagementSection>
             <TitleSection>
-              <h3>Votre engagement</h3>
+              <h2>Votre engagement</h2>
               <hr />
             </TitleSection>
             <p>
@@ -72,7 +72,7 @@ export default function HomePage() {
               planète. Agissez dès aujourd&apos;hui pour un futur plus vert.
             </p>
             <ButtonContainer>
-              <button>Explorer</button>
+              <Button>Explorer</Button>
             </ButtonContainer>
           </EngagementSection>
         </Section>

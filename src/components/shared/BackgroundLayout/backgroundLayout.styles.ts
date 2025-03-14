@@ -6,7 +6,7 @@ export const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${theme.colors.greyBlack};
 `;
 
 export const BackgroundImage = styled.div`
@@ -15,7 +15,7 @@ export const BackgroundImage = styled.div`
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.7;
+  opacity: 0.6;
   z-index: 0;
   pointer-events: none;
 
