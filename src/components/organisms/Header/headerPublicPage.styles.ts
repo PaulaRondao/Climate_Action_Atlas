@@ -7,9 +7,11 @@ export const WelcomeSection = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 2rem 2rem;
+  padding: 2rem 2rem;
   gap: 32px;
   transform: translateY(50%);
   color: var(--color-background-beige);
+
 
   p {
     font-weight: bold;
