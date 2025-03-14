@@ -270,7 +270,12 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             color: '#010020',
           }}
         >
-          <Image src={SVGIMG} alt="Climate Action Atlas" width={40} height={40} />
+          <Image
+            src={SVGIMG}
+            alt="Climate Action Atlas"
+            width={40}
+            height={40}
+          />
         </Box>
         <Box sx={{ flexGrow: 1 }} />
         {!isMobile && renderNavLinks()}

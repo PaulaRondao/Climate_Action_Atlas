@@ -11,12 +11,7 @@ const MainFooter: React.FC = () => (
     <MainInfoContainer>
       <ContentInfo isMainFooter={true} />
     </MainInfoContainer>
-    <Image
-      src={SVGIMG}
-      alt="Climate Action Atlas"
-      width={140}
-      height={70}
-    />
+    <Image src={SVGIMG} alt="Climate Action Atlas" width={140} height={70} />
   </MainFooterContainer>
 );
 
