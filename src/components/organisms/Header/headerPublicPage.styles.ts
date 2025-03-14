@@ -12,7 +12,6 @@ export const WelcomeSection = styled.div`
   transform: translateY(50%);
   color: var(--color-background-beige);
 
-
   p {
     font-weight: bold;
     font-size: 1rem;
