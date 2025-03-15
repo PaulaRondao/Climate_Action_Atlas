@@ -97,7 +97,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
           </Button>
         </Link>
 
-        <Link href="/about-us" passHref>
+        <Link href="/initiative-creation-form" passHref>
           <Button
             sx={{
               fontSize: '12px',
@@ -208,7 +208,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             <ListItem>
               <ListItemText
                 primary={
-                  <Link href="/about-us" passHref>
+                  <Link href="/initiative-creation-form" passHref>
                     Ajouter une initiative
                   </Link>
                 }

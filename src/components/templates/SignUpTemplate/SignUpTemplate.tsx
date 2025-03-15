@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import SignUpForm from '@/components/molecules/Form/SignUpForm';
+import SignUpForm from '@/components/molecules/Forms/SignUpForm';
 import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';

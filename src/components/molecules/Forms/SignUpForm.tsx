@@ -7,7 +7,6 @@ import * as z from 'zod';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Button } from '@/components/atoms';
-import { mediaQueries } from '@/styles/globalStyles';
 
 const FormContainer = styled.form`
   display: flex;

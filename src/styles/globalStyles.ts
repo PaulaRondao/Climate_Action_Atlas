@@ -15,6 +15,9 @@ export const GlobalStyle = createGlobalStyle`
     --foreground-dark-blue: #010020;
     --foreground-grey-black: #151d2b;
     --foreground-white: #ffffff;
+    --color-foreground-purple:  #7B6798;
+    --color-foreground-dark-purple: #503374,
+    --color-foregroung-yellow: #FFBF44,
 
     --color-background-beige: #fefcf6;
     --color-background-green: #6ee7b7;

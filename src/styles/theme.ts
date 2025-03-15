@@ -3,10 +3,13 @@ export const theme = {
     darkBlue: 'var(--foreground-dark-blue)',
     greyBlack: 'var(--foreground-grey-black)',
     white: 'var(--foreground-white)',
+    purpleFaded: 'var(--color-foreground-purple)',
+    darkPurple: 'var(--color-foreground-dark-purple)',
+    yellow: 'var(--color-foregroung-yellow',
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
     backgroundKingBlue: 'var(--color-background-king-blue)',
-  },
+    },
   typography: {
     fontSizes: {
       xs: 'var(--text-xs)', // 0.6875rem
