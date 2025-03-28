@@ -3,6 +3,9 @@ export const theme = {
     darkBlue: 'var(--foreground-dark-blue)',
     greyBlack: 'var(--foreground-grey-black)',
     white: 'var(--foreground-white)',
+    purpleFaded: 'var(--color-foreground-purple)',
+    darkPurple: 'var(--color-foreground-dark-purple)',
+    yellow: 'var(--color-foregroung-yellow',
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
     backgroundKingBlue: 'var(--color-background-king-blue)',
@@ -47,8 +50,9 @@ export const theme = {
     xxl: '64px',
   },
   borderRadius: {
-    small: '4px',
-    medium: '8px',
+    extraSmall: '4px',
+    small: '8px',
+    medium: '16px',
     large: '25px',
   },
   transitions: {

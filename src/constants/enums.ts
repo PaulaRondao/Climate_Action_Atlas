@@ -1,3 +1,5 @@
+import { Options } from './SelectList';
+
 export enum InitiativeType {
   ACTIONS_CLIMATIQUE = 'ACTIONS_CLIMATIQUE',
   CONSERVATION_DE_LA_BIODIVERSITE = 'CONSERVATION_DE_LA_BIODIVERSITE',
@@ -16,21 +18,11 @@ export enum UserRole {
   ORGANIZER = 'ORGANIZER',
 }
 
-export enum ResponseOption {
+export enum ResponseOptionsEnums {
   OUI = 'OUI',
   NON = 'NON',
   INDEFINI = 'INDEFINI',
 }
-
-export enum BREAK_POINT {
-  DESKTOP = 900,
-  MOBILE = 600,
-}
-
-export const DEVICE_QUERY = {
-  MOBILE: `@media screen and (min-width: ${BREAK_POINT.MOBILE})`,
-  DESKTOP: `@media screen and (min-width: ${BREAK_POINT.DESKTOP})`,
-};
 
 export enum PageTitle {
   MovementForChange = 'Un mouvement pour changer',
@@ -116,4 +108,57 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
     description:
       "Promotion de l'équité sociale, de l'accès à l'éducation et du renforcement des capacités pour permettre aux communautés de participer activement à la lutte contre le changement climatique.",
   },
+];
+
+export const ResponseOptions = [
+  { label: 'Oui', value: ResponseOptionsEnums.OUI },
+  { label: 'Non', value: ResponseOptionsEnums.NON },
+  { label: 'Je ne sais pas', value: ResponseOptionsEnums.INDEFINI },
+];
+
+export const TypeInitiative = [
+  { label: 'Action climatique', value: Initiative.ClimateAction },
+  {
+    label: 'Conservation de la biodoversité',
+    value: Initiative.ConservationOfBiodiversity,
+  },
+  {
+    label: 'Gestion durable des nutriments',
+    value: Initiative.SustainableNutrienManagment,
+  },
+  {
+    label: 'Réduction de la pollution chimique',
+    value: Initiative.ReductionOfChemicalPollution,
+  },
+  { label: "Qualité de l'air", value: Initiative.AirQuality },
+  {
+    label: "Protection de la couche d'ozone",
+    value: Initiative.ProtectionOfTheOzoneLayer,
+  },
+  { label: 'Protection des océans', value: Initiative.OceanProtection },
+  {
+    label: "Gestion durable de l'eau",
+    value: Initiative.SustainableWaterMangement,
+  },
+  {
+    label: 'Gestion durable des territoires',
+    value: Initiative.SustainableManagmentOfTerritories,
+  },
+  {
+    label: 'Équité sociale et éducation',
+    value: Initiative.SocialEquityAndEducation,
+  },
+];
+
+export const InitiativeEnum = [
+  'Action climatique',
+  'Conservation de la biodoversité',
+  'Gestion durable des nutriments',
+  'Réduction de la pollution chimique',
+  "Qualité de l'air",
+  "Protection de la couche d'ozone",
+  'Protection des océans',
+  "Gestion durable de l'eau",
+  'Gestion durable des territoires',
+  'Équité sociale et éducation',
 ];
