@@ -113,5 +113,52 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
 export const ResponseOptions = [
   { label: 'Oui', value: ResponseOptionsEnums.OUI },
   { label: 'Non', value: ResponseOptionsEnums.NON },
-  { label: 'Je ne sais pas', value: ResponseOptionsEnums.INDEFINI }
-]
+  { label: 'Je ne sais pas', value: ResponseOptionsEnums.INDEFINI },
+];
+
+export const TypeInitiative = [
+  { label: 'Action climatique', value: Initiative.ClimateAction },
+  {
+    label: 'Conservation de la biodoversité',
+    value: Initiative.ConservationOfBiodiversity,
+  },
+  {
+    label: 'Gestion durable des nutriments',
+    value: Initiative.SustainableNutrienManagment,
+  },
+  {
+    label: 'Réduction de la pollution chimique',
+    value: Initiative.ReductionOfChemicalPollution,
+  },
+  { label: "Qualité de l'air", value: Initiative.AirQuality },
+  {
+    label: "Protection de la couche d'ozone",
+    value: Initiative.ProtectionOfTheOzoneLayer,
+  },
+  { label: 'Protection des océans', value: Initiative.OceanProtection },
+  {
+    label: "Gestion durable de l'eau",
+    value: Initiative.SustainableWaterMangement,
+  },
+  {
+    label: 'Gestion durable des territoires',
+    value: Initiative.SustainableManagmentOfTerritories,
+  },
+  {
+    label: 'Équité sociale et éducation',
+    value: Initiative.SocialEquityAndEducation,
+  },
+];
+
+export const InitiativeEnum = [
+  'Action climatique',
+  'Conservation de la biodoversité',
+  'Gestion durable des nutriments',
+  'Réduction de la pollution chimique',
+  "Qualité de l'air",
+  "Protection de la couche d'ozone",
+  'Protection des océans',
+  "Gestion durable de l'eau",
+  'Gestion durable des territoires',
+  'Équité sociale et éducation',
+];

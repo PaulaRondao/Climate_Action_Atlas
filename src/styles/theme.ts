@@ -9,7 +9,7 @@ export const theme = {
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
     backgroundKingBlue: 'var(--color-background-king-blue)',
-    },
+  },
   typography: {
     fontSizes: {
       xs: 'var(--text-xs)', // 0.6875rem
@@ -50,8 +50,9 @@ export const theme = {
     xxl: '64px',
   },
   borderRadius: {
-    small: '4px',
-    medium: '8px',
+    extraSmall: '4px',
+    small: '8px',
+    medium: '16px',
     large: '25px',
   },
   transitions: {
