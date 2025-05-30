@@ -16,27 +16,31 @@ import {
   TitleSection,
 } from './initiativeCreationForm.styles';
 import RadioInput from './RadioInput/RadioInput';
-import { ResponseOptions, TypeInitiative } from '@/constants';
+import {
+  Initiative,
+  SelectItems,
+  SelectOptions,
+  TypeInitiative,
+} from '@/constants';
 import CheckboxInput from './CheckboxInput/CheckboxInput';
 
-const initiativeCreationSchema = z.object({
+const initiativeTypeValues = Object.values(Initiative) as [string, ...string[]];
+const initiativeRadioValues = Object.values(SelectItems) as [
+  string,
+  ...string[],
+];
+
+export const initiativeCreationSchema = z.object({
   initiativeName: z.string().min(1, "Le nom de l'initiative est requis"),
   description: z
     .string()
     .min(10, 'La description doit contenir au moins 10 caractères'),
-  initiativeType: z.enum([
-    'Action climatique',
-    'Conservation de la biodoversité',
-    'Gestion durable des nutriments',
-    'Réduction de la pollution chimique',
-    "Qualité de l'air",
-    "Protection de la couche d'ozone",
-    'Protection des océans',
-    "Gestion durable de l'eau",
-    'Gestion durable des territoires',
-    'Équité sociale et éducation',
-  ]),
-  spokenLanguages: z.enum(['Oui', 'Non', 'Je ne sais pas']),
+  initiativeType: z
+    .array(z.enum(initiativeTypeValues))
+    .min(1, 'Veuillez sélectionner un type'),
+  spokenLanguages: z.enum(initiativeRadioValues, {
+    required_error: 'Veuillez sélectionner une option',
+  }),
   associationName: z.string().min(1, "Le nom de l'association est requis"),
   address: z.string().min(1, 'Veuillez indiquer une adresse'),
   postcode: z.string().min(1, 'Veuillez indiquer un code postal'),
@@ -53,9 +57,14 @@ const InitiativeCreationForm = () => {
 
   const methods = useForm<InitiativeCreationFormData>({
     resolver: zodResolver(initiativeCreationSchema),
+    defaultValues: {
+      initiativeType: [],
+      spokenLanguages: undefined,
+    },
   });
 
   const onSubmit = async (data: InitiativeCreationFormData) => {
+    console.log('DATA:', data);
     try {
       setGlobalError(null);
       const response = await fetch('/api/initiatives', {
@@ -113,13 +122,10 @@ const InitiativeCreationForm = () => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="checkbox-initiativeType">
+          <Label htmlFor="initiativeType">
             À quel type correspond l&apos;initiative&nbsp;? *
           </Label>
-          <CheckboxInput
-            TypeOptions={TypeInitiative}
-            name="checkbox-initiativeType"
-          />
+          <CheckboxInput TypeOptions={TypeInitiative} name="initiativeType" />
           {methods.formState.errors.initiativeType && (
             <ErrorMessage>
               {methods.formState.errors.initiativeType.message}
@@ -145,21 +151,6 @@ const InitiativeCreationForm = () => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="radio-spokenLanguages">
-            L&apos;association parle t-elle plusieurs langues&nbsp;? *
-          </Label>
-          <RadioInput
-            ResponseOption={ResponseOptions}
-            name="radio-spokenLanguages"
-          />
-          {methods.formState.errors.spokenLanguages && (
-            <ErrorMessage>
-              {methods.formState.errors.spokenLanguages.message}
-            </ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
           <Label htmlFor="associationName">
             Le nom de l&apos;association *
             <p>
@@ -175,6 +166,18 @@ const InitiativeCreationForm = () => {
           {methods.formState.errors.associationName && (
             <ErrorMessage>
               {methods.formState.errors.associationName.message}
+            </ErrorMessage>
+          )}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="spokenLanguages">
+            L&apos;association parle t-elle plusieurs langues&nbsp;? *
+          </Label>
+          <RadioInput radioList={SelectOptions} name="spokenLanguages" />
+          {methods.formState.errors.spokenLanguages && (
+            <ErrorMessage>
+              {methods.formState.errors.spokenLanguages.message}
             </ErrorMessage>
           )}
         </FormGroup>

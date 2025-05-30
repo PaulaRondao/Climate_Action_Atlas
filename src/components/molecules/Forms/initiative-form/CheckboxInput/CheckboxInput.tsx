@@ -40,7 +40,7 @@ const CheckboxInput = ({
                 onClick={onClick}
                 {...register(name)}
               />
-              <Label htmlFor={`checkbox${name}-${option.value}`}>
+              <Label htmlFor={`checkbox-${name}-${option.value}`}>
                 {option.label}
               </Label>
             </InputWrapper>
