@@ -18,7 +18,7 @@ export enum UserRole {
   ORGANIZER = 'ORGANIZER',
 }
 
-export enum ResponseOptionsEnums {
+export enum SelectItems {
   OUI = 'OUI',
   NON = 'NON',
   INDEFINI = 'INDEFINI',
@@ -110,10 +110,10 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
   },
 ];
 
-export const ResponseOptions = [
-  { label: 'Oui', value: ResponseOptionsEnums.OUI },
-  { label: 'Non', value: ResponseOptionsEnums.NON },
-  { label: 'Je ne sais pas', value: ResponseOptionsEnums.INDEFINI },
+export const SelectOptions: Options[] = [
+  { label: 'Oui', value: SelectItems.OUI },
+  { label: 'Non', value: SelectItems.NON },
+  { label: 'Je ne sais pas', value: SelectItems.INDEFINI },
 ];
 
 export const TypeInitiative = [

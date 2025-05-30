@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import { Prisma } from '@prisma/client';
+import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/InitiativeCreationForm';
 
 export async function GET(request: Request) {
   try {
@@ -56,10 +57,13 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
-    const data = await request.json();
+    const bodyRequest = await request.json();
+
+    const parsed = initiativeCreationSchema.parse(bodyRequest);
+
     const initiative = await prisma.initiative.create({
       data: {
-        ...data,
+        ...parsed,
         createdAt: new Date(),
         updatedAt: new Date(),
       },

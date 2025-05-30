@@ -6,7 +6,7 @@ import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Header, Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/constants/enums';
-import InitiativeCreationForm from '@/components/molecules/Forms/initiative-form/InitiativeForm';
+import InitiativeCreationForm from '@/components/molecules/Forms/initiative-form/InitiativeCreationForm';
 
 const MainContent = styled.main`
   position: relative;

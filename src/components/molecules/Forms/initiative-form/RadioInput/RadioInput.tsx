@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { ResponseOptionsEnums } from '@/constants';
 import { StyledRadio, Label } from './radioInput.styles';
 import {
   Fieldset,
@@ -10,19 +9,14 @@ import {
   InputWrapper,
   Legend,
 } from '../initiativeCreationForm.styles';
-import { fr } from '@faker-js/faker/.';
+import { Options } from '@/constants/SelectList';
 
 interface RadioInputProps {
-  ResponseOption: { label: string; value: ResponseOptionsEnums }[];
+  radioList: Options[];
   name: string;
-  onClick?: (e: any) => void;
 }
 
-const RadioInput = ({
-  ResponseOption,
-  name,
-  onClick = () => ({}),
-}: RadioInputProps): JSX.Element => {
+const RadioInput = ({ radioList, name }: RadioInputProps): JSX.Element => {
   const { register } = useFormContext();
   return (
     <Fieldset
@@ -32,18 +26,17 @@ const RadioInput = ({
       <Legend as="legend" id="radio-spokenLanguages-legend">
         Sélectionner la réponse de votre choix&nbsp;:
       </Legend>
-      {ResponseOption.map((option) => (
-        <InputContainer key={option.value.toString()}>
+      {radioList.map((radio) => (
+        <InputContainer key={radio.value.toString()}>
           <InputWrapper>
             <StyledRadio
               type="radio"
-              value={option.value}
-              id={`radio-${name}-${option.value}`}
-              onClick={onClick}
+              value={radio.value}
+              id={`radio-${name}-${radio.value}`}
               {...register(name)}
             />
-            <Label htmlFor={`radio${name}-${option.value}`}>
-              {option.label}
+            <Label htmlFor={`radio-${name}-${radio.value}`}>
+              {radio.label}
             </Label>
           </InputWrapper>
         </InputContainer>
