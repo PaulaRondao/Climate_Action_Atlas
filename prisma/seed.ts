@@ -1,8 +1,6 @@
 import bcrypt from 'bcrypt';
 import { faker } from '@faker-js/faker';
-import {
-  PrismaClient,
-} from '@prisma/client';
+import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
@@ -17,23 +15,25 @@ const seedDatabase = async () => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const users = await Promise.all(
-  Array.from({ length: 5 }).map(async () => {
-    const email = faker.internet.email();
-    const password = await bcrypt.hash(faker.internet.password(), 10);
+      Array.from({ length: 5 }).map(async () => {
+        const email = faker.internet.email();
+        const password = await bcrypt.hash(faker.internet.password(), 10);
 
-    await prisma.user.delete({ where: { email } }).catch(() => {});
+        await prisma.user.delete({ where: { email } }).catch(() => {});
 
-    return prisma.user.create({
-      data: {
-        userName: faker.person.firstName() || faker.helpers.arrayElement(companyName),
-        email: email,
-        password: hashedPassword,
-        createdAt: createdAt,
-        updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
-      },
-    });
-  })
-);
+        return prisma.user.create({
+          data: {
+            userName:
+              faker.person.firstName() ||
+              faker.helpers.arrayElement(companyName),
+            email: email,
+            password: hashedPassword,
+            createdAt: createdAt,
+            updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
+          },
+        });
+      }),
+    );
 
     // const userAccounts = await Promise.all(userAccounts);
 
@@ -69,41 +69,41 @@ const seedDatabase = async () => {
     ];
 
     const initiatives = await Promise.all(
-  Array.from({ length: 8 }).map(async () => {
-    const randomUser = faker.helpers.arrayElement(users);
-    return prisma.initiative.create({
-      data: {
-        name: faker.helpers.arrayElement(initiativeName),
-        description: faker.lorem.paragraph(),
-        initiativeType: faker.helpers.arrayElement(initiativeType),
-        narrative: faker.lorem.paragraph(),
-        email: faker.internet.email(),
-        webSite: faker.internet.url(),
-        contributor: {
-          connect: { id: randomUser.id },
-        },
-      },
-    });
-  })
-);
+      Array.from({ length: 8 }).map(async () => {
+        const randomUser = faker.helpers.arrayElement(users);
+        return prisma.initiative.create({
+          data: {
+            name: faker.helpers.arrayElement(initiativeName),
+            description: faker.lorem.paragraph(),
+            initiativeType: faker.helpers.arrayElement(initiativeType),
+            narrative: faker.lorem.paragraph(),
+            email: faker.internet.email(),
+            webSite: faker.internet.url(),
+            contributor: {
+              connect: { id: randomUser.id },
+            },
+          },
+        });
+      }),
+    );
 
     await Promise.all(
-  initiatives.map(async (initiative) => {
-    return prisma.address.create({
-      data: {
-        street: faker.location.streetAddress(),
-        postcode: faker.location.zipCode(),
-        city: faker.location.city(),
-        country: faker.location.country(),
-        latitude: faker.location.latitude(),
-        longitude: faker.location.longitude(),
-        initiative: {
-          connect: { initiativeId: initiative.initiativeId  },
-        },
-      },
-    });
-  })
-);
+      initiatives.map(async (initiative) => {
+        return prisma.address.create({
+          data: {
+            street: faker.location.streetAddress(),
+            postcode: faker.location.zipCode(),
+            city: faker.location.city(),
+            country: faker.location.country(),
+            latitude: faker.location.latitude(),
+            longitude: faker.location.longitude(),
+            initiative: {
+              connect: { initiativeId: initiative.initiativeId },
+            },
+          },
+        });
+      }),
+    );
 
     console.log('seeding conpleted successfully');
   } catch (error) {
