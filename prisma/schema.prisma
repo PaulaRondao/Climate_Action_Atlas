@@ -17,78 +17,39 @@ model Initiative {
   initiativeId Int @id @default(autoincrement())
   name String
   description String
-  spokenLanguages ResponseOption @map("spoken_languages")
-  financialParticipation ResponseOption @map("financial_participation")
-  registrationRequired ResponseOption @map("registration_required")
-  accessibility ResponseOption
-  openToCitizens ResponseOption @map("open_to_citizens")
-  type InitiativeType
-  address String
+  initiativeType String @map("initiative_type")
+  narrative String?
+  address Address[]
+  email String? @unique
+  webSite String?                     
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @updatedAt
+  
+  contributorId Int
+  contributor User @relation("InitiativeContributor", fields: [contributorId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
+
+}
+
+model Address {
+  id Int @id @default(autoincrement())
+  street String
   postcode String
   city String
   country String
-  email String @unique
-  webSite String                     
-  createdAt DateTime @map("created_at") @default(now())
-  updatedAt DateTime @map("updated_at") @updatedAt
-  isActive Boolean @map("is_active") @default(true)
-  responsableId Int
-  responsableRole UserRole 
-  
-  contributor UserAccount @relation("ContributorInitiative", fields: [responsableId], references: [userAccountId], onDelete: Cascade, onUpdate: Cascade, map: "Initiative_responsableId_user_fkey") 
-  organizer CompanyAccount @relation("OrganizerInitiative", fields: [responsableId], references: [companyAccountId], onDelete: Cascade, onUpdate: Cascade, map: "Initiative_responsableId_company_fkey")
+  latitude Float
+  longitude Float
 
-  @@index([type, country, openToCitizens ])
+  initiativeId Int
+  initiative Initiative @relation(fields: [initiativeId], references: [initiativeId])
 }
 
-model UserAccount {
-  userAccountId Int @id @default(autoincrement())
+model User {
+  id Int @id @default(autoincrement())
   userName String @map("user_name")
   email String @unique
   password String
-  role UserRole @default(CONTRIBUTOR)
-  createdAt DateTime @map("created_at") @default(now())
-  updatedAt DateTime @map("updated_at") @updatedAt
-  lastConnect DateTime @map("last_connect")
-
-  initiative Initiative[] @relation("ContributorInitiative")
-}
-
-model CompanyAccount {
-  companyAccountId Int @id @default(autoincrement())
-  companyName String @map("company_name")
-  phoneNumber String @map("phone_number")
-  email String @unique
-  password String
-  locationId Int
-  role UserRole @default(ORGANIZER)
-  siret String @unique
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
 
-  initiative Initiative[] @relation("OrganizerInitiative")
-}
-
-enum ResponseOption {
-  OUI
-  NON
-  INDEFINI
-}
-
-enum UserRole {
-  CONTRIBUTOR
-  ORGANIZER
-}
-
-enum InitiativeType {
-  ACTIONS_CLIMATIQUE
-  CONSERVATION_DE_LA_BIODIVERSITE
-  GESTION_DURABLE_DES_NUTRIMENTS
-  REDUCTION_DE_LA_POLLUTION
-  QUALITE_DE_L_AIR
-  PROTECTION_DE_DE_LA_COUCHE_D_OZONE
-  PROTECTIONS_DES_OCEANS
-  GESTION_DURABLE_DE_L_EAU
-  GESTION_DURABLE_DES_TERRITOIRES
-  EQUITE_SOCIALE_ET_EDUCATION
+  initiative Initiative[] @relation("InitiativeContributor")
 }
