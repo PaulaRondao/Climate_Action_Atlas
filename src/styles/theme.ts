@@ -1,13 +1,12 @@
 export const theme = {
   colors: {
-    darkBlue: 'var(--foreground-dark-blue)',
-    greyBlack: 'var(--foreground-grey-black)',
     white: 'var(--foreground-white)',
-    purpleFaded: 'var(--color-foreground-purple)',
-    darkPurple: 'var(--color-foreground-dark-purple)',
-    yellow: 'var(--color-foregroung-yellow',
+    fluoGreen: 'var(--foreground-fluo-green)',
+    darkBlue: 'var(--foreground-dark-blue)',
+
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
+
     backgroundKingBlue: 'var(--color-background-king-blue)',
   },
   typography: {

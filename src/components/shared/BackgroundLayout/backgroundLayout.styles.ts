@@ -6,7 +6,7 @@ export const BackgroundContainer = styled.div`
   position: relative;
   width: 100%;
   min-height: 100vh;
-  background-color: ${theme.colors.greyBlack};
+  background-color: ${theme.colors.backgroundGreen};
 `;
 
 export const BackgroundImage = styled.div`
@@ -30,7 +30,7 @@ export const Content = styled.div`
   position: relative;
   z-index: 1;
   padding: ${theme.spacing.xl} ${theme.spacing.lg};
-  color: ${theme.colors.backgroundBeige};
+  color: ${theme.colors.white};
   pointer-events: auto;
 
   ${mediaQueries.desktop} {

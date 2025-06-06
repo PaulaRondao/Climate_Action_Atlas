@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { DEVICE_QUERY } from '@/constants/enums';
+import { theme } from '@/styles/theme';
 
 export const Content = styled.div`
   width: 100%;
@@ -16,7 +16,7 @@ export const Content = styled.div`
   }
 
   hr {
-    border-bottom: 4px solid var(--foreground-grey-black);
+    border-bottom: 4px solid ${theme.colors.backgroundGreen};
     width: 50px;
     display: block;
     line-height: 1.6em;
@@ -29,7 +29,7 @@ export const Content = styled.div`
     line-height: 3.5rem;
   }
 
-  ${DEVICE_QUERY.DESKTOP} {
+  ${theme.breakpoints.desktop} {
     p {
       font-size: 3.5rem;
       line-height: 4.5rem;

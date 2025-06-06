@@ -11,7 +11,7 @@ import { PageTitle, Description } from '@/constants/enums';
 const SignUpContainer = styled.div`
   position: relative;
   min-height: 100vh;
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${theme.colors.backgroundGreen};
 
   &::before {
     content: '';

@@ -22,7 +22,7 @@ import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
-import SVGIMG from '../../../../public/logo/logo-climate-black.svg';
+import SVGIMG from '../../../../public/logo/logo-climate.svg';
 import { Header } from '@/components/organisms';
 
 interface NavbarProps {

@@ -12,7 +12,7 @@ const ErrorContainer = styled.div`
   min-height: 100vh;
   padding: ${theme.spacing.xl};
   background-color: ${theme.colors.backgroundBeige};
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.white};
 `;
 
 const ErrorTitle = styled.h1`
@@ -27,15 +27,15 @@ const ErrorMessage = styled.p`
 
 const RetryButton = styled.button`
   padding: ${theme.spacing.md} ${theme.spacing.xl};
-  background-color: ${theme.colors.darkBlue};
-  color: ${theme.colors.backgroundBeige};
+  background-color: ${theme.colors.backgroundDarkGreen};
+  color: ${theme.colors.white};
   border: none;
   border-radius: ${theme.borderRadius.medium};
   cursor: pointer;
   transition: ${theme.transitions.default};
 
   &:hover {
-    background-color: ${theme.colors.backgroundGreen};
+    background-color: ${theme.colors.fluoGreen};
   }
 `;
 
