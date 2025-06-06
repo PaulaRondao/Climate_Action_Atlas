@@ -80,7 +80,7 @@ export const EngagementSection = styled.div`
 
   h2 {
     font-size: ${theme.typography.fontSizes.xl};
-    color: ${theme.colors.darkBlue};
+    color: ${theme.colors.white};
     margin-bottom: ${theme.spacing.md};
     text-transform: uppercase;
   }
@@ -89,7 +89,7 @@ export const EngagementSection = styled.div`
     width: 60px;
     margin: ${theme.spacing.md} auto;
     border: none;
-    border-top: 2px solid ${theme.colors.darkBlue};
+    border-top: 2px solid ${theme.colors.backgroundGreen};
   }
 
   p {

@@ -24,13 +24,13 @@ const HeaderContent = styled.div`
 `;
 
 const PageTitle = styled.h1`
-  color: ${theme.colors.backgroundBeige};
+  color: ${theme.colors.white};
   font-size: ${theme.typography.fontSizes.xl};
   margin-bottom: ${theme.spacing.sm};
 `;
 
 const Description = styled.p`
-  color: ${theme.colors.backgroundBeige};
+  color: ${theme.colors.white};
   font-size: ${theme.typography.fontSizes.md};
 `;
 

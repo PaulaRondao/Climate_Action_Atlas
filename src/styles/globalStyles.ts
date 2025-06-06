@@ -12,16 +12,12 @@ export const GlobalStyle = createGlobalStyle`
   :root {
     --max-width: 1100px;
 
-    --foreground-dark-blue: #010020;
-    --foreground-grey-black: #151d2b;
     --foreground-white: #ffffff;
-    --color-foreground-purple:  #7B6798;
-    --color-foreground-dark-purple: #503374,
-    --color-foregroung-yellow: #FFBF44,
+    --foreground-fluo-green: #6ee7b7;
+    --foreground-dark-blue: #010020;
 
-    --color-background-beige: #fefcf6;
-    --color-background-green: #6ee7b7;
-    --color-background-king-blue: #211bff;
+    --color-background-beige: #F0EDEB;
+    --color-background-green: #072A32;
 
     --text-xs: 0.6875rem;
     --text-sm: 0.8125rem;
@@ -50,8 +46,8 @@ export const GlobalStyle = createGlobalStyle`
     display: flex;
     flex-direction: column;
     margin: 0;
-    color: var(--foreground-dark-blue);
-    background: var(--color-background-beige);
+    color: ${theme.colors.backgroundGreen};
+    background: ${theme.colors.backgroundBeige};
     font-family: ${theme.typography.fontFamilies.body};
     line-height: 1;
     -webkit-font-smoothing: antialiased;

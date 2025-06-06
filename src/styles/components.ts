@@ -92,17 +92,17 @@ export const Button = styled.button`
   position: relative;
   margin-top: ${theme.spacing.lg};
   padding: ${theme.spacing.sm} ${theme.spacing.xl};
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.backgroundGreen};
   background-color: transparent;
-  border: 2px solid ${theme.colors.darkBlue};
+  border: 2px solid ${theme.colors.backgroundGreen};
   border-radius: ${theme.borderRadius.large};
   transition: ${theme.transitions.default};
   text-transform: uppercase;
   font-size: ${theme.typography.fontSizes.md};
 
   &:hover {
-    border-color: ${theme.colors.backgroundGreen};
-    color: ${theme.colors.backgroundGreen};
+    border-color: ${theme.colors.fluoGreen};
+    color: ${theme.colors.fluoGreen};
     -webkit-text-stroke: 0.5px ${theme.colors.backgroundGreen};
   }
 
@@ -124,7 +124,7 @@ export const Card = styled.div`
   flex-direction: column;
   gap: ${theme.spacing.md};
   padding: ${theme.spacing.md};
-  border: 1px solid ${theme.colors.greyBlack};
+  border: 1px solid ${theme.colors.backgroundGreen};
   border-radius: ${theme.borderRadius.small};
   background-color: ${theme.colors.white};
 
@@ -145,7 +145,7 @@ export const BackgroundLayout = styled.section<{ height?: string }>`
   position: relative;
   width: 100%;
   height: ${({ height = '500px' }) => height};
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${theme.colors.backgroundGreen};
   overflow: hidden;
 
   img {

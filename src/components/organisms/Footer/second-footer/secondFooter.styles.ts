@@ -9,6 +9,10 @@ export const SecondFooterContainer = styled.div`
   gap: ${theme.spacing.md};
   padding: ${theme.spacing.md} 0;
 
+  p {
+  font-size: ${theme.typography.fontSizes.xs}
+  }
+
   ${mediaQueries.desktop} {
     flex-direction: row;
     justify-content: space-between;
@@ -16,7 +20,7 @@ export const SecondFooterContainer = styled.div`
 `;
 
 export const CopyrightText = styled.p`
-  color: ${theme.colors.backgroundBeige};
+  color: ${theme.colors.white};
   font-size: ${theme.typography.fontSizes.sm};
   text-align: center;
 
@@ -32,12 +36,12 @@ export const LegalLinks = styled.div`
   gap: ${theme.spacing.md};
 
   a {
-    color: ${theme.colors.backgroundBeige};
+    color: ${theme.colors.white};
     font-size: ${theme.typography.fontSizes.sm};
     transition: ${theme.transitions.default};
 
     &:hover {
-      color: ${theme.colors.backgroundGreen};
+      color: ${theme.colors.fluoGreen};
     }
   }
 

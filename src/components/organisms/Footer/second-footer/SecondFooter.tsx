@@ -3,7 +3,6 @@
 import React from 'react';
 import {
   CopyrightText,
-  LegalLinks,
   SecondFooterContainer,
 } from './secondFooter.styles';
 import ContentInfo from '../content-info/ContentInfo';

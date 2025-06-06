@@ -18,12 +18,12 @@ export const SecondFooterLinks = {
 export const MainFooterLinks = {
   links: [
     {
-      label: 'Contact',
-      url: '/contact',
+      label: 'À propos',
+      url: '/about',
     },
     {
-      label: 'FAQs',
-      url: '/faqs',
+      label: 'Plan du site',
+      url: '/sitemap',
     },
     {
       label: 'Accessibilité',

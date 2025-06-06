@@ -63,13 +63,13 @@ $ cp .gitignore
 Démarrer une base de données PostgreSQL conteneurisée dans une image Docker :
 
 ```bash
-docker-compose up -d
+docker compose up
 ```
 
 Pour arrêter la base de données :
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Base de données
