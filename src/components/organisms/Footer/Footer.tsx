@@ -106,7 +106,7 @@ const LegalLinks = styled.ul`
     }
   }
 
-    ${mediaQueries.desktop} {
+  ${mediaQueries.desktop} {
     align-items: center;
   }
 `;
@@ -117,7 +117,12 @@ export default function Footer() {
       <MainFooterWrapper>
         <FooterSection>
           <div>
-            <Image src={SVGIMG} alt="Climate Action Atlas" width={38} height={38} />
+            <Image
+              src={SVGIMG}
+              alt="Climate Action Atlas"
+              width={38}
+              height={38}
+            />
             <h3>Climate Atlas Action</h3>
           </div>
           <ul>

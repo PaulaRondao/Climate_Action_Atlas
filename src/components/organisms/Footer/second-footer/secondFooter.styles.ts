@@ -10,7 +10,7 @@ export const SecondFooterContainer = styled.div`
   padding: ${theme.spacing.md} 0;
 
   p {
-  font-size: ${theme.typography.fontSizes.xs}
+    font-size: ${theme.typography.fontSizes.xs};
   }
 
   ${mediaQueries.desktop} {

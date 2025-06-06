@@ -3,7 +3,7 @@ export const theme = {
     white: 'var(--foreground-white)',
     fluoGreen: 'var(--foreground-fluo-green)',
     darkBlue: 'var(--foreground-dark-blue)',
-    
+
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
 

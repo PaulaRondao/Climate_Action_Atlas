@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  CopyrightText,
-  SecondFooterContainer,
-} from './secondFooter.styles';
+import { CopyrightText, SecondFooterContainer } from './secondFooter.styles';
 import ContentInfo from '../content-info/ContentInfo';
 
 const SecondFooter: React.FC = () => (
