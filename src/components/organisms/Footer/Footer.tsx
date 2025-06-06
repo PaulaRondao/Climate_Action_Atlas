@@ -5,7 +5,8 @@ import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { mediaQueries } from '@/styles/globalStyles';
 import Image from 'next/image';
-import SVGIMG from '../../../../public/logo/logo-climate-green.svg';
+import SVGIMG from '../../../../public/logo/logo-full-climate-white.svg';
+import ContentInfo from './content-info/ContentInfo';
 
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.backgroundGreen};
@@ -13,29 +14,22 @@ const FooterContainer = styled.footer`
   width: 100%;
 `;
 
-const MainFooterWrapper = styled.div`
+const MainFooterContainer = styled.div`
   max-width: ${theme.layout.maxWidth};
   margin: 0 auto;
   padding: ${theme.spacing.xl} ${theme.spacing.md};
-  border-top: 1px solid ${theme.colors.white};
 
   ${mediaQueries.desktop} {
     padding: ${theme.spacing.xl} ${theme.spacing.xxl};
   }
 `;
 
-const FooterSection = styled.div`
-  margin-bottom: ${theme.spacing.lg};
-
-  h3 {
-    font-size: ${theme.typography.fontSizes.lg};
-    margin-bottom: ${theme.spacing.md};
-    color: ${theme.colors.white};
-  }
-
+const MainFooterWrapper = styled.div`
+  
   ul {
     list-style: none;
     padding: 0;
+    margin-top: ${theme.spacing.lg};
   }
 
   li {
@@ -52,6 +46,22 @@ const FooterSection = styled.div`
       color: ${theme.colors.fluoGreen};
     }
   }
+
+  ${mediaQueries.desktop} {
+    display: flex;
+    justify-content: space-between;
+
+    ul {
+    flex-wrap: wrap;
+    display: grid;
+    gap: ${theme.spacing.lg};
+  }
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: ${theme.spacing.md};
 `;
 
 const SecondaryFooter = styled.div`
@@ -76,12 +86,6 @@ const SecondaryFooterContent = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-  }
-
-  p {
-    font-size: ${theme.typography.fontSizes.sm};
-    color: ${theme.colors.white};
-    text-align: center;
   }
 `;
 
@@ -111,33 +115,43 @@ const LegalLinks = styled.ul`
   }
 `;
 
+const CopyrightText = styled.p`
+  color: ${theme.colors.white};
+  font-size: ${theme.typography.fontSizes.xs};
+  text-align: center;
+`;
+
 export default function Footer() {
   return (
     <FooterContainer role="contentinfo">
-      <MainFooterWrapper>
-        <FooterSection>
-          <div>
-            <Image
-              src={SVGIMG}
-              alt="Climate Action Atlas"
-              width={38}
-              height={38}
-            />
-            <h3>Climate Atlas Action</h3>
-          </div>
-          <ul>
-            <li>
-              <Link href="/about">À propos</Link>
-            </li>
-            <li>
-              <Link href="/sitemap">Plan du site</Link>
-            </li>
-            <li>
-              <Link href="/accessibilité">Accessibilité</Link>
-            </li>
-          </ul>
-        </FooterSection>
-      </MainFooterWrapper>
+      <MainFooterContainer>
+        <MainFooterWrapper>
+          <Image
+            src={SVGIMG}
+            alt="Climate Action Atlas"
+            width={219}
+            height={49}
+          />
+          <ContentWrapper>
+            <nav role="navigation" aria-label="navigation secondaire">
+              <ul>
+                <li>
+                  <Link href="/map">Explorer la carte</Link>
+                </li>
+                <li>
+                  <Link href="/add-initiative">Ajouter une initiative</Link>
+                </li>
+                <li>
+                  <Link href="/login">Connexion</Link>
+                </li>
+              </ul>
+            </nav>
+          </ContentWrapper>
+          <ContentWrapper>
+            <ContentInfo isMainFooter={true} />
+          </ContentWrapper>
+        </MainFooterWrapper>
+      </MainFooterContainer>
       <SecondaryFooter>
         <SecondaryFooterContent>
           <LegalLinks>
@@ -153,7 +167,9 @@ export default function Footer() {
               <Link href="/politique-cookies">Politique de cookies</Link>
             </li>
           </LegalLinks>
-          <p>© 2024 Paula Rondao. All rights reserved.</p>
+          <CopyrightText>
+            © 2024 Paula Rondao. All rights reserved.
+          </CopyrightText>
         </SecondaryFooterContent>
       </SecondaryFooter>
     </FooterContainer>

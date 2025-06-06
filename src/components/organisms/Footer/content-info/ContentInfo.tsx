@@ -1,12 +1,7 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
-import {
-  ContactInfo,
-  ContentInfoContainer,
-  InfoSection,
-} from './contentInfo.styles';
+import { ContactInfo, ContentInfoContainer } from './contentInfo.styles';
 import { MainFooterLinks, SecondFooterLinks } from '../footer-links';
 
 interface ContenteInfoProps {

@@ -199,8 +199,8 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             <ListItem>
               <ListItemText
                 primary={
-                  <Link href="/news" passHref>
-                    S&apos;engager
+                  <Link href="/map" passHref>
+                    Explorer la carte
                   </Link>
                 }
               />
@@ -208,7 +208,7 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             <ListItem>
               <ListItemText
                 primary={
-                  <Link href="/initiative-creation-form" passHref>
+                  <Link href="/add-initiative" passHref>
                     Ajouter une initiative
                   </Link>
                 }
