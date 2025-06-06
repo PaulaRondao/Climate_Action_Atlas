@@ -6,10 +6,9 @@ export const ContentInfoContainer = styled.div`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.lg};
-  padding: ${theme.spacing.xl} 0;
+  margin-top: ${theme.spacing.xl};
 
   ${mediaQueries.desktop} {
-    flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
   }

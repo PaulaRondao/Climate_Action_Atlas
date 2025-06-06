@@ -22,10 +22,6 @@ export const MainFooterLinks = {
       url: '/about',
     },
     {
-      label: 'Plan du site',
-      url: '/sitemap',
-    },
-    {
       label: 'Accessibilité',
       url: '/accessibilité',
     },
