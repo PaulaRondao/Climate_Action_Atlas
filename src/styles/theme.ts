@@ -23,6 +23,7 @@ export const theme = {
       xxxxxl: 'var(--text-xxxxxl)', // 5.625rem
     },
     fontFamilies: {
+      bigHeading: 'var(--font-myLocalFont)',
       heading: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
       body: 'Tahoma, Geneva, Verdana, sans-serif',
     },
