@@ -1,11 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
-import localFont from 'next/font/local'
+import localFont from 'next/font/local';
 
 export const myFont = localFont({
   src: '../../public/font/ClimateCrisis.woff2',
   variable: '--font-myLocalFont',
-})
+});
 
 export const mediaQueries = {
   mobile: `@media (min-width: ${theme.breakpoints.mobile})`,
@@ -21,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     --foreground-white: #ffffff;
     --foreground-fluo-green: #6ee7b7;
     --foreground-dark-blue: #010020;
+    --foreground-green: #072A32;
 
     --color-background-beige: #F0EDEB;
     --color-background-green: #072A32;
