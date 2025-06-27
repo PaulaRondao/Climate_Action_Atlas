@@ -1,5 +1,11 @@
 import { createGlobalStyle } from 'styled-components';
 import { theme } from './theme';
+import localFont from 'next/font/local';
+
+export const myFont = localFont({
+  src: '../../public/font/ClimateCrisis.woff2',
+  variable: '--font-myLocalFont',
+});
 
 export const mediaQueries = {
   mobile: `@media (min-width: ${theme.breakpoints.mobile})`,
@@ -15,6 +21,7 @@ export const GlobalStyle = createGlobalStyle`
     --foreground-white: #ffffff;
     --foreground-fluo-green: #6ee7b7;
     --foreground-dark-blue: #010020;
+    --foreground-green: #072A32;
 
     --color-background-beige: #F0EDEB;
     --color-background-green: #072A32;
@@ -29,6 +36,8 @@ export const GlobalStyle = createGlobalStyle`
     --text-xxxl: 2.375rem;
     --text-xxxxl: 3.375rem;
     --text-xxxxxl: 5.625rem;
+
+    --font-myLocalFont: ${myFont.style.fontFamily};
   }
 
   * {
@@ -72,7 +81,7 @@ export const GlobalStyle = createGlobalStyle`
     flex-shrink: 0;
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h2, h3, h4, h5, h6 {
     font-family: ${theme.typography.fontFamilies.heading};
     font-weight: 400;
     letter-spacing: ${theme.typography.letterSpacing.heading};
@@ -81,6 +90,10 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: ${theme.typography.fontSizes.xxxl};
+    font-family: ${theme.typography.fontFamilies.bigHeading};
+    font-weight: 400;
+    letter-spacing: ${theme.typography.letterSpacing.heading};
+    line-height: ${theme.typography.lineHeights.heading};
   }
 
   h2 {

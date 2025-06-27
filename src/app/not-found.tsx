@@ -13,7 +13,7 @@ const NotFoundContainer = styled.div`
   min-height: 100vh;
   padding: ${theme.spacing.xl};
   background-color: ${theme.colors.backgroundBeige};
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.green};
 `;
 
 const Title = styled.h1`
@@ -29,14 +29,18 @@ const Message = styled.p`
 
 const HomeLink = styled(Link)`
   padding: ${theme.spacing.md} ${theme.spacing.xl};
-  background-color: ${theme.colors.darkBlue};
+  background-color: ${theme.colors.backgroundGreen};
   color: ${theme.colors.backgroundBeige};
   text-decoration: none;
+  border: 2px solid ${theme.colors.green};
   border-radius: ${theme.borderRadius.medium};
   transition: ${theme.transitions.default};
+  font-weight: 600;
 
   &:hover {
-    background-color: ${theme.colors.backgroundGreen};
+    border: 2px solid ${theme.colors.green};
+    background-color: ${theme.colors.backgroundBeige};
+    color: ${theme.colors.green};
   }
 `;
 

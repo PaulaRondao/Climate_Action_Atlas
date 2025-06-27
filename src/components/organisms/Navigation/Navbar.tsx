@@ -15,15 +15,18 @@ import {
   ListItemText,
   Divider,
   Box,
-  Avatar,
 } from '@mui/material';
-import { Menu as MenuIcon, AccountCircle } from '@mui/icons-material';
+import { Menu as MenuIcon } from '@mui/icons-material';
 import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
-import SVGIMG from '../../../../public/logo/logo-climate.svg';
+import SVGIMG from '../../../../public/logo/logo-full-climate-green.svg';
 import { Header } from '@/components/organisms';
+import {
+  StyledButton,
+  StyledLink,
+} from '@/components/atoms/Button/button.styles';
 
 interface NavbarProps {
   pageTitle?: string;
@@ -35,7 +38,7 @@ const useIsMobile = () => {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 960); // 960px est le breakpoint 'md' par défaut de MUI
+      setIsMobile(window.innerWidth < 1219);
     };
 
     checkIsMobile();
@@ -49,6 +52,9 @@ const useIsMobile = () => {
 const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
+  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
+    null,
+  );
   const theme = useTheme();
   const isMobile = useIsMobile();
   const { user, logout } = useAuth();
@@ -73,104 +79,101 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
   const themeColor = createTheme({
     palette: {
       primary: {
-        main: '#010020',
+        main: '#F0EDEB',
       },
     },
   });
 
   const renderNavLinks = () => (
     <ThemeProvider theme={themeColor}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-        <Link href="/news" passHref>
-          <Button
-            sx={{
-              fontSize: '12px',
-              color: '#010020',
-              '&:hover': {
-                color: '#010020',
-                WebkitTextStroke: '0.5px #010020',
-              },
-              transition: 'color 0.3s ease',
-            }}
-          >
-            S&apos;engager
-          </Button>
-        </Link>
+      <nav aria-label="menu principal">
+        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+          <StyledLink href="/explore-map">Explorer la carte</StyledLink>
 
-        <Link href="/initiative-creation-form" passHref>
-          <Button
-            sx={{
-              fontSize: '12px',
-              color: '#010020',
-              '&:hover': {
-                color: '#010020',
-                WebkitTextStroke: '0.5px #010020',
-              },
-              transition: 'color 0.3s ease',
-            }}
-          >
-            Ajouter une initiative
-          </Button>
-        </Link>
+          <StyledLink href="/add-initiative">Ajouter une initiative</StyledLink>
 
-        {user ? (
-          <>
-            <IconButton
-              size="large"
-              aria-label="account of current user"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
-              onClick={handleMenu}
-              color="inherit"
-            >
-              <Avatar sx={{ bgcolor: '#010020', width: 32, height: 32 }}>
-                {user.userName.charAt(0)}
-              </Avatar>
-            </IconButton>
-            <Menu
-              id="menu-appbar"
-              anchorEl={anchorEl}
-              anchorOrigin={{
-                vertical: 'bottom',
-                horizontal: 'right',
-              }}
-              keepMounted
-              transformOrigin={{
-                vertical: 'top',
-                horizontal: 'right',
-              }}
-              open={Boolean(anchorEl)}
-              onClose={handleClose}
-            >
-              <MenuItem>
-                <Typography>{user.userName}</Typography>
-              </MenuItem>
-              <MenuItem onClick={handleLogout}>Se déconnecter</MenuItem>
-            </Menu>
-          </>
-        ) : (
-          <Link href="/signup" passHref>
-            <Button
-              sx={{
-                fontSize: '12px',
-                color: '#010020',
-                backgroundColor: 'transparent',
-                border: '1px solid #010020',
-                borderRadius: '25px',
-                padding: '8px 20px',
-                '&:hover': {
-                  borderColor: '#010020',
-                  color: '#010020',
-                  WebkitTextStroke: '0.5px #010020',
-                },
-                transition: 'color 0.3s ease',
-              }}
-            >
-              S&apos;inscrire
-            </Button>
-          </Link>
-        )}
-      </Box>
+          {user ? (
+            <>
+              <IconButton
+                href="/login"
+                component="a"
+                aria-label="se connecter"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+              >
+                <Image
+                  src="/icons/login-icon.svg"
+                  alt=""
+                  width={36}
+                  height={36}
+                />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                open={Boolean(anchorEl)}
+                onClose={handleClose}
+                anchorOrigin={{
+                  vertical: 'bottom',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+              >
+                <MenuItem onClick={handleClose}>
+                  <Typography>{user.userName}</Typography>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link href="/profile" passHref>
+                    <Typography
+                      component="a"
+                      sx={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      Profil
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleClose}>
+                  <Link href="/settings" passHref>
+                    <Typography
+                      component="a"
+                      sx={{ textDecoration: 'none', color: 'inherit' }}
+                    >
+                      Paramètres
+                    </Typography>
+                  </Link>
+                </MenuItem>
+                <MenuItem onClick={handleLogout}>
+                  <Link href="/">Se déconnecter</Link>
+                </MenuItem>
+              </Menu>
+            </>
+          ) : (
+            <>
+              <StyledButton href="/signup">S&apos;enregistrer</StyledButton>
+
+              <IconButton
+                href="/login"
+                component="a"
+                aria-label="se connecter"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+              >
+                <Image
+                  src="/icons/login-icon.svg"
+                  alt=""
+                  width={36}
+                  height={36}
+                />
+              </IconButton>
+            </>
+          )}
+        </Box>
+      </nav>
     </ThemeProvider>
   );
 
@@ -181,61 +184,92 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
         open={drawerOpen}
         onClose={() => toggleDrawer(false)}
       >
-        <Box
-          width={250}
-          role="presentation"
-          onClick={() => toggleDrawer(false)}
-          onKeyDown={() => toggleDrawer(false)}
-        >
-          <List>
-            {user && (
+        <nav aria-label="menu principal">
+          <Box
+            width={250}
+            onClick={() => toggleDrawer(false)}
+            onKeyDown={() => toggleDrawer(false)}
+          >
+            <List>
+              {user && (
+                <ListItem>
+                  <ListItemText primary={`Bonjour, ${user.userName}`} />
+                </ListItem>
+              )}
               <ListItem>
-                <ListItemText
-                  primary={`Bonjour, ${user.userName}`}
-                  sx={{ color: theme.palette.primary.main }}
-                />
+                <Link href="/" passHref>
+                  <Image
+                    src={SVGIMG}
+                    alt="Climate Action Atlas"
+                    width={186}
+                    height={41}
+                  />
+                </Link>
               </ListItem>
-            )}
-            <ListItem>
-              <ListItemText
-                primary={
-                  <Link href="/map" passHref>
-                    Explorer la carte
-                  </Link>
-                }
-              />
-            </ListItem>
-            <ListItem>
-              <ListItemText
-                primary={
-                  <Link href="/add-initiative" passHref>
-                    Ajouter une initiative
-                  </Link>
-                }
-              />
-            </ListItem>
-            {user ? (
               <ListItem>
-                <ListItemText
-                  primary="Se déconnecter"
-                  onClick={handleLogout}
-                  sx={{ cursor: 'pointer' }}
-                />
+                <StyledLink href="/explore-map">Explorer la carte</StyledLink>
               </ListItem>
-            ) : (
               <ListItem>
-                <ListItemText
-                  primary={
-                    <Link href="/signup" passHref>
-                      S&apos;inscrire
-                    </Link>
-                  }
-                />
+                <StyledLink href="/add-initiative">
+                  Ajouter une initiative
+                </StyledLink>
               </ListItem>
-            )}
-            <Divider />
-          </List>
-        </Box>
+
+              {user ? (
+                <>
+                  <ListItem>
+                    <ListItemText
+                      primary={
+                        <StyledLink href="/profile" passHref>
+                          Profil
+                        </StyledLink>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary={
+                        <StyledLink href="/settings" passHref>
+                          Paramètres
+                        </StyledLink>
+                      }
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemText
+                      primary="Se déconnecter"
+                      onClick={handleLogout}
+                      sx={{ cursor: 'pointer' }}
+                    />
+                  </ListItem>
+                </>
+              ) : (
+                <>
+                  <ListItem>
+                    <StyledButton href="/signup" passHref>
+                      S&apos;enregistrer
+                    </StyledButton>
+                  </ListItem>
+                  <ListItem>
+                    <IconButton
+                      href="/login"
+                      component="a"
+                      aria-label="connexion"
+                    >
+                      <Image
+                        src="/icons/login-icon.svg"
+                        alt="connexion"
+                        width={36}
+                        height={36}
+                      />
+                    </IconButton>
+                  </ListItem>
+                </>
+              )}
+              <Divider />
+            </List>
+          </Box>
+        </nav>
       </Drawer>
     </ThemeProvider>
   );
@@ -252,9 +286,20 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
         {isMobile && (
           <IconButton
             size="large"
-            edge="start"
+            edge="end"
             aria-label="menu"
-            sx={{ mr: 2 }}
+            sx={{
+              mr: 2,
+              backgroundColor: 'transparent',
+              color: 'var(--foreground-green)',
+              border: '2px solid',
+              borderRadius: '50px',
+              borderColor: 'var(--foreground-green)',
+              '&:hover': {
+                backgroundColor: 'var(--color-background-green)',
+                color: 'var(--color-background-beige)',
+              },
+            }}
             onClick={() => toggleDrawer(true)}
           >
             <MenuIcon />
@@ -273,13 +318,15 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
           <Image
             src={SVGIMG}
             alt="Climate Action Atlas"
-            width={40}
-            height={40}
+            width={186}
+            height={41}
           />
         </Box>
         <Box sx={{ flexGrow: 1 }} />
-        {!isMobile && renderNavLinks()}
-        {renderDrawer()}
+        <nav aria-label="menu principal">
+          {!isMobile && renderNavLinks()}
+          {renderDrawer()}
+        </nav>
       </Toolbar>
     </AppBar>
   );

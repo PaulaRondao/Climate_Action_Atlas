@@ -3,6 +3,7 @@ export const theme = {
     white: 'var(--foreground-white)',
     fluoGreen: 'var(--foreground-fluo-green)',
     darkBlue: 'var(--foreground-dark-blue)',
+    green: 'var(--foreground-green)',
 
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
@@ -23,6 +24,7 @@ export const theme = {
       xxxxxl: 'var(--text-xxxxxl)', // 5.625rem
     },
     fontFamilies: {
+      bigHeading: 'var(--font-myLocalFont)',
       heading: 'Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif',
       body: 'Tahoma, Geneva, Verdana, sans-serif',
     },
@@ -60,7 +62,7 @@ export const theme = {
   breakpoints: {
     mobile: '320px',
     tablet: '768px',
-    desktop: '1024px',
+    desktop: '1170px',
     wide: '1440px',
   },
 };

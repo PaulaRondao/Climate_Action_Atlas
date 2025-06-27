@@ -27,7 +27,7 @@ const ErrorMessage = styled.p`
 
 const RetryButton = styled.button`
   padding: ${theme.spacing.md} ${theme.spacing.xl};
-  background-color: ${theme.colors.backgroundDarkGreen};
+  background-color: ${theme.colors.backgroundGreen};
   color: ${theme.colors.white};
   border: none;
   border-radius: ${theme.borderRadius.medium};
