@@ -8,7 +8,6 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Button,
   Drawer,
   List,
   ListItem,
@@ -17,16 +16,16 @@ import {
   Box,
 } from '@mui/material';
 import { Menu as MenuIcon } from '@mui/icons-material';
-import { useTheme, createTheme, ThemeProvider } from '@mui/material/styles';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useAuth } from '@/hooks/useAuth';
 import SVGIMG from '../../../../public/logo/logo-full-climate-green.svg';
-import { Header } from '@/components/organisms';
 import {
   StyledButton,
   StyledLink,
 } from '@/components/atoms/Button/button.styles';
+import { usePathname } from 'next/navigation';
 
 interface NavbarProps {
   pageTitle?: string;
@@ -49,15 +48,15 @@ const useIsMobile = () => {
   return isMobile;
 };
 
-const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
+const Navbar: React.FC<NavbarProps> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null,
   );
-  const theme = useTheme();
   const isMobile = useIsMobile();
   const { user, logout } = useAuth();
+  const pathname = usePathname();
 
   const handleMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
@@ -86,94 +85,122 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
 
   const renderNavLinks = () => (
     <ThemeProvider theme={themeColor}>
-      <nav aria-label="menu principal">
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <StyledLink href="/explore-map">Explorer la carte</StyledLink>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+        <StyledLink
+          href="/explore-map"
+          aria-current={pathname === '/explore-map' ? 'page' : undefined}
+        >
+          Explorer la carte
+        </StyledLink>
 
-          <StyledLink href="/add-initiative">Ajouter une initiative</StyledLink>
+        <StyledLink
+          href="/add-initiative"
+          aria-current={pathname === '/add-initiative' ? 'page' : undefined}
+        >
+          Ajouter une initiative
+        </StyledLink>
 
-          {user ? (
-            <>
-              <IconButton
-                href="/login"
-                component="a"
-                aria-label="se connecter"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-              >
-                <Image
-                  src="/icons/login-icon.svg"
-                  alt=""
-                  width={36}
-                  height={36}
-                />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                open={Boolean(anchorEl)}
-                onClose={handleClose}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-              >
-                <MenuItem onClick={handleClose}>
-                  <Typography>{user.userName}</Typography>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Link href="/profile" passHref>
-                    <Typography
-                      component="a"
-                      sx={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      Profil
-                    </Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  <Link href="/settings" passHref>
-                    <Typography
-                      component="a"
-                      sx={{ textDecoration: 'none', color: 'inherit' }}
-                    >
-                      Paramètres
-                    </Typography>
-                  </Link>
-                </MenuItem>
-                <MenuItem onClick={handleLogout}>
-                  <Link href="/">Se déconnecter</Link>
-                </MenuItem>
-              </Menu>
-            </>
-          ) : (
-            <>
-              <StyledButton href="/signup">S&apos;enregistrer</StyledButton>
+        {user ? (
+          <>
+            <IconButton
+              href="/login"
+              aria-current={pathname === '/login' ? 'page' : undefined}
+              component="a"
+              aria-label="se connecter"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+              onClick={handleMenu}
+            >
+              <Image
+                src="/icons/login-icon.svg"
+                alt=""
+                width={36}
+                height={36}
+              />
+            </IconButton>
+            <Menu
+              id="menu-appbar"
+              anchorEl={anchorEl}
+              open={Boolean(anchorEl)}
+              onClose={handleClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right',
+              }}
+              keepMounted
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right',
+              }}
+            >
+              <MenuItem onClick={handleClose}>
+                <Typography>{user.userName}</Typography>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href="/profile"
+                  passHref
+                  aria-current={pathname === '/profile' ? 'page' : undefined}
+                >
+                  <Typography
+                    component="a"
+                    sx={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    Profil
+                  </Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleClose}>
+                <Link
+                  href="/settings"
+                  passHref
+                  aria-current={pathname === '/settings' ? 'page' : undefined}
+                >
+                  <Typography
+                    component="a"
+                    sx={{ textDecoration: 'none', color: 'inherit' }}
+                  >
+                    Paramètres
+                  </Typography>
+                </Link>
+              </MenuItem>
+              <MenuItem onClick={handleLogout}>
+                <Link
+                  href="/"
+                  aria-current={pathname === '/' ? 'page' : undefined}
+                >
+                  Se déconnecter
+                </Link>
+              </MenuItem>
+            </Menu>
+          </>
+        ) : (
+          <>
+            <StyledButton
+              href="/signup"
+              aria-current={pathname === '/signup' ? 'page' : undefined}
+            >
+              S&apos;enregistrer
+            </StyledButton>
 
-              <IconButton
-                href="/login"
-                component="a"
-                aria-label="se connecter"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-              >
-                <Image
-                  src="/icons/login-icon.svg"
-                  alt=""
-                  width={36}
-                  height={36}
-                />
-              </IconButton>
-            </>
-          )}
-        </Box>
-      </nav>
+            <IconButton
+              href="/login"
+              aria-current={pathname === '/login' ? 'page' : undefined}
+              component="a"
+              aria-label="se connecter"
+              aria-controls="menu-appbar"
+              aria-haspopup="true"
+            >
+              <Image
+                src="/icons/login-icon.svg"
+                alt=""
+                width={36}
+                height={36}
+              />
+            </IconButton>
+          </>
+        )}
+      </Box>
     </ThemeProvider>
   );
 
@@ -183,8 +210,13 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
         anchor="left"
         open={drawerOpen}
         onClose={() => toggleDrawer(false)}
+        PaperProps={{
+          sx: {
+            backgroundColor: 'var(--color-background-beige)',
+          },
+        }}
       >
-        <nav aria-label="menu principal">
+        <nav role="navigation" aria-label="navigation principale">
           <Box
             width={250}
             onClick={() => toggleDrawer(false)}
@@ -197,20 +229,32 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
                 </ListItem>
               )}
               <ListItem>
-                <Link href="/" passHref>
-                  <Image
-                    src={SVGIMG}
-                    alt="Climate Action Atlas"
-                    width={186}
-                    height={41}
-                  />
+                <Link
+                  href="/"
+                  passHref
+                  aria-label="naviguer vers l'acceuil"
+                  aria-current={pathname === '/' ? 'page' : undefined}
+                >
+                  <Image src={SVGIMG} alt="" width={186} height={41} />
                 </Link>
               </ListItem>
               <ListItem>
-                <StyledLink href="/explore-map">Explorer la carte</StyledLink>
+                <StyledLink
+                  href="/explore-map"
+                  aria-current={
+                    pathname === '/explore-map' ? 'page' : undefined
+                  }
+                >
+                  Explorer la carte
+                </StyledLink>
               </ListItem>
               <ListItem>
-                <StyledLink href="/add-initiative">
+                <StyledLink
+                  href="/add-initiative"
+                  aria-current={
+                    pathname === '/add-initiative' ? 'page' : undefined
+                  }
+                >
                   Ajouter une initiative
                 </StyledLink>
               </ListItem>
@@ -220,7 +264,13 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
                   <ListItem>
                     <ListItemText
                       primary={
-                        <StyledLink href="/profile" passHref>
+                        <StyledLink
+                          href="/profile"
+                          passHref
+                          aria-current={
+                            pathname === '/profile' ? 'page' : undefined
+                          }
+                        >
                           Profil
                         </StyledLink>
                       }
@@ -229,7 +279,13 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
                   <ListItem>
                     <ListItemText
                       primary={
-                        <StyledLink href="/settings" passHref>
+                        <StyledLink
+                          href="/settings"
+                          passHref
+                          aria-current={
+                            pathname === '/settings' ? 'page' : undefined
+                          }
+                        >
                           Paramètres
                         </StyledLink>
                       }
@@ -246,19 +302,24 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
               ) : (
                 <>
                   <ListItem>
-                    <StyledButton href="/signup" passHref>
+                    <StyledButton
+                      href="/signup"
+                      passHref
+                      aria-current={pathname === '/signup' ? 'page' : undefined}
+                    >
                       S&apos;enregistrer
                     </StyledButton>
                   </ListItem>
                   <ListItem>
                     <IconButton
                       href="/login"
+                      aria-current={pathname === '/login' ? 'page' : undefined}
                       component="a"
                       aria-label="connexion"
                     >
                       <Image
                         src="/icons/login-icon.svg"
-                        alt="connexion"
+                        alt=""
                         width={36}
                         height={36}
                       />
@@ -278,11 +339,11 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
     <AppBar
       position="static"
       sx={{
-        backgroundColor: 'transparent',
+        backgroundColor: 'var(--color-background-beige)',
         boxShadow: 'none',
       }}
     >
-      <Toolbar>
+      <Toolbar sx={{ minHeight: '70px' }}>
         {isMobile && (
           <IconButton
             size="large"
@@ -290,7 +351,6 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             aria-label="menu"
             sx={{
               mr: 2,
-              backgroundColor: 'transparent',
               color: 'var(--foreground-green)',
               border: '2px solid',
               borderRadius: '50px',
@@ -308,6 +368,8 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
         <Box
           component={Link}
           href="/"
+          aria-current={pathname === '/' ? 'page' : undefined}
+          aria-label="naviguer vers l'acceuil"
           sx={{
             display: 'flex',
             alignItems: 'center',
@@ -315,15 +377,10 @@ const Navbar: React.FC<NavbarProps> = ({ pageTitle, description }) => {
             color: '#010020',
           }}
         >
-          <Image
-            src={SVGIMG}
-            alt="Climate Action Atlas"
-            width={186}
-            height={41}
-          />
+          <Image src={SVGIMG} alt="" width={186} height={41} />
         </Box>
         <Box sx={{ flexGrow: 1 }} />
-        <nav aria-label="menu principal">
+        <nav role="navigation" aria-label="navigation principale">
           {!isMobile && renderNavLinks()}
           {renderDrawer()}
         </nav>
