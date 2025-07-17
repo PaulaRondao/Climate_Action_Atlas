@@ -1,18 +1,14 @@
 import {
-  InitiativeType,
-  ResponseOption,
   PrismaClient,
-  Initiative,
 } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 async function resetSeedDatabase() {
   try {
-    await prisma.userAccount.deleteMany();
-    await prisma.companyAccount.deleteMany();
     await prisma.initiative.deleteMany();
-    await prisma.initiativeLocation.deleteMany();
+    await prisma.address.deleteMany();
+    await prisma.user.deleteMany();
 
     console.log('Seeds have been deleted');
   } catch (error) {
