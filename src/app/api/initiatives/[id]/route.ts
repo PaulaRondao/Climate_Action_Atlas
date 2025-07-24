@@ -1,11 +1,14 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 
-export async function GET(
-  req: NextRequest,
-  context: { params: { id: string } },
-) {
-  const id = parseInt(context.params.id, 10);
+type Params = {
+  params: {
+    id: string;
+  };
+};
+
+export async function GET(req: NextRequest, { params }: Params) {
+  const id = parseInt(params.id, 10);
 
   const initiative = await prisma.initiative.findUnique({
     where: { initiativeId: id },
