@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = () => {
 
   const renderNavLinks = () => (
     <ThemeProvider theme={themeColor}>
-      <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
+      <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         <StyledLink
           href="/explore-map"
           aria-current={pathname === '/explore-map' ? 'page' : undefined}
