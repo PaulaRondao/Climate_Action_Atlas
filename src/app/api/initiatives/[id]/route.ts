@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma/client';
 
 export async function GET(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: { params: { id: string } },
 ) {
   const id = parseInt(context.params.id, 10);
 
@@ -21,7 +21,7 @@ export async function GET(
 
 export async function PUT(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: { params: { id: string } },
 ) {
   const id = parseInt(context.params.id, 10);
   const data = await req.json();
@@ -37,7 +37,7 @@ export async function PUT(
 
 export async function DELETE(
   req: NextRequest,
-  context: { params: { id: string } }
+  context: { params: { id: string } },
 ) {
   const id = parseInt(context.params.id, 10);
 
@@ -47,7 +47,6 @@ export async function DELETE(
 
   return NextResponse.json({ message: 'Initiative deleted successfully' });
 }
-
 
 // export async function PUT(
 //   request: Request,
