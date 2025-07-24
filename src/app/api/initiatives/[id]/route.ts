@@ -11,7 +11,6 @@ export async function GET(
       where: { initiativeId: id },
       include: {
         contributor: true,
-        organizer: true,
       },
     });
 
@@ -48,7 +47,6 @@ export async function PUT(
       },
       include: {
         contributor: true,
-        organizer: true,
       },
     });
 
