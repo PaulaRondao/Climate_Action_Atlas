@@ -1,35 +1,35 @@
-// import { NextResponse } from 'next/server';
-// import prisma from '@/lib/prisma/client';
+import { NextResponse } from 'next/server';
+import prisma from '@/lib/prisma/client';
 
-// export async function GET(
-//   request: Request,
-//   { params }: { params: { id: string } },
-// ) {
-//   try {
-//     const id = parseInt(params.id);
-//     const initiative = await prisma.initiative.findUnique({
-//       where: { initiativeId: id },
-//       include: {
-//         contributor: true,
-//       },
-//     });
+export async function GET(
+  request: Request,
+  { params }: { params: { id: string } },
+) {
+  try {
+    const id = parseInt(params.id);
+    const initiative = await prisma.initiative.findUnique({
+      where: { initiativeId: id },
+      include: {
+        contributor: true,
+      },
+    });
 
-//     if (!initiative) {
-//       return NextResponse.json(
-//         { error: 'Initiative not found' },
-//         { status: 404 },
-//       );
-//     }
+    if (!initiative) {
+      return NextResponse.json(
+        { error: 'Initiative not found' },
+        { status: 404 },
+      );
+    }
 
-//     return NextResponse.json(initiative);
-//   } catch (error) {
-//     console.error('Error fetching initiative:', error);
-//     return NextResponse.json(
-//       { error: 'Internal server error' },
-//       { status: 500 },
-//     );
-//   }
-// }
+    return NextResponse.json(initiative);
+  } catch (error) {
+    console.error('Error fetching initiative:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    );
+  }
+}
 
 // export async function PUT(
 //   request: Request,
