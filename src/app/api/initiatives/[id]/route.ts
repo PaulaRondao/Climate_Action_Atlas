@@ -1,20 +1,15 @@
 import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 
-type Params = {
-  params: {
-    id: string;
-  };
-};
-
-export async function GET(req: NextRequest, { params }: Params) {
-  const id = parseInt(params.id, 10);
+export async function GET(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const id = parseInt(context.params.id, 10);
 
   const initiative = await prisma.initiative.findUnique({
     where: { initiativeId: id },
-    include: {
-      contributor: true,
-    },
+    include: { contributor: true },
   });
 
   if (!initiative) {
@@ -23,6 +18,36 @@ export async function GET(req: NextRequest, { params }: Params) {
 
   return NextResponse.json(initiative);
 }
+
+export async function PUT(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const id = parseInt(context.params.id, 10);
+  const data = await req.json();
+
+  const updated = await prisma.initiative.update({
+    where: { initiativeId: id },
+    data: { ...data, updatedAt: new Date() },
+    include: { contributor: true },
+  });
+
+  return NextResponse.json(updated);
+}
+
+export async function DELETE(
+  req: NextRequest,
+  context: { params: { id: string } }
+) {
+  const id = parseInt(context.params.id, 10);
+
+  await prisma.initiative.delete({
+    where: { initiativeId: id },
+  });
+
+  return NextResponse.json({ message: 'Initiative deleted successfully' });
+}
+
 
 // export async function PUT(
 //   request: Request,
