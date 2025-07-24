@@ -1,34 +1,24 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 
 export async function GET(
-  request: Request,
-  { params }: { params: { id: string } },
+  req: NextRequest,
+  context: { params: { id: string } }
 ) {
-  try {
-    const id = parseInt(params.id);
-    const initiative = await prisma.initiative.findUnique({
-      where: { initiativeId: id },
-      include: {
-        contributor: true,
-      },
-    });
+  const id = parseInt(context.params.id, 10);
 
-    if (!initiative) {
-      return NextResponse.json(
-        { error: 'Initiative not found' },
-        { status: 404 },
-      );
-    }
+  const initiative = await prisma.initiative.findUnique({
+    where: { initiativeId: id },
+    include: {
+      contributor: true,
+    },
+  });
 
-    return NextResponse.json(initiative);
-  } catch (error) {
-    console.error('Error fetching initiative:', error);
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+  if (!initiative) {
+    return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
+
+  return NextResponse.json(initiative);
 }
 
 // export async function PUT(
