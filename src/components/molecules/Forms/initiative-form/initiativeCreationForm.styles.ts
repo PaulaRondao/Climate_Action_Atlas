@@ -36,13 +36,13 @@ export const FormGroup = styled.div`
 
 export const Label = styled.label`
   color: ${theme.colors.darkBlue};
-  font-size: ${theme.typography.fontSizes.md};
-  font-weight: 500;
+  font-size: ${theme.typography.fontSizes.sm};
+  font-weight: bold;
 `;
 
 export const Input = styled.input`
   padding: ${theme.spacing.sm} ${theme.spacing.md};
-  border: 1px solid ${theme.colors.greyBlack};
+  border: 1px solid ${theme.colors.darkBlue};
   border-radius: ${theme.borderRadius.small};
   font-size: ${theme.typography.fontSizes.md};
   transition: ${theme.transitions.default};
@@ -76,7 +76,7 @@ export const Fieldset = styled.fieldset`
   line-height: 21px;
   margin: 4px 0;
   padding: 8px;
-  border: 1px solid ${theme.colors.greyBlack};
+  border: 1px solid ${theme.colors.darkBlue};
   border-radius: 8px;
 
   &:focus-within {
@@ -99,4 +99,8 @@ export const TitleSection = styled.div`
   & span {
     font-size: ${theme.typography.fontSizes.sm};
   }
+`;
+
+export const Wrapper = styled.div`
+  text-align: center;
 `;

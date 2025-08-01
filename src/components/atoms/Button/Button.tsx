@@ -12,21 +12,22 @@ interface StyledButtonProps {
 const StyledButton = styled.button<StyledButtonProps>`
   position: relative;
   margin-top: ${theme.spacing.lg};
-  padding: ${theme.spacing.sm} ${theme.spacing.xl};
-  color: ${theme.colors.darkBlue};
-  background-color: transparent;
-  border: 2px solid ${theme.colors.darkBlue};
+  padding: ${theme.spacing.md} ${theme.spacing.xl};
+  color: ${theme.colors.white};
+  background-color: ${theme.colors.backgroundGreen};
+  border: 2px solid ${theme.colors.backgroundGreen};
   border-radius: ${theme.borderRadius.large};
   transition: ${theme.transitions.default};
   text-transform: uppercase;
   font-size: ${theme.typography.fontSizes.md};
   width: ${({ $fullWidth }) => ($fullWidth ? '100%' : 'auto')};
+  font-weight: bold;
+  max-width: 330px;
 
   &:hover {
-    border-color: ${theme.colors.backgroundGreen};
-    color: ${theme.colors.backgroundKingBlue};
-    background-color: ${theme.colors.backgroundGreen};
-    -webkit-text-stroke: 0.5px ${theme.colors.backgroundKingBlue};
+    color: ${theme.colors.green};
+    background-color: transparent;
+    -webkit-text-stroke: 0.5px ${theme.colors.green};
   }
 
   &:disabled {
@@ -54,7 +55,6 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   title?: string;
   value?: string;
-  variant?: 'primary' | 'secondary';
   fullWidth?: boolean;
   eventTracking?: () => void;
 }
@@ -65,8 +65,7 @@ const Button = ({
   disabled = false,
   asLink = '',
   externalLink = false,
-  type = 'button',
-  variant = 'primary',
+  type,
   fullWidth = false,
   eventTracking = () => {},
   ...otherProps
@@ -91,7 +90,6 @@ const Button = ({
       onClick={handleClick}
       type={type}
       disabled={disabled}
-      variant={variant}
       $fullWidth={fullWidth}
     >
       <span>{children}</span>

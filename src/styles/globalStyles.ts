@@ -146,7 +146,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const commonStyles = {
   container: `
-    max-width: var(--max-width);
+    max-width: ${theme.layout.maxWidth};
     margin: 0 auto;
     padding: 0 ${theme.spacing.md};
   `,
