@@ -39,7 +39,7 @@ export const theme = {
     },
   },
   layout: {
-    maxWidth: 'var(--max-width)', // 1100px
+    maxWidth: '80%', // 1100px
   },
   spacing: {
     xxs: '4px',

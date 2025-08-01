@@ -14,21 +14,12 @@ import {
   Label,
   TextareaRow,
   TitleSection,
+  Wrapper,
 } from './initiativeCreationForm.styles';
-import RadioInput from './RadioInput/RadioInput';
-import {
-  Initiative,
-  SelectItems,
-  SelectOptions,
-  TypeInitiative,
-} from '@/constants';
+import { Initiative, TypeInitiative } from '@/constants';
 import CheckboxInput from './CheckboxInput/CheckboxInput';
 
 const initiativeTypeValues = Object.values(Initiative) as [string, ...string[]];
-const initiativeRadioValues = Object.values(SelectItems) as [
-  string,
-  ...string[],
-];
 
 export const initiativeCreationSchema = z.object({
   initiativeName: z.string().min(1, "Le nom de l'initiative est requis"),
@@ -38,10 +29,8 @@ export const initiativeCreationSchema = z.object({
   initiativeType: z
     .array(z.enum(initiativeTypeValues))
     .min(1, 'Veuillez sélectionner un type'),
-  spokenLanguages: z.enum(initiativeRadioValues, {
-    required_error: 'Veuillez sélectionner une option',
-  }),
-  associationName: z.string().min(1, "Le nom de l'association est requis"),
+  narrative: z.string().optional(),
+  associationName: z.string().optional(),
   address: z.string().min(1, 'Veuillez indiquer une adresse'),
   postcode: z.string().min(1, 'Veuillez indiquer un code postal'),
   city: z.string().min(1, 'Veuillez indiquer une ville'),
@@ -59,7 +48,6 @@ const InitiativeCreationForm = () => {
     resolver: zodResolver(initiativeCreationSchema),
     defaultValues: {
       initiativeType: [],
-      spokenLanguages: undefined,
     },
   });
 
@@ -103,7 +91,7 @@ const InitiativeCreationForm = () => {
         </TitleSection>
         <FormGroup>
           <Label htmlFor="initiativeName">
-            Nom de l&apos;initiative *
+            Nom de l&apos;initiative ou un titre *
             <p>
               Saisissez le nom de cette initiative, si elle n&apos;en dispose
               pas, veuillez indiquer un nom clair et significatif&nbsp;:
@@ -117,18 +105,6 @@ const InitiativeCreationForm = () => {
           {methods.formState.errors.initiativeName && (
             <ErrorMessage>
               {methods.formState.errors.initiativeName.message}
-            </ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label htmlFor="initiativeType">
-            À quel type correspond l&apos;initiative&nbsp;? *
-          </Label>
-          <CheckboxInput TypeOptions={TypeInitiative} name="initiativeType" />
-          {methods.formState.errors.initiativeType && (
-            <ErrorMessage>
-              {methods.formState.errors.initiativeType.message}
             </ErrorMessage>
           )}
         </FormGroup>
@@ -151,12 +127,37 @@ const InitiativeCreationForm = () => {
         </FormGroup>
 
         <FormGroup>
+          <Label htmlFor="initiativeType">
+            À quel type correspond l&apos;initiative&nbsp;? *
+          </Label>
+          <CheckboxInput TypeOptions={TypeInitiative} name="initiativeType" />
+          {methods.formState.errors.initiativeType && (
+            <ErrorMessage>
+              {methods.formState.errors.initiativeType.message}
+            </ErrorMessage>
+          )}
+        </FormGroup>
+
+        <FormGroup>
+          <Label htmlFor="narrative">
+            Récit <p>Si vous souhaitez raconter votre expérience :</p>
+          </Label>
+          <TextareaRow
+            id="narrative"
+            {...methods.register('narrative')}
+            rows={10}
+          />
+          {methods.formState.errors.description && (
+            <ErrorMessage>
+              {methods.formState.errors.description.message}
+            </ErrorMessage>
+          )}
+        </FormGroup>
+
+        <FormGroup>
           <Label htmlFor="associationName">
-            Le nom de l&apos;association *
-            <p>
-              Saisissez le nom de l&apos;association qui propose cette
-              initiative&nbsp;:
-            </p>
+            Si c&apos;est une association qui propose cette initiative, indiquez
+            son nom
           </Label>
           <Input
             id="associationName"
@@ -171,24 +172,8 @@ const InitiativeCreationForm = () => {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="spokenLanguages">
-            L&apos;association parle t-elle plusieurs langues&nbsp;? *
-          </Label>
-          <RadioInput radioList={SelectOptions} name="spokenLanguages" />
-          {methods.formState.errors.spokenLanguages && (
-            <ErrorMessage>
-              {methods.formState.errors.spokenLanguages.message}
-            </ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
           <Label htmlFor="address">
-            L&apos;Adresse de l&apos;association *
-            <p>
-              Saisissez l&apos;adresse où se trouve cette initiative ou
-              l&apos;association qui s&apos;en occupe&nbsp;:
-            </p>
+            L&apos;adresse où se situe l&apos;initiative *
           </Label>
           <Input id="address" type="text" {...methods.register('address')} />
           {methods.formState.errors.address && (
@@ -248,9 +233,11 @@ const InitiativeCreationForm = () => {
           <Input id="webSite" type="url" {...methods.register('webSite')} />
         </FormGroup>
 
-        <Button type="submit" fullWidth>
-          Enregitrer une initiative
-        </Button>
+        <Wrapper>
+          <Button type="submit" fullWidth>
+            Ajouter l&apos;initiative
+          </Button>
+        </Wrapper>
       </FormContainer>
     </FormProvider>
   );
