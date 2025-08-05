@@ -4,6 +4,7 @@ export const theme = {
     fluoGreen: 'var(--foreground-fluo-green)',
     darkBlue: 'var(--foreground-dark-blue)',
     green: 'var(--foreground-green)',
+    red: 'var(--error-red)',
 
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',

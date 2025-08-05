@@ -32,7 +32,7 @@ export const Card = styled.div`
   display: grid;
   grid-template-rows: subgrid;
   gap: 16px;
-  border: 1px solid var(--foreground-grey-black);
+  border: 1px solid ${theme.colors.green};
   padding: 8px;
   border-radius: 8px;
 

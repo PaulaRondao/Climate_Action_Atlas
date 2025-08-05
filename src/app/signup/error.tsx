@@ -28,7 +28,7 @@ const ErrorTitle = styled.h2`
 const ErrorMessage = styled.p`
   font-size: ${theme.typography.fontSizes.md};
   margin-bottom: ${theme.spacing.xl};
-  color: ${theme.colors.greyBlack};
+  color: ${theme.colors.red};
   text-align: center;
 `;
 
