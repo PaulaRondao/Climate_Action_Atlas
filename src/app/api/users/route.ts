@@ -14,7 +14,7 @@ export async function GET(request: Request) {
       );
     }
 
-    const user = await prisma.userAccount.findUnique({
+    const user = await prisma.user.findUnique({
       where: { email },
     });
 
@@ -35,14 +35,20 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const data: CreateUserDTO = await request.json();
-    const user = await prisma.userAccount.create({
+
+    const user = await prisma.user.create({
       data: {
         ...data,
-        lastConnect: new Date(),
+        updatedAt: new Date(),
       },
     });
 
-    return NextResponse.json(user, { status: 201 });
+    return NextResponse.json(user, {
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      status: 201,
+    });
   } catch (error) {
     console.error('Error creating user:', error);
     return NextResponse.json(

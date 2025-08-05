@@ -1,5 +1,5 @@
 import {
-  InitiativeType,
+  Initiative,
   ROUTES,
   API_ROUTES,
   MESSAGES,

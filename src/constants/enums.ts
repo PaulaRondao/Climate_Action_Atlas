@@ -29,6 +29,11 @@ export enum Initiative {
   SocialAndSolidarityEconomy = 'Économie Sociale et Solidaire',
 }
 
+export const TypeImpact = Object.entries(Initiative).map(([key, label]) => ({
+  label,
+  value: key,
+})) as { label: string; value: keyof typeof Initiative }[];
+
 export const InitiativeOptions: { label: Initiative; description: string }[] = [
   {
     label: Initiative.ClimateAgricultureEnergy,
@@ -59,33 +64,6 @@ export const InitiativeOptions: { label: Initiative; description: string }[] = [
     label: Initiative.SocialAndSolidarityEconomy,
     description:
       'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
-  },
-];
-
-export const TypeInitiative = [
-  {
-    label: 'Climat, Agriculture et Énergie',
-    value: Initiative.ClimateAgricultureEnergy,
-  },
-  {
-    label: 'Urbanisme et Technologie',
-    value: Initiative.UrbanismAndTechnology,
-  },
-  {
-    label: 'Solidarité et Communautés',
-    value: Initiative.SolidarityAndCommunities,
-  },
-  {
-    label: 'Culture et Transmission',
-    value: Initiative.CultureAndTransmission,
-  },
-  {
-    label: 'Education et Sensibilisation',
-    value: Initiative.EducationAndAwareness,
-  },
-  {
-    label: 'Économie Sociale et Solidaire',
-    value: Initiative.SocialAndSolidarityEconomy,
   },
 ];
 

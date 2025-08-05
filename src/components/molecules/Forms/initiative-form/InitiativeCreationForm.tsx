@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import * as z from 'zod';
 import { Button } from '@/components/atoms';
 import {
   ErrorMessage,
@@ -16,30 +15,10 @@ import {
   TitleSection,
   Wrapper,
 } from './initiativeCreationForm.styles';
-import { Initiative, TypeInitiative } from '@/constants';
+import { TypeImpact } from '@/constants';
 import CheckboxInput from './CheckboxInput/CheckboxInput';
-
-const initiativeTypeValues = Object.values(Initiative) as [string, ...string[]];
-
-export const initiativeCreationSchema = z.object({
-  initiativeName: z.string().min(1, "Le nom de l'initiative est requis"),
-  description: z
-    .string()
-    .min(10, 'La description doit contenir au moins 10 caractères'),
-  initiativeType: z
-    .array(z.enum(initiativeTypeValues))
-    .min(1, 'Veuillez sélectionner un type'),
-  narrative: z.string().optional(),
-  associationName: z.string().optional(),
-  address: z.string().min(1, 'Veuillez indiquer une adresse'),
-  postcode: z.string().min(1, 'Veuillez indiquer un code postal'),
-  city: z.string().min(1, 'Veuillez indiquer une ville'),
-  country: z.string().min(1, 'Veuillez sélectionner un pays'),
-  email: z.string().optional(),
-  webSite: z.string().url().optional(),
-});
-
-type InitiativeCreationFormData = z.infer<typeof initiativeCreationSchema>;
+import { InitiativeCreationFormData } from './initiativeFormValidation';
+import { initiativeCreationSchema } from './initiativeFormValidation';
 
 const InitiativeCreationForm = () => {
   const [globalError, setGlobalError] = useState<string | null>(null);
@@ -90,22 +69,16 @@ const InitiativeCreationForm = () => {
           <span>* Champs obligatoires</span>
         </TitleSection>
         <FormGroup>
-          <Label htmlFor="initiativeName">
+          <Label htmlFor="name">
             Nom de l&apos;initiative ou un titre *
             <p>
               Saisissez le nom de cette initiative, si elle n&apos;en dispose
               pas, veuillez indiquer un nom clair et significatif&nbsp;:
             </p>
           </Label>
-          <Input
-            id="initiativeName"
-            type="text"
-            {...methods.register('initiativeName')}
-          />
-          {methods.formState.errors.initiativeName && (
-            <ErrorMessage>
-              {methods.formState.errors.initiativeName.message}
-            </ErrorMessage>
+          <Input id="name" type="text" {...methods.register('name')} />
+          {methods.formState.errors.name && (
+            <ErrorMessage>{methods.formState.errors.name.message}</ErrorMessage>
           )}
         </FormGroup>
 
@@ -130,7 +103,7 @@ const InitiativeCreationForm = () => {
           <Label htmlFor="initiativeType">
             À quel type correspond l&apos;initiative&nbsp;? *
           </Label>
-          <CheckboxInput TypeOptions={TypeInitiative} name="initiativeType" />
+          <CheckboxInput options={TypeImpact} name="initiativeType" />
           {methods.formState.errors.initiativeType && (
             <ErrorMessage>
               {methods.formState.errors.initiativeType.message}

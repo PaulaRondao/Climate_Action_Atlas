@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
-import { Prisma } from '@prisma/client';
-import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/InitiativeCreationForm';
+import { InitiativeType, Prisma } from '@prisma/client';
+import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 
 export async function GET(request: Request) {
   try {
@@ -28,7 +28,6 @@ export async function GET(request: Request) {
         take: limit,
         include: {
           contributor: true,
-          organizer: true,
         },
         orderBy: {
           createdAt: 'desc',
@@ -63,13 +62,27 @@ export async function POST(request: Request) {
 
     const initiative = await prisma.initiative.create({
       data: {
-        ...parsed,
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        name: parsed.name,
+        description: parsed.description,
+        initiativeType: parsed.initiativeType,
+        contributorId: parsed.contributorId,
+        narrative: parsed.narrative,
+        associationName: parsed.associationName,
+        email: parsed.email,
+        webSite: parsed.webSite,
+        address: {
+          create: {
+            street: parsed.address,
+            postcode: parsed.postcode,
+            city: parsed.city,
+            country: parsed.country,
+            latitude: parsed.latitude,
+            longitude: parsed.longitude,
+          },
+        },
       },
       include: {
         contributor: true,
-        organizer: true,
       },
     });
 
