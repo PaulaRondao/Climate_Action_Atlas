@@ -57,13 +57,13 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({ initiative }) => {
           </Typography>
           <TagsContainer>
             <Chip
-              label={initiative.type}
+              label={initiative.initiativeType}
               color="primary"
               size="small"
               variant="outlined"
             />
             <Chip
-              label={initiative.city}
+              label={initiative.description}
               color="secondary"
               size="small"
               variant="outlined"
