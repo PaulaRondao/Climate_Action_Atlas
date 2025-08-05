@@ -1,15 +1,20 @@
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
 
     const initiative = await prisma.initiative.findUnique({
-      where: { initiativeId: id },
+      where: { initiativeId },
       include: {
         contributor: true,
         address: true,
@@ -36,14 +41,18 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
     const data = await request.json();
 
     const initiative = await prisma.initiative.update({
-      where: { initiativeId: id },
+      where: { initiativeId },
       data: {
         ...data,
         updatedAt: new Date(),
@@ -65,12 +74,16 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
     await prisma.initiative.delete({
-      where: { initiativeId: id },
+      where: { initiativeId },
     });
 
     return NextResponse.json({ message: 'Initiative deleted successfully' });
