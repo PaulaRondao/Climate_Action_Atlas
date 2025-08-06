@@ -19,6 +19,7 @@ Que ce soit en local ou sur Vercel, vous devez exécuter :
 
 ```bash
 npx prisma generate && next build
+```
 
 ### Prérequis
 
@@ -34,13 +35,10 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 
 Ensuite, installez node dans sa version v22 :
 
-```bash
 $ nvm install 22
-```
 
 Pour basculer sur nvm v22 :
 
-```bash
 $ nvm use 22
 ```
 
