@@ -1,15 +1,18 @@
 # Climate_Action_Atlas
 
-Projet RNCP - Cartographier les effets du changement climatique, connecter les initiatives et agir pour un avenir durable.
+<img align="left" alt="badge ci" src="https://github.com/PaulaRondao/Climate_Action_Atlas/actions/workflows/node.js.yml/badge.svg" />         
+
+
+#### Projet RNCP - Cartographier les initiatives dans le monde qui font germer un avenir plus juste et durable.
 
 ## Installation
 
 ### Prérequis
 
-J'utilise la version >20 de nvm, le gestionnaire de version de Node.js. Pour installer nvm :
+J'utilise la version >22 de nvm, le gestionnaire de version de Node.js. Pour installer nvm :
 
 ```bash
-$ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
 ```
 
 Vérifiez ensuite que votre fichier .bashrc, .bash_profile ou .zshrc (en fonction de votre OS) dans votre répertoire racine (~) contient les lignes suivantes :
@@ -21,16 +24,16 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 ```
 
-Ensuite, installez node dans sa version v20 :
+Ensuite, installez node dans sa version v22 :
 
 ```bash
-$ nvm install 20
+$ nvm install 22
 ```
 
-Pour basculer sur nvm v20 :
+Pour basculer sur nvm v22 :
 
 ```bash
-$ nvm use 20
+$ nvm use 22
 ```
 
 Enfin, installez les dépendances du projet :
@@ -60,13 +63,13 @@ $ cp .gitignore
 Démarrer une base de données PostgreSQL conteneurisée dans une image Docker :
 
 ```bash
-docker-compose up -d
+docker compose up
 ```
 
 Pour arrêter la base de données :
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### Base de données

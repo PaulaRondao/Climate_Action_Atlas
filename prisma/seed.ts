@@ -1,59 +1,11 @@
 import bcrypt from 'bcrypt';
 import { faker } from '@faker-js/faker';
-import {
-  InitiativeType,
-  ResponseOption,
-  PrismaClient,
-  UserRole,
-} from '@prisma/client';
+import { PrismaClient, InitiativeType } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 const seedDatabase = async () => {
   try {
-    const createdAt = faker.date.between({
-      from: new Date('2020-01-01'),
-      to: new Date(),
-    });
-
-    const responseOptionArray = [
-      ResponseOption.INDEFINI,
-      ResponseOption.NON,
-      ResponseOption.OUI,
-    ];
-
-    const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const userAccountsPromises = Array.from({ length: 5 }).map(async () => {
-      const email = faker.internet.email();
-      // Essayer de supprimer un utilisateur existant avec le même email
-      await prisma.userAccount
-        .delete({
-          where: { email },
-        })
-        .catch(() => {
-          // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
-        });
-
-      return prisma.userAccount.create({
-        data: {
-          userName: faker.person.firstName(),
-          email: email,
-          password: hashedPassword,
-          role: 'CONTRIBUTOR',
-          createdAt: createdAt,
-          updatedAt: faker.date.between({
-            from: createdAt,
-            to: new Date(),
-          }),
-          lastConnect: faker.date.recent(),
-        },
-      });
-    });
-
-    const userAccounts = await Promise.all(userAccountsPromises);
-
     const companyName = [
       'EcoSphère',
       'TerraVerde',
@@ -65,51 +17,8 @@ const seedDatabase = async () => {
       'Planète Bleu',
     ];
 
-    const companyAccountsPromises = Array.from({ length: 3 }).map(async () => {
-      const email = faker.internet.email();
-      // Essayer de supprimer un utilisateur existant avec le même email
-      await prisma.userAccount
-        .delete({
-          where: { email },
-        })
-        .catch(() => {
-          // Ignorer l'erreur si aucun utilisateur avec cet email n'existe
-        });
-
-      return prisma.companyAccount.create({
-        data: {
-          companyName: faker.helpers.arrayElement(companyName),
-          phoneNumber: faker.phone.number(),
-          email: email,
-          password: hashedPassword,
-          locationId: faker.number.int({ min: 1, max: 1000 }),
-          role: 'ORGANIZER',
-          siret: faker.string.numeric(14),
-          createdAt: createdAt,
-          updatedAt: faker.date.between({
-            from: createdAt,
-            to: new Date(),
-          }),
-        },
-      });
-    });
-
-    const companyAccounts = await Promise.all(companyAccountsPromises);
-
-    const initiativeTypeArray = [
-      InitiativeType.ACTIONS_CLIMATIQUE,
-      InitiativeType.CONSERVATION_DE_LA_BIODIVERSITE,
-      InitiativeType.GESTION_DURABLE_DES_NUTRIMENTS,
-      InitiativeType.REDUCTION_DE_LA_POLLUTION,
-      InitiativeType.QUALITE_DE_L_AIR,
-      InitiativeType.PROTECTION_DE_DE_LA_COUCHE_D_OZONE,
-      InitiativeType.PROTECTIONS_DES_OCEANS,
-      InitiativeType.GESTION_DURABLE_DE_L_EAU,
-      InitiativeType.GESTION_DURABLE_DES_TERRITOIRES,
-      InitiativeType.EQUITE_SOCIALE_ET_EDUCATION,
-    ];
-
-    const userRoleArray = [UserRole.CONTRIBUTOR, UserRole.ORGANIZER];
+    const initiativeTypes = Object.values(InitiativeType);
+    const randomCount = Math.floor(Math.random() * 6) + 1;
 
     const initiativeName = [
       'Récifs Sauvages',
@@ -122,31 +31,73 @@ const seedDatabase = async () => {
       'Planète Bleu',
     ];
 
-    const initiativesPromises = Array.from({ length: 8 }).map(async () => {
-      return prisma.initiative.create({
-        data: {
-          name: faker.helpers.arrayElement(initiativeName),
-          description: faker.lorem.paragraph(),
-          spokenLanguages: faker.helpers.arrayElement(responseOptionArray),
-          financialParticipation:
-            faker.helpers.arrayElement(responseOptionArray),
-          registrationRequired: faker.helpers.arrayElement(responseOptionArray),
-          accessibility: faker.helpers.arrayElement(responseOptionArray),
-          openToCitizens: faker.helpers.arrayElement(responseOptionArray),
-          type: faker.helpers.arrayElement(initiativeTypeArray),
-          address: faker.location.street(),
-          postcode: faker.location.zipCode(),
-          city: faker.location.city(),
-          country: faker.location.country(),
-          email: faker.internet.email(),
-          webSite: faker.internet.url(),
-          responsableId: 1,
-          responsableRole: faker.helpers.arrayElement(userRoleArray),
-        },
-      });
+    const createdAt = faker.date.between({
+      from: new Date('2020-01-01'),
+      to: new Date(),
     });
 
-    const initiatives = await Promise.all(initiativesPromises);
+    const password = faker.internet.password();
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const users = await Promise.all(
+      Array.from({ length: 8 }).map(async () => {
+        const email = faker.internet.email();
+
+        await prisma.user.delete({ where: { email } }).catch(() => {});
+
+        return prisma.user.create({
+          data: {
+            userName:
+              faker.person.firstName() ||
+              faker.helpers.arrayElement(companyName),
+            email: email,
+            password: hashedPassword,
+            createdAt: createdAt,
+            updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
+          },
+        });
+      }),
+    );
+
+    const initiatives = await Promise.all(
+      Array.from({ length: 8 }).map(async () => {
+        const randomUser = faker.helpers.arrayElement(users);
+        return prisma.initiative.create({
+          data: {
+            name: faker.helpers.arrayElement(initiativeName),
+            description: faker.lorem.paragraph(),
+            initiativeType: faker.helpers.arrayElements(
+              initiativeTypes,
+              randomCount,
+            ),
+            narrative: faker.lorem.paragraph(),
+            email: faker.internet.email(),
+            webSite: faker.internet.url(),
+            contributor: {
+              connect: { id: randomUser.id },
+            },
+          },
+        });
+      }),
+    );
+
+    await Promise.all(
+      initiatives.map(async (initiative) => {
+        return prisma.address.create({
+          data: {
+            street: faker.location.streetAddress(),
+            postcode: faker.location.zipCode(),
+            city: faker.location.city(),
+            country: faker.location.country(),
+            latitude: faker.location.latitude(),
+            longitude: faker.location.longitude(),
+            initiative: {
+              connect: { initiativeId: initiative.initiativeId },
+            },
+          },
+        });
+      }),
+    );
 
     console.log('seeding conpleted successfully');
   } catch (error) {
