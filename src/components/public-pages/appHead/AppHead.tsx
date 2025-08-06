@@ -4,7 +4,7 @@ import React from 'react';
 import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Script from 'next/script';
-import { PageTitle } from '../../../../types/enums/pageTitle';
+import { PageTitle } from '@/constants';
 
 interface AppHeadProps {
   title: PageTitle | string;

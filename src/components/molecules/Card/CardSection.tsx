@@ -29,7 +29,7 @@ const Card = styled.div`
   display: grid;
   grid-template-rows: subgrid;
   gap: ${theme.spacing.md};
-  border: 1px solid var(--foreground-grey-black);
+  border: 1px solid ${theme.colors.green};
   padding: ${theme.spacing.sm};
   border-radius: ${theme.borderRadius.small};
 

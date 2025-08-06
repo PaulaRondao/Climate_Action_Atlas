@@ -4,13 +4,14 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "prettier-check": "prettier --check .",
     "eslint-check": "eslint .",
     "lint-fix": "eslint --fix .",
-    "prettier-fix": "prettier --write ."
+    "prettier-fix": "prettier --write .",
+    "postinstall": "prisma generate"
   },
   "dependencies": {
     "@codegouvfr/react-dsfr": "^1.22.1",
