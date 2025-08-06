@@ -6,19 +6,30 @@
 
 generator client {
   provider = "prisma-client-js"
+  seed        = "ts-node prisma/seed.ts"
+  binaryTargets = ["native", "linux-arm64-openssl-3.0.x"]
 }
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")
+  url      = env("DATABASE_URL") 
 }
 
+enum InitiativeType {
+  ClimateAgricultureEnergy
+  UrbanismAndTechnology
+  SolidarityAndCommunities
+  CultureAndTransmission
+  EducationAndAwareness
+  SocialAndSolidarityEconomy
+}
 model Initiative {
   initiativeId Int @id @default(autoincrement())
   name String
   description String
-  initiativeType String @map("initiative_type")
+  initiativeType InitiativeType[] @map("initiative_type")
   narrative String?
+  associationName String?
   address Address[]
   email String? @unique
   webSite String?                     

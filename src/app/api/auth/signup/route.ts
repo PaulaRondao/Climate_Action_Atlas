@@ -19,7 +19,7 @@ export async function POST(request: Request) {
     const { firstName, lastName, email, password } = signUpSchema.parse(body);
 
     // Vérifier si l'email existe déjà
-    const existingUser = await prisma.userAccount.findUnique({
+    const existingUser = await prisma.user.findUnique({
       where: { email },
     });
 
@@ -34,18 +34,18 @@ export async function POST(request: Request) {
     const hashedPassword = await hash(password, 12);
 
     // Créer l'utilisateur
-    const user = await prisma.userAccount.create({
+    const user = await prisma.user.create({
       data: {
         userName: `${firstName} ${lastName}`,
         email,
         password: hashedPassword,
-        lastConnect: new Date(),
+        updatedAt: new Date(),
       },
     });
 
     // Générer le token JWT
     const token = sign(
-      { userId: user.userAccountId, email: user.email },
+      { userId: user.userName, email: user.email },
       JWT_SECRET,
       { expiresIn: '24h' },
     );

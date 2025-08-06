@@ -4,12 +4,16 @@ import type { UpdateUserDTO } from '@/constants/types';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
-    const user = await prisma.userAccount.findUnique({
-      where: { id },
+    const { id } = await params;
+    const userId = parseInt(id, 10);
+    if (isNaN(userId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
+    const user = await prisma.user.findUnique({
+      where: { id: userId },
     });
 
     if (!user) {
@@ -28,14 +32,18 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+    const userId = parseInt(id, 10);
+    if (isNaN(userId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
     const data: UpdateUserDTO = await request.json();
 
-    const user = await prisma.userAccount.update({
-      where: { id },
+    const user = await prisma.user.update({
+      where: { id: userId },
       data,
     });
 
@@ -51,12 +59,16 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
-    await prisma.userAccount.delete({
-      where: { id },
+    const { id } = await params;
+    const userId = parseInt(id, 10);
+    if (isNaN(userId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
+    await prisma.user.delete({
+      where: { id: userId },
     });
 
     return NextResponse.json({ message: 'User deleted successfully' });
