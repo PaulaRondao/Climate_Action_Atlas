@@ -5,24 +5,33 @@
 
 #### Projet RNCP - Cartographier les initiatives dans le monde qui font germer un avenir plus juste et durable.
 
+## 🔗 Demo
+
+🌍 Accéder à la version en ligne :  
+➡️ [Review App Vercel](https://github.com/PaulaRondao/Climate_Action_Atlas/tree/feat/CLIM-33-add-review-app)  
+
 ## Installation
+
+### Build (local ou CI/CD)
+
+Prisma a besoin de générer son client avant que Next.js puisse construire l'application.  
+Que ce soit en local ou sur Vercel, vous devez exécuter :
+
+```bash
+npx prisma generate && next build
 
 ### Prérequis
 
-J'utilise la version >22 de nvm, le gestionnaire de version de Node.js. Pour installer nvm :
+- Node.js version **22.x**
+- [NVM](https://github.com/nvm-sh/nvm) (gestionnaire de versions Node)
+
+#### Installation rapide avec NVM
+
+Si vous n’avez pas encore `nvm` :
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.1/install.sh | bash
-```
 
-Vérifiez ensuite que votre fichier .bashrc, .bash_profile ou .zshrc (en fonction de votre OS) dans votre répertoire racine (~) contient les lignes suivantes :
-
-```bash
-$ tail ~/<.bashrc|.bash_profile|.zshrc>
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-```
 
 Ensuite, installez node dans sa version v22 :
 
@@ -47,7 +56,7 @@ $ npm install
 Créer un ficher .env et un fichier .env.test
 
 ```bash
-$ cp .env .envsample .env.test
+$ cp .env .env.local .env.sample .env.test 
 ```
 
 Créer un ficher .gitignore et ajouter .env dedans
