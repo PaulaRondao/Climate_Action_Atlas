@@ -11,16 +11,15 @@ import {
   Legend,
 } from '../initiativeCreationForm.styles';
 import { Label } from '../RadioInput/radioInput.styles';
-import { fr } from '@codegouvfr/react-dsfr';
 
 interface CheckboxInputProps {
-  TypeOptions: { label: string; value: Initiative }[];
+  options: { label: string; value: keyof typeof Initiative }[];
   name: string;
   onClick?: (e: any) => void;
 }
 
 const CheckboxInput = ({
-  TypeOptions,
+  options,
   name,
   onClick = () => ({}),
 }: CheckboxInputProps): JSX.Element => {
@@ -31,7 +30,7 @@ const CheckboxInput = ({
         <Legend as="legend" id="initiativeType">
           Possibilité de choix multiples
         </Legend>
-        {TypeOptions.map((option) => (
+        {options.map((option) => (
           <InputContainer key={option.value.toString()}>
             <InputWrapper>
               <Checkbox

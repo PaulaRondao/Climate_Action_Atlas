@@ -17,13 +17,12 @@ export async function GET(request: Request) {
       email: string;
     };
 
-    const user = await prisma.userAccount.findUnique({
-      where: { userAccountId: decoded.userId },
+    const user = await prisma.user.findUnique({
+      where: { id: decoded.userId },
       select: {
-        userAccountId: true,
+        id: true,
         userName: true,
         email: true,
-        role: true,
       },
     });
 

@@ -1,5 +1,5 @@
+import { theme } from '@/styles/theme';
 import styled, { css } from 'styled-components';
-import { DEVICE_QUERY } from '@/constants/enums';
 
 export const WelcomeSection = styled.div`
   display: flex;
@@ -20,7 +20,7 @@ export const WelcomeSection = styled.div`
     text-align: center;
   }
 
-  ${DEVICE_QUERY.DESKTOP} {
+  ${theme.breakpoints.desktop} {
     max-width: 77%;
     margin-right: auto;
     margin-left: auto;
@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
   margin-left: 0;
   text-align: center;
 
-  ${DEVICE_QUERY.DESKTOP} {
+  ${theme.breakpoints.desktop} {
     p {
       padding-right: 150px;
       padding-left: 150px;

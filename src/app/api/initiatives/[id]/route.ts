@@ -3,15 +3,21 @@ import prisma from '@/lib/prisma/client';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
+
     const initiative = await prisma.initiative.findUnique({
-      where: { initiativeId: id },
+      where: { initiativeId },
       include: {
         contributor: true,
-        organizer: true,
+        address: true,
       },
     });
 
@@ -25,6 +31,7 @@ export async function GET(
     return NextResponse.json(initiative);
   } catch (error) {
     console.error('Error fetching initiative:', error);
+
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -34,21 +41,24 @@ export async function GET(
 
 export async function PUT(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
     const data = await request.json();
 
     const initiative = await prisma.initiative.update({
-      where: { initiativeId: id },
+      where: { initiativeId },
       data: {
         ...data,
         updatedAt: new Date(),
       },
       include: {
         contributor: true,
-        organizer: true,
       },
     });
 
@@ -64,12 +74,16 @@ export async function PUT(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
   try {
-    const id = parseInt(params.id);
+    const { id } = await params;
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
     await prisma.initiative.delete({
-      where: { initiativeId: id },
+      where: { initiativeId },
     });
 
     return NextResponse.json({ message: 'Initiative deleted successfully' });

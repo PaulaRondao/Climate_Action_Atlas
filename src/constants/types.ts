@@ -1,28 +1,13 @@
-import { InitiativeType, UserRole, ResponseOption } from './enums';
-import {
-  UserAccount as UserModel,
-  CompanyAccount as CompanyModel,
-} from '@prisma/client';
+import { Initiative } from './enums';
+import { User as UserModel } from '@prisma/client';
 
 // Types de base
 export type IUser = UserModel;
-export type ICompany = CompanyModel;
 
 // DTOs
-export type CreateUserDTO = Omit<
-  IUser,
-  'userAccountId' | 'createdAt' | 'updatedAt' | 'lastConnect'
->;
+export type CreateUserDTO = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateUserDTO = Partial<
-  Omit<IUser, 'userAccountId' | 'createdAt' | 'updatedAt'>
->;
-
-export type CreateCompanyDTO = Omit<
-  ICompany,
-  'companyAccountId' | 'createdAt' | 'updatedAt'
->;
-export type UpdateCompanyDTO = Partial<
-  Omit<ICompany, 'companyAccountId' | 'createdAt' | 'updatedAt'>
+  Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>
 >;
 
 // Types d'état
@@ -51,13 +36,8 @@ export interface PaginationParams {
 }
 
 export interface InitiativeFilters {
-  type?: InitiativeType;
+  type?: Initiative;
   status?: InitiativeStatus;
   country?: string;
   city?: string;
-}
-
-export interface UserFilters {
-  role?: UserRole;
-  status?: UserStatus;
 }

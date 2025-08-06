@@ -22,6 +22,7 @@ export const GlobalStyle = createGlobalStyle`
     --foreground-fluo-green: #6ee7b7;
     --foreground-dark-blue: #010020;
     --foreground-green: #072A32;
+    --error-red: #DC143C;
 
     --color-background-beige: #F0EDEB;
     --color-background-green: #072A32;
@@ -146,7 +147,7 @@ export const GlobalStyle = createGlobalStyle`
 
 export const commonStyles = {
   container: `
-    max-width: var(--max-width);
+    max-width: ${theme.layout.maxWidth};
     margin: 0 auto;
     padding: 0 ${theme.spacing.md};
   `,

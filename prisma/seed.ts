@@ -1,11 +1,36 @@
 import bcrypt from 'bcrypt';
 import { faker } from '@faker-js/faker';
-import { PrismaClient } from '@prisma/client';
+import { PrismaClient, InitiativeType } from '@prisma/client';
 
 const prisma = new PrismaClient();
 
 const seedDatabase = async () => {
   try {
+    const companyName = [
+      'EcoSphère',
+      'TerraVerde',
+      'GreenPulse',
+      'Alliance Naturelle',
+      'Horizons Écologiques',
+      'ÉcoCitoyens',
+      'Biosphère Unifiée',
+      'Planète Bleu',
+    ];
+
+    const initiativeTypes = Object.values(InitiativeType);
+    const randomCount = Math.floor(Math.random() * 6) + 1;
+
+    const initiativeName = [
+      'Récifs Sauvages',
+      'Révolution Climatique',
+      'Objectif Zéro Carbone',
+      'Gardiens de la Nature',
+      'Réseau Solaire',
+      'ÉcoCitoyens',
+      'Biosphère Unifiée',
+      'Planète Bleu',
+    ];
+
     const createdAt = faker.date.between({
       from: new Date('2020-01-01'),
       to: new Date(),
@@ -15,9 +40,8 @@ const seedDatabase = async () => {
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const users = await Promise.all(
-      Array.from({ length: 5 }).map(async () => {
+      Array.from({ length: 8 }).map(async () => {
         const email = faker.internet.email();
-        const password = await bcrypt.hash(faker.internet.password(), 10);
 
         await prisma.user.delete({ where: { email } }).catch(() => {});
 
@@ -35,39 +59,6 @@ const seedDatabase = async () => {
       }),
     );
 
-    // const userAccounts = await Promise.all(userAccounts);
-
-    const companyName = [
-      'EcoSphère',
-      'TerraVerde',
-      'GreenPulse',
-      'Alliance Naturelle',
-      'Horizons Écologiques',
-      'ÉcoCitoyens',
-      'Biosphère Unifiée',
-      'Planète Bleu',
-    ];
-
-    const initiativeType = [
-      'Climat, Agriculture et Energie',
-      'Culture et Transmissions',
-      'Economie, Sociale et Solidaire',
-      'Education et Sensibilisation',
-      'Solidarite et Communautes',
-      'Urbanisme et Technologie',
-    ];
-
-    const initiativeName = [
-      'Récifs Sauvages',
-      'Révolution Climatique',
-      'Objectif Zéro Carbone',
-      'Gardiens de la Nature',
-      'Réseau Solaire',
-      'ÉcoCitoyens',
-      'Biosphère Unifiée',
-      'Planète Bleu',
-    ];
-
     const initiatives = await Promise.all(
       Array.from({ length: 8 }).map(async () => {
         const randomUser = faker.helpers.arrayElement(users);
@@ -75,7 +66,10 @@ const seedDatabase = async () => {
           data: {
             name: faker.helpers.arrayElement(initiativeName),
             description: faker.lorem.paragraph(),
-            initiativeType: faker.helpers.arrayElement(initiativeType),
+            initiativeType: faker.helpers.arrayElements(
+              initiativeTypes,
+              randomCount,
+            ),
             narrative: faker.lorem.paragraph(),
             email: faker.internet.email(),
             webSite: faker.internet.url(),

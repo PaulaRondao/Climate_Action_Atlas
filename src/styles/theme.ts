@@ -4,6 +4,7 @@ export const theme = {
     fluoGreen: 'var(--foreground-fluo-green)',
     darkBlue: 'var(--foreground-dark-blue)',
     green: 'var(--foreground-green)',
+    red: 'var(--error-red)',
 
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
@@ -39,7 +40,7 @@ export const theme = {
     },
   },
   layout: {
-    maxWidth: 'var(--max-width)', // 1100px
+    maxWidth: '80%', // 1100px
   },
   spacing: {
     xxs: '4px',
