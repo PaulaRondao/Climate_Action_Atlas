@@ -8,7 +8,7 @@
 ## 🔗 Demo
 
 🌍 Accéder à la version en ligne :  
-➡️ [Review App Vercel](climate-action-atlas-git-main-paularondaos-projects.vercel.app)  
+➡️ [Review App Vercel](https://climate-action-atlas-git-main-paularondaos-projects.vercel.app/)  
 
 ## Installation
 
