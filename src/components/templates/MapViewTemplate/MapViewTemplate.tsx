@@ -2,12 +2,11 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import SignUpForm from '@/components/molecules/Forms/SignUpForm';
 import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/constants/enums';
-import MapView from '@/components/molecules/MapView/MapView';
+import dynamic from 'next/dynamic';
 
 const MapViewContainer = styled.div`
   position: relative;
@@ -29,8 +28,14 @@ const MapViewContainer = styled.div`
 const MainContent = styled.main`
   position: relative;
   z-index: 1;
-  padding: ${theme.spacing.xl} 0;
 `;
+
+const MapView = dynamic(
+  () => import('@/components/molecules/MapView/MapView'),
+  {
+    ssr: false,
+  },
+);
 
 export default function MapViewTemplate() {
   return (
