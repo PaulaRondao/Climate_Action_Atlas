@@ -16,7 +16,11 @@ import {
 import { MapLayerMouseEvent } from 'maplibre-gl';
 import { mountainIconFactory } from './util';
 import { townData } from './util';
-import { LayerSwitcherControl, type StyleID } from './LayerSwitcherControl';
+import {
+  LayerSwitcherControl,
+  styles,
+  type StyleID,
+} from './LayerSwitcherControl';
 
 const mapCSS: CSSProperties = {
   minHeight: 500,
@@ -35,11 +39,6 @@ function MapView() {
   >();
   const [style, setStyle] = useState<StyleID>('OSM Bright');
 
-  const styles: Partial<Record<StyleID, string>> = {
-    'OSM Bright':
-      'https://openmaptiles.geo.data.gouv.fr/styles/osm-bright/style.json',
-  };
-
   function handleClick(e: MapLayerMouseEvent) {
     setMarkerPosition(e.lngLat.toArray());
   }
@@ -53,6 +52,7 @@ function MapView() {
       initialCenter={mountain}
       initialZoom={8}
     >
+      <LayerSwitcherControl style={style} setStyle={setStyle} />
       <RNavigationControl position="top-right" visualizePitch={true} />
       <RGradientMarker
         longitude={mountain[0]}

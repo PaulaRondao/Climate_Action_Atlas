@@ -2,11 +2,11 @@ import { useRControl } from 'maplibre-react-components';
 import { Dispatch, SetStateAction } from 'react';
 import { createPortal } from 'react-dom';
 
-const styles = {
+export const styles = {
   'OSM Bright':
     'https://openmaptiles.geo.data.gouv.fr/styles/osm-bright/style.json',
   'Demo Tiles': 'https://demotiles.maplibre.org/style.json',
-  Streets: `https://api.maptiler.com/maps/streets-v2/style.json?key=${YOUR_MAPTILER_API_TOKEN}`,
+  // Streets: `https://api.maptiler.com/maps/streets-v2/style.json?key=${YOUR_MAPTILER_API_TOKEN}`,
 };
 
 export type StyleID = keyof typeof styles;
