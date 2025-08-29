@@ -1,0 +1,13 @@
+# Node modules et logs
+node_modules
+npm-debug.log
+yarn-error.log
+
+# Git
+.git
+.gitignore
+
+# Fichiers locaux et temporaires
+.DS_Store
+.env
+*.local
