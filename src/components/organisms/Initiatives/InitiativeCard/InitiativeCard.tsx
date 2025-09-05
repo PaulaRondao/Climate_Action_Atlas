@@ -42,7 +42,7 @@ const InitiativeCard: React.FC<InitiativeCardProps> = ({ initiative }) => {
   const router = useRouter();
 
   const handleClick = () => {
-    router.push(`/initiatives/${initiative.initiativeId}`);
+    router.push(`/initiatives/${initiative.id}`);
   };
 
   return (
