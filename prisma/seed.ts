@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt';
-import { faker } from '@faker-js/faker';
+import { fakerFR as faker } from '@faker-js/faker';
 import { PrismaClient, InitiativeType } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -59,45 +59,36 @@ const seedDatabase = async () => {
       }),
     );
 
-    const initiatives = await Promise.all(
-      Array.from({ length: 8 }).map(async () => {
-        const randomUser = faker.helpers.arrayElement(users);
-        return prisma.initiative.create({
-          data: {
-            name: faker.helpers.arrayElement(initiativeName),
-            description: faker.lorem.paragraph(),
-            initiativeType: faker.helpers.arrayElements(
-              initiativeTypes,
-              randomCount,
-            ),
-            narrative: faker.lorem.paragraph(),
-            email: faker.internet.email(),
-            webSite: faker.internet.url(),
-            contributor: {
-              connect: { id: randomUser.id },
-            },
-          },
-        });
-      }),
-    );
+    Array.from({ length: 8 }).map(async () => {
+      const randomUser = faker.helpers.arrayElement(users);
 
-    await Promise.all(
-      initiatives.map(async (initiative) => {
-        return prisma.address.create({
-          data: {
-            street: faker.location.streetAddress(),
-            postcode: faker.location.zipCode(),
-            city: faker.location.city(),
-            country: faker.location.country(),
-            latitude: faker.location.latitude(),
-            longitude: faker.location.longitude(),
-            initiative: {
-              connect: { initiativeId: initiative.initiativeId },
-            },
-          },
-        });
-      }),
-    );
+      const newLocation = await prisma.initiativeLocation.create({
+        data: {
+          street: faker.location.streetAddress(),
+          postcode: faker.location.zipCode(),
+          city: faker.location.city(),
+          country: faker.location.country(),
+          latitude: faker.location.latitude(),
+          longitude: faker.location.longitude(),
+        },
+      });
+
+      return prisma.initiative.create({
+        data: {
+          name: faker.helpers.arrayElement(initiativeName),
+          description: faker.lorem.paragraph(),
+          initiativeType: faker.helpers.arrayElements(
+            initiativeTypes,
+            randomCount,
+          ),
+          narrative: faker.lorem.paragraph(),
+          email: faker.internet.email(),
+          webSite: faker.internet.url(),
+          contributor: { connect: { id: randomUser.id } },
+          initiativeLocation: { connect: { id: newLocation.id } },
+        },
+      });
+    });
 
     console.log('seeding conpleted successfully');
   } catch (error) {

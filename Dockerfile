@@ -6,6 +6,8 @@ COPY package*.json ./
 
 COPY prisma ./prisma
 
+RUN npm install -g npm@latest
+
 RUN npm ci --prefer-offline --no-audit --progress=false
 
 COPY . .

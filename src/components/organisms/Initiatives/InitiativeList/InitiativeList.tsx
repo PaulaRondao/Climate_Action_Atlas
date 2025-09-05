@@ -18,7 +18,7 @@ const InitiativeList: React.FC<InitiativeListProps> = ({ initiatives }) => {
   return (
     <StyledGrid container spacing={3}>
       {initiatives.map((initiative) => (
-        <Grid item xs={12} sm={6} md={4} key={initiative.initiativeId}>
+        <Grid item xs={12} sm={6} md={4} key={initiative.id}>
           <InitiativeCard initiative={initiative} />
         </Grid>
       ))}
