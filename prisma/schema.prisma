@@ -15,45 +15,6 @@ datasource db {
   url      = env("DATABASE_URL") 
 }
 
-enum InitiativeType {
-  ClimateAgricultureEnergy
-  UrbanismAndTechnology
-  SolidarityAndCommunities
-  CultureAndTransmission
-  EducationAndAwareness
-  SocialAndSolidarityEconomy
-}
-model Initiative {
-  initiativeId Int @id @default(autoincrement())
-  name String
-  description String
-  initiativeType InitiativeType[] @map("initiative_type")
-  narrative String?
-  associationName String?
-  address Address[]
-  email String? @unique
-  webSite String?                     
-  createdAt DateTime @map("created_at") @default(now())
-  updatedAt DateTime @map("updated_at") @updatedAt
-  
-  contributorId Int
-  contributor User @relation("InitiativeContributor", fields: [contributorId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
-
-}
-
-model Address {
-  id Int @id @default(autoincrement())
-  street String
-  postcode String
-  city String
-  country String
-  latitude Float
-  longitude Float
-
-  initiativeId Int
-  initiative Initiative @relation(fields: [initiativeId], references: [initiativeId])
-}
-
 model User {
   id Int @id @default(autoincrement())
   userName String @map("user_name")
@@ -62,5 +23,45 @@ model User {
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
 
-  initiative Initiative[] @relation("InitiativeContributor")
+  initiatives Initiative[]
+}
+
+model Initiative {
+  id Int @id @default(autoincrement())
+  name String
+  description String
+  initiativeType InitiativeType[] @map("initiative_type")
+  narrative String?
+  associationName String?
+  email String? @unique
+  webSite String?                     
+  createdAt DateTime @map("created_at") @default(now())
+  updatedAt DateTime @map("updated_at") @updatedAt
+  
+  contributor User @relation(fields: [contributorId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
+  contributorId Int
+
+  initiativeLocation InitiativeLocation @relation(fields: [initiativeLocationId], references: [id])
+  initiativeLocationId Int @unique
+}
+
+model InitiativeLocation {
+  id Int @id @default(autoincrement())
+  street String
+  postcode String
+  city String
+  country String
+  latitude Float
+  longitude Float
+
+  initiativeId Initiative?
+}
+
+enum InitiativeType {
+  ClimateAgricultureEnergy
+  UrbanismAndTechnology
+  SolidarityAndCommunities
+  CultureAndTransmission
+  EducationAndAwareness
+  SocialAndSolidarityEconomy
 }

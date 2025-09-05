@@ -14,10 +14,10 @@ export async function GET(
     }
 
     const initiative = await prisma.initiative.findUnique({
-      where: { initiativeId },
+      where: { id: initiativeId },
       include: {
         contributor: true,
-        address: true,
+        initiativeLocation: true,
       },
     });
 
@@ -52,7 +52,7 @@ export async function PUT(
     const data = await request.json();
 
     const initiative = await prisma.initiative.update({
-      where: { initiativeId },
+      where: { id: initiativeId },
       data: {
         ...data,
         updatedAt: new Date(),
@@ -83,7 +83,7 @@ export async function DELETE(
       return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
     }
     await prisma.initiative.delete({
-      where: { initiativeId },
+      where: { id: initiativeId },
     });
 
     return NextResponse.json({ message: 'Initiative deleted successfully' });

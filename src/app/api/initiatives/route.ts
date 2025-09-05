@@ -9,17 +9,24 @@ export async function GET(request: Request) {
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '10');
     const search = searchParams.get('search') || '';
+    const type = searchParams.get('type') || '';
 
     const skip = (page - 1) * limit;
 
-    const where: Prisma.InitiativeWhereInput = search
-      ? {
-          OR: [
-            { name: { contains: search } },
-            { description: { contains: search } },
-          ],
-        }
-      : {};
+    const where: Prisma.InitiativeWhereInput = {
+      AND: [
+        search
+          ? {
+              OR: [
+                { name: { contains: search } },
+                { associationName: { contains: search } },
+                { description: { contains: search } },
+              ],
+            }
+          : {},
+        type ? { initiativeType: { has: type as InitiativeType } } : {},
+      ],
+    };
 
     const [initiatives, total] = await Promise.all([
       prisma.initiative.findMany({
@@ -60,7 +67,18 @@ export async function POST(request: Request) {
 
     const parsed = initiativeCreationSchema.parse(bodyRequest);
 
-    const initiative = await prisma.initiative.create({
+    const createNewInitiativeLocation = await prisma.initiativeLocation.create({
+      data: {
+        street: parsed.address,
+        postcode: parsed.postcode,
+        city: parsed.city,
+        country: parsed.country,
+        latitude: parsed.latitude,
+        longitude: parsed.longitude,
+      },
+    });
+
+    const createNewInitiative = await prisma.initiative.create({
       data: {
         name: parsed.name,
         description: parsed.description,
@@ -70,23 +88,15 @@ export async function POST(request: Request) {
         associationName: parsed.associationName,
         email: parsed.email,
         webSite: parsed.webSite,
-        address: {
-          create: {
-            street: parsed.address,
-            postcode: parsed.postcode,
-            city: parsed.city,
-            country: parsed.country,
-            latitude: parsed.latitude,
-            longitude: parsed.longitude,
-          },
-        },
+        initiativeLocationId: createNewInitiativeLocation.id,
       },
       include: {
         contributor: true,
+        initiativeLocation: true,
       },
     });
 
-    return NextResponse.json(initiative, { status: 201 });
+    return NextResponse.json(createNewInitiative, { status: 201 });
   } catch (error) {
     console.error('Error creating initiative:', error);
     return NextResponse.json(
