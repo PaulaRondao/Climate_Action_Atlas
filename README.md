@@ -86,10 +86,32 @@ Appliquer les scripts de migration sur la base de données PostgreSQL démarrée
 npm run db:migrate
 ```
 
-#### Créer une nouvelle migration
+### Appliquer les migrations
 
 ```
-npx prisma migrate dev --name <un nom parlant de migration>
+# Dev (crée/ajuste le schéma en développement)
+docker compose exec web npx prisma migrate dev
+
+# Prod/CI (applique les migrations déjà créées)
+docker compose exec web npx prisma migrate deploy
+```
+
+### Réinitialiser la base (drop + migrate + seed) :
+
+```
+docker compose exec web npx prisma migrate reset --force
+```
+
+### Seeder la base :
+
+```
+docker compose exec web npx prisma db seed
+```
+
+### Créer une nouvelle migration
+
+```
+docker compose exec web npx prisma migrate dev --name <un nom parlant de migration>
 ```
 
 <un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"
@@ -97,5 +119,5 @@ npx prisma migrate dev --name <un nom parlant de migration>
 ### Pour lancer l'éditeur graphique de Prisma
 
 ```
-npx prisma studio
+docker compose exec web npx prisma studio --port 5555
 ```
