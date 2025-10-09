@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { mediaQueries } from '@/styles/globalStyles';
-import { Initiative } from '@/constants/enums';
+import { Initiatives } from '@/constants/enums';
 import { Container } from '@/styles/components';
 
 const CardContainer = styled.div`
@@ -47,7 +47,7 @@ const CardTitle = styled.div`
 `;
 
 interface CardSectionProps {
-  initiatives: { label: Initiative; description: string }[];
+  initiatives: { label: Initiatives; description: string }[];
   children: React.ReactNode;
 }
 

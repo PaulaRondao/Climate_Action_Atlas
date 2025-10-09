@@ -7,10 +7,12 @@ import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/constants/enums';
 import dynamic from 'next/dynamic';
+// import { SideBarMenu } from '@/components/molecules';
 
 const MapViewContainer = styled.div`
   position: relative;
   min-height: 100vh;
+  height: 100vh;
   background-color: ${theme.colors.backgroundBeige};
 
   &::before {
@@ -28,16 +30,22 @@ const MapViewContainer = styled.div`
 const MainContent = styled.main`
   position: relative;
   z-index: 1;
+  height: 100%;
 `;
+
+interface MapViewTemplateProps {
+  position: [number, number];
+}
 
 const MapView = dynamic(
   () => import('@/components/molecules/MapView/MapView'),
   {
+    loading: () => <p>La carte est en cours de chargement</p>,
     ssr: false,
   },
 );
 
-export default function MapViewTemplate() {
+export default function MapViewTemplate({ position }: MapViewTemplateProps) {
   return (
     <>
       <Navigation
@@ -47,7 +55,8 @@ export default function MapViewTemplate() {
       <MapViewContainer>
         <MainContent>
           <Container>
-            <MapView />
+            {/* <SideBarMenu /> */}
+            <MapView position={position} />
           </Container>
         </MainContent>
       </MapViewContainer>

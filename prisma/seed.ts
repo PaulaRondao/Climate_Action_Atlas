@@ -1,24 +1,33 @@
 import bcrypt from 'bcrypt';
 import { fakerFR as faker } from '@faker-js/faker';
 import { PrismaClient, InitiativeType } from '@prisma/client';
+import { promises as fs } from 'fs';
 
 const prisma = new PrismaClient();
 
+async function importJsonFile(filePath: string) {
+  try {
+    const fileContent = await fs.readFile(filePath, 'utf-8');
+    return JSON.parse(fileContent);
+  } catch (error) {
+    throw new Error(`Error parsing JSON file : ${error}`);
+  }
+}
+
 const seedDatabase = async () => {
   try {
-    const companyName = [
-      'EcoSphère',
-      'TerraVerde',
-      'GreenPulse',
-      'Alliance Naturelle',
-      'Horizons Écologiques',
-      'ÉcoCitoyens',
-      'Biosphère Unifiée',
-      'Planète Bleu',
-    ];
+    const jsonData = await importJsonFile('prisma/data.structure.json');
 
     const initiativeTypes = Object.values(InitiativeType);
     const randomCount = Math.floor(Math.random() * 6) + 1;
+
+    const createdAt = faker.date.between({
+      from: new Date('2020-01-01'),
+      to: new Date(),
+    });
+
+    const password = faker.internet.password();
+    const hashedPassword = await bcrypt.hash(password, 10);
 
     const initiativeName = [
       'Récifs Sauvages',
@@ -31,14 +40,6 @@ const seedDatabase = async () => {
       'Planète Bleu',
     ];
 
-    const createdAt = faker.date.between({
-      from: new Date('2020-01-01'),
-      to: new Date(),
-    });
-
-    const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password, 10);
-
     const users = await Promise.all(
       Array.from({ length: 8 }).map(async () => {
         const email = faker.internet.email();
@@ -47,9 +48,7 @@ const seedDatabase = async () => {
 
         return prisma.user.create({
           data: {
-            userName:
-              faker.person.firstName() ||
-              faker.helpers.arrayElement(companyName),
+            userName: faker.person.firstName(),
             email: email,
             password: hashedPassword,
             createdAt: createdAt,
@@ -59,21 +58,21 @@ const seedDatabase = async () => {
       }),
     );
 
-    Array.from({ length: 8 }).map(async () => {
+    for (const item of jsonData) {
       const randomUser = faker.helpers.arrayElement(users);
 
       const newLocation = await prisma.initiativeLocation.create({
         data: {
-          street: faker.location.streetAddress(),
-          postcode: faker.location.zipCode(),
-          city: faker.location.city(),
-          country: faker.location.country(),
-          latitude: faker.location.latitude(),
-          longitude: faker.location.longitude(),
+          street: item.street,
+          postcode: item.postcode,
+          city: item.city,
+          country: item.country,
+          latitude: item.latitude,
+          longitude: item.longitude,
         },
       });
 
-      return prisma.initiative.create({
+      await prisma.initiative.create({
         data: {
           name: faker.helpers.arrayElement(initiativeName),
           description: faker.lorem.paragraph(),
@@ -88,11 +87,11 @@ const seedDatabase = async () => {
           initiativeLocation: { connect: { id: newLocation.id } },
         },
       });
-    });
+    }
 
     console.log('seeding conpleted successfully');
   } catch (error) {
-    console.warn('Error While generating Seed: \n', error);
+    console.warn('Error while generating Seed: ', error);
     process.exit(1);
   } finally {
     await prisma.$disconnect();
