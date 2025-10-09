@@ -2,64 +2,66 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/constants/enums';
 import dynamic from 'next/dynamic';
-// import { SideBarMenu } from '@/components/molecules';
+import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 
-const MapViewContainer = styled.div`
-  position: relative;
-  min-height: 100vh;
-  height: 100vh;
-  background-color: ${theme.colors.backgroundBeige};
-
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    opacity: 0.7;
-    z-index: 0;
-  }
-`;
-
-const MainContent = styled.main`
-  position: relative;
-  z-index: 1;
-  height: 100%;
-`;
+const MapView = dynamic(
+  () => import('@/components/molecules/MapView/MapView'),
+  {
+    loading: () => <p>La carte est en cours de chargement...</p>,
+    ssr: false,
+  },
+);
 
 interface MapViewTemplateProps {
   position: [number, number];
 }
 
-const MapView = dynamic(
-  () => import('@/components/molecules/MapView/MapView'),
-  {
-    loading: () => <p>La carte est en cours de chargement</p>,
-    ssr: false,
-  },
-);
+const PageWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: ${theme.colors.backgroundBeige};
+`;
+
+const ContentWrapper = styled.div`
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
+
+const MapWrapper = styled.div`
+  flex: 1;
+  height: 100vh;
+  z-index: 1;
+
+  @media (max-width: 768px) {
+    height: calc(100vh - 60px);
+  }
+`;
 
 export default function MapViewTemplate({ position }: MapViewTemplateProps) {
   return (
-    <>
+    <PageWrapper>
       <Navigation
         pageTitle={PageTitle.UserForm}
         description={Description.CommitmentToUser}
       />
-      <MapViewContainer>
-        <MainContent>
-          <Container>
-            {/* <SideBarMenu /> */}
-            <MapView position={position} />
-          </Container>
-        </MainContent>
-      </MapViewContainer>
-    </>
+
+      <ContentWrapper>
+        <SidebarControl />
+        <MapWrapper>
+          <MapView position={position} />
+        </MapWrapper>
+      </ContentWrapper>
+    </PageWrapper>
   );
 }
