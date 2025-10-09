@@ -23,19 +23,21 @@ interface MapViewProps {
 
 export default function MapView({ position, zoom = 10 }: MapViewProps) {
   return (
-    <MapContainer
-      center={position}
-      zoom={zoom}
-      scrollWheelZoom={true}
-      style={{ height: '600px', width: '100%' }}
-    >
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-      />
-      <Marker position={position} draggable={false}>
-        <Popup>Hey ! I study here</Popup>
-      </Marker>
-    </MapContainer>
+    <>
+      <MapContainer
+        center={position}
+        zoom={zoom}
+        scrollWheelZoom={true}
+        style={{ height: '600px', width: '100%' }}
+      >
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+        />
+        <Marker position={position} draggable={false}>
+          <Popup>Hey ! I study here</Popup>
+        </Marker>
+      </MapContainer>
+    </>
   );
 }

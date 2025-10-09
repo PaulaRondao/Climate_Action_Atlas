@@ -7,6 +7,7 @@ import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/constants/enums';
 import dynamic from 'next/dynamic';
+import { SideBarMenu } from '@/components/molecules';
 
 const MapViewContainer = styled.div`
   position: relative;
@@ -54,6 +55,7 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
       <MapViewContainer>
         <MainContent>
           <Container>
+            {/* <SideBarMenu /> */}
             <MapView position={position} />
           </Container>
         </MainContent>

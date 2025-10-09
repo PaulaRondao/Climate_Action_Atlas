@@ -20,7 +20,7 @@ export enum Description {
   CommitmentToAssociation = 'Votre engagement fait la différence. Ensemble, nous pouvons dépasser les défis environnementaux.',
 }
 
-export enum Initiative {
+export enum Initiatives {
   ClimateAgricultureEnergy = 'Climat, Agriculture et Énergie',
   UrbanismAndTechnology = 'Urbanisme et Technologie',
   SolidarityAndCommunities = 'Solidarité et Communautés',
@@ -29,43 +29,44 @@ export enum Initiative {
   SocialAndSolidarityEconomy = 'Économie Sociale et Solidaire',
 }
 
-export const TypeImpact = Object.entries(Initiative).map(([key, label]) => ({
+export const TypeImpact = Object.entries(Initiatives).map(([key, label]) => ({
   label,
   value: key,
-})) as { label: string; value: keyof typeof Initiative }[];
+})) as { label: string; value: keyof typeof Initiatives }[];
 
-export const InitiativeOptions: { label: Initiative; description: string }[] = [
-  {
-    label: Initiative.ClimateAgricultureEnergy,
-    description:
-      'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
-  },
-  {
-    label: Initiative.UrbanismAndTechnology,
-    description:
-      'Innovations accessibles, low-tech, bricolage et systèmes D pour répondre aux besoins essentiels avec ingéniosité, dans une logique de sobriété et d’autonomie.',
-  },
-  {
-    label: Initiative.SolidarityAndCommunities,
-    description:
-      "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
-  },
-  {
-    label: Initiative.CultureAndTransmission,
-    description:
-      'Initiatives qui préservent, réinventent ou partagent les cultures locales, les savoir-faire, les récits, et les expressions artistiques, pour nourrir une mémoire vivante.',
-  },
-  {
-    label: Initiative.EducationAndAwareness,
-    description:
-      'Formes d’éducation libres, actives ou engagées pour éveiller les consciences, transmettre autrement et encourager la pensée critique face aux enjeux contemporains.',
-  },
-  {
-    label: Initiative.SocialAndSolidarityEconomy,
-    description:
-      'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
-  },
-];
+export const InitiativeOptions: { label: Initiatives; description: string }[] =
+  [
+    {
+      label: Initiatives.ClimateAgricultureEnergy,
+      description:
+        'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
+    },
+    {
+      label: Initiatives.UrbanismAndTechnology,
+      description:
+        'Innovations accessibles, low-tech, bricolage et systèmes D pour répondre aux besoins essentiels avec ingéniosité, dans une logique de sobriété et d’autonomie.',
+    },
+    {
+      label: Initiatives.SolidarityAndCommunities,
+      description:
+        "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
+    },
+    {
+      label: Initiatives.CultureAndTransmission,
+      description:
+        'Initiatives qui préservent, réinventent ou partagent les cultures locales, les savoir-faire, les récits, et les expressions artistiques, pour nourrir une mémoire vivante.',
+    },
+    {
+      label: Initiatives.EducationAndAwareness,
+      description:
+        'Formes d’éducation libres, actives ou engagées pour éveiller les consciences, transmettre autrement et encourager la pensée critique face aux enjeux contemporains.',
+    },
+    {
+      label: Initiatives.SocialAndSolidarityEconomy,
+      description:
+        'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
+    },
+  ];
 
 export enum SelectItems {
   OUI = 'OUI',

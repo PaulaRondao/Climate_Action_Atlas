@@ -1,9 +1,9 @@
 import * as z from 'zod';
-import { Initiative } from '@/constants';
+import { Initiatives } from '@/constants';
 
-const initiativeTypeValues = Object.keys(Initiative) as [
-  keyof typeof Initiative,
-  ...Array<keyof typeof Initiative>,
+const initiativeTypeValues = Object.keys(Initiatives) as [
+  keyof typeof Initiatives,
+  ...Array<keyof typeof Initiatives>,
 ];
 
 export const initiativeCreationSchema = z.object({

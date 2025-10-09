@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
-import { Initiative } from '@/constants';
+import { Initiatives } from '@/constants';
 import { Checkbox } from './CheckboxInput.styles';
 import {
   Fieldset,
@@ -13,7 +13,7 @@ import {
 import { Label } from '../RadioInput/radioInput.styles';
 
 interface CheckboxInputProps {
-  options: { label: string; value: keyof typeof Initiative }[];
+  options: { label: string; value: keyof typeof Initiatives }[];
   name: string;
   onClick?: (e: any) => void;
 }
