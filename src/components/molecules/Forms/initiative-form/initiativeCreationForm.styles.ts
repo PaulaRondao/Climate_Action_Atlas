@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { fr } from '@codegouvfr/react-dsfr';
 
 export const ErrorMessage = styled.span`
   color: #ef4444;

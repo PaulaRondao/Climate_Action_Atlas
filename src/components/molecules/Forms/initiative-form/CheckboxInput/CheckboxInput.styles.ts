@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { theme } from '@/styles/theme';
-import { fr } from '@codegouvfr/react-dsfr';
 
 export const Checkbox = styled.input.attrs({ type: 'checkbox' })`
   width: 14px;
