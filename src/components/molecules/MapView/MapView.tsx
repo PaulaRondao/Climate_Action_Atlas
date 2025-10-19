@@ -7,6 +7,14 @@ import L from 'leaflet';
 import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import { useEffect, useState } from 'react';
+import {
+  Initiatives,
+  InitiativeTypeToLabel,
+  LabelToInitiativeType,
+} from '@/constants';
+import { useInitiatives } from '@/hooks/useInitiatives';
+import { InitiativeWithRelations } from '@/constants/initiatives';
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetina.src,
@@ -19,9 +27,40 @@ L.Icon.Default.imagePath = '.';
 interface MapViewProps {
   position: LatLngExpression | LatLngTuple;
   zoom?: number;
+  filteredInitiativeType: Initiatives | null;
 }
 
-export default function MapView({ position, zoom = 10 }: MapViewProps) {
+export default function MapView({
+  position,
+  zoom = 6,
+  filteredInitiativeType,
+}: MapViewProps) {
+  const { getInitiatives, loading, error } = useInitiatives();
+  const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const response = await getInitiatives(1, 100);
+      if (!response) return;
+
+      let initiativeList = response.initiatives;
+
+      if (filteredInitiativeType) {
+        const mappedType = LabelToInitiativeType[filteredInitiativeType];
+        initiativeList = initiativeList.filter((initiative) =>
+          initiative.initiativeType?.includes(mappedType),
+        );
+      }
+
+      setInitiatives(initiativeList);
+    };
+
+    fetchData();
+  }, [getInitiatives, filteredInitiativeType]);
+
+  if (loading) return <p>Chargement des initiatives...</p>;
+  if (error) return <p>Erreur : {error}</p>;
+
   return (
     <>
       <MapContainer
@@ -34,9 +73,22 @@ export default function MapView({ position, zoom = 10 }: MapViewProps) {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={position} draggable={false}>
-          <Popup>Hey ! I study here</Popup>
-        </Marker>
+        {initiatives.map((initiative) => {
+          const lat = initiative.initiativeLocation?.latitude;
+          const lon = initiative.initiativeLocation?.longitude;
+
+          if (!lat || !lon) return null;
+
+          return (
+            <Marker key={initiative.id} position={[lat, lon]}>
+              <Popup>
+                <strong>{initiative.name}</strong>
+                <br />
+                {initiative.description || 'Pas de description'}
+              </Popup>
+            </Marker>
+          );
+        })}
       </MapContainer>
     </>
   );

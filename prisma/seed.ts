@@ -5,76 +5,123 @@ import { promises as fs } from 'fs';
 
 const prisma = new PrismaClient();
 
-async function importJsonFile(filePath: string) {
+async function importGeoJson(filePath: string) {
   try {
     const fileContent = await fs.readFile(filePath, 'utf-8');
-    return JSON.parse(fileContent);
+    const geoJson = JSON.parse(fileContent);
+    return geoJson.features.map((feature: any) => ({
+      street: feature.properties.street,
+      postcode: feature.properties.postcode,
+      city: feature.properties.city,
+      country: 'France', // par défaut
+      latitude: feature.geometry.coordinates[1],
+      longitude: feature.geometry.coordinates[0],
+    }));
   } catch (error) {
-    throw new Error(`Error parsing JSON file : ${error}`);
+    throw new Error(`Error parsing GeoJSON file: ${error}`);
   }
 }
 
 const seedDatabase = async () => {
   try {
-    const jsonData = await importJsonFile('prisma/data.structure.json');
+    const locations = await importGeoJson('prisma/data.structure.geojson');
 
+    // Types d'initiatives
     const initiativeTypes = Object.values(InitiativeType);
-    const randomCount = Math.floor(Math.random() * 6) + 1;
 
+    // Hash du mot de passe pour tous les utilisateurs
+    const password = faker.internet.password();
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    // Création de quelques utilisateurs
     const createdAt = faker.date.between({
       from: new Date('2020-01-01'),
       to: new Date(),
     });
-
-    const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const initiativeName = [
-      'Récifs Sauvages',
-      'Révolution Climatique',
-      'Objectif Zéro Carbone',
-      'Gardiens de la Nature',
-      'Réseau Solaire',
-      'ÉcoCitoyens',
-      'Biosphère Unifiée',
-      'Planète Bleu',
-    ];
-
     const users = await Promise.all(
       Array.from({ length: 8 }).map(async () => {
         const email = faker.internet.email();
-
         await prisma.user.delete({ where: { email } }).catch(() => {});
-
         return prisma.user.create({
           data: {
             userName: faker.person.firstName(),
             email: email,
             password: hashedPassword,
-            createdAt: createdAt,
+            createdAt,
             updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
           },
         });
       }),
     );
 
-    for (const item of jsonData) {
+    // Initiatives fixes à insérer dans l'ordre
+    const fixedInitiatives = [
+      {
+        name: 'Roule ma frite',
+        type: InitiativeType.ClimateAgricultureEnergy,
+        locationIndex: 0,
+      },
+      {
+        name: 'Cinema le Kursaal',
+        type: InitiativeType.CultureAndTransmission,
+        locationIndex: 1,
+      },
+      {
+        name: 'Eco-lieu familial Mandala',
+        type: InitiativeType.UrbanismAndTechnology,
+        locationIndex: 2,
+      },
+    ];
+
+    for (const fixed of fixedInitiatives) {
       const randomUser = faker.helpers.arrayElement(users);
+      const loc = locations[fixed.locationIndex];
 
       const newLocation = await prisma.initiativeLocation.create({
         data: {
-          street: item.street,
-          postcode: item.postcode,
-          city: item.city,
-          country: item.country,
-          latitude: item.latitude,
-          longitude: item.longitude,
+          street: loc.street,
+          postcode: loc.postcode,
+          city: loc.city,
+          country: loc.country,
+          latitude: loc.latitude,
+          longitude: loc.longitude,
         },
       });
 
       await prisma.initiative.create({
         data: {
-          name: faker.helpers.arrayElement(initiativeName),
+          name: fixed.name,
+          description: faker.lorem.paragraph(),
+          initiativeType: [fixed.type],
+          narrative: faker.lorem.paragraph(),
+          email: faker.internet.email(),
+          webSite: faker.internet.url(),
+          contributor: { connect: { id: randomUser.id } },
+          initiativeLocation: { connect: { id: newLocation.id } },
+        },
+      });
+    }
+
+    // Génération des autres initiatives aléatoires
+    for (let i = 3; i < locations.length; i++) {
+      const randomUser = faker.helpers.arrayElement(users);
+      const loc = locations[i];
+      const randomCount = Math.floor(Math.random() * 3) + 1;
+
+      const newLocation = await prisma.initiativeLocation.create({
+        data: {
+          street: loc.street,
+          postcode: loc.postcode,
+          city: loc.city,
+          country: loc.country,
+          latitude: loc.latitude,
+          longitude: loc.longitude,
+        },
+      });
+
+      await prisma.initiative.create({
+        data: {
+          name: faker.company.name(),
           description: faker.lorem.paragraph(),
           initiativeType: faker.helpers.arrayElements(
             initiativeTypes,
@@ -89,9 +136,9 @@ const seedDatabase = async () => {
       });
     }
 
-    console.log('seeding conpleted successfully');
+    console.log('Seeding completed successfully');
   } catch (error) {
-    console.warn('Error while generating Seed: ', error);
+    console.warn('Error while generating seeds: ', error);
     process.exit(1);
   } finally {
     await prisma.$disconnect();

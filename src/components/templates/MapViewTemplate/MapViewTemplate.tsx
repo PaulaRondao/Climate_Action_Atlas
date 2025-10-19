@@ -1,10 +1,10 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
-import { PageTitle, Description } from '@/constants/enums';
+import { PageTitle, Description, Initiatives } from '@/constants/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 
@@ -49,6 +49,8 @@ const MapWrapper = styled.div`
 `;
 
 export default function MapViewTemplate({ position }: MapViewTemplateProps) {
+  const [selectedType, setSelectedType] = useState<Initiatives | null>(null);
+
   return (
     <PageWrapper>
       <Navigation
@@ -57,9 +59,9 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
       />
 
       <ContentWrapper>
-        <SidebarControl />
+        <SidebarControl onChange={setSelectedType} />
         <MapWrapper>
-          <MapView position={position} />
+          <MapView position={position} filteredInitiativeType={selectedType} />
         </MapWrapper>
       </ContentWrapper>
     </PageWrapper>

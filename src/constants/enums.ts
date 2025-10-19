@@ -1,4 +1,5 @@
 import { Options } from './SelectList';
+import { $Enums } from '@prisma/client';
 
 export enum PageTitle {
   MovementForChange = 'Un mouvement pour changer',
@@ -79,3 +80,23 @@ export const SelectOptions: Options[] = [
   { label: 'Non', value: SelectItems.NON },
   { label: 'Je ne sais pas', value: SelectItems.INDEFINI },
 ];
+
+export const InitiativeTypeToLabel: Record<$Enums.InitiativeType, Initiatives> =
+  {
+    ClimateAgricultureEnergy: Initiatives.ClimateAgricultureEnergy,
+    UrbanismAndTechnology: Initiatives.UrbanismAndTechnology,
+    SolidarityAndCommunities: Initiatives.SolidarityAndCommunities,
+    CultureAndTransmission: Initiatives.CultureAndTransmission,
+    EducationAndAwareness: Initiatives.EducationAndAwareness,
+    SocialAndSolidarityEconomy: Initiatives.SocialAndSolidarityEconomy,
+  };
+
+export const LabelToInitiativeType: Record<Initiatives, $Enums.InitiativeType> =
+  {
+    [Initiatives.ClimateAgricultureEnergy]: 'ClimateAgricultureEnergy',
+    [Initiatives.UrbanismAndTechnology]: 'UrbanismAndTechnology',
+    [Initiatives.SolidarityAndCommunities]: 'SolidarityAndCommunities',
+    [Initiatives.CultureAndTransmission]: 'CultureAndTransmission',
+    [Initiatives.EducationAndAwareness]: 'EducationAndAwareness',
+    [Initiatives.SocialAndSolidarityEconomy]: 'SocialAndSolidarityEconomy',
+  };

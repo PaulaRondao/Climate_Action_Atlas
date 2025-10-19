@@ -1,0 +1,75 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-1.260216, 45.90482] },
+      "properties": {
+        "label": "Route de l’Ecuissière 17550 Dolus-d'Oléron",
+        "score": 0.8611545454545454,
+        "id": "17140_0347",
+        "banId": "1da0889e-725b-455f-a3ff-5b7aae79913d",
+        "name": "Route de l’Ecuissière",
+        "postcode": "17550",
+        "citycode": "17140",
+        "x": 369879.27,
+        "y": 6542811.65,
+        "city": "Dolus-d'Oléron",
+        "context": "17, Charente-Maritime, Nouvelle-Aquitaine",
+        "type": "street",
+        "importance": 0.4727,
+        "street": "Route de l’Ecuissière",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.146199, 43.882002]
+      },
+      "properties": {
+        "label": "Rue du Sablar 40260 Castets",
+        "score": 0.9496718181818182,
+        "id": "40075_0210",
+        "banId": "a5f11bcc-6b67-42e7-8c29-d3f7a8941e3b",
+        "name": "Rue du Sablar",
+        "postcode": "40260",
+        "citycode": "40075",
+        "x": 366913.81,
+        "y": 6317968.6,
+        "city": "Castets",
+        "context": "40, Landes, Nouvelle-Aquitaine",
+        "type": "street",
+        "importance": 0.44639,
+        "street": "Rue du Sablar",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-0.836404, 45.529657]
+      },
+      "properties": {
+        "label": "9 Rue de la Borde 17120 Chenac-Saint-Seurin-d'Uzet",
+        "score": 0.6458490909090908,
+        "housenumber": "9",
+        "id": "17098_0026_00009",
+        "banId": "3fc7a261-ec6a-4062-8038-75a79c4c4374",
+        "name": "9 Rue de la Borde",
+        "postcode": "17120",
+        "citycode": "17098",
+        "x": 400669.47,
+        "y": 6499514.68,
+        "city": "Chenac-Saint-Seurin-d'Uzet",
+        "context": "17, Charente-Maritime, Nouvelle-Aquitaine",
+        "type": "housenumber",
+        "importance": 0.35434,
+        "street": "Rue de la Borde",
+        "_type": "address"
+      }
+    }
+  ]
+}
