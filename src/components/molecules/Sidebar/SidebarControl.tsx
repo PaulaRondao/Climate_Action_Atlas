@@ -1,9 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
+import { Initiatives } from '@/constants';
+import Link from 'next/link';
 
 const SidebarContainer = styled.div<{ $open: boolean }>`
   position: absolute;
@@ -51,24 +53,36 @@ const ToggleButton = styled.button<{ $open: boolean }>`
   }
 `;
 
-const List = styled.li`
+const List = styled.li<{ $active?: boolean }>`
   font-weight: 600;
   font-size: 13px;
   align-items: center;
   display: flex;
   gap: 8px;
   padding: 8px;
-  background-color: white;
+  background-color: ${({ $active }) => ($active ? '#d9ead3' : 'white')};
 `;
 
-export default function SidebarControl() {
+interface SidebarControlProps {
+  onChange: (type: Initiatives | null) => void;
+}
+
+const SidebarControl = ({ onChange }: SidebarControlProps) => {
   const [open, setOpen] = useState(false);
+
+  const [selectedType, setSelectedType] = useState<Initiatives | null>(null);
+
+  const handleSelect = (type: Initiatives) => {
+    const newType = selectedType === type ? null : type;
+    setSelectedType(newType);
+    onChange(newType);
+  };
 
   return (
     <>
       <SidebarContainer $open={open}>
         <SidebarContent>
-          <h2>Thématiques</h2>
+          <h2>Type d&apos;impact</h2>
           <ul
             style={{
               listStyle: 'none',
@@ -78,34 +92,86 @@ export default function SidebarControl() {
               marginTop: '12px',
             }}
           >
-            <List>
-              <Image src="/icons/climat.svg" alt="" width={34} height={34} />
-              Climat, Agriculture et Énergie
+            <List
+              $active={selectedType === Initiatives.ClimateAgricultureEnergy}
+              onClick={() => handleSelect(Initiatives.ClimateAgricultureEnergy)}
+            >
+              <button>
+                <Image src="/icons/climat.svg" alt="" width={34} height={34} />
+                Climat, Agriculture et Énergie
+              </button>
             </List>
-            <List>
-              <Image src="/icons/urbanisme.svg" alt="" width={34} height={34} />
-              Urbanisme et Technologie
+
+            <List
+              $active={selectedType === Initiatives.CultureAndTransmission}
+              onClick={() => handleSelect(Initiatives.CultureAndTransmission)}
+            >
+              <button>
+                <Image src="/icons/culture.svg" alt="" width={34} height={34} />
+                Culture et Transmission
+              </button>
             </List>
-            <List>
-              <Image
-                src="/icons/solidarite.svg"
-                alt=""
-                width={34}
-                height={34}
-              />
-              Solidarité et Communautés
+
+            <List
+              $active={selectedType === Initiatives.EducationAndAwareness}
+              onClick={() => handleSelect(Initiatives.EducationAndAwareness)}
+            >
+              <button>
+                <Image
+                  src="/icons/education.svg"
+                  alt=""
+                  width={34}
+                  height={34}
+                />
+                Éducation et Sensibilisation
+              </button>
             </List>
-            <List>
-              <Image src="/icons/culture.svg" alt="" width={34} height={34} />
-              Culture et Transmission
+
+            <List
+              $active={selectedType === Initiatives.SolidarityAndCommunities}
+              onClick={() => handleSelect(Initiatives.SolidarityAndCommunities)}
+            >
+              <button>
+                <Image
+                  src="/icons/solidarite.svg"
+                  alt=""
+                  width={34}
+                  height={34}
+                />
+                Solidarité et Communautés
+              </button>
             </List>
-            <List>
-              <Image src="/icons/education.svg" alt="" width={34} height={34} />
-              Éducation et Sensibilisation
+
+            <List
+              $active={selectedType === Initiatives.SocialAndSolidarityEconomy}
+              onClick={() =>
+                handleSelect(Initiatives.SocialAndSolidarityEconomy)
+              }
+            >
+              <button>
+                <Image
+                  src="/icons/economie.svg"
+                  alt=""
+                  width={34}
+                  height={34}
+                />
+                Économie Sociale et Solidaire
+              </button>
             </List>
-            <List>
-              <Image src="/icons/economie.svg" alt="" width={34} height={34} />
-              Économie Sociale et Solidaire
+
+            <List
+              $active={selectedType === Initiatives.UrbanismAndTechnology}
+              onClick={() => handleSelect(Initiatives.UrbanismAndTechnology)}
+            >
+              <button>
+                <Image
+                  src="/icons/urbanisme.svg"
+                  alt=""
+                  width={34}
+                  height={34}
+                />
+                Urbanisme et Technologie
+              </button>
             </List>
           </ul>
         </SidebarContent>
@@ -120,4 +186,6 @@ export default function SidebarControl() {
       </ToggleButton>
     </>
   );
-}
+};
+
+export default SidebarControl;
