@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import SignUpForm from '@/components/molecules/Forms/SignUpForm';
+import SignInForm from '@/components/molecules/Forms/SignInForm';
 import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
@@ -11,7 +11,7 @@ import { PageTitle, Description } from '@/types/enums/enums';
 const SignUpContainer = styled.div`
   position: relative;
   min-height: 100vh;
-  background-color: ${theme.colors.backgroundGreen};
+  background-color: ${theme.colors.backgroundBeige};
 
   &::before {
     content: '';
@@ -20,9 +20,9 @@ const SignUpContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/Header.png');
-    background-size: cover;
-    background-position: center;
+    // background-image: url('/images/Header.png');
+    // background-size: cover;
+    // background-position: center;
     opacity: 0.7;
     z-index: 0;
   }
@@ -34,7 +34,7 @@ const MainContent = styled.main`
   padding: ${theme.spacing.xl} 0;
 `;
 
-export default function SignUpTemplate() {
+export default function SignInTemplate() {
   return (
     <>
       <Navigation
@@ -44,7 +44,7 @@ export default function SignUpTemplate() {
       <SignUpContainer>
         <MainContent>
           <Container>
-            <SignUpForm />
+            <SignInForm />
           </Container>
         </MainContent>
       </SignUpContainer>

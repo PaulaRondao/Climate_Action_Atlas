@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { mediaQueries } from '@/styles/globalStyles';
-import { PageTitle, Description } from '@/constants/enums';
+import { PageTitle, Description } from '@/types/enums/enums';
 import BackgroundLayout from '../../shared/BackgroundLayout/BackgroundLayout';
 
 const WelcomeSection = styled.div`

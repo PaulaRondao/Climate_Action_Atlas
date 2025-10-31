@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma/client';
 import type { CreateUserDTO } from '@/constants/types';
+import { createUser } from '@/services/create';
+import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
+import { HttpStatusCode } from '@/types/enums/httpStatusCode';
 
 export async function GET(request: Request) {
   try {
@@ -19,7 +23,10 @@ export async function GET(request: Request) {
     });
 
     if (!user) {
-      return NextResponse.json({ error: 'User not found' }, { status: 404 });
+      return NextResponse.json(
+        { error: 'User not found' },
+        { status: HttpStatusCode.HTTP_NOT_FOUND },
+      );
     }
 
     return NextResponse.json(user);
@@ -27,7 +34,7 @@ export async function GET(request: Request) {
     console.error('Error fetching user:', error);
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: 500 },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR },
     );
   }
 }
@@ -35,25 +42,21 @@ export async function GET(request: Request) {
 export async function POST(request: Request) {
   try {
     const data: CreateUserDTO = await request.json();
+    const user = await createUser(data);
 
-    const user = await prisma.user.create({
-      data: {
-        ...data,
-        updatedAt: new Date(),
-      },
-    });
-
-    return NextResponse.json(user, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      status: 201,
-    });
-  } catch (error) {
-    console.error('Error creating user:', error);
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
+      {
+        message: "Demande d'inscription envoyée",
+        type: BackendApiResponseType.SUCCESS,
+        data: user,
+      },
+      { status: HttpStatusCode.HTTP_CREATED },
+    );
+  } catch (error: any) {
+    console.error('Erreur création utilisateur', error);
+    return NextResponse.json(
+      { error: 'Erreur interne du serveur' },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR },
     );
   }
 }

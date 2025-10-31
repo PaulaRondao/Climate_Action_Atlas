@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Header, Navigation } from '@/components/organisms';
-import { PageTitle, Description } from '@/constants/enums';
+import { PageTitle, Description } from '@/types/enums/enums';
 import InitiativeCreationForm from '@/components/molecules/Forms/initiative-form/InitiativeCreationForm';
 
 const InitiativeCreationContainer = styled.div`

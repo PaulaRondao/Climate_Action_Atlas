@@ -136,13 +136,15 @@ export default function Footer() {
             <nav role="navigation" aria-label="navigation secondaire">
               <ul>
                 <li>
-                  <Link href="/map">Explorer la carte</Link>
+                  <Link href="/carte">Explorer la carte</Link>
                 </li>
                 <li>
-                  <Link href="/add-initiative">Ajouter une initiative</Link>
+                  <Link href="/formulaire-initiative">
+                    Ajouter une initiative
+                  </Link>
                 </li>
                 <li>
-                  <Link href="/login">Connexion</Link>
+                  <Link href="/connexion">Connexion</Link>
                 </li>
               </ul>
             </nav>

@@ -1,4 +1,4 @@
-import { Initiatives } from './enums';
+import { Initiatives } from '../types/enums/enums';
 import { User as UserModel } from '@prisma/client';
 
 // Types de base

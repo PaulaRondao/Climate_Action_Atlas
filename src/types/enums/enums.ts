@@ -1,4 +1,4 @@
-import { Options } from './SelectList';
+import { Options } from '@/types/SelectListOptions';
 import { $Enums } from '@prisma/client';
 
 export enum PageTitle {

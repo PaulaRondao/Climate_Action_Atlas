@@ -90,7 +90,10 @@ npm run db:migrate
 
 ```
 # Dev (crée/ajuste le schéma en développement)
-docker compose exec web npx prisma migrate dev
+docker compose exec web npx prisma migrate dev 
+
+# Client Prisma (le code TypeScript) soit régénéré
+npx prisma generate
 
 # Prod/CI (applique les migrations déjà créées)
 docker compose exec web npx prisma migrate deploy

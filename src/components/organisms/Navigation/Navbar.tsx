@@ -94,8 +94,10 @@ const Navbar: React.FC<NavbarProps> = () => {
         </StyledLink>
 
         <StyledLink
-          href="/add-initiative"
-          aria-current={pathname === '/add-initiative' ? 'page' : undefined}
+          href="/formulaire-initiative"
+          aria-current={
+            pathname === '/formulaire-initiative' ? 'page' : undefined
+          }
         >
           Ajouter une initiative
         </StyledLink>
@@ -103,8 +105,8 @@ const Navbar: React.FC<NavbarProps> = () => {
         {user ? (
           <>
             <IconButton
-              href="/login"
-              aria-current={pathname === '/login' ? 'page' : undefined}
+              href="/connexion"
+              aria-current={pathname === '/connexion' ? 'page' : undefined}
               component="a"
               aria-label="se connecter"
               aria-controls="menu-appbar"
@@ -177,15 +179,15 @@ const Navbar: React.FC<NavbarProps> = () => {
         ) : (
           <>
             <StyledButton
-              href="/signup"
-              aria-current={pathname === '/signup' ? 'page' : undefined}
+              href="/inscription"
+              aria-current={pathname === '/inscription' ? 'page' : undefined}
             >
               S&apos;enregistrer
             </StyledButton>
 
             <IconButton
-              href="/login"
-              aria-current={pathname === '/login' ? 'page' : undefined}
+              href="/connexion"
+              aria-current={pathname === '/connexion' ? 'page' : undefined}
               component="a"
               aria-label="se connecter"
               aria-controls="menu-appbar"
@@ -248,9 +250,9 @@ const Navbar: React.FC<NavbarProps> = () => {
               </ListItem>
               <ListItem>
                 <StyledLink
-                  href="/add-initiative"
+                  href="/formulaire-initiative"
                   aria-current={
-                    pathname === '/add-initiative' ? 'page' : undefined
+                    pathname === '/formulaire-initiative' ? 'page' : undefined
                   }
                 >
                   Ajouter une initiative
@@ -301,9 +303,11 @@ const Navbar: React.FC<NavbarProps> = () => {
                 <>
                   <ListItem>
                     <StyledButton
-                      href="/signup"
+                      href="/inscription"
                       passHref
-                      aria-current={pathname === '/signup' ? 'page' : undefined}
+                      aria-current={
+                        pathname === '/inscription' ? 'page' : undefined
+                      }
                     >
                       S&apos;enregistrer
                     </StyledButton>

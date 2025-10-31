@@ -44,7 +44,9 @@ const seedDatabase = async () => {
         await prisma.user.delete({ where: { email } }).catch(() => {});
         return prisma.user.create({
           data: {
-            userName: faker.person.firstName(),
+            firstName: faker.person.firstName(),
+            lastName: faker.person.lastName(),
+            userName: faker.person.middleName(),
             email: email,
             password: hashedPassword,
             createdAt,
