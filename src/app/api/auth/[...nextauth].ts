@@ -2,6 +2,7 @@ import NextAuth, { type AuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import bcrypt from 'bcryptjs';
 import prisma from '@/lib/prisma/client';
+import { login } from '@/services/login';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -13,30 +14,23 @@ export const authOptions: AuthOptions = {
       },
       async authorize(credentials): Promise<User | null> {
         if (!credentials?.email || !credentials?.password) {
-          throw new Error('Email and password are required.');
+          throw new Error('Veuillez fournir un email et un mot de passe');
         }
 
-        const user = await prisma.user.findUnique({
-          where: { email: credentials.email },
-        });
+        try {
+          const user = await login(credentials.email, credentials.password);
 
-        if (!user) {
-          throw new Error('Invalid email or password.');
+          if (!user) return null;
+
+          return {
+            id: user.id.toString(),
+            email: user.email,
+            name: user.userName,
+          };
+        } catch (error: any) {
+          console.error('Erreur de connexion :', error.message);
+          throw new Error(error.message);
         }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password,
-        );
-        if (!isPasswordValid) {
-          throw new Error('Invalid email or password.');
-        }
-
-        return {
-          id: user.id.toString(),
-          email: user.email,
-          name: user.userName,
-        };
       },
     }),
   ],

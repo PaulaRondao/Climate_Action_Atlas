@@ -24,6 +24,7 @@ model User {
   password String
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt
+  loginAttempts Int @default(0) 
 
   initiatives Initiative[]
 }

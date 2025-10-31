@@ -95,3 +95,28 @@ export async function DELETE(
     );
   }
 }
+
+export async function UPDATE(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> },
+) {
+  try {
+    const { id } = await params;
+    const initiativeId = parseInt(id, 10);
+    if (isNaN(initiativeId)) {
+      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
+    }
+    await prisma.initiative.update({
+      where: { id: initiativeId },
+      data: { updatedAt: new Date() },
+    });
+
+    return NextResponse.json({ message: 'Initiative updated successfully' });
+  } catch (error) {
+    console.error('Error updating initiative:', error);
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    );
+  }
+}

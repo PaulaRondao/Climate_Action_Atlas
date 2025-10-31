@@ -31,7 +31,7 @@ const Label = styled.label`
   font-weight: 500;
 `;
 
-const CompanyFormRegistration = z.object({
+const UserFormRegistration = z.object({
   email: z
     .string()
     .min(1, { message: 'Veuillez renseigner votre email' })
@@ -50,7 +50,7 @@ export default function SignInForm(): JSX.Element {
   const register = searchParams.get('register');
 
   const methods = useForm<UserLoginForm>({
-    resolver: zodResolver(CompanyFormRegistration),
+    resolver: zodResolver(UserFormRegistration),
     mode: 'all',
   });
 
@@ -96,7 +96,7 @@ export default function SignInForm(): JSX.Element {
             <Input
               id="email"
               name="email"
-              placeholder="Ex. prenom.nom@votresociete.com"
+              placeholder="Ex. prenom.nom@mail.com"
               type="email"
               // icon="/icons/mail.svg"
               tabIndex={1}
@@ -119,7 +119,7 @@ export default function SignInForm(): JSX.Element {
               <button
                 className="text-blue font-bold underline"
                 type="button"
-                onClick={() => setShowRegisterPopup(true)}
+                // onClick={() => setShowRegisterPopup(true)}
               >
                 Créer un compte
               </button>
