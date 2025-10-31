@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
-import { PageTitle, Description, Initiatives } from '@/constants/enums';
+import { PageTitle, Description, Initiatives } from '@/types/enums/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 

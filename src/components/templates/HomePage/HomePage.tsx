@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PageTitle, Description, InitiativeOptions } from '@/constants/enums';
+import { PageTitle, Description, InitiativeOptions } from '@/types/enums/enums';
 import { Navigation } from '@/components/organisms';
 import { CardSection } from '@/components/molecules';
 import Image from 'next/image';

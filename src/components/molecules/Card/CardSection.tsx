@@ -4,7 +4,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { mediaQueries } from '@/styles/globalStyles';
-import { Initiatives } from '@/constants/enums';
+import { Initiatives } from '@/types/enums/enums';
 import { Container } from '@/styles/components';
 
 const CardContainer = styled.div`

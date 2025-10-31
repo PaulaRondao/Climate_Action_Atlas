@@ -14,7 +14,7 @@ import {
   LabelToInitiativeType,
 } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
-import { InitiativeWithRelations } from '@/constants/initiatives';
+import { InitiativeWithRelations } from '@/types/initiatives';
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetina.src,

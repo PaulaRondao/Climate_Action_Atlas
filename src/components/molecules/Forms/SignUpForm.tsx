@@ -95,7 +95,7 @@ const SignUpForm = () => {
   const onSubmit = async (data: SignUpFormData) => {
     try {
       setGlobalError(null);
-      const response = await fetch('/api/auth/signup', {
+      const response = await fetch('/api/users', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -113,7 +113,7 @@ const SignUpForm = () => {
       }
 
       // Redirection vers la page d'accueil après inscription réussie
-      window.location.href = '/';
+      window.location.href = '/connexion';
     } catch (error) {
       console.error('Erreur:', error);
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');

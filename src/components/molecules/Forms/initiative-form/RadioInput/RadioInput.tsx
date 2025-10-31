@@ -9,7 +9,7 @@ import {
   InputWrapper,
   Legend,
 } from '../initiativeCreationForm.styles';
-import { Options } from '@/constants/SelectList';
+import { Options } from '@/types/SelectListOptions';
 
 interface RadioInputProps {
   radioList: Options[];
