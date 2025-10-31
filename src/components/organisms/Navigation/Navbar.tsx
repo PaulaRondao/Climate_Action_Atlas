@@ -315,7 +315,9 @@ const Navbar: React.FC<NavbarProps> = () => {
                   <ListItem>
                     <IconButton
                       href="/connexion"
-                      aria-current={pathname === '/connexion' ? 'page' : undefined}
+                      aria-current={
+                        pathname === '/connexion' ? 'page' : undefined
+                      }
                       component="a"
                       aria-label="connexion"
                     >

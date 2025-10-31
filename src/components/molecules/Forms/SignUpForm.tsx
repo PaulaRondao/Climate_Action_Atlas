@@ -112,7 +112,6 @@ const SignUpForm = () => {
         );
         return;
       }
-      
 
       // Redirection vers la page d'accueil après inscription réussie
       window.location.href = '/connexion';
