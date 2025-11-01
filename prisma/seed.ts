@@ -1,4 +1,4 @@
-import bcrypt from 'bcrypt';
+import bcrypt from 'bcryptjs';
 import { fakerFR as faker } from '@faker-js/faker';
 import { PrismaClient, InitiativeType } from '@prisma/client';
 import { promises as fs } from 'fs';

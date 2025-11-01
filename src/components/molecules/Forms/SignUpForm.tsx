@@ -62,6 +62,7 @@ const signUpSchema = z
       .string()
       .min(2, 'Le prénom doit contenir au moins 2 caractères'),
     lastName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
+    userName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
     email: z.string().email('Adresse email invalide'),
     password: z
       .string()
@@ -144,6 +145,19 @@ const SignUpForm = () => {
           type="text"
           {...register('lastName')}
           placeholder="Votre nom"
+        />
+        {errors.lastName && (
+          <ErrorMessage>{errors.lastName.message}</ErrorMessage>
+        )}
+      </FormGroup>
+
+      <FormGroup>
+        <Label htmlFor="userName">Nom d&apos;utilisateur·trice</Label>
+        <Input
+          id="userName"
+          type="text"
+          {...register('userName')}
+          placeholder="Nom d'utilisateur·trice"
         />
         {errors.lastName && (
           <ErrorMessage>{errors.lastName.message}</ErrorMessage>

@@ -87,8 +87,8 @@ const Navbar: React.FC<NavbarProps> = () => {
     <ThemeProvider theme={themeColor}>
       <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
         <StyledLink
-          href="/map"
-          aria-current={pathname === '/map' ? 'page' : undefined}
+          href="/carte"
+          aria-current={pathname === '/carte' ? 'page' : undefined}
         >
           Explorer la carte
         </StyledLink>
@@ -242,8 +242,8 @@ const Navbar: React.FC<NavbarProps> = () => {
               </ListItem>
               <ListItem>
                 <StyledLink
-                  href="/map"
-                  aria-current={pathname === '/map' ? 'page' : undefined}
+                  href="/carte"
+                  aria-current={pathname === '/carte' ? 'page' : undefined}
                 >
                   Explorer la carte
                 </StyledLink>
@@ -314,8 +314,10 @@ const Navbar: React.FC<NavbarProps> = () => {
                   </ListItem>
                   <ListItem>
                     <IconButton
-                      href="/login"
-                      aria-current={pathname === '/login' ? 'page' : undefined}
+                      href="/connexion"
+                      aria-current={
+                        pathname === '/connexion' ? 'page' : undefined
+                      }
                       component="a"
                       aria-label="connexion"
                     >

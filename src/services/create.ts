@@ -7,7 +7,9 @@ const encryptPassword = async (password: string): Promise<string> => {
   return bcrypt.hashSync(password, salt);
 };
 
-export async function createUser(userDTO: CreateUserDTO) {
+type CreateUserInput = CreateUserDTO & { confirmPassword?: string };
+
+export async function createUser(userDTO: CreateUserInput) {
   const existingUser = await prisma.user.findUnique({
     where: { email: userDTO.email },
   });
@@ -22,9 +24,11 @@ export async function createUser(userDTO: CreateUserDTO) {
 
   const encryptedPassword = await encryptPassword(userDTO.password);
 
+  const { confirmPassword, ...userData } = userDTO;
+
   const createdUser = await prisma.user.create({
     data: {
-      ...userDTO,
+      ...userData,
       password: encryptedPassword,
       updatedAt: new Date(),
     },
