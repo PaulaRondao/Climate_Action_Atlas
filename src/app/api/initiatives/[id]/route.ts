@@ -96,7 +96,7 @@ export async function DELETE(
   }
 }
 
-export async function UPDATE(
+export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
