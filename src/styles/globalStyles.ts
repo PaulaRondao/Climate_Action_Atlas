@@ -90,11 +90,15 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-size: ${theme.typography.fontSizes.xxxl};
+    font-size: ${theme.typography.fontSizes.xxl};
     font-family: ${theme.typography.fontFamilies.bigHeading};
     font-weight: 400;
     letter-spacing: ${theme.typography.letterSpacing.heading};
     line-height: ${theme.typography.lineHeights.heading};
+
+    ${mediaQueries.desktop} {
+        font-size: ${theme.typography.fontSizes.xxxl};
+      }
   }
 
   h2 {

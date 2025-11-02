@@ -15,3 +15,12 @@ export interface UserAccount {
   loginAttempts?: number;
   updatedAt?: Date;
 }
+
+export interface UserRegister {
+  firstName: string;
+  lastName: string;
+  userName: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
+}

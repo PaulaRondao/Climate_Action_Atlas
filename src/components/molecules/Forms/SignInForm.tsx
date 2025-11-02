@@ -7,29 +7,9 @@ import { useSearchParams } from 'next/navigation';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
-import styled from 'styled-components';
-import { theme } from '@/styles/theme';
 import { UserLoginForm } from '@/types/User';
-
-const Input = styled.input`
-  padding: ${theme.spacing.sm} ${theme.spacing.md};
-  border: 1px solid ${theme.colors.darkBlue};
-  border-radius: ${theme.borderRadius.small};
-  font-size: ${theme.typography.fontSizes.md};
-  transition: ${theme.transitions.default};
-
-  &:focus {
-    outline: none;
-    border-color: ${theme.colors.backgroundGreen};
-    box-shadow: 0 0 0 2px rgba(110, 231, 183, 0.2);
-  }
-`;
-
-const Label = styled.label`
-  color: ${theme.colors.darkBlue};
-  font-size: ${theme.typography.fontSizes.md};
-  font-weight: 500;
-`;
+import { FormGroup } from './initiative-form/initiativeCreationForm.styles';
+import { FormContainer, FormWrapper, Input, Label } from './signForm.styles';
 
 const UserFormRegistration = z.object({
   email: z
@@ -43,7 +23,8 @@ const UserFormRegistration = z.object({
 
 export default function SignInForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
-  const [showRegisterPopup, setShowRegisterPopup] = useState<boolean>(false);
+  const [showRegisterIndication, setShowRegisterIndication] =
+    useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -66,7 +47,7 @@ export default function SignInForm(): JSX.Element {
     await signIn('credentials', {
       email,
       password,
-      callbackUrl: '/',
+      callbackUrl: '/dashboard',
       redirect: true,
     });
   };
@@ -74,71 +55,58 @@ export default function SignInForm(): JSX.Element {
   useEffect(() => {
     setLoginError(error);
     if (register) {
-      setShowRegisterPopup(true);
+      setShowRegisterIndication(true);
     }
   }, [errors, error, register]);
 
   return (
-    <div className="p-2 container mx-auto w-full">
-      <h1 className="mt-6">Bienvenue !</h1>
+    <FormContainer onSubmit={handleSubmit(onSubmit)} noValidate>
+      <h1>Connexion</h1>
+      {showRegisterIndication && (
+        <p>
+          Votre compte a été créé avec succès ! Vous pouvez maintenant vous
+          connecter
+        </p>
+      )}
       <FormProvider {...methods}>
-        <form onSubmit={handleSubmit(onSubmit)} noValidate>
-          <div className="py-10">
-            {loginError ? (
-              <h3 className="text-center font-semibold rounded-md py-1 my-2 text-red">
-                {loginError}
-              </h3>
-            ) : (
-              ''
-            )}
+        <FormWrapper>
+          {loginError ? (
+            <h3 className="text-center font-semibold rounded-md py-1 my-2 text-red">
+              {loginError}
+            </h3>
+          ) : (
+            ''
+          )}
 
+          <FormGroup>
             <Label htmlFor="email">Email</Label>
             <Input
               id="email"
+              {...methods.register('email')}
               name="email"
-              placeholder="Ex. prenom.nom@mail.com"
+              placeholder="Ex: prenom.nom@mail.com"
               type="email"
-              // icon="/icons/mail.svg"
               tabIndex={1}
             />
+          </FormGroup>
+
+          <FormGroup>
             <Label htmlFor="mot de passe">Mot de passe</Label>
             <Input
               id="password"
-              // labelLink={{
-              //   label: 'Mot de passe oublié',
-              //   redirect: '/authentification/mot-de-passe-oublie',
-              // }}
+              {...methods.register('password')}
               name="password"
               placeholder="Mot de passe"
               type="password"
-              // icon="/icons/lock.svg"
               tabIndex={2}
             />
-            <div className="text-sm mt-4 text-center">
-              Envie de nous rejoindre ?{' '}
-              <button
-                className="text-blue font-bold underline"
-                type="button"
-                // onClick={() => setShowRegisterPopup(true)}
-              >
-                Créer un compte
-              </button>
-            </div>
-            <div className="mt-6">
-              <Button
-                color="blue"
-                type="submit"
-                // style={ButtonStyle.FILLED}
-                disabled={!isValid}
-                // extend
-                tabIndex={3}
-              >
-                Connexion
-              </Button>
-            </div>
-          </div>
-        </form>
+          </FormGroup>
+          <a href="/mot-de-passe-oublie">Mot de passe oublié ?</a>
+          <Button color="blue" type="submit" disabled={!isValid} tabIndex={3}>
+            Me connecter
+          </Button>
+        </FormWrapper>
       </FormProvider>
-    </div>
+    </FormContainer>
   );
 }

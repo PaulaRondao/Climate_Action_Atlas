@@ -1,6 +1,6 @@
 import React from 'react';
-import SignUpTemplate from '@/components/templates/SignUpTemplate/SignUpTemplate';
+import RegisterTemplate from '@/components/templates/RegisterTemplate/RegisterTemplate';
 
 export default function SignUpPage() {
-  return <SignUpTemplate />;
+  return <RegisterTemplate />;
 }
