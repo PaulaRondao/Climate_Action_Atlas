@@ -16,7 +16,9 @@ export const Container = styled.section<ContainerProps>`
   display: flex;
   flex-direction: column;
   padding: ${theme.spacing.md};
-  margin: auto;
+  max-width: 546px;
+  margin-left: auto;
+  margin-right: auto;
   background-repeat: no-repeat;
 
   ${({ backgroundPosition }) =>

@@ -20,7 +20,7 @@ const InitiativeCreationContainer = styled.div`
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('/images/Header.png');
+    background-image: url('/images/forest-sky-view.png');
     background-size: cover;
     background-position: center;
     opacity: 0.7;

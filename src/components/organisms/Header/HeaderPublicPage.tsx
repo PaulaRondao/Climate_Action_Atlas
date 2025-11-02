@@ -58,7 +58,7 @@ export default function HeaderPublicPage({
   description = undefined,
 }: HeaderPublicPageProps) {
   return (
-    <BackgroundLayout imageSrc="/images/Header.png" imageAlt="">
+    <BackgroundLayout imageSrc="/images/forest-sky-view.png" imageAlt="">
       <WelcomeSection>
         <h1>{pageTitle}</h1>
         <Wrapper>

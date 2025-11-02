@@ -28,7 +28,7 @@ export default function HomePage() {
         <HeroSection>
           <ImageWrapper>
             <Image
-              src="/images/Header.png"
+              src="/images/forest-sky-view.png"
               alt="Header background"
               width={1920}
               height={1080}

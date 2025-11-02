@@ -11,7 +11,7 @@ interface StyledButtonProps {
 
 const StyledButton = styled.button<StyledButtonProps>`
   position: relative;
-  margin-top: ${theme.spacing.lg};
+  margin: 24px auto 0 auto;
   padding: ${theme.spacing.md} ${theme.spacing.xl};
   color: ${theme.colors.white};
   background-color: ${theme.colors.backgroundGreen};
