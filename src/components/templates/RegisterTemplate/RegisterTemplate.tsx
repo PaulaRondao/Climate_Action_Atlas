@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import SignUpForm from '@/components/molecules/Forms/RegisterForm';
 import { Container } from '@/styles/components';
 import { Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/types/enums/enums';
