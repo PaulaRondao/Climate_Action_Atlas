@@ -19,7 +19,7 @@ export const theme = {
       md: 'var(--text-md)', // 1rem
       lg: 'var(--text-lg)', // 1.125rem
       xl: 'var(--text-xl)', // 1.25rem
-      xxl: 'var(--text-xxl)', // 1.625rem
+      xxl: 'var(--text-xxl)', // 2rem
       xxxl: 'var(--text-xxxl)', // 2.375rem
       xxxxl: 'var(--text-xxxxl)', // 3.375rem
       xxxxxl: 'var(--text-xxxxxl)', // 5.625rem
@@ -49,7 +49,8 @@ export const theme = {
     md: '16px',
     lg: '24px',
     xl: '32px',
-    xxl: '64px',
+    xxl: '40px',
+    xxxl: '64px',
   },
   borderRadius: {
     extraSmall: '4px',
