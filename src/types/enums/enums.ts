@@ -1,5 +1,6 @@
 import { Options } from '@/types/SelectListOptions';
 import { $Enums } from '@prisma/client';
+import { ReactSVG } from 'react';
 
 export enum PageTitle {
   MovementForChange = 'Un mouvement pour changer',
@@ -35,39 +36,48 @@ export const TypeImpact = Object.entries(Initiatives).map(([key, label]) => ({
   value: key,
 })) as { label: string; value: keyof typeof Initiatives }[];
 
-export const InitiativeOptions: { label: Initiatives; description: string }[] =
-  [
-    {
-      label: Initiatives.ClimateAgricultureEnergy,
-      description:
-        'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
-    },
-    {
-      label: Initiatives.UrbanismAndTechnology,
-      description:
-        'Innovations accessibles, low-tech, bricolage et systèmes D pour répondre aux besoins essentiels avec ingéniosité, dans une logique de sobriété et d’autonomie.',
-    },
-    {
-      label: Initiatives.SolidarityAndCommunities,
-      description:
-        "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
-    },
-    {
-      label: Initiatives.CultureAndTransmission,
-      description:
-        'Initiatives qui préservent, réinventent ou partagent les cultures locales, les savoir-faire, les récits, et les expressions artistiques, pour nourrir une mémoire vivante.',
-    },
-    {
-      label: Initiatives.EducationAndAwareness,
-      description:
-        'Formes d’éducation libres, actives ou engagées pour éveiller les consciences, transmettre autrement et encourager la pensée critique face aux enjeux contemporains.',
-    },
-    {
-      label: Initiatives.SocialAndSolidarityEconomy,
-      description:
-        'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
-    },
-  ];
+export const InitiativeOptions: {
+  label: Initiatives;
+  description: string;
+  logo: string;
+}[] = [
+  {
+    label: Initiatives.ClimateAgricultureEnergy,
+    description:
+      'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
+    logo: '/icons/climat.svg',
+  },
+  {
+    label: Initiatives.UrbanismAndTechnology,
+    description:
+      'Innovations accessibles, low-tech, bricolage et systèmes D pour répondre aux besoins essentiels avec ingéniosité, dans une logique de sobriété et d’autonomie.',
+    logo: '/icons/urbanisme.svg',
+  },
+  {
+    label: Initiatives.SolidarityAndCommunities,
+    description:
+      "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
+    logo: '/icons/solidarite.svg',
+  },
+  {
+    label: Initiatives.CultureAndTransmission,
+    description:
+      'Initiatives qui préservent, réinventent ou partagent les cultures locales, les savoir-faire, les récits, et les expressions artistiques, pour nourrir une mémoire vivante.',
+    logo: '/icons/culture.svg',
+  },
+  {
+    label: Initiatives.EducationAndAwareness,
+    description:
+      'Formes d’éducation libres, actives ou engagées pour éveiller les consciences, transmettre autrement et encourager la pensée critique face aux enjeux contemporains.',
+    logo: '/icons/education.svg',
+  },
+  {
+    label: Initiatives.SocialAndSolidarityEconomy,
+    description:
+      'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
+    logo: '/icons/economie.svg',
+  },
+];
 
 export enum SelectItems {
   OUI = 'OUI',
@@ -100,3 +110,34 @@ export const LabelToInitiativeType: Record<Initiatives, $Enums.InitiativeType> =
     [Initiatives.EducationAndAwareness]: 'EducationAndAwareness',
     [Initiatives.SocialAndSolidarityEconomy]: 'SocialAndSolidarityEconomy',
   };
+
+export const ActionsOption: {
+  title: string;
+  description: string;
+  image: string;
+}[] = [
+  {
+    title: 'Agir local penser global',
+    description:
+      'Découvrez les initiatives près de chez vous pour lutter contre le changement climatique.',
+    image: '/images/agirLocal.jpg',
+  },
+  {
+    title: 'Carte intéraction',
+    description:
+      'Trouvez et rejoignez facilement des projets concrets et inspirants autour de vous.',
+    image: '/images/carteInteractive.jpg',
+  },
+  {
+    title: 'Mobilisation citoyenne',
+    description:
+      'Partagez, créez et collaborez avec une communauté engagée pour l’humain et la planète.',
+    image: '/images/mobilisation.jpg',
+  },
+  {
+    title: 'Impact réel',
+    description:
+      'Chaque action compte : faites la différence aujourd’hui, pour un demain durable.',
+    image: '/images/impact.png',
+  },
+];

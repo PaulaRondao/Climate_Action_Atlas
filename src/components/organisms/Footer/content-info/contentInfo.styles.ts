@@ -4,7 +4,6 @@ import { mediaQueries } from '@/styles/globalStyles';
 
 export const ContentInfoContainer = styled.div`
   display: flex;
-  flex-direction: column;
   gap: ${theme.spacing.lg};
   margin-top: ${theme.spacing.xl};
 

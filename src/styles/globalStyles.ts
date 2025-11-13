@@ -91,7 +91,7 @@ export const GlobalStyle = createGlobalStyle`
 
   h1 {
     font-size: ${theme.typography.fontSizes.xxl};
-    font-family: ${theme.typography.fontFamilies.bigHeading};
+    font-family: ${theme.typography.fontFamilies.heading};
     font-weight: 400;
     letter-spacing: ${theme.typography.letterSpacing.heading};
     line-height: ${theme.typography.lineHeights.heading};

@@ -1,28 +1,17 @@
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import Link from 'next/link';
+import { mediaQueries } from '@/styles/globalStyles';
 
-export const ButtonContainer = styled.button`
-  position: relative;
-  margin-top: 20px;
-  text-align: center;
-  color: var(--foreground-dark-blue);
-  background-color: transparent;
-  border: 2px solid var(--foreground-dark-blue);
-  border-radius: 25px;
-  padding: 10px 40px;
-  transition: all 0.3s ease;
-  cursor: pointer;
+export const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: ${theme.spacing.xxs};
+  margin-top: ${theme.spacing.xl};
 
-  &:hover {
-    border-color: var(--color-background-green);
-    color: var(--color-background-green);
-    -webkit-text-stroke: 0.5px var(--color-background-green);
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
+  ${mediaQueries.desktop} {
+    gap: ${theme.spacing.xl};
   }
 `;
 

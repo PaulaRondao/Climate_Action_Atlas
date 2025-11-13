@@ -22,8 +22,8 @@ export const MainFooterLinks = {
       url: '/about',
     },
     {
-      label: 'Accessibilité',
-      url: '/accessibilité',
+      label: 'Page du site',
+      url: '/page-du-site',
     },
   ],
 };

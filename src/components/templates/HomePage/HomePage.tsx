@@ -1,13 +1,16 @@
 'use client';
 
 import React from 'react';
-import { PageTitle, Description, InitiativeOptions } from '@/types/enums/enums';
+import {
+  PageTitle,
+  Description,
+  InitiativeOptions,
+  ActionsOption,
+} from '@/types/enums/enums';
 import { Navigation } from '@/components/organisms';
-import { CardSection } from '@/components/molecules';
+import { CardWithLogo } from '@/components/molecules';
 import Image from 'next/image';
 import {
-  ButtonContainer,
-  CardGrid,
   EngagementSection,
   HeroContent,
   HeroSection,
@@ -16,6 +19,8 @@ import {
   TitleSection,
 } from './homePage.styles';
 import { Button } from '@/components/atoms';
+import CardWithImage from '@/components/molecules/Card/Card-with-image/CardWithImage';
+import { ButtonContainer } from '@/components/atoms/Button/button.styles';
 
 export default function HomePage() {
   return (
@@ -44,35 +49,81 @@ export default function HomePage() {
           <HeroContent>
             <h1>Un mouvement pour changer</h1>
             <p>
-              Climate Action Atlas est un mouvement actif. Nous partageons le
-              désir d&apos;une action urgente et juste pour répondre aux
-              urgences climatiques et naturelles.
+              Climate Action Atlas est un mouvement collectif engagé pour une
+              action rapide, juste et inclusive face aux défis climatiques,
+              sociaux et sociétaux qui impactent nos territoires.
             </p>
           </HeroContent>
         </HeroSection>
-        <TitleSection>
-          <h2>Découvrez les initiatives</h2>
-          <p>Explorez les différentes initiatives pour le climat</p>
-        </TitleSection>
+
+        <Section $backgroundColorGreen $colorBeige>
+          <TitleSection
+            $fontSize="5rem"
+            $fontSizeText="3rem"
+            $lineHeight="4.5rem"
+            $lineHeightText="2.5rem"
+          >
+            <h2>Ce que propose</h2>
+            <p> climate atlas action</p>
+          </TitleSection>
+          <CardWithImage actionsOption={ActionsOption}></CardWithImage>
+        </Section>
 
         <Section>
-          <CardSection initiatives={InitiativeOptions}>
-            <h2>Ce que nous pouvons faire</h2>
-          </CardSection>
+          <TitleSection>
+            <h2>Découvrez les types d&apos;impacts</h2>
+          </TitleSection>
+          <CardWithLogo initiatives={InitiativeOptions}></CardWithLogo>
         </Section>
 
         <Section>
           <EngagementSection>
-            <TitleSection>
+            <TitleSection
+              $gap="16px"
+              $textAlign="left"
+              $textAlignHeading="left"
+            >
+              <h2>Notre carte intéractive</h2>
+              <hr />
+              <p>
+                Trouvez et rejoignez facilement des projets concrets et
+                inspirants autour de vous.
+              </p>
+            </TitleSection>
+            <ButtonContainer>
+              <Button
+                backgroundColor="#F0EDEB"
+                color="#072A32"
+                backgroundColorHover="#072A32"
+                colorHover="#F0EDEB"
+              >
+                Explorer la carte
+              </Button>
+              <Button
+                backgroundColor="#F0EDEB"
+                color="#072A32"
+                backgroundColorHover="#072A32"
+                colorHover="#F0EDEB"
+              >
+                Regarder la liste
+              </Button>
+            </ButtonContainer>
+          </EngagementSection>
+        </Section>
+
+        <Section>
+          <EngagementSection>
+            <TitleSection $gap="16px">
               <h2>Votre engagement</h2>
               <hr />
             </TitleSection>
             <p>
               L&apos;engagement de chacun est essentiel pour préserver notre
-              planète. Agissez dès aujourd&apos;hui pour un futur plus vert.
+              planète. Agissez dès aujourd&apos;hui pour un futur plus vert. En
+              vous inscrivant, vous pourrez ajouter une initiative.
             </p>
             <ButtonContainer>
-              <Button>Explorer</Button>
+              <Button>Inscrivez-vous</Button>
             </ButtonContainer>
           </EngagementSection>
         </Section>

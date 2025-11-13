@@ -7,14 +7,19 @@ import { theme } from '@/styles/theme';
 interface StyledButtonProps {
   $fullWidth?: boolean;
   variant?: 'primary' | 'secondary';
+  $backgroundColor?: string;
+  $backgroundColorHover?: string;
+  $color?: string;
+  $colorHover?: string;
 }
 
 const StyledButton = styled.button<StyledButtonProps>`
   position: relative;
   margin: 24px auto 0 auto;
   padding: ${theme.spacing.md} ${theme.spacing.xl};
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.backgroundGreen};
+  color: ${({ $color }) => ($color ? $color : `${theme.colors.white}`)};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : `${theme.colors.backgroundGreen}`};
   border: 2px solid ${theme.colors.backgroundGreen};
   border-radius: ${theme.borderRadius.large};
   transition: ${theme.transitions.default};
@@ -25,8 +30,10 @@ const StyledButton = styled.button<StyledButtonProps>`
   max-width: 330px;
 
   &:hover {
-    color: ${theme.colors.green};
-    background-color: transparent;
+    color: ${({ $colorHover }) =>
+      $colorHover ? $colorHover : `${theme.colors.green}`};
+    background-color: ${({ $backgroundColorHover }) =>
+      $backgroundColorHover ? $backgroundColorHover : 'transparent'};
     -webkit-text-stroke: 0.5px ${theme.colors.green};
   }
 
@@ -56,6 +63,10 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   title?: string;
   value?: string;
   fullWidth?: boolean;
+  backgroundColor?: string;
+  color?: string;
+  backgroundColorHover?: string;
+  colorHover?: string;
   eventTracking?: () => void;
 }
 
@@ -67,6 +78,10 @@ const Button = ({
   externalLink = false,
   type,
   fullWidth = false,
+  backgroundColor = undefined,
+  color = undefined,
+  backgroundColorHover = undefined,
+  colorHover = undefined,
   eventTracking = () => {},
   ...otherProps
 }: ButtonProps): JSX.Element => {
@@ -91,6 +106,10 @@ const Button = ({
       type={type}
       disabled={disabled}
       $fullWidth={fullWidth}
+      $backgroundColor={backgroundColor}
+      $color={color}
+      $backgroundColorHover={backgroundColorHover}
+      $colorHover={colorHover}
     >
       <span>{children}</span>
     </StyledButton>

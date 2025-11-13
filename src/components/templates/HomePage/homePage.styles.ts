@@ -35,8 +35,16 @@ export const HeroContent = styled.div`
   }
 `;
 
-export const Section = styled.section`
+interface SectionProps {
+  $backgroundColorGreen?: boolean;
+  $colorBeige?: boolean;
+}
+
+export const Section = styled.section<SectionProps>`
   padding: ${theme.spacing.xxl} ${theme.spacing.md};
+  background-color: ${({ $backgroundColorGreen }) =>
+    $backgroundColorGreen ? '#072A32' : ''};
+  color: ${({ $colorBeige }) => ($colorBeige ? '#F0EDEB' : '#072A32')};
 
   ${mediaQueries.desktop} {
     padding: ${theme.spacing.xxl};
@@ -57,46 +65,59 @@ export const CardGrid = styled.div`
   }
 `;
 
-export const TitleSection = styled.div`
-  text-align: center;
-  margin-bottom: ${theme.spacing.xl};
-`;
+interface TitleSectionProps {
+  $fontSize?: string;
+  $fontSizeText?: string;
+  $fontFamily?: string;
+  $lineHeight?: string;
+  $lineHeightText?: string;
+  $gap?: string;
+  $textAlign?: string;
+  $textAlignHeading?: string;
+}
 
-export const ButtonContainer = styled.div`
+export const TitleSection = styled.div<TitleSectionProps>`
   display: flex;
   justify-content: center;
-  gap: ${theme.spacing.lg};
-  margin-top: ${theme.spacing.xl};
+  flex-direction: column;
+  gap: ${({ $gap }) => ($gap ? $gap : '50px')};
+  text-align: ${({ $textAlign }) => ($textAlign ? $textAlign : 'center')};
+  margin-bottom: ${theme.spacing.xl};
+
+  h2 {
+    font-size: ${({ $fontSize }) =>
+      $fontSize ? $fontSize : `${theme.typography.fontSizes.xxl}`};
+    line-height: ${({ $lineHeight }) =>
+      $lineHeight ? $lineHeight : `${theme.typography.lineHeights.heading}`};
+    text-align: center;
+  }
+  p {
+    font-size: ${({ $fontSizeText }) =>
+      $fontSizeText ? $fontSizeText : `${theme.typography.fontSizes.md}`};
+    font-family: ${({ $fontFamily }) =>
+      $fontFamily ? $fontFamily : `${theme.typography.fontFamilies.heading}`};
+    line-height: ${({ $lineHeightText }) =>
+      $lineHeightText
+        ? $lineHeightText
+        : `${theme.typography.lineHeights.body}`};
+  }
 
   ${mediaQueries.desktop} {
-    gap: ${theme.spacing.xl};
+    h2 {
+      text-align: ${({ $textAlignHeading }) =>
+        $textAlignHeading ? $textAlignHeading : 'center'};
+    }
   }
 `;
 
 export const EngagementSection = styled.div`
   max-width: 600px;
   margin: 0 auto;
-  text-align: center;
-
-  h2 {
-    font-size: ${theme.typography.fontSizes.xl};
-    color: ${theme.colors.white};
-    margin-bottom: ${theme.spacing.md};
-    text-transform: uppercase;
-  }
 
   hr {
     width: 60px;
     margin: ${theme.spacing.md} auto;
     border: none;
     border-top: 2px solid ${theme.colors.backgroundGreen};
-  }
-
-  p {
-    margin-bottom: ${theme.spacing.xl};
-    line-height: ${theme.typography.lineHeights.heading};
-    font-size: ${theme.typography.fontSizes.xxxl};
-    letter-spacing: ${theme.typography.letterSpacing.heading};
-    text-align: center;
   }
 `;

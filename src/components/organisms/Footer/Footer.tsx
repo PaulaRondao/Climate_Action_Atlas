@@ -60,7 +60,7 @@ const MainFooterWrapper = styled.div`
 
 const ContentWrapper = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
   gap: ${theme.spacing.md};
 `;
 
@@ -132,23 +132,6 @@ export default function Footer() {
             width={219}
             height={49}
           />
-          <ContentWrapper>
-            <nav role="navigation" aria-label="navigation secondaire">
-              <ul>
-                <li>
-                  <Link href="/carte">Explorer la carte</Link>
-                </li>
-                <li>
-                  <Link href="/formulaire-initiative">
-                    Ajouter une initiative
-                  </Link>
-                </li>
-                <li>
-                  <Link href="/connexion">Connexion</Link>
-                </li>
-              </ul>
-            </nav>
-          </ContentWrapper>
           <ContentWrapper>
             <ContentInfo isMainFooter={true} />
           </ContentWrapper>
