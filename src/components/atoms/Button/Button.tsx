@@ -34,7 +34,6 @@ const StyledButton = styled.button<StyledButtonProps>`
       $colorHover ? $colorHover : `${theme.colors.green}`};
     background-color: ${({ $backgroundColorHover }) =>
       $backgroundColorHover ? $backgroundColorHover : 'transparent'};
-    -webkit-text-stroke: 0.5px ${theme.colors.green};
   }
 
   &:disabled {

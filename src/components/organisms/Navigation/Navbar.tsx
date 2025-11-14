@@ -51,9 +51,7 @@ const useIsMobile = () => {
 const Navbar: React.FC<NavbarProps> = () => {
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const [drawerOpen, setDrawerOpen] = useState(false);
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
-    null,
-  );
+
   const isMobile = useIsMobile();
   const { user, logout } = useAuth();
   const pathname = usePathname();
@@ -93,24 +91,18 @@ const Navbar: React.FC<NavbarProps> = () => {
           Explorer la carte
         </StyledLink>
 
-        <StyledLink
-          href="/formulaire-initiative"
-          aria-current={
-            pathname === '/formulaire-initiative' ? 'page' : undefined
-          }
-        >
-          Ajouter une initiative
-        </StyledLink>
-
         {user ? (
           <>
+            <StyledLink
+              href="/formulaire-initiative"
+              aria-current={
+                pathname === '/formulaire-initiative' ? 'page' : undefined
+              }
+            >
+              Ajouter une initiative
+            </StyledLink>
+
             <IconButton
-              href="/connexion"
-              aria-current={pathname === '/connexion' ? 'page' : undefined}
-              component="a"
-              aria-label="se connecter"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
               onClick={handleMenu}
             >
               <Image
@@ -120,6 +112,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                 height={36}
               />
             </IconButton>
+
             <Menu
               id="menu-appbar"
               anchorEl={anchorEl}
@@ -185,21 +178,13 @@ const Navbar: React.FC<NavbarProps> = () => {
               S&apos;enregistrer
             </StyledButton>
 
-            <IconButton
+            <StyledButton
               href="/connexion"
               aria-current={pathname === '/connexion' ? 'page' : undefined}
-              component="a"
-              aria-label="se connecter"
-              aria-controls="menu-appbar"
-              aria-haspopup="true"
             >
-              <Image
-                src="/icons/login-icon.svg"
-                alt=""
-                width={36}
-                height={36}
-              />
-            </IconButton>
+              Se connecter
+            </StyledButton>
+
           </>
         )}
       </Box>
@@ -225,11 +210,6 @@ const Navbar: React.FC<NavbarProps> = () => {
             onKeyDown={() => toggleDrawer(false)}
           >
             <List>
-              {user && (
-                <ListItem>
-                  <ListItemText primary={`Bonjour, ${user.userName}`} />
-                </ListItem>
-              )}
               <ListItem>
                 <Link
                   href="/"
@@ -240,6 +220,7 @@ const Navbar: React.FC<NavbarProps> = () => {
                   <Image src={SVGIMG} alt="" width={186} height={41} />
                 </Link>
               </ListItem>
+              <Divider />
               <ListItem>
                 <StyledLink
                   href="/carte"
@@ -248,7 +229,10 @@ const Navbar: React.FC<NavbarProps> = () => {
                   Explorer la carte
                 </StyledLink>
               </ListItem>
-              <ListItem>
+
+              {user ? (
+                <>
+                <ListItem>
                 <StyledLink
                   href="/formulaire-initiative"
                   aria-current={
@@ -258,9 +242,9 @@ const Navbar: React.FC<NavbarProps> = () => {
                   Ajouter une initiative
                 </StyledLink>
               </ListItem>
-
-              {user ? (
-                <>
+              <ListItem>
+                <ListItemText primary={`Bonjour, ${user.userName}`}/>
+              </ListItem>
                   <ListItem>
                     <ListItemText
                       primary={
@@ -313,25 +297,18 @@ const Navbar: React.FC<NavbarProps> = () => {
                     </StyledButton>
                   </ListItem>
                   <ListItem>
-                    <IconButton
+                    <StyledButton
                       href="/connexion"
+                      passHref
                       aria-current={
                         pathname === '/connexion' ? 'page' : undefined
                       }
-                      component="a"
-                      aria-label="connexion"
                     >
-                      <Image
-                        src="/icons/login-icon.svg"
-                        alt=""
-                        width={36}
-                        height={36}
-                      />
-                    </IconButton>
+                      Se connecter
+                    </StyledButton>
                   </ListItem>
                 </>
               )}
-              <Divider />
             </List>
           </Box>
         </nav>
@@ -386,7 +363,7 @@ const Navbar: React.FC<NavbarProps> = () => {
         <Box sx={{ flexGrow: 1 }} />
         <nav role="navigation" aria-label="navigation principale">
           {!isMobile && renderNavLinks()}
-          {renderDrawer()}
+          {isMobile && renderDrawer()}
         </nav>
       </Toolbar>
     </AppBar>
