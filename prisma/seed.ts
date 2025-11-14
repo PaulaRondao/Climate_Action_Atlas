@@ -22,22 +22,20 @@ async function importGeoJson(filePath: string) {
   }
 }
 
+const createdAt = faker.date.between({
+  from: new Date('2020-01-01'),
+  to: new Date(),
+});
+
 const seedDatabase = async () => {
   try {
     const locations = await importGeoJson('prisma/data.structure.geojson');
 
-    // Types d'initiatives
     const initiativeTypes = Object.values(InitiativeType);
 
-    // Hash du mot de passe pour tous les utilisateurs
     const password = faker.internet.password();
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    // Création de quelques utilisateurs
-    const createdAt = faker.date.between({
-      from: new Date('2020-01-01'),
-      to: new Date(),
-    });
     const users = await Promise.all(
       Array.from({ length: 8 }).map(async () => {
         const email = faker.internet.email();
@@ -56,7 +54,25 @@ const seedDatabase = async () => {
       }),
     );
 
-    // Initiatives fixes à insérer dans l'ordre
+    const testUser = await prisma.user.upsert({
+      where: {
+        email: 'user@mail.com',
+      },
+      update: {
+        updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
+      },
+      create: {
+        firstName: 'user',
+        lastName: 'userLastName',
+        userName: 'userName',
+        email: 'user@mail.com',
+        password: await bcrypt.hash('user', 10),
+        createdAt,
+      },
+    });
+
+    users.push(testUser);
+
     const fixedInitiatives = [
       {
         name: 'Roule ma frite',
@@ -104,7 +120,6 @@ const seedDatabase = async () => {
       });
     }
 
-    // Génération des autres initiatives aléatoires
     for (let i = 3; i < locations.length; i++) {
       const randomUser = faker.helpers.arrayElement(users);
       const loc = locations[i];
