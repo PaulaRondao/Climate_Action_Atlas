@@ -1,5 +1,6 @@
 import ClientLayout from '@/app/client-layout';
 import { Footer } from '@/components/organisms';
+import logger from '@/lib/pino/logger';
 
 export const metadata = {
   title: 'Climate Action Atlas',
@@ -12,6 +13,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  logger.info("Lancement de l'app");
   return (
     <html lang="fr" suppressHydrationWarning>
       <head />

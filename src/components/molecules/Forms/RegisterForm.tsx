@@ -10,6 +10,7 @@ import { Button } from '@/components/atoms';
 import { FormContainer, FormGroup, Input, Label } from './signForm.styles';
 import { UserRegister } from '@/types/User';
 import { useRouter } from 'next/navigation';
+import logger from '@/lib/pino/logger';
 
 const ErrorMessage = styled.span`
   color: #ef4444;
@@ -86,7 +87,7 @@ const RegisterForm = () => {
         }, 2000);
       }
     } catch (error) {
-      console.error('Erreur:', error);
+      logger.error(error, 'Erreur de connexion');
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');
     }
   };

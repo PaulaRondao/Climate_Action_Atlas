@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import type { UpdateUserDTO } from '@/constants/types';
+import logger from '@/lib/pino/logger';
 
 export async function GET(
   request: Request,
@@ -31,7 +32,7 @@ export async function GET(
 
     return NextResponse.json(user);
   } catch (error) {
-    console.error('Error fetching user:', error);
+    logger.error(error, 'Error fetching user');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -58,7 +59,7 @@ export async function PUT(
 
     return NextResponse.json(user);
   } catch (error) {
-    console.error('Error updating user:', error);
+    logger.error(error, 'Error updating user');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -82,7 +83,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'User deleted successfully' });
   } catch (error) {
-    console.error('Error deleting user:', error);
+    logger.error(error, 'Error deleting user');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },

@@ -23,7 +23,6 @@ const CardWithLogo: React.FC<CardSectionProps> = ({ initiatives }) => (
   <>
     <CardContainer>
       {initiatives.map((initiative, index) => (
-        <>
           <Card key={index}>
             <LogoWrapper>
               <LogoContainer>
@@ -38,7 +37,6 @@ const CardWithLogo: React.FC<CardSectionProps> = ({ initiatives }) => (
             </LogoWrapper>
             <p>{initiative.description}</p>
           </Card>
-        </>
       ))}
     </CardContainer>
   </>
