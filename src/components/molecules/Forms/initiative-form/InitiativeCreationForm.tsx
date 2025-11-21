@@ -19,6 +19,7 @@ import { TypeImpact } from '@/constants';
 import CheckboxInput from './CheckboxInput/CheckboxInput';
 import { InitiativeCreationFormData } from './initiativeFormValidation';
 import { initiativeCreationSchema } from './initiativeFormValidation';
+import logger from '@/lib/pino/logger';
 
 const InitiativeCreationForm = () => {
   const [globalError, setGlobalError] = useState<string | null>(null);
@@ -31,7 +32,7 @@ const InitiativeCreationForm = () => {
   });
 
   const onSubmit = async (data: InitiativeCreationFormData) => {
-    console.log('DATA:', data);
+    logger.info('DATA:');
     try {
       setGlobalError(null);
       const response = await fetch('/api/initiatives', {
@@ -55,7 +56,7 @@ const InitiativeCreationForm = () => {
       // Redirection vers la page d'accueil après inscription réussie
       window.location.href = '/';
     } catch (error) {
-      console.error('Erreur:', error);
+      logger.error(error, 'Erreur de connexion');
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');
     }
   };

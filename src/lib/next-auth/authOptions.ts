@@ -1,6 +1,7 @@
 import NextAuth, { type AuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import { login } from '@/services/login';
+import logger from '@/lib/pino/logger';
 
 export const authOptions: AuthOptions = {
   providers: [
@@ -17,6 +18,7 @@ export const authOptions: AuthOptions = {
 
         try {
           const user = await login(credentials.email, credentials.password);
+          logger.info({ user }, 'Utilisteur authentifié');
 
           if (!user) return null;
 
@@ -26,7 +28,7 @@ export const authOptions: AuthOptions = {
             name: user.userName,
           };
         } catch (error: any) {
-          console.error('Erreur de connexion :', error.message);
+          logger.error(error.message, "Erreur d'authentification");
           throw new Error(error.message);
         }
       },

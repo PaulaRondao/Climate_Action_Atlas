@@ -2,6 +2,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
+import logger from '@/lib/pino/logger';
 
 export async function GET(request: Request) {
   try {
@@ -39,7 +40,7 @@ export async function GET(request: Request) {
       initiatives,
     });
   } catch (error) {
-    console.error('Error fetching initiatives:', error);
+    logger.error(error, 'Error fetching initiatives');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -84,7 +85,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(createNewInitiative, { status: 201 });
   } catch (error) {
-    console.error('Error creating initiative:', error);
+    logger.error(error, 'Error creating initiative');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },

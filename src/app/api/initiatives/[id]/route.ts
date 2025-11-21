@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
+import logger from '@/lib/pino/logger';
 
 export async function GET(
   request: Request,
@@ -30,7 +31,7 @@ export async function GET(
 
     return NextResponse.json(initiative);
   } catch (error) {
-    console.error('Error fetching initiative:', error);
+    logger.error(error, 'Error fetching initiative');
 
     return NextResponse.json(
       { error: 'Internal server error' },
@@ -64,7 +65,7 @@ export async function PUT(
 
     return NextResponse.json(initiative);
   } catch (error) {
-    console.error('Error updating initiative:', error);
+    logger.error(error, 'Error updating initiative');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -88,7 +89,7 @@ export async function DELETE(
 
     return NextResponse.json({ message: 'Initiative deleted successfully' });
   } catch (error) {
-    console.error('Error deleting initiative:', error);
+    logger.error(error, 'Error deleting initiative');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -113,7 +114,7 @@ export async function PATCH(
 
     return NextResponse.json({ message: 'Initiative updated successfully' });
   } catch (error) {
-    console.error('Error updating initiative:', error);
+    logger.error(error, 'Error updating initiative');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
