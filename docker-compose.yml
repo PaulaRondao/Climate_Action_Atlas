@@ -16,6 +16,7 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
+    command: sh -lc "npm ci --prefer-offline --no-audit --progress=false && npm run dev"
     env_file:
       - .env
     ports:
@@ -26,7 +27,6 @@ services:
       - /app/node_modules
     depends_on:
       - climate-db
-    command: sh -lc "npm ci --prefer-offline --no-audit --progress=false && npm run dev"
 
 volumes:
   climate-postgres-data:

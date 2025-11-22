@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
-import logger from '@/lib/pino/logger';
+import logger from '@/lib/pino/logger.server';
 
 export async function GET(
   request: Request,

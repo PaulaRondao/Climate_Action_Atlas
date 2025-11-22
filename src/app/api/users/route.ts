@@ -5,7 +5,7 @@ import type { CreateUserDTO } from '@/constants/types';
 import { createUser } from '@/services/create';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
-import logger from '@/lib/pino/logger';
+import logger from '@/lib/pino/logger.server';
 
 export async function GET(request: Request) {
   try {

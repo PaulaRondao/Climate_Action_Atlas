@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
-import logger from '@/lib/pino/logger';
+import logger from '@/lib/pino/logger.server';
 
 export async function GET(request: Request) {
   try {
