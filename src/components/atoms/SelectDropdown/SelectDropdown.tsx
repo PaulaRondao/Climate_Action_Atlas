@@ -59,7 +59,7 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
     <Controller
       control={control}
       name={name}
-      render={({ field: { onChange, value, ref }, fieldState }) => (
+      render={({ field: { onChange, value, ref } }) => (
         <div ref={inputRef}>
           <AsyncSelect
             styles={dropdownStyles}
@@ -71,9 +71,6 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
             loadOptions={fetchAddress}
             ref={ref}
           />
-          {fieldState.error && (
-            <span style={{ color: 'red' }}>{fieldState.error.message}</span>
-          )}
         </div>
       )}
     />

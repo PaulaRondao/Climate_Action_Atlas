@@ -149,9 +149,11 @@ const InitiativeCreationForm = () => {
             L&apos;adresse où se situe l&apos;initiative *
           </Label>
           <SelectDropdown name="address" placeholder="Sélectionner l'adresse" />
+          {methods.formState.errors.address && (
           <ErrorMessage>
-            {methods.formState.errors.address?.message}
+            {methods.formState.errors.address.message}
           </ErrorMessage>
+          )}
         </FormGroup>
 
         <FormGroup>
