@@ -1,6 +1,6 @@
 import ClientLayout from '@/app/client-layout';
 import { Footer } from '@/components/organisms';
-import logger from '@/lib/pino/logger';
+import logger from '@/lib/pino/logger.server';
 
 export const metadata = {
   title: 'Climate Action Atlas',

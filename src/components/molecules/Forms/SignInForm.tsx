@@ -47,7 +47,6 @@ export default function SignInForm(): JSX.Element {
     await signIn('credentials', {
       email,
       password,
-      callbackUrl: '/dashboard',
       redirect: true,
     });
   };

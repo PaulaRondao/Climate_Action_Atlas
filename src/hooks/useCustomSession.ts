@@ -1,19 +1,24 @@
 import { useSession } from 'next-auth/react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import { useEffect } from 'react';
 
 const useCustomSession = () => {
   const sessionData = useSession();
   const router = useRouter();
 
-  const { data: session } = sessionData;
+  const { data: session, status } = sessionData;
 
-  if (session) {
-    if (new Date(session.expires).getTime() < Date.now()) {
-      router.push('/connexion');
+  useEffect(() => {
+    if (status === 'loading' || !session?.user) return;
+
+    if (session) {
+      if (new Date(session.expires).getTime() < Date.now()) {
+        router.push('/connexion');
+      }
     }
+  }, [session, status, router]);
 
-    return sessionData;
-  }
+  return sessionData;
 };
 
 export default useCustomSession;
