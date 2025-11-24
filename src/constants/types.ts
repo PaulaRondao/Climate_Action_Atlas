@@ -38,6 +38,5 @@ export interface PaginationParams {
 export interface InitiativeFilters {
   type?: Initiatives;
   status?: InitiativeStatus;
-  country?: string;
   city?: string;
 }

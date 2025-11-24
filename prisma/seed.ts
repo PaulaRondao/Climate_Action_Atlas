@@ -13,7 +13,6 @@ async function importGeoJson(filePath: string) {
       street: feature.properties.street,
       postcode: feature.properties.postcode,
       city: feature.properties.city,
-      country: 'France', // par défaut
       latitude: feature.geometry.coordinates[1],
       longitude: feature.geometry.coordinates[0],
     }));
@@ -100,7 +99,6 @@ const seedDatabase = async () => {
           street: loc.street,
           postcode: loc.postcode,
           city: loc.city,
-          country: loc.country,
           latitude: loc.latitude,
           longitude: loc.longitude,
         },
@@ -130,7 +128,6 @@ const seedDatabase = async () => {
           street: loc.street,
           postcode: loc.postcode,
           city: loc.city,
-          country: loc.country,
           latitude: loc.latitude,
           longitude: loc.longitude,
         },

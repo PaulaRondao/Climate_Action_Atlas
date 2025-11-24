@@ -17,15 +17,14 @@ export const initiativeCreationSchema = z.object({
   narrative: z.string().optional(),
   associationName: z.string().optional(),
   address: z.object({
-      label: z.string(),
-      city: z.string(),
-      zipCode: z.string(),
-      street: z.string(),
-      gps: z.array(z.number()).length(2),
-    }),
+    city: z.string(),
+    label: z.string(),
+    street: z.string(),
+    zipCode: z.string(),
+    gps: z.array(z.number()).length(2),
+  }),
   email: z.string().optional(),
   webSite: z.string().url().optional(),
-  contributorId: z.number(),
 });
 
 export type InitiativeCreationFormData = z.infer<

@@ -31,7 +31,7 @@ const InitiativeCreationForm = () => {
   });
 
   const onSubmit = async (data: InitiativeCreationFormData) => {
-    console.log(data, 'DATA');
+    console.log('Données du formulaire :', data);
     try {
       setGlobalError(null);
       const response = await fetch('/api/initiatives', {
@@ -54,6 +54,7 @@ const InitiativeCreationForm = () => {
 
       // Redirection vers la page d'accueil après inscription réussie
       window.location.href = '/';
+      console.log('Ajout réussi');
     } catch (error) {
       console.error(error, 'Erreur de connexion');
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');
@@ -62,7 +63,12 @@ const InitiativeCreationForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
+      <FormContainer
+        onSubmit={() => {
+          methods.handleSubmit(onSubmit);
+          console.log('Erreurs avant soumission :', methods.formState.errors);
+        }}
+      >
         {globalError && <GlobalError>{globalError}</GlobalError>}
         <TitleSection>
           <h3>Votre recherche</h3>
@@ -120,11 +126,6 @@ const InitiativeCreationForm = () => {
             {...methods.register('narrative')}
             rows={10}
           />
-          {methods.formState.errors.description && (
-            <ErrorMessage>
-              {methods.formState.errors.description.message}
-            </ErrorMessage>
-          )}
         </FormGroup>
 
         <FormGroup>
@@ -137,11 +138,6 @@ const InitiativeCreationForm = () => {
             type="text"
             {...methods.register('associationName')}
           />
-          {methods.formState.errors.associationName && (
-            <ErrorMessage>
-              {methods.formState.errors.associationName.message}
-            </ErrorMessage>
-          )}
         </FormGroup>
 
         <FormGroup>
@@ -150,9 +146,9 @@ const InitiativeCreationForm = () => {
           </Label>
           <SelectDropdown name="address" placeholder="Sélectionner l'adresse" />
           {methods.formState.errors.address && (
-          <ErrorMessage>
-            {methods.formState.errors.address.message}
-          </ErrorMessage>
+            <ErrorMessage>
+              {methods.formState.errors.address.message}
+            </ErrorMessage>
           )}
         </FormGroup>
 

@@ -1,18 +1,27 @@
-import { useSession, signIn, signOut } from 'next-auth/react';
+'use client';
+
+import useCustomSession from '@/hooks/useCustomSession';
+import { signIn, signOut } from 'next-auth/react';
 
 export default function Component() {
-  const { data: session } = useSession();
+  const { data: session, status } = useCustomSession();
+
+  if (status === 'loading') {
+    return <p>Chargement...</p>;
+  }
   if (session) {
     return (
       <>
-        Signed in as {session.user?.email} <br />
-        <button onClick={() => signOut()}>Déconnexion</button>
+        Connecté en tant que {session.user?.email} <br />
+        <button onClick={() => signOut({ callbackUrl: '/' })}>
+          Déconnexion
+        </button>
       </>
     );
   }
   return (
     <>
-      Not signed in <br />
+      Non connecté <br />
       <button onClick={() => signIn()}>Connexion</button>
     </>
   );

@@ -1,10 +1,13 @@
-import { Suspense } from 'react';
 import SignInTemplate from '@/components/templates/SignInTemplate/SignInTemplate';
+import { authOptions } from '@/lib/next-auth/authOptions';
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
 
-export default function SignIn(): JSX.Element {
-  return (
-    <Suspense fallback="Loading...">
-      <SignInTemplate />
-    </Suspense>
-  );
+export default async function SignIn() {
+  const session = await getServerSession(authOptions);
+
+  if (session?.user?.id) {
+    redirect('/dashboard');
+  }
+  return <SignInTemplate />;
 }

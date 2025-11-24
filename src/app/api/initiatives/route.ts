@@ -3,6 +3,8 @@ import prisma from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 import logger from '@/lib/pino/logger.server';
+import { authOptions } from '@/lib/next-auth/authOptions';
+import { getServerSession } from 'next-auth';
 
 export async function GET(request: Request) {
   try {
@@ -50,18 +52,25 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const contributorId = Number(session.user.id);
+
     const bodyRequest = await request.json();
 
     const parsed = initiativeCreationSchema.parse(bodyRequest);
 
     const createNewInitiativeLocation = await prisma.initiativeLocation.create({
       data: {
-        street: parsed.address,
-        postcode: parsed.postcode,
-        city: parsed.city,
-        country: parsed.country,
-        latitude: parsed.latitude,
-        longitude: parsed.longitude,
+        street: parsed.address.street,
+        postcode: parsed.address.zipCode,
+        city: parsed.address.city,
+        latitude: parsed.address.gps[0],
+        longitude: parsed.address.gps[1],
       },
     });
 
@@ -70,7 +79,7 @@ export async function POST(request: Request) {
         name: parsed.name,
         description: parsed.description,
         initiativeType: parsed.initiativeType,
-        contributorId: parsed.contributorId,
+        contributorId: contributorId,
         narrative: parsed.narrative,
         associationName: parsed.associationName,
         email: parsed.email,

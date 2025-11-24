@@ -14,7 +14,7 @@ export interface SelectDropdownProps {
 const SelectDropdown: React.FC<SelectDropdownProps> = ({
   name,
   placeholder,
-}: SelectDropdownProps) => {
+}) => {
   const { control } = useFormContext();
   const inputRef = useRef<HTMLDivElement | null>(null);
 
@@ -24,6 +24,8 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
       borderColor: state.isFocused ? 'blue' : 'gray',
       boxShadow: 'none',
       '&:hover': { borderColor: 'blue' },
+      position: 'relative',
+      zIndex: 1,
     }),
     option: (styles: any, state: any) => ({
       ...styles,
@@ -31,6 +33,7 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
       color: state.isSelected ? 'white' : 'black',
       '&:hover': { backgroundColor: 'lightgray' },
     }),
+    menuPortal: (base: any) => ({ ...base, zIndex: 9999 }),
   };
 
   const fetchAddress = async (
@@ -38,7 +41,7 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   ): Promise<ResponseAddress[]> => {
     try {
       if (!inputValue) return [];
-      return searchAddresses(inputValue);
+      return await searchAddresses(inputValue);
     } catch (error) {
       console.error('Error loading options:', error);
       return [];
@@ -66,9 +69,22 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
             placeholder={placeholder}
             loadingMessage={() => 'chargement en cours...'}
             noOptionsMessage={() => 'Pas de résultat'}
-            value={value}
-            onChange={onChange}
+            value={value ?? null}
             loadOptions={fetchAddress}
+            onChange={(selected: ResponseAddress | null) => {
+              if (!selected) {
+                onChange(null);
+                return;
+              }
+              const transformedAddress = {
+                label: selected.label,
+                city: selected.city,
+                zipCode: selected.zipCode,
+                street: selected.street,
+                gps: selected.gps || [0, 0],
+              };
+              onChange(transformedAddress);
+            }}
             ref={ref}
           />
         </div>
