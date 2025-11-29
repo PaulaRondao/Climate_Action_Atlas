@@ -1,6 +1,10 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
+import logger from '@/lib/pino/logger.server';
+import { authOptions } from '@/lib/next-auth/authOptions';
+import { getServerSession } from 'next-auth';
+import { createAnInitiative } from '@/services/initiative';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 
 export async function GET(request: Request) {
@@ -39,7 +43,7 @@ export async function GET(request: Request) {
       initiatives,
     });
   } catch (error) {
-    console.error('Error fetching initiatives:', error);
+    logger.error(error, 'Error fetching initiatives');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },
@@ -49,42 +53,23 @@ export async function GET(request: Request) {
 
 export async function POST(request: Request) {
   try {
+    const session = await getServerSession(authOptions);
+
+    if (!session || !session.user?.id) {
+      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+    }
+
+    const contributorId = Number(session.user.id);
+
     const bodyRequest = await request.json();
 
     const parsed = initiativeCreationSchema.parse(bodyRequest);
 
-    const createNewInitiativeLocation = await prisma.initiativeLocation.create({
-      data: {
-        street: parsed.address,
-        postcode: parsed.postcode,
-        city: parsed.city,
-        country: parsed.country,
-        latitude: parsed.latitude,
-        longitude: parsed.longitude,
-      },
-    });
+    const createdInitiative = await createAnInitiative(parsed, contributorId);
 
-    const createNewInitiative = await prisma.initiative.create({
-      data: {
-        name: parsed.name,
-        description: parsed.description,
-        initiativeType: parsed.initiativeType,
-        contributorId: parsed.contributorId,
-        narrative: parsed.narrative,
-        associationName: parsed.associationName,
-        email: parsed.email,
-        webSite: parsed.webSite,
-        initiativeLocationId: createNewInitiativeLocation.id,
-      },
-      include: {
-        contributor: true,
-        initiativeLocation: true,
-      },
-    });
-
-    return NextResponse.json(createNewInitiative, { status: 201 });
+    return NextResponse.json(createdInitiative, { status: 201 });
   } catch (error) {
-    console.error('Error creating initiative:', error);
+    logger.error(error, 'Error creating initiative');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: 500 },

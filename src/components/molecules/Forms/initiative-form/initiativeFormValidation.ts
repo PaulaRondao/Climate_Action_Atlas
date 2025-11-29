@@ -1,9 +1,9 @@
 import * as z from 'zod';
-import { Initiatives } from '@/constants';
+import { InitiativesLabel } from '@/constants';
 
-const initiativeTypeValues = Object.keys(Initiatives) as [
-  keyof typeof Initiatives,
-  ...Array<keyof typeof Initiatives>,
+const initiativeTypeValues = Object.keys(InitiativesLabel) as [
+  keyof typeof InitiativesLabel,
+  ...Array<keyof typeof InitiativesLabel>,
 ];
 
 export const initiativeCreationSchema = z.object({
@@ -16,15 +16,15 @@ export const initiativeCreationSchema = z.object({
     .min(1, 'Veuillez sélectionner un type'),
   narrative: z.string().optional(),
   associationName: z.string().optional(),
-  address: z.string().min(1, 'Veuillez indiquer une adresse'),
-  postcode: z.string().min(1, 'Veuillez indiquer un code postal'),
-  city: z.string().min(1, 'Veuillez indiquer une ville'),
-  country: z.string().min(1, 'Veuillez sélectionner un pays'),
+  address: z.object({
+    city: z.string(),
+    label: z.string(),
+    street: z.string(),
+    zipCode: z.string(),
+    gps: z.array(z.number()).length(2),
+  }),
   email: z.string().optional(),
-  webSite: z.string().url().optional(),
-  latitude: z.number(),
-  longitude: z.number(),
-  contributorId: z.number(),
+  webSite: z.string().optional(),
 });
 
 export type InitiativeCreationFormData = z.infer<

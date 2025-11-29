@@ -1,4 +1,4 @@
-import { Initiatives } from '../types/enums/enums';
+import { InitiativesLabel } from '../types/enums/enums';
 import { User as UserModel } from '@prisma/client';
 
 // Types de base
@@ -36,8 +36,7 @@ export interface PaginationParams {
 }
 
 export interface InitiativeFilters {
-  type?: Initiatives;
+  type?: InitiativesLabel;
   status?: InitiativeStatus;
-  country?: string;
   city?: string;
 }

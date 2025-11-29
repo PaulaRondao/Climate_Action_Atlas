@@ -86,7 +86,7 @@ const RegisterForm = () => {
         }, 2000);
       }
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error(error, 'Erreur de connexion');
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');
     }
   };

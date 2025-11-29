@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import styled from 'styled-components';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
-import { Initiatives } from '@/constants';
+import { InitiativesLabel } from '@/constants';
 import Link from 'next/link';
 
 const SidebarContainer = styled.div<{ $open: boolean }>`
@@ -64,15 +64,17 @@ const List = styled.li<{ $active?: boolean }>`
 `;
 
 interface SidebarControlProps {
-  onChange: (type: Initiatives | null) => void;
+  onChange: (type: InitiativesLabel | null) => void;
 }
 
 const SidebarControl = ({ onChange }: SidebarControlProps) => {
   const [open, setOpen] = useState(false);
 
-  const [selectedType, setSelectedType] = useState<Initiatives | null>(null);
+  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
+    null,
+  );
 
-  const handleSelect = (type: Initiatives) => {
+  const handleSelect = (type: InitiativesLabel) => {
     const newType = selectedType === type ? null : type;
     setSelectedType(newType);
     onChange(newType);
@@ -93,8 +95,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             }}
           >
             <List
-              $active={selectedType === Initiatives.ClimateAgricultureEnergy}
-              onClick={() => handleSelect(Initiatives.ClimateAgricultureEnergy)}
+              $active={
+                selectedType === InitiativesLabel.ClimateAgricultureEnergy
+              }
+              onClick={() =>
+                handleSelect(InitiativesLabel.ClimateAgricultureEnergy)
+              }
             >
               <button>
                 <Image src="/icons/climat.svg" alt="" width={34} height={34} />
@@ -103,8 +109,10 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === Initiatives.CultureAndTransmission}
-              onClick={() => handleSelect(Initiatives.CultureAndTransmission)}
+              $active={selectedType === InitiativesLabel.CultureAndTransmission}
+              onClick={() =>
+                handleSelect(InitiativesLabel.CultureAndTransmission)
+              }
             >
               <button>
                 <Image src="/icons/culture.svg" alt="" width={34} height={34} />
@@ -113,8 +121,10 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === Initiatives.EducationAndAwareness}
-              onClick={() => handleSelect(Initiatives.EducationAndAwareness)}
+              $active={selectedType === InitiativesLabel.EducationAndAwareness}
+              onClick={() =>
+                handleSelect(InitiativesLabel.EducationAndAwareness)
+              }
             >
               <button>
                 <Image
@@ -128,8 +138,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === Initiatives.SolidarityAndCommunities}
-              onClick={() => handleSelect(Initiatives.SolidarityAndCommunities)}
+              $active={
+                selectedType === InitiativesLabel.SolidarityAndCommunities
+              }
+              onClick={() =>
+                handleSelect(InitiativesLabel.SolidarityAndCommunities)
+              }
             >
               <button>
                 <Image
@@ -143,9 +157,11 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === Initiatives.SocialAndSolidarityEconomy}
+              $active={
+                selectedType === InitiativesLabel.SocialAndSolidarityEconomy
+              }
               onClick={() =>
-                handleSelect(Initiatives.SocialAndSolidarityEconomy)
+                handleSelect(InitiativesLabel.SocialAndSolidarityEconomy)
               }
             >
               <button>
@@ -160,8 +176,10 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === Initiatives.UrbanismAndTechnology}
-              onClick={() => handleSelect(Initiatives.UrbanismAndTechnology)}
+              $active={selectedType === InitiativesLabel.UrbanismAndTechnology}
+              onClick={() =>
+                handleSelect(InitiativesLabel.UrbanismAndTechnology)
+              }
             >
               <button>
                 <Image

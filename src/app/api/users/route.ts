@@ -2,9 +2,10 @@ import { NextResponse } from 'next/server';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma/client';
 import type { CreateUserDTO } from '@/constants/types';
-import { createUser } from '@/services/create';
+import { createUser } from '@/services/user';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
+import logger from '@/lib/pino/logger.server';
 
 export async function GET(request: Request) {
   try {
@@ -31,7 +32,7 @@ export async function GET(request: Request) {
 
     return NextResponse.json(user);
   } catch (error) {
-    console.error('Error fetching user:', error);
+    logger.error(error, 'Error fetching user');
     return NextResponse.json(
       { error: 'Internal server error' },
       { status: HttpStatusCode.HTTP_SERVER_ERROR },
@@ -53,7 +54,7 @@ export async function POST(request: Request) {
       { status: HttpStatusCode.HTTP_CREATED },
     );
   } catch (error: any) {
-    console.error('Erreur création utilisateur', error);
+    logger.error(error, 'Erreur création utilisateur');
     return NextResponse.json(
       { error: 'Erreur interne du serveur' },
       { status: HttpStatusCode.HTTP_SERVER_ERROR },

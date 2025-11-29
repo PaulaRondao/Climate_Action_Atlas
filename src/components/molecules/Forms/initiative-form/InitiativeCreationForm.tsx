@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/atoms';
+import { Button, SelectDropdown } from '@/components/atoms';
 import {
   ErrorMessage,
   FormContainer,
@@ -27,11 +27,15 @@ const InitiativeCreationForm = () => {
     resolver: zodResolver(initiativeCreationSchema),
     defaultValues: {
       initiativeType: [],
+      narrative: '',
+      associationName: '',
+      email: '',
+      webSite: '',
     },
   });
 
   const onSubmit = async (data: InitiativeCreationFormData) => {
-    console.log('DATA:', data);
+    console.log('Données du formulaire :', data);
     try {
       setGlobalError(null);
       const response = await fetch('/api/initiatives', {
@@ -54,8 +58,9 @@ const InitiativeCreationForm = () => {
 
       // Redirection vers la page d'accueil après inscription réussie
       window.location.href = '/';
+      console.log('Ajout réussi');
     } catch (error) {
-      console.error('Erreur:', error);
+      console.error(error, 'Erreur de connexion');
       setGlobalError('Une erreur est survenue lors de la connexion au serveur');
     }
   };
@@ -120,11 +125,6 @@ const InitiativeCreationForm = () => {
             {...methods.register('narrative')}
             rows={10}
           />
-          {methods.formState.errors.description && (
-            <ErrorMessage>
-              {methods.formState.errors.description.message}
-            </ErrorMessage>
-          )}
         </FormGroup>
 
         <FormGroup>
@@ -137,49 +137,16 @@ const InitiativeCreationForm = () => {
             type="text"
             {...methods.register('associationName')}
           />
-          {methods.formState.errors.associationName && (
-            <ErrorMessage>
-              {methods.formState.errors.associationName.message}
-            </ErrorMessage>
-          )}
         </FormGroup>
 
         <FormGroup>
           <Label htmlFor="address">
             L&apos;adresse où se situe l&apos;initiative *
           </Label>
-          <Input id="address" type="text" {...methods.register('address')} />
+          <SelectDropdown name="address" placeholder="Sélectionner l'adresse" />
           {methods.formState.errors.address && (
             <ErrorMessage>
               {methods.formState.errors.address.message}
-            </ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label htmlFor="postcode">Le code postal *</Label>
-          <Input id="postcode" type="text" {...methods.register('postcode')} />
-          {methods.formState.errors.postcode && (
-            <ErrorMessage>
-              {methods.formState.errors.postcode.message}
-            </ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label htmlFor="city">La ville *</Label>
-          <Input id="city" type="text" {...methods.register('city')} />
-          {methods.formState.errors.city && (
-            <ErrorMessage>{methods.formState.errors.city.message}</ErrorMessage>
-          )}
-        </FormGroup>
-
-        <FormGroup>
-          <Label htmlFor="country">Le pays *</Label>
-          <Input id="country" type="text" {...methods.register('country')} />
-          {methods.formState.errors.country && (
-            <ErrorMessage>
-              {methods.formState.errors.country.message}
             </ErrorMessage>
           )}
         </FormGroup>
