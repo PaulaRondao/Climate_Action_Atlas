@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Navigation } from '@/components/organisms';
-import { PageTitle, Description, Initiatives } from '@/types/enums/enums';
+import { PageTitle, Description, InitiativesLabel } from '@/types/enums/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 
@@ -49,7 +49,9 @@ const MapWrapper = styled.div`
 `;
 
 export default function MapViewTemplate({ position }: MapViewTemplateProps) {
-  const [selectedType, setSelectedType] = useState<Initiatives | null>(null);
+  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
+    null,
+  );
 
   return (
     <PageWrapper>

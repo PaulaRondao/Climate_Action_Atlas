@@ -6,7 +6,6 @@ import { theme } from '@/styles/theme';
 
 interface StyledButtonProps {
   $fullWidth?: boolean;
-  variant?: 'primary' | 'secondary';
   $backgroundColor?: string;
   $backgroundColorHover?: string;
   $color?: string;
@@ -57,8 +56,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children?: React.ReactNode;
   onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   disabled?: boolean;
-  asLink?: string;
-  externalLink?: boolean;
+  ariaLabel?: string;
   type?: ButtonType;
   title?: string;
   value?: string;
@@ -67,44 +65,26 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   color?: string;
   backgroundColorHover?: string;
   colorHover?: string;
-  eventTracking?: () => void;
 }
 
 const Button = ({
   children,
   onClick = () => {},
   disabled = false,
-  asLink = '',
-  externalLink = false,
+  ariaLabel = undefined,
   type,
   fullWidth = false,
   backgroundColor = undefined,
   color = undefined,
   backgroundColorHover = undefined,
   colorHover = undefined,
-  eventTracking = () => {},
-  ...otherProps
 }: ButtonProps): JSX.Element => {
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (eventTracking) {
-      eventTracking();
-    }
-    if (asLink) {
-      if (externalLink) {
-        window.open(asLink, '_blank');
-      } else {
-        window.location.href = asLink;
-      }
-    } else if (!disabled) {
-      onClick(e);
-    }
-  };
-
   return (
     <StyledButton
-      onClick={handleClick}
+      onClick={onClick}
       type={type}
       disabled={disabled}
+      aria-label={ariaLabel}
       $fullWidth={fullWidth}
       $backgroundColor={backgroundColor}
       $color={color}

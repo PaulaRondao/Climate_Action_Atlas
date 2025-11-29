@@ -27,6 +27,10 @@ const InitiativeCreationForm = () => {
     resolver: zodResolver(initiativeCreationSchema),
     defaultValues: {
       initiativeType: [],
+      narrative: '',
+      associationName: '',
+      email: '',
+      webSite: '',
     },
   });
 
@@ -63,12 +67,7 @@ const InitiativeCreationForm = () => {
 
   return (
     <FormProvider {...methods}>
-      <FormContainer
-        onSubmit={() => {
-          methods.handleSubmit(onSubmit);
-          console.log('Erreurs avant soumission :', methods.formState.errors);
-        }}
-      >
+      <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
         {globalError && <GlobalError>{globalError}</GlobalError>}
         <TitleSection>
           <h3>Votre recherche</h3>

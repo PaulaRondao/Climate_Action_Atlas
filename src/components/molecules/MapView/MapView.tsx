@@ -9,7 +9,7 @@ import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { useEffect, useState } from 'react';
 import {
-  Initiatives,
+  InitiativesLabel,
   InitiativeTypeToLabel,
   LabelToInitiativeType,
 } from '@/constants';
@@ -27,7 +27,7 @@ L.Icon.Default.imagePath = '.';
 interface MapViewProps {
   position: LatLngExpression | LatLngTuple;
   zoom?: number;
-  filteredInitiativeType: Initiatives | null;
+  filteredInitiativeType: InitiativesLabel | null;
 }
 
 export default function MapView({
