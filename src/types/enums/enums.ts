@@ -1,4 +1,4 @@
-import { Options } from '@/types/SelectListOptions';
+import { Options } from '@/types/Form';
 import { $Enums } from '@prisma/client';
 import { ReactSVG } from 'react';
 
@@ -22,7 +22,7 @@ export enum Description {
   CommitmentToAssociation = 'Votre engagement fait la différence. Ensemble, nous pouvons dépasser les défis environnementaux.',
 }
 
-export enum Initiatives {
+export enum InitiativesLabel {
   ClimateAgricultureEnergy = 'Climat, Agriculture et Énergie',
   UrbanismAndTechnology = 'Urbanisme et Technologie',
   SolidarityAndCommunities = 'Solidarité et Communautés',
@@ -31,48 +31,55 @@ export enum Initiatives {
   SocialAndSolidarityEconomy = 'Économie Sociale et Solidaire',
 }
 
-export const TypeImpact = Object.entries(Initiatives).map(([key, label]) => ({
-  label,
-  value: key,
-})) as { label: string; value: keyof typeof Initiatives }[];
+export const initiativesLabelTypeObject = Object.values(InitiativesLabel) as [
+  InitiativesLabel,
+  ...InitiativesLabel[],
+];
+
+export const TypeImpact = Object.entries(InitiativesLabel).map(
+  ([key, label]) => ({
+    label,
+    value: key,
+  }),
+) as { label: string; value: keyof typeof InitiativesLabel }[];
 
 export const InitiativeOptions: {
-  label: Initiatives;
+  label: InitiativesLabel;
   description: string;
   logo: string;
 }[] = [
   {
-    label: Initiatives.ClimateAgricultureEnergy,
+    label: InitiativesLabel.ClimateAgricultureEnergy,
     description:
       'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
     logo: '/icons/climat.svg',
   },
   {
-    label: Initiatives.UrbanismAndTechnology,
+    label: InitiativesLabel.UrbanismAndTechnology,
     description:
       'Innovations accessibles, low-tech, bricolage et systèmes D pour répondre aux besoins essentiels avec ingéniosité, dans une logique de sobriété et d’autonomie.',
     logo: '/icons/urbanisme.svg',
   },
   {
-    label: Initiatives.SolidarityAndCommunities,
+    label: InitiativesLabel.SolidarityAndCommunities,
     description:
       "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
     logo: '/icons/solidarite.svg',
   },
   {
-    label: Initiatives.CultureAndTransmission,
+    label: InitiativesLabel.CultureAndTransmission,
     description:
       'Initiatives qui préservent, réinventent ou partagent les cultures locales, les savoir-faire, les récits, et les expressions artistiques, pour nourrir une mémoire vivante.',
     logo: '/icons/culture.svg',
   },
   {
-    label: Initiatives.EducationAndAwareness,
+    label: InitiativesLabel.EducationAndAwareness,
     description:
       'Formes d’éducation libres, actives ou engagées pour éveiller les consciences, transmettre autrement et encourager la pensée critique face aux enjeux contemporains.',
     logo: '/icons/education.svg',
   },
   {
-    label: Initiatives.SocialAndSolidarityEconomy,
+    label: InitiativesLabel.SocialAndSolidarityEconomy,
     description:
       'Approches économiques alternatives pour produire, échanger et financer de manière locale, équitable et respectueuse des humains et de l’environnement.',
     logo: '/icons/economie.svg',
@@ -91,25 +98,29 @@ export const SelectOptions: Options[] = [
   { label: 'Je ne sais pas', value: SelectItems.INDEFINI },
 ];
 
-export const InitiativeTypeToLabel: Record<$Enums.InitiativeType, Initiatives> =
-  {
-    ClimateAgricultureEnergy: Initiatives.ClimateAgricultureEnergy,
-    UrbanismAndTechnology: Initiatives.UrbanismAndTechnology,
-    SolidarityAndCommunities: Initiatives.SolidarityAndCommunities,
-    CultureAndTransmission: Initiatives.CultureAndTransmission,
-    EducationAndAwareness: Initiatives.EducationAndAwareness,
-    SocialAndSolidarityEconomy: Initiatives.SocialAndSolidarityEconomy,
-  };
+export const InitiativeTypeToLabel: Record<
+  $Enums.InitiativeType,
+  InitiativesLabel
+> = {
+  ClimateAgricultureEnergy: InitiativesLabel.ClimateAgricultureEnergy,
+  UrbanismAndTechnology: InitiativesLabel.UrbanismAndTechnology,
+  SolidarityAndCommunities: InitiativesLabel.SolidarityAndCommunities,
+  CultureAndTransmission: InitiativesLabel.CultureAndTransmission,
+  EducationAndAwareness: InitiativesLabel.EducationAndAwareness,
+  SocialAndSolidarityEconomy: InitiativesLabel.SocialAndSolidarityEconomy,
+};
 
-export const LabelToInitiativeType: Record<Initiatives, $Enums.InitiativeType> =
-  {
-    [Initiatives.ClimateAgricultureEnergy]: 'ClimateAgricultureEnergy',
-    [Initiatives.UrbanismAndTechnology]: 'UrbanismAndTechnology',
-    [Initiatives.SolidarityAndCommunities]: 'SolidarityAndCommunities',
-    [Initiatives.CultureAndTransmission]: 'CultureAndTransmission',
-    [Initiatives.EducationAndAwareness]: 'EducationAndAwareness',
-    [Initiatives.SocialAndSolidarityEconomy]: 'SocialAndSolidarityEconomy',
-  };
+export const LabelToInitiativeType: Record<
+  InitiativesLabel,
+  $Enums.InitiativeType
+> = {
+  [InitiativesLabel.ClimateAgricultureEnergy]: 'ClimateAgricultureEnergy',
+  [InitiativesLabel.UrbanismAndTechnology]: 'UrbanismAndTechnology',
+  [InitiativesLabel.SolidarityAndCommunities]: 'SolidarityAndCommunities',
+  [InitiativesLabel.CultureAndTransmission]: 'CultureAndTransmission',
+  [InitiativesLabel.EducationAndAwareness]: 'EducationAndAwareness',
+  [InitiativesLabel.SocialAndSolidarityEconomy]: 'SocialAndSolidarityEconomy',
+};
 
 export const ActionsOption: {
   title: string;

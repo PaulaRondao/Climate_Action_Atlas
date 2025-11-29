@@ -1,9 +1,9 @@
 import * as z from 'zod';
-import { Initiatives } from '@/constants';
+import { InitiativesLabel } from '@/constants';
 
-const initiativeTypeValues = Object.keys(Initiatives) as [
-  keyof typeof Initiatives,
-  ...Array<keyof typeof Initiatives>,
+const initiativeTypeValues = Object.keys(InitiativesLabel) as [
+  keyof typeof InitiativesLabel,
+  ...Array<keyof typeof InitiativesLabel>,
 ];
 
 export const initiativeCreationSchema = z.object({
@@ -24,7 +24,7 @@ export const initiativeCreationSchema = z.object({
     gps: z.array(z.number()).length(2),
   }),
   email: z.string().optional(),
-  webSite: z.string().url().optional(),
+  webSite: z.string().optional(),
 });
 
 export type InitiativeCreationFormData = z.infer<

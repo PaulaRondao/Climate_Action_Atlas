@@ -1,10 +1,11 @@
 import { NextResponse } from 'next/server';
 import prisma from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
-import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 import logger from '@/lib/pino/logger.server';
 import { authOptions } from '@/lib/next-auth/authOptions';
 import { getServerSession } from 'next-auth';
+import { createAnInitiative } from '@/services/initiative';
+import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 
 export async function GET(request: Request) {
   try {
@@ -64,35 +65,9 @@ export async function POST(request: Request) {
 
     const parsed = initiativeCreationSchema.parse(bodyRequest);
 
-    const createNewInitiativeLocation = await prisma.initiativeLocation.create({
-      data: {
-        street: parsed.address.street,
-        postcode: parsed.address.zipCode,
-        city: parsed.address.city,
-        latitude: parsed.address.gps[0],
-        longitude: parsed.address.gps[1],
-      },
-    });
+    const createdInitiative = await createAnInitiative(parsed, contributorId);
 
-    const createNewInitiative = await prisma.initiative.create({
-      data: {
-        name: parsed.name,
-        description: parsed.description,
-        initiativeType: parsed.initiativeType,
-        contributorId: contributorId,
-        narrative: parsed.narrative,
-        associationName: parsed.associationName,
-        email: parsed.email,
-        webSite: parsed.webSite,
-        initiativeLocationId: createNewInitiativeLocation.id,
-      },
-      include: {
-        contributor: true,
-        initiativeLocation: true,
-      },
-    });
-
-    return NextResponse.json(createNewInitiative, { status: 201 });
+    return NextResponse.json(createdInitiative, { status: 201 });
   } catch (error) {
     logger.error(error, 'Error creating initiative');
     return NextResponse.json(

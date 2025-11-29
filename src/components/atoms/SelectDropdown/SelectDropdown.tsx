@@ -19,19 +19,22 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   const dropdownStyles = {
-    control: (styles: any, state: any) => ({
+    control: (styles: any) => ({
       ...styles,
-      borderColor: state.isFocused ? 'blue' : 'gray',
-      boxShadow: 'none',
-      '&:hover': { borderColor: 'blue' },
-      position: 'relative',
-      zIndex: 1,
+      width: '100%',
+      height: '40px',
+      paddingLeft: '12px',
+      ':hover': {
+        borderColor: 'var(--color-black)',
+      },
     }),
     option: (styles: any, state: any) => ({
       ...styles,
-      backgroundColor: state.isSelected ? 'blue' : 'white',
-      color: state.isSelected ? 'white' : 'black',
-      '&:hover': { backgroundColor: 'lightgray' },
+      textDecoration: 'none',
+      backgroundColor: state.isFocused ? 'var(--color-light-grey)' : '',
+      color: state.isSelected
+        ? 'var(--foreground-dark-blue)'
+        : 'var(--color-dark-grey)',
     }),
     menuPortal: (base: any) => ({ ...base, zIndex: 9999 }),
   };
