@@ -11,7 +11,6 @@ import {
 } from '../initiativeCreationForm.styles';
 import { Options } from '@/types/Form';
 
-
 interface RadioInputProps {
   radioList: Options[];
   name: string;
