@@ -7,7 +7,7 @@ export const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: ${theme.spacing.xxs};
+  gap: ${theme.spacing.xxl};
   margin-top: ${theme.spacing.xl};
 
   ${mediaQueries.desktop} {
@@ -63,7 +63,7 @@ export const StyledButton = styled(Link)<StyledButtonProps>`
   border-radius: 25px;
   border: 2px solid;
   border-color: ${theme.colors.green};
-  padding: 16px 20px;
+  padding: 16px 32px;
   letter-spacing: 0.125rem;
   transition: color 0.3s ease;
   width: 240px;

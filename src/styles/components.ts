@@ -101,6 +101,7 @@ export const Button = styled.button`
   transition: ${theme.transitions.default};
   text-transform: uppercase;
   font-size: ${theme.typography.fontSizes.md};
+  width: 240px;
 
   &:hover {
     border-color: ${theme.colors.backgroundGreen};
