@@ -131,19 +131,19 @@ export const ActionsOption: {
     title: 'Agir local penser global',
     description:
       'Découvrez les initiatives près de chez vous pour lutter contre le changement climatique.',
-    image: '/images/agirLocal.jpg',
+    image: '/images/agirLocal.png',
   },
   {
     title: 'Carte intéraction',
     description:
       'Trouvez et rejoignez facilement des projets concrets et inspirants autour de vous.',
-    image: '/images/carteInteractive.jpg',
+    image: '/images/carteInteractive.png',
   },
   {
     title: 'Mobilisation citoyenne',
     description:
       'Partagez, créez et collaborez avec une communauté engagée pour l’humain et la planète.',
-    image: '/images/mobilisation.jpg',
+    image: '/images/mobilisation.png',
   },
   {
     title: 'Impact réel',
