@@ -55,11 +55,6 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
 
   return (
     <PageWrapper>
-      <Navigation
-        pageTitle={PageTitle.UserForm}
-        description={Description.CommitmentToUser}
-      />
-
       <ContentWrapper>
         <SidebarControl onChange={setSelectedType} />
         <MapWrapper>

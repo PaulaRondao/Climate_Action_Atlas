@@ -1,3 +1,4 @@
+import { Navigation } from '@/components/organisms';
 import SignInTemplate from '@/components/templates/SignInTemplate/SignInTemplate';
 import { authOptions } from '@/lib/next-auth/authOptions';
 import { getServerSession } from 'next-auth';
@@ -9,5 +10,10 @@ export default async function SignIn() {
   if (session?.user?.id) {
     redirect('/dashboard');
   }
-  return <SignInTemplate />;
+  return (
+    <>
+      <Navigation session={session} />
+      <SignInTemplate />;
+    </>
+  );
 }

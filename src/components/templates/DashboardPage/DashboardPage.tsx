@@ -15,7 +15,6 @@ const DashboardPage = () => {
   if (session && status === 'authenticated') {
     return (
       <>
-        <Navigation connected />
         <Main>
           <Wrapper>
             <h1>Bienvenue, {session.user?.name} sur votre espace personnel</h1>

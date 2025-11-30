@@ -18,11 +18,10 @@ import BurgerMenu from './BurgerMenu';
 import Logo from './Logo';
 import { useSession } from 'next-auth/react';
 import LoginButton from '@/components/atoms/Button/loginButton';
+import { Session } from 'next-auth';
 
 interface NavigationProps {
-  connected: boolean;
-  pageTitle?: string;
-  description?: string;
+  session: Session | null;
 }
 
 const useIsMobile = () => {
@@ -89,17 +88,16 @@ const AuthLinks = ({ pathname }: { pathname: string }) => (
   </>
 );
 
-const Navigation = ({ connected }: NavigationProps): JSX.Element => {
+const Navigation = ({ session }: NavigationProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
-  const { data: session } = useSession();
   const isMobile = useIsMobile();
-  const isConnected = connected ?? Boolean(session?.user);
+  const isConnected = !!session;
 
   return (
-    <Wrapper $connected={connected}>
+    <Wrapper $connected={isConnected}>
       <NavBarContainer role="navigation" aria-label="Menu principal">
-        <Logo connected={connected} />
+        <Logo connected={isConnected} />
 
         {!isMobile && (
           <NavBarList>

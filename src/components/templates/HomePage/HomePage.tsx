@@ -30,11 +30,6 @@ export default function HomePage() {
   const pathname = usePathname();
   return (
     <>
-      <Navigation
-        connected={false}
-        pageTitle={PageTitle.MovementForChange}
-        description={Description.ClimatActionTitle}
-      />
       <main>
         <HeroSection>
           <ImageWrapper>

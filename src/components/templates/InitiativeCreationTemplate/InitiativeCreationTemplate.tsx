@@ -37,9 +37,6 @@ const MainContent = styled.main`
 export default function InitiativeCreationTemplate() {
   return (
     <>
-      <Navigation 
-        connected
-      />
       <Header
         pageTitle={PageTitle.AssociationForm}
         description={Description.InitiativeToAssociation}

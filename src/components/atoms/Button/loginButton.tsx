@@ -9,9 +9,6 @@ export default function LoginButton() {
   const { data: session, status } = useCustomSession();
   const pathname = usePathname();
 
-  if (status === 'loading') {
-    return <p>Chargement...</p>;
-  }
   if (session && status === 'authenticated') {
     return (
       <>
