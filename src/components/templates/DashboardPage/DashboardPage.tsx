@@ -1,6 +1,8 @@
 'use client';
 
-import { Footer, Navigation } from '@/components/organisms';
+import { Navigation } from '@/components/organisms';
+import { Wrapper } from '@/components/shared';
+import useCustomSession from '@/hooks/useCustomSession';
 import styled from 'styled-components';
 
 const Main = styled('main')(({ theme }) => ({
@@ -8,15 +10,20 @@ const Main = styled('main')(({ theme }) => ({
 }));
 
 const DashboardPage = () => {
-  return (
-    <>
-      <Navigation />
-      <Main>
-        <h1>Bienvenue sur votre espace personnel</h1>
-      </Main>
-      <Footer />
-    </>
-  );
+  const { data: session, status } = useCustomSession();
+
+  if (session && status === 'authenticated') {
+    return (
+      <>
+        <Navigation connected />
+        <Main>
+          <Wrapper>
+            <h1>Bienvenue, {session.user?.name} sur votre espace personnel</h1>
+          </Wrapper>
+        </Main>
+      </>
+    );
+  }
 };
 
 export default DashboardPage;

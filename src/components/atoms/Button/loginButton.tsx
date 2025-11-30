@@ -1,28 +1,37 @@
 'use client';
 
 import useCustomSession from '@/hooks/useCustomSession';
+import { Button } from '@/styles/components';
 import { signIn, signOut } from 'next-auth/react';
+import { usePathname } from 'next/navigation';
 
-export default function Component() {
+export default function LoginButton() {
   const { data: session, status } = useCustomSession();
+  const pathname = usePathname();
 
   if (status === 'loading') {
     return <p>Chargement...</p>;
   }
-  if (session) {
+  if (session && status === 'authenticated') {
     return (
       <>
-        Connecté en tant que {session.user?.email} <br />
-        <button onClick={() => signOut({ callbackUrl: '/' })}>
+        <Button
+          onClick={() => signOut({ callbackUrl: '/' })}
+          aria-current={pathname === '/déconnexion' ? 'page' : undefined}
+        >
           Déconnexion
-        </button>
+        </Button>
       </>
     );
   }
   return (
     <>
-      Non connecté <br />
-      <button onClick={() => signIn()}>Connexion</button>
+      <Button
+        onClick={() => signIn()}
+        aria-current={pathname === '/connexion' ? 'page' : undefined}
+      >
+        Connexion
+      </Button>
     </>
   );
 }

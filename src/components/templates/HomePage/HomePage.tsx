@@ -20,12 +20,18 @@ import {
 } from './homePage.styles';
 import { Button } from '@/components/atoms';
 import CardWithImage from '@/components/molecules/Card/Card-with-image/CardWithImage';
-import { ButtonContainer } from '@/components/atoms/Button/button.styles';
+import {
+  ButtonContainer,
+  StyledButton,
+} from '@/components/atoms/Button/button.styles';
+import { usePathname } from 'next/navigation';
 
 export default function HomePage() {
+  const pathname = usePathname();
   return (
     <>
       <Navigation
+        connected={false}
         pageTitle={PageTitle.MovementForChange}
         description={Description.ClimatActionTitle}
       />
@@ -91,22 +97,28 @@ export default function HomePage() {
               </p>
             </TitleSection>
             <ButtonContainer>
-              <Button
-                backgroundColor="#F0EDEB"
-                color="#072A32"
-                backgroundColorHover="#072A32"
-                colorHover="#F0EDEB"
+              <StyledButton
+                href="/carte"
+                aria-current={pathname === '/carte' ? 'page' : undefined}
+                $backgroundColor="#F0EDEB"
+                $color="#072A32"
+                $backgroundColorHover="#072A32"
+                $colorHover="#F0EDEB"
+                $fontFamily
               >
                 Explorer la carte
-              </Button>
-              <Button
-                backgroundColor="#F0EDEB"
-                color="#072A32"
-                backgroundColorHover="#072A32"
-                colorHover="#F0EDEB"
+              </StyledButton>
+              <StyledButton
+                href="/liste"
+                aria-current={pathname === '/carte' ? 'page' : undefined}
+                $backgroundColor="#F0EDEB"
+                $color="#072A32"
+                $backgroundColorHover="#072A32"
+                $colorHover="#F0EDEB"
+                $fontFamily
               >
                 Regarder la liste
-              </Button>
+              </StyledButton>
             </ButtonContainer>
           </EngagementSection>
         </Section>
@@ -123,7 +135,12 @@ export default function HomePage() {
               vous inscrivant, vous pourrez ajouter une initiative.
             </p>
             <ButtonContainer>
-              <Button>Inscrivez-vous</Button>
+              <StyledButton
+                href="/inscription"
+                aria-current={pathname === '/inscription' ? 'page' : undefined}
+              >
+                Inscrivez-vous
+              </StyledButton>
             </ButtonContainer>
           </EngagementSection>
         </Section>

@@ -41,23 +41,40 @@ export const StyledLink = styled(Link)`
   },
 `;
 
-export const StyledButton = styled(Link)`
+interface StyledButtonProps {
+  $backgroundColor?: string;
+  $backgroundColorHover?: string;
+  $colorHover?: string;
+  $color?: string;
+  $fontFamily?: boolean;
+}
+
+export const StyledButton = styled(Link)<StyledButtonProps>`
   font-size: ${theme.typography.fontSizes.sm};
-  font-family: ${theme.typography.fontFamilies.bigHeading};
+  font-family: ${({ $fontFamily }) =>
+    $fontFamily
+      ? `${theme.typography.fontFamilies.body}`
+      : `${theme.typography.fontFamilies.bigHeading}`};
+  font-weight: bold;
   text-transform: uppercase;
-  color: ${theme.colors.white};
-  background-color: ${theme.colors.backgroundGreen};
+  color: ${({ $color }) => ($color ? $color : `${theme.colors.white}`)};
+  background-color: ${({ $backgroundColor }) =>
+    $backgroundColor ? $backgroundColor : `${theme.colors.backgroundGreen}`};
   border-radius: 25px;
   border: 2px solid;
-  border-color: transparent;
-  padding: 12px 20px;
+  border-color: ${theme.colors.green};
+  padding: 16px 20px;
   letter-spacing: 0.125rem;
   transition: color 0.3s ease;
+  width: 240px;
+  text-align: center;
     
   &:hover {
     border: 2px solid;
     border-color: ${theme.colors.green};
-    background-color: transparent;
-    color: ${theme.colors.green};
+    background-color: ${({ $backgroundColorHover }) =>
+      $backgroundColorHover ? $backgroundColorHover : 'transparent'};
+    color: ${({ $colorHover }) =>
+      $colorHover ? $colorHover : `${theme.colors.green}`};
   },
 `;

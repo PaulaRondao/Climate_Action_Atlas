@@ -92,9 +92,9 @@ export const FlexContainer = styled.div<FlexContainerProps>`
 
 export const Button = styled.button`
   position: relative;
-  margin-top: ${theme.spacing.lg};
-  padding: ${theme.spacing.sm} ${theme.spacing.xl};
+  padding: 16px 32px;
   color: ${theme.colors.backgroundGreen};
+  font-weight: bold;
   background-color: transparent;
   border: 2px solid ${theme.colors.backgroundGreen};
   border-radius: ${theme.borderRadius.large};
@@ -103,21 +103,16 @@ export const Button = styled.button`
   font-size: ${theme.typography.fontSizes.md};
 
   &:hover {
-    border-color: ${theme.colors.fluoGreen};
-    color: ${theme.colors.fluoGreen};
+    border-color: ${theme.colors.backgroundGreen};
+    color: ${theme.colors.backgroundBeige};
+
+    background-color: ${theme.colors.backgroundGreen};
     -webkit-text-stroke: 0.5px ${theme.colors.backgroundGreen};
   }
 
   &:disabled {
     opacity: 0.5;
     cursor: not-allowed;
-  }
-
-  span {
-    display: flex;
-    gap: ${theme.spacing.sm};
-    justify-content: center;
-    align-items: center;
   }
 `;
 

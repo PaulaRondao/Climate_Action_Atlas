@@ -63,7 +63,7 @@ const seedDatabase = async () => {
       create: {
         firstName: 'user',
         lastName: 'userLastName',
-        userName: 'userName',
+        userName: 'Paula',
         email: 'user@mail.com',
         password: await bcrypt.hash('user', 10),
         createdAt,
