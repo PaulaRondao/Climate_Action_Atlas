@@ -24,7 +24,6 @@ const Layout: React.FC<LayoutProps> = ({
 }) => {
   return (
     <>
-      <Navigation />
       <Header pageTitle={pageTitle} description={description} />
       <Main>
         <Container maxWidth="lg">{children}</Container>

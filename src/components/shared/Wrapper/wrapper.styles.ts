@@ -29,7 +29,7 @@ export const Content = styled.div`
     line-height: 3.5rem;
   }
 
-  ${theme.breakpoints.desktop} {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     p {
       font-size: 3.5rem;
       line-height: 4.5rem;

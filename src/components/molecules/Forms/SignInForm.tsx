@@ -101,7 +101,13 @@ export default function SignInForm(): JSX.Element {
             />
           </FormGroup>
           <a href="/mot-de-passe-oublie">Mot de passe oublié ?</a>
-          <Button type="submit" disabled={!isValid} tabIndex={3}>
+          <Button
+            backgroundColorHover="none"
+            colorHover="none"
+            type="submit"
+            disabled={!isValid}
+            tabIndex={3}
+          >
             Me connecter
           </Button>
         </FormWrapper>

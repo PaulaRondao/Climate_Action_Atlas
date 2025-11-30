@@ -20,7 +20,7 @@ export const WelcomeSection = styled.div`
     text-align: center;
   }
 
-  ${theme.breakpoints.desktop} {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     max-width: 77%;
     margin-right: auto;
     margin-left: auto;
@@ -48,7 +48,7 @@ export const Wrapper = styled.div`
   margin-left: 0;
   text-align: center;
 
-  ${theme.breakpoints.desktop} {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     p {
       padding-right: 150px;
       padding-left: 150px;

@@ -1,6 +1,15 @@
+import { Navigation } from '@/components/organisms';
 import DashboardPage from '@/components/templates/DashboardPage/DashboardPage';
+import { authOptions } from '@/lib/next-auth/authOptions';
+import { getServerSession } from 'next-auth';
 import React from 'react';
 
-export default function Dashboard(): JSX.Element {
-  return <DashboardPage />;
+export default async function Dashboard() {
+  const session = await getServerSession(authOptions);
+  return (
+    <>
+      <Navigation session={session} />
+      <DashboardPage />;
+    </>
+  );
 }

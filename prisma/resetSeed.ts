@@ -5,6 +5,7 @@ const prisma = new PrismaClient();
 async function resetSeedDatabase() {
   try {
     await prisma.user.deleteMany();
+    await prisma.user.deleteMany();
     await prisma.initiative.deleteMany();
     await prisma.initiativeLocation.deleteMany();
 
