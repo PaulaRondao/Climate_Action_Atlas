@@ -24,7 +24,7 @@ export async function GET(
             userName: true,
             createdAt: true,
             updatedAt: true,
-          }
+          },
         },
         initiativeLocation: true,
       },

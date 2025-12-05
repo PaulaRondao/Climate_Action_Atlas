@@ -17,7 +17,7 @@ export async function GET(
       where: { id: userId },
       omit: {
         password: true,
-      }
+      },
     });
 
     if (!user) {
