@@ -9,7 +9,7 @@ export default async function SignUpPage() {
   return (
     <>
       <Navigation session={session} />
-      <RegisterTemplate />;
+      <RegisterTemplate />
     </>
   );
 }

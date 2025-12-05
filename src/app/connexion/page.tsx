@@ -13,7 +13,7 @@ export default async function SignIn() {
   return (
     <>
       <Navigation session={session} />
-      <SignInTemplate />;
+      <SignInTemplate />
     </>
   );
 }

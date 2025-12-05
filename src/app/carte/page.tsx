@@ -9,7 +9,7 @@ export default async function MapViewPage() {
   return (
     <>
       <Navigation session={session} />
-      <MapViewTemplate position={[46.232193, 2.209667]} />;
+      <MapViewTemplate position={[46.232193, 2.209667]} />
     </>
   );
 }

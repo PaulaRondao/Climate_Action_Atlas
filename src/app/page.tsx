@@ -9,7 +9,7 @@ export default async function Home() {
   return (
     <>
       <Navigation session={session} />
-      <HomePage />;
+      <HomePage />
     </>
   );
 }
