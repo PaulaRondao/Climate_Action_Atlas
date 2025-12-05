@@ -17,7 +17,15 @@ export async function GET(
     const initiative = await prisma.initiative.findUnique({
       where: { id: initiativeId },
       include: {
-        contributor: true,
+        contributor: {
+          select: {
+            id: true,
+            email: true,
+            userName: true,
+            createdAt: true,
+            updatedAt: true,
+          }
+        },
         initiativeLocation: true,
       },
     });
