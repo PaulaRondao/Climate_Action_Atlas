@@ -8,11 +8,7 @@ import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { useEffect, useState } from 'react';
-import {
-  InitiativesLabel,
-  InitiativeTypeToLabel,
-  LabelToInitiativeType,
-} from '@/constants';
+import { InitiativesLabel, LabelToInitiativeType } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
 

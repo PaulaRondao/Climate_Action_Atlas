@@ -36,7 +36,7 @@ model Initiative {
   initiativeType InitiativeType[] @map("initiative_type")
   narrative String?
   associationName String?
-  email String? @unique
+  email String?
   webSite String?                     
   createdAt DateTime @map("created_at") @default(now())
   updatedAt DateTime @map("updated_at") @updatedAt

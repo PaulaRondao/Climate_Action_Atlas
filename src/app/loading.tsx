@@ -37,7 +37,7 @@ export default function Loading() {
   return (
     <LoadingContainer>
       <Spinner />
-      <LoadingText>Chargement...</LoadingText>
+      <LoadingText>Chargement en cours...</LoadingText>
     </LoadingContainer>
   );
 }

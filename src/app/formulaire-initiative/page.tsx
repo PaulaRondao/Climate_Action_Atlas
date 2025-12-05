@@ -9,7 +9,7 @@ export default async function InitiativeCreationHome() {
   return (
     <>
       <Navigation session={session} />
-      <InitiativeCreationTemplate />;
+      <InitiativeCreationTemplate session={session} />
     </>
   );
 }

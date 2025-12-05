@@ -5,11 +5,11 @@ import { getServerSession } from 'next-auth';
 import React from 'react';
 
 export default async function Dashboard() {
-  const session = await getServerSession(authOptions);
+  const InitialSession = await getServerSession(authOptions);
   return (
     <>
-      <Navigation session={session} />
-      <DashboardPage />;
+      <Navigation session={InitialSession} />
+      <DashboardPage initialSession={InitialSession} />
     </>
   );
 }

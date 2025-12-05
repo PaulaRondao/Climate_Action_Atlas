@@ -3,8 +3,8 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { Navigation } from '@/components/organisms';
-import { PageTitle, Description, InitiativesLabel } from '@/types/enums/enums';
+import { Footer } from '@/components/organisms';
+import { InitiativesLabel } from '@/types/enums/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 
@@ -54,13 +54,19 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
   );
 
   return (
-    <PageWrapper>
-      <ContentWrapper>
-        <SidebarControl onChange={setSelectedType} />
-        <MapWrapper>
-          <MapView position={position} filteredInitiativeType={selectedType} />
-        </MapWrapper>
-      </ContentWrapper>
-    </PageWrapper>
+    <>
+      <PageWrapper>
+        <ContentWrapper>
+          <SidebarControl onChange={setSelectedType} />
+          <MapWrapper>
+            <MapView
+              position={position}
+              filteredInitiativeType={selectedType}
+            />
+          </MapWrapper>
+        </ContentWrapper>
+      </PageWrapper>
+      <Footer />
+    </>
   );
 }

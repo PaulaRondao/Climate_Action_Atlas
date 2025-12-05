@@ -7,6 +7,7 @@ import {
   SignContainer,
 } from '../SignInTemplate/signTemplate.styles';
 import RegisterForm from '@/components/molecules/Forms/RegisterForm';
+import { Footer } from '@/components/organisms';
 
 export default function RegisterTemplate() {
   return (
@@ -18,6 +19,7 @@ export default function RegisterTemplate() {
           </Container>
         </MainContent>
       </SignContainer>
+      <Footer />
     </>
   );
 }

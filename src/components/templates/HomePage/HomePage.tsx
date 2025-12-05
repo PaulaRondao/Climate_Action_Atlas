@@ -19,6 +19,7 @@ import {
   StyledLink,
 } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
+import { Footer } from '@/components/organisms';
 
 export default function HomePage() {
   const pathname = usePathname();
@@ -136,6 +137,7 @@ export default function HomePage() {
           </EngagementSection>
         </Section>
       </main>
+      <Footer />
     </>
   );
 }
