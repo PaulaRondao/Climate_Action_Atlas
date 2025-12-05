@@ -15,7 +15,6 @@ export default function LoginButton() {
     return (
       <>
         <ButtonWithIcon
-        
           onClick={() => signOut({ callbackUrl: '/' })}
           aria-current={pathname === '/déconnexion' ? 'page' : undefined}
         >

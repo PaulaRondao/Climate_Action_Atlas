@@ -1,10 +1,7 @@
 'use client';
 
 import React from 'react';
-import {
-  InitiativeOptions,
-  ActionsOption,
-} from '@/types/enums/enums';
+import { InitiativeOptions, ActionsOption } from '@/types/enums/enums';
 import { CardWithLogo } from '@/components/molecules';
 import Image from 'next/image';
 import {
@@ -45,7 +42,9 @@ export default function HomePage() {
             />
           </ImageWrapper>
           <HeroContent>
-            <h1>Un mouvement pour <span>changer</span></h1>
+            <h1>
+              Un mouvement pour <span>changer</span>
+            </h1>
             <p>
               Climate Action Atlas est un mouvement collectif engagé pour une
               action rapide, juste et inclusive face aux défis climatiques,

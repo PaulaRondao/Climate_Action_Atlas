@@ -31,8 +31,8 @@ export const HeroContent = styled.div`
     font-size: ${theme.typography.fontSizes.xxxxl};
     line-height: 1;
 
-  span {
-    color: ${theme.colors.fluoGreen};
+    span {
+      color: ${theme.colors.fluoGreen};
     }
   }
 
@@ -45,8 +45,8 @@ export const HeroContent = styled.div`
     position: absolute;
     top: 50%;
     left: 30%;
-  
-    h1 { 
+
+    h1 {
       font-size: ${theme.typography.fontSizes.xxxxl};
       line-height: 1;
     }
@@ -65,7 +65,7 @@ export const Section = styled.section<SectionProps>`
   color: ${({ $colorBeige }) => ($colorBeige ? '#F0EDEB' : '#072A32')};
   border-radius: 0 0 40px 40px;
 
-  @media (min-width: ${theme.breakpoints.desktop})  {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     padding: ${theme.spacing.xxl};
   }
 `;
