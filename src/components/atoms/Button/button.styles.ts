@@ -21,7 +21,7 @@ export const SpanContainer = styled.span`
   display: inline-block;
 `;
 
-export const StyledLink = styled(Link)`
+export const LinkWithIcon = styled(Link)`
   font-size: ${theme.typography.fontSizes.md};
   font-family: ${theme.typography.fontFamilies.bigHeading};
   text-transform: uppercase;
@@ -41,7 +41,7 @@ export const StyledLink = styled(Link)`
   },
 `;
 
-interface StyledButtonProps {
+interface StyledLinkProps {
   $backgroundColor?: string;
   $backgroundColorHover?: string;
   $colorHover?: string;
@@ -49,7 +49,7 @@ interface StyledButtonProps {
   $fontFamily?: boolean;
 }
 
-export const StyledButton = styled(Link)<StyledButtonProps>`
+export const StyledLink = styled(Link)<StyledLinkProps>`
   font-size: ${theme.typography.fontSizes.sm};
   font-family: ${({ $fontFamily }) =>
     $fontFamily
@@ -77,4 +77,36 @@ export const StyledButton = styled(Link)<StyledButtonProps>`
     color: ${({ $colorHover }) =>
       $colorHover ? $colorHover : `${theme.colors.green}`};
   },
+`;
+
+export const ButtonWithIcon = styled.button`
+  position: relative;
+  align-items: center;
+  text-align: center;
+  display: flex;
+  gap: 15px;
+  color: ${theme.colors.backgroundGreen};
+  font-weight: bold;
+  background-color: transparent;
+  border-left: none;
+  transition: ${theme.transitions.default};
+  text-transform: uppercase;
+  font-size: ${theme.typography.fontSizes.md};
+  width: 240px;
+
+  &:hover {
+    text-decoration: ${theme.colors.backgroundGreen} underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 4px;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    padding: 16px 24px;
+    border-left: 2px solid ${theme.colors.backgroundGreen};
+  }
 `;

@@ -80,7 +80,7 @@ export const NavBarContainer = styled.nav`
 export const NavBarList = styled.div`
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 30px;
   flex-direction: row;
   padding: 0 12px;
   }

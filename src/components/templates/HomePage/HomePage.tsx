@@ -2,12 +2,9 @@
 
 import React from 'react';
 import {
-  PageTitle,
-  Description,
   InitiativeOptions,
   ActionsOption,
 } from '@/types/enums/enums';
-import { Navigation } from '@/components/organisms';
 import { CardWithLogo } from '@/components/molecules';
 import Image from 'next/image';
 import {
@@ -18,11 +15,11 @@ import {
   Section,
   TitleSection,
 } from './homePage.styles';
-import { Button } from '@/components/atoms';
 import CardWithImage from '@/components/molecules/Card/Card-with-image/CardWithImage';
 import {
   ButtonContainer,
-  StyledButton,
+  LinkWithIcon,
+  StyledLink,
 } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
 
@@ -48,7 +45,7 @@ export default function HomePage() {
             />
           </ImageWrapper>
           <HeroContent>
-            <h1>Un mouvement pour changer</h1>
+            <h1>Un mouvement pour <span>changer</span></h1>
             <p>
               Climate Action Atlas est un mouvement collectif engagé pour une
               action rapide, juste et inclusive face aux défis climatiques,
@@ -92,7 +89,7 @@ export default function HomePage() {
               </p>
             </TitleSection>
             <ButtonContainer>
-              <StyledButton
+              <StyledLink
                 href="/carte"
                 aria-current={pathname === '/carte' ? 'page' : undefined}
                 $backgroundColor="#F0EDEB"
@@ -102,10 +99,10 @@ export default function HomePage() {
                 $fontFamily
               >
                 Explorer la carte
-              </StyledButton>
-              <StyledButton
+              </StyledLink>
+              <StyledLink
                 href="/liste"
-                aria-current={pathname === '/carte' ? 'page' : undefined}
+                aria-current={pathname === '/liste' ? 'page' : undefined}
                 $backgroundColor="#F0EDEB"
                 $color="#072A32"
                 $backgroundColorHover="#072A32"
@@ -113,7 +110,7 @@ export default function HomePage() {
                 $fontFamily
               >
                 Regarder la liste
-              </StyledButton>
+              </StyledLink>
             </ButtonContainer>
           </EngagementSection>
         </Section>
@@ -130,12 +127,12 @@ export default function HomePage() {
               vous inscrivant, vous pourrez ajouter une initiative.
             </p>
             <ButtonContainer>
-              <StyledButton
+              <StyledLink
                 href="/inscription"
                 aria-current={pathname === '/inscription' ? 'page' : undefined}
               >
                 Inscrivez-vous
-              </StyledButton>
+              </StyledLink>
             </ButtonContainer>
           </EngagementSection>
         </Section>
