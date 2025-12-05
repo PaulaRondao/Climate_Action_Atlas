@@ -12,7 +12,7 @@ interface ContainerProps {
   gap?: string;
 }
 
-export const Container = styled.section<ContainerProps>`
+export const Container = styled.div<ContainerProps>`
   display: flex;
   flex-direction: column;
   padding: ${theme.spacing.md};
