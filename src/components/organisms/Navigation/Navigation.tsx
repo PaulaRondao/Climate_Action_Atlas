@@ -10,13 +10,12 @@ import {
   Wrapper,
 } from './navbar.styles';
 import {
-  StyledButton,
+  LinkWithIcon,
   StyledLink,
 } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
 import BurgerMenu from './BurgerMenu';
 import Logo from './Logo';
-import { useSession } from 'next-auth/react';
 import LoginButton from '@/components/atoms/Button/loginButton';
 import { Session } from 'next-auth';
 
@@ -42,48 +41,48 @@ const useIsMobile = () => {
 
 const CommonLinks = ({ pathname }: { pathname: string }) => (
   <>
-    <StyledLink
+    <LinkWithIcon
       href="/liste"
       aria-current={pathname === '/liste' ? 'page' : undefined}
     >
       Liste
-    </StyledLink>
-    <StyledLink
+    </LinkWithIcon>
+    <LinkWithIcon
       href="/carte"
       aria-current={pathname === '/carte' ? 'page' : undefined}
     >
       Explorer la carte
-    </StyledLink>
-    <StyledButton
+    </LinkWithIcon>
+    <StyledLink
       href="/inscription"
       aria-current={pathname === '/inscription' ? 'page' : undefined}
     >
       S&apos;enregistrer
-    </StyledButton>
+    </StyledLink>
     <LoginButton></LoginButton>
   </>
 );
 
 const AuthLinks = ({ pathname }: { pathname: string }) => (
   <>
-    <StyledLink
+    <LinkWithIcon
       href="/liste"
       aria-current={pathname === '/liste' ? 'page' : undefined}
     >
       Liste
-    </StyledLink>
-    <StyledLink
+    </LinkWithIcon>
+    <LinkWithIcon
       href="/carte"
       aria-current={pathname === '/carte' ? 'page' : undefined}
     >
       Explorer la carte
-    </StyledLink>
-    <StyledLink
+    </LinkWithIcon>
+    <LinkWithIcon
       href="/formulaire-initiative"
       aria-current={pathname === '/formulaire-initiative' ? 'page' : undefined}
     >
       Ajouter une initiative
-    </StyledLink>
+    </LinkWithIcon>
     <LoginButton></LoginButton>
   </>
 );

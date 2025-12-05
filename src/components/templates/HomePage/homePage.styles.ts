@@ -21,17 +21,35 @@ export const HeroContent = styled.div`
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
+  text-align: left;
   color: ${theme.colors.white};
-  width: 90%;
-  max-width: 800px;
+  width: 80%;
+  max-width: 500px;
 
   h1 {
     margin-bottom: ${theme.spacing.xl};
+    font-size: ${theme.typography.fontSizes.xxxxl};
+    line-height: 1;
+
+    span {
+      color: ${theme.colors.fluoGreen};
+    }
   }
 
   p {
     font-weight: bold;
+  }
+
+  ${mediaQueries.desktop} {
+    width: 30%;
+    position: absolute;
+    top: 50%;
+    left: 30%;
+
+    h1 {
+      font-size: ${theme.typography.fontSizes.xxxxl};
+      line-height: 1;
+    }
   }
 `;
 
@@ -45,8 +63,9 @@ export const Section = styled.section<SectionProps>`
   background-color: ${({ $backgroundColorGreen }) =>
     $backgroundColorGreen ? '#072A32' : ''};
   color: ${({ $colorBeige }) => ($colorBeige ? '#F0EDEB' : '#072A32')};
+  border-radius: 0 0 40px 40px;
 
-  ${mediaQueries.desktop} {
+  @media (min-width: ${theme.breakpoints.desktop}) {
     padding: ${theme.spacing.xxl};
   }
 `;

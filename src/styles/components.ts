@@ -90,33 +90,6 @@ export const FlexContainer = styled.div<FlexContainerProps>`
   flex-wrap: ${({ wrap = false }) => (wrap ? 'wrap' : 'nowrap')};
 `;
 
-export const Button = styled.button`
-  position: relative;
-  padding: 16px 32px;
-  color: ${theme.colors.backgroundGreen};
-  font-weight: bold;
-  background-color: transparent;
-  border: 2px solid ${theme.colors.backgroundGreen};
-  border-radius: ${theme.borderRadius.large};
-  transition: ${theme.transitions.default};
-  text-transform: uppercase;
-  font-size: ${theme.typography.fontSizes.md};
-  width: 240px;
-
-  &:hover {
-    border-color: ${theme.colors.backgroundGreen};
-    color: ${theme.colors.backgroundBeige};
-
-    background-color: ${theme.colors.backgroundGreen};
-    -webkit-text-stroke: 0.5px ${theme.colors.backgroundGreen};
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-`;
-
 export const Card = styled.div`
   display: flex;
   flex-direction: column;
