@@ -33,7 +33,7 @@
     "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "next": "^15.3.3",
-    "next-auth": "^4.24.11",
+    "next-auth": "^4.24.12",
     "pino": "^10.1.0",
     "react": "^19.0.0-rc.1",
     "react-dom": "^19.0.0-rc.1",
