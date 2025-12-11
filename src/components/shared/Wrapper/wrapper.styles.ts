@@ -4,6 +4,10 @@ import { theme } from '@/styles/theme';
 export const Content = styled.div`
   width: 100%;
 
+  h1 {
+    margin-bottom: 40px;
+  }
+
   h3 {
     position: relative;
     flex: 0 0 auto;
@@ -24,16 +28,10 @@ export const Content = styled.div`
   }
 
   p {
-    font-size: 2rem;
-    font-weight: 600;
-    line-height: 3.5rem;
+    font-size: 1rem;
   }
 
   @media (min-width: ${theme.breakpoints.desktop}) {
-    p {
-      font-size: 3.5rem;
-      line-height: 4.5rem;
-    }
     margin: auto;
     padding: 0;
   }
