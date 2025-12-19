@@ -17,6 +17,7 @@ export async function GET(
       where: { id: userId },
       omit: {
         password: true,
+        loginAttempts: true,
       },
     });
 
@@ -34,7 +35,7 @@ export async function GET(
   }
 }
 
-export async function PUT(
+export async function PATCH(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
 ) {
@@ -46,12 +47,15 @@ export async function PUT(
     }
     const data: UpdateUserDTO = await request.json();
 
-    const user = await prisma.user.update({
+    await prisma.user.update({
       where: { id: userId },
       data,
     });
 
-    return NextResponse.json(user);
+    return NextResponse.json(
+      { error: 'User updated successfully' },
+      { status: 200 },
+    );
   } catch (error) {
     logger.error(error, 'Error updating user');
     return NextResponse.json(
@@ -75,7 +79,10 @@ export async function DELETE(
       where: { id: userId },
     });
 
-    return NextResponse.json({ message: 'User deleted successfully' });
+    return NextResponse.json({
+      message: 'User deleted successfully',
+      status: 204,
+    });
   } catch (error) {
     logger.error(error, 'Error deleting user');
     return NextResponse.json(

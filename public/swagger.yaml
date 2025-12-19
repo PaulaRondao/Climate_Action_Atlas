@@ -1,0 +1,375 @@
+openapi: 3.0.4
+
+info:
+  title: Climate Action Atlas API
+  version: 0.1.9
+  description: API to handle users and initiatives
+
+servers:
+  - url: http://climate-action-atlas.fr
+    description: Climate Action Atlas API
+
+paths:
+  /users:
+    get:
+      summary: Get all users
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+
+    post:
+      summary: Add a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserCreate'
+      responses:
+        '201':
+          description: User created successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /users/{userId}:
+    get:
+      summary: Get a user by ID
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '400':
+          description: Invalid ID
+        '404':
+          description: User not found
+        '500':
+          description: Internal server error
+
+    patch:
+      summary: Update a user by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UserUpdate'
+      responses:
+        '200':
+          description: User updated succesfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+    delete:
+      summary: Delete a user by ID
+      responses:
+        '204':
+          description: User deleted successfully
+
+  /initiatives:
+    get:
+      summary: Get all initiatives
+      responses:
+        '200':
+          description: A list of initiatives
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Initiative'
+
+    post:
+      security:
+        - bearerAuth: []
+      summary: Adds a new initiative
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiativeCreate'
+      responses:
+        '201':
+          description: Initiative created succesfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Initiative'
+
+  /initiatives/{initiativeId}:
+    get:
+      summary: Get an initiative by ID
+      parameters:
+        - in: path
+          name: initiativeId
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A single initiative
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Initiative'
+        '400':
+          description: Invalid ID
+        '500':
+          description: Internal server error
+        '404':
+          description: Initiative not found
+
+    patch:
+      security:
+        - bearerAuth: []
+      summary: Update a initiative by ID
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InitiativeUpdate'
+      responses:
+        '200':
+          description: Initiative updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Initiative'
+
+    delete:
+      security:
+        - bearerAuth: []
+      summary: Delete a initiative by ID
+      responses:
+        '204':
+          description: Initiative deleted successfully
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+        firstName:
+          type: string
+        lastName:
+          type: string
+        email:
+          type: string
+          format: email
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        initiatives:
+          type: array
+          items:
+            $ref: '#/components/schemas/Initiative'
+      required:
+        - id
+        - firstName
+        - lastName
+        - email
+        - createdAt
+        - updatedAt
+        - initiatives
+      example:
+        id: 1
+        firstName: Laura
+        lastName: Emir
+        userName: LauraE
+        email: laura.emir@mail.fr
+
+    UserCreate:
+      type: object
+      required:
+        - firstName
+        - lastName
+        - userName
+        - email
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        userName:
+          type: string
+        email:
+          type: string
+          format: email
+
+    UserUpdate:
+      type: object
+      properties:
+        firstName:
+          type: string
+        lastName:
+          type: string
+        userName:
+          type: string
+        email:
+          type: string
+          format: email
+
+    Initiative:
+      type: object
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        description:
+          type: string
+        initiativeType:
+          type: array
+          items:
+            $ref: '#/components/schemas/InitiativeType'
+        narrative:
+          type: string
+          nullable: true
+        associationName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+        website:
+          type: string
+          format: uri
+          nullable: true
+        contributor:
+          $ref: '#/components/schemas/User'
+        initiativeLocationId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - description
+        - initiativeType
+        - contributor
+        - initiativeLocationId
+        - createdAt
+        - updatedAt
+      example:
+        id: 2
+        name: Roule ma frite
+        description: Produire un carburant vert à base de d'huile de friture
+        initiativeType:
+          - ClimateAgricultureEnergy
+        associationName: Roule ma frite
+        contributor:
+          id: 1
+          firstName: Laura
+          lastName: Emir
+          userName: LauraE
+          email: laura.emir@mail.fr
+        initiativeLocationId: 1
+
+    InitiativeCreate:
+      type: object
+      required:
+        - name
+        - description
+        - initiativeType
+        - contributorId
+        - initiativeLocationId
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initiativeType:
+          type: array
+          items:
+            $ref: '#/components/schemas/InitiativeType'
+        narrative:
+          type: string
+          nullable: true
+        associationName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+        website:
+          type: string
+          format: uri
+          nullable: true
+        contributorId:
+          type: integer
+        initiativeLocationId:
+          type: integer
+
+    InitiativeUpdate:
+      type: object
+      properties:
+        name:
+          type: string
+        description:
+          type: string
+        initiativeType:
+          type: array
+          items:
+            $ref: '#/components/schemas/InitiativeType'
+        narrative:
+          type: string
+          nullable: true
+        associationName:
+          type: string
+          nullable: true
+        email:
+          type: string
+          format: email
+          nullable: true
+        website:
+          type: string
+          format: uri
+          nullable: true
+        initiativeLocationId:
+          type: integer
+
+    InitiativeType:
+      type: string
+      enum:
+        - ClimateAgricultureEnergy
+        - UrbanismAndTechnology
+        - SolidarityAndCommunities
+        - CultureAndTransmission
+        - EducationAndAwareness
+        - SocialAndSolidarityEconomy
