@@ -9,7 +9,7 @@ const SwaggerPage = () => {
   return (
     <div>
       <Wrapper>
-      <h1>API Documentation</h1>
+        <h1>API Documentation</h1>
       </Wrapper>
       <SwaggerUI url="swagger.yaml" />
     </div>
