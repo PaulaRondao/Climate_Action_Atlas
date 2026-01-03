@@ -21,17 +21,17 @@ Chaque utilisateur·rice peut contribuer à cette cartographie en ajoutant une i
 
 ### Tech Stack
 
-**Client:** NextJs, Typescript, Styled component
+- **Client:** NextJs, Typescript, Styled component
 
-**Server:** Node
+- **Server:** Node
 
-**ORM:** Prisma
+- **ORM:** Prisma
 
-**Backend:** PostgreSQL
+- **Backend:** PostgreSQL
 
-**Environnement:** Docker
+- **Environnement:** Docker
 
-**API:** Base Adresse Nationale (API) et leaflet (carte intéractive)
+- **API:** Base Adresse Nationale (API) et leaflet (carte intéractive)
 
 
 
