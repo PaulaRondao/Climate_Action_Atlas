@@ -9,6 +9,7 @@
 ➡️ [Review App Vercel](https://climate-action-atlas-git-main-paularondaos-projects.vercel.app/)  
 
 
+
 ## A propos du projet
 
 ### Cartographier les initiatives dans le monde qui font germer un avenir plus juste et durable.
@@ -18,6 +19,7 @@ Climate Action Atlas est une plateforme collaborative et interactive pensée pou
 La plateforme permet d’explorer des initiatives partout dans le monde, en naviguant par type d'impact.
 
 Chaque utilisateur·rice peut contribuer à cette cartographie en ajoutant une initiative via un formulaire simple en respectant leur souhait d’être anonymisé·e. Pour cela, la création d'un compte sur la plateforme est nécessaire.
+
 
 ### Tech Stack
 
@@ -34,6 +36,7 @@ Chaque utilisateur·rice peut contribuer à cette cartographie en ajoutant une i
 **API:** Base Adresse Nationale (API) et leaflet (carte intéractive)
 
 
+
 ## Run Locally
 
 Clone the project
@@ -47,6 +50,7 @@ Go to the project directory
 ```bash
   cd my-project
 ```
+
 
 
 ## Commencement
