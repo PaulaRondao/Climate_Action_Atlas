@@ -48,39 +48,6 @@ export async function GET(
   }
 }
 
-export async function PUT(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  try {
-    const { id } = await params;
-    const initiativeId = parseInt(id, 10);
-    if (isNaN(initiativeId)) {
-      return NextResponse.json({ error: 'Invalid ID' }, { status: 400 });
-    }
-    const data = await request.json();
-
-    const initiative = await prisma.initiative.update({
-      where: { id: initiativeId },
-      data: {
-        ...data,
-        updatedAt: new Date(),
-      },
-      include: {
-        contributor: true,
-      },
-    });
-
-    return NextResponse.json(initiative);
-  } catch (error) {
-    logger.error(error, 'Error updating initiative');
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
-  }
-}
-
 export async function DELETE(
   request: Request,
   { params }: { params: Promise<{ id: string }> },
@@ -95,7 +62,10 @@ export async function DELETE(
       where: { id: initiativeId },
     });
 
-    return NextResponse.json({ message: 'Initiative deleted successfully' });
+    return NextResponse.json({
+      message: 'Initiative deleted successfully',
+      status: 204,
+    });
   } catch (error) {
     logger.error(error, 'Error deleting initiative');
     return NextResponse.json(
@@ -120,7 +90,10 @@ export async function PATCH(
       data: { updatedAt: new Date() },
     });
 
-    return NextResponse.json({ message: 'Initiative updated successfully' });
+    return NextResponse.json({
+      message: 'Initiative updated successfully',
+      status: 200,
+    });
   } catch (error) {
     logger.error(error, 'Error updating initiative');
     return NextResponse.json(
