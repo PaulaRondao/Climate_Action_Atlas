@@ -5,7 +5,7 @@ import React from 'react';
 import SwaggerUI from 'swagger-ui-react';
 import 'swagger-ui-react/swagger-ui.css';
 
-const SwaggerPage = () => {
+const APIConnection = () => {
   return (
     <div>
       <Wrapper>
@@ -16,4 +16,4 @@ const SwaggerPage = () => {
   );
 };
 
-export default SwaggerPage;
+export default APIConnection;
