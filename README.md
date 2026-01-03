@@ -10,6 +10,16 @@ Ce projet réalisé sur Nextjs en Typescript comprend :
 - API : Base Adresse Nationale (API) et leaflet (carte intéractive)
 - Environnement : Docker
 
+## Tech Stack
+
+**Client:** NextJs, Styled component
+
+**Server:** Node
+
+**ORM:** Prisma
+
+**BBD:** PostgreSQL
+
 
 ## 🔗 Demo
 
@@ -24,7 +34,7 @@ Ce projet réalisé sur Nextjs en Typescript comprend :
 - Docker 
 
 
-## installez des dépendances
+## Installation
 
 ```bash
 $ npm install
@@ -44,6 +54,16 @@ Créer un ficher .gitignore et ajouter .env dedans
 ```bash
 $ cp .gitignore
 ```
+
+
+## Environment Variables
+
+To run this project, you will need to add the following environment variables to your .env file
+
+`API_KEY`
+
+`ANOTHER_API_KEY`
+
 
 
 ## Logs
@@ -122,3 +142,17 @@ vous devez exécuter :
 ```bash
 npx prisma generate && next build
 ```
+
+
+## Deployment
+
+Pour déployer ce projet
+
+```bash
+  npm run deploy
+```
+
+
+## Screenshots
+
+![App Screenshot]()
