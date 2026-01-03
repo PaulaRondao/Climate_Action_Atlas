@@ -1,7 +1,7 @@
 openapi: 3.0.4
 
 info:
-  title: Climate Action Atlas API
+  title: Climate Action Atlas API Documentation
   version: 0.1.9
   description: API to handle users and initiatives
 
@@ -9,10 +9,20 @@ servers:
   - url: http://climate-action-atlas.fr
     description: Climate Action Atlas API
 
+tags:
+  - name: Users
+    description: User management
+  - name: Initiatives
+    description: Initiatives management
+  - name: Addresses
+    description: Address search via API French Gouv - Base Adresse Nationale
+
 paths:
   /users:
     get:
       summary: Get all users
+      tags:
+        - Users
       responses:
         '200':
           description: A list of users
@@ -24,7 +34,9 @@ paths:
                   $ref: '#/components/schemas/User'
 
     post:
-      summary: Add a new user
+      summary: Create a new user
+      tags:
+        - Users
       requestBody:
         required: true
         content:
@@ -42,6 +54,8 @@ paths:
   /users/{userId}:
     get:
       summary: Get a user by ID
+      tags:
+        - Users
       parameters:
         - in: path
           name: userId
@@ -64,6 +78,8 @@ paths:
 
     patch:
       summary: Update a user by ID
+      tags:
+        - Users
       requestBody:
         required: true
         content:
@@ -80,6 +96,8 @@ paths:
 
     delete:
       summary: Delete a user by ID
+      tags:
+        - Users
       responses:
         '204':
           description: User deleted successfully
@@ -87,6 +105,8 @@ paths:
   /initiatives:
     get:
       summary: Get all initiatives
+      tags:
+        - Initiatives
       responses:
         '200':
           description: A list of initiatives
@@ -98,9 +118,11 @@ paths:
                   $ref: '#/components/schemas/Initiative'
 
     post:
+      summary: Adds a new initiative
+      tags:
+        - Initiatives
       security:
         - bearerAuth: []
-      summary: Adds a new initiative
       requestBody:
         content:
           application/json:
@@ -117,6 +139,8 @@ paths:
   /initiatives/{initiativeId}:
     get:
       summary: Get an initiative by ID
+      tags:
+        - Initiatives
       parameters:
         - in: path
           name: initiativeId
@@ -138,9 +162,11 @@ paths:
           description: Initiative not found
 
     patch:
+      summary: Update a initiative by ID
+      tags:
+        - Initiatives
       security:
         - bearerAuth: []
-      summary: Update a initiative by ID
       requestBody:
         required: true
         content:
@@ -156,12 +182,64 @@ paths:
                 $ref: '#/components/schemas/Initiative'
 
     delete:
+      summary: Delete a initiative by ID
+      tags:
+        - Initiatives
       security:
         - bearerAuth: []
-      summary: Delete a initiative by ID
       responses:
         '204':
           description: Initiative deleted successfully
+
+  /addresses:
+    get:
+      summary: Search addresses via API Gouv
+      tags:
+        - Addresses
+      description: Fetches addresses from the French government API using a query parameter `q`.
+      parameters:
+        - in: query
+          name: q
+          required: true
+          schema:
+            type: string
+          description: The address query to search for
+      responses:
+        '200':
+          description: A list of addresses
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  features:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        properties:
+                          type: object
+                          properties:
+                            label:
+                              type: string
+                              description: Full address label
+                            city:
+                              type: string
+                            postcode:
+                              type: string
+                            x:
+                              type: number
+                              description: Longitude
+                            y:
+                              type: number
+                              description: Latitude
+                        geometry:
+                          type: object
+                          properties:
+                            coordinates:
+                              type: array
+                              items:
+                                type: number
 
 components:
   securitySchemes:
@@ -204,9 +282,9 @@ components:
       example:
         id: 1
         firstName: Laura
-        lastName: Emir
-        userName: LauraE
-        email: laura.emir@mail.fr
+        lastName: Rime
+        userName: Laura_R
+        email: laura.rime@mail.fr
 
     UserCreate:
       type: object
