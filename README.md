@@ -1,7 +1,5 @@
 # Climate Action Atlas
 
-<img align="left" alt="badge ci" src="https://github.com/PaulaRondao/Climate_Action_Atlas/actions/workflows/node.js.yml/badge.svg" />   
-
 
 ## 🔗 Demo
 
