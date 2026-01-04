@@ -1,10 +1,13 @@
 'use client';
 
 import Loading from '@/app/loading';
+import DeleteCard from '@/components/molecules/Card/Delete-Card/DeleteCard';
+import Table from '@/components/molecules/Table/Table';
 import { Footer } from '@/components/organisms';
 import { Wrapper } from '@/components/shared';
 import useCustomSession from '@/hooks/useCustomSession';
 import { Session } from 'next-auth';
+import Image from 'next/image';
 import styled from 'styled-components';
 
 const Main = styled('main')(({ theme }) => ({
@@ -32,6 +35,8 @@ const DashboardPage = ({ initialSession }: DashboardPageProps) => {
               Bienvenue, {displaySession?.user?.name} sur votre espace personnel
             </h1>
           )}
+          <Table></Table>
+          <DeleteCard></DeleteCard>
         </Wrapper>
       </Main>
       <Footer />

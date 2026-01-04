@@ -79,7 +79,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
 
       setTimeout(() => {
         window.location.href = '/dashboard';
-      }, 5000);
+      }, 3000);
     } catch (error) {
       console.error(error);
       setLoading(false);
