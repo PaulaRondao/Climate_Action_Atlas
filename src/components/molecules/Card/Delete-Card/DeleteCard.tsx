@@ -1,10 +1,12 @@
 import { SuccessNotification } from '@/components/atoms';
+import { useUser } from '@/hooks/useUser';
 import { Container } from '@/styles/components';
 import { Notification } from '@/types/Notification';
 import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
+import { signOut } from "next-auth/react";
 
 const CardWrapper = styled.div`
   display: flex;
@@ -13,15 +15,16 @@ const CardWrapper = styled.div`
   background-color: #ffffff;
   padding: 20px;
   border-radius: 15px;
+  margin-top: 60px;
 `;
 
 const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 280px;
+  width: 260px;
   gap: 10px;
-  padding: 10px 14px;
+  padding: 8px;
   color: #c4170d;
   font-weight: bold;
   border: 2px solid #c4170d;
@@ -30,57 +33,55 @@ const Button = styled.button`
 
   &:hover {
     cursor: pointer;
+    background-color: #c4170d2e;
+    box-shadow: 0 0 0 3px rgba(196, 23, 13, 0.2);
   }
 
   &:focus {
     border: 1px dashed var(--color-light-grey);
   }
+
+  &:focus-visible {
+    outline: 3px solid #000;
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
 `;
 
-export interface CardProps {
-  title: string;
-  message: string;
-}
-
-const Card: React.FC<CardProps> = ({ title, message }) => {
+const DeleteCard: React.FC = () => {
   const [notification, setNotification] = useState<Notification | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+
+  const { deleteUser, loading } = useUser();
+
   const { data: session } = useSession();
-  const userId = session?.user?.id;
+  const userId = Number(session?.user?.id);
 
   const handleDelete = async () => {
     setNotification(null);
-    setLoading(true);
 
-    try {
-      const response = await fetch(`/api/users/${userId}`, {
-        method: 'DELETE',
-      });
+    if (!userId) return;
 
-      if (!response.ok) {
-        setNotification({
-          status: 'error',
-          message: 'Erreur lors de la suppression',
-        });
-        return;
-      }
+    const success = await deleteUser(userId);
 
-      setNotification({
-        status: 'success',
-        message: "Ajout d'initiative réussi",
-      });
-
-      setTimeout(() => {
-        window.location.href = '/';
-      }, 5000);
-    } catch (error) {
-      console.error(error);
-      setLoading(false);
+    if (!success) {
       setNotification({
         status: 'error',
         message: 'Une erreur est survenue lors de la suppression du compte',
       });
+      return;
     }
+
+    setNotification({
+      status: 'success',
+      message: 'Suppression du compte utilisateur réussie',
+    });
+
+    setTimeout(() => {
+      signOut({ callbackUrl: '/' })
+    }, 3000);
   };
 
   return (
@@ -91,8 +92,11 @@ const Card: React.FC<CardProps> = ({ title, message }) => {
         </Container>
       ) : (
         <CardWrapper>
-          <h2>{title}</h2>
-          <p>{message}</p>
+          <h2>Suppression de compte</h2>
+          <p>
+            Une fois votre compte supprimé, toutes vos données seront
+            définitivement effacées. Cette action est irréversible.
+          </p>
           <Button onClick={handleDelete} disabled={loading}>
             {loading ? (
               'Suppression en cours'
@@ -109,4 +113,4 @@ const Card: React.FC<CardProps> = ({ title, message }) => {
   );
 };
 
-export default Card;
+export default DeleteCard;

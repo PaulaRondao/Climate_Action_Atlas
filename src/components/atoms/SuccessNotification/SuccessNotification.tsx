@@ -12,6 +12,8 @@ const NotificationContainer = styled.div`
   font-weight: bold;
   align-items: center;
   display: flex;
+  border: 1px solid #127a27;
+  border-radius: 4px;
 
   p {
     flex: 1;
@@ -21,7 +23,6 @@ const NotificationContainer = styled.div`
     width: 2em;
     height: 2em;
     padding: 0 8px 0 0;
-    color: var(--color-green-dark);
   }
 `;
 

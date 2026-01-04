@@ -1,7 +1,7 @@
 'use client';
 
 import Loading from '@/app/loading';
-import Card from '@/components/molecules/Card/Card/Card';
+import DeleteCard from '@/components/molecules/Card/Delete-Card/DeleteCard';
 import Table from '@/components/molecules/Table/Table';
 import { Footer } from '@/components/organisms';
 import { Wrapper } from '@/components/shared';
@@ -36,11 +36,7 @@ const DashboardPage = ({ initialSession }: DashboardPageProps) => {
             </h1>
           )}
           <Table></Table>
-          <Card
-            title="Suppression de compte"
-            message="Une fois votre compte supprimé, toutes vos données seront
-              définitivement effacées. Cette action est irréviersible."
-          ></Card>
+          <DeleteCard></DeleteCard>
         </Wrapper>
       </Main>
       <Footer />

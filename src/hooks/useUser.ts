@@ -81,7 +81,11 @@ export const useUser = () => {
       }
       return true;
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+      setError(
+        err instanceof Error
+          ? err.message
+          : 'Une erreur est survenue lors de la suppression du compte',
+      );
       return false;
     } finally {
       setLoading(false);
