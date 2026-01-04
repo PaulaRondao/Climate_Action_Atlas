@@ -6,7 +6,7 @@ import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import React, { useState } from 'react';
 import styled from 'styled-components';
-import { signOut } from "next-auth/react";
+import { signOut } from 'next-auth/react';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -80,7 +80,7 @@ const DeleteCard: React.FC = () => {
     });
 
     setTimeout(() => {
-      signOut({ callbackUrl: '/' })
+      signOut({ callbackUrl: '/' });
     }, 3000);
   };
 

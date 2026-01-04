@@ -105,9 +105,10 @@ const Table = (): JSX.Element => {
     const result = await getInitiatives(1, 5);
     if (!result) return;
 
-    const initiativeByUser = result?.initiatives?.filter(
-    (initiative) => initiative.contributorId === userId
-  ) || [];
+    const initiativeByUser =
+      result?.initiatives?.filter(
+        (initiative) => initiative.contributorId === userId,
+      ) || [];
 
     setInitiatives(initiativeByUser);
   }, [userId, getInitiatives]);
