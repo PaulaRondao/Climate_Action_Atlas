@@ -4,4 +4,4 @@ export { default as InitiativeCreationTemplate } from './InitiativeCreationTempl
 export { default as SignInTemplate } from './SignInTemplate/SignInTemplate';
 export { default as RegisterTemplate } from './RegisterTemplate/RegisterTemplate';
 export { default as LegalNoticesPage } from './LegalNoticesPage/LegalNoticesPage';
-export { default as LegacyPolicyPage } from './LegacyPolicyPage/LegacyPolicyPage';
+export { default as LegacyPolicyTemplate } from './LegacyPolicyTemplate/LegacyPolicyTemplate';
