@@ -4,7 +4,6 @@ import { authOptions } from '@/lib/next-auth/authOptions';
 import { getServerSession } from 'next-auth';
 import React from 'react';
 
-
 export default async function LegacyPolicy() {
   const session = await getServerSession(authOptions);
   return (

@@ -25,12 +25,11 @@ const ContentWrapper = styled.div`
 `;
 
 export default function LegacyPolicyTemplate() {
-
   return (
     <>
       <PageWrapper>
         <ContentWrapper>
-            <LegacyPolicyPage></LegacyPolicyPage>
+          <LegacyPolicyPage></LegacyPolicyPage>
         </ContentWrapper>
       </PageWrapper>
       <Footer />

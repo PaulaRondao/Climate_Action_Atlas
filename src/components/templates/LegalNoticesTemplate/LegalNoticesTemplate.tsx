@@ -6,7 +6,6 @@ import { theme } from '@/styles/theme';
 import { Footer } from '@/components/organisms';
 import LegalNoticesPage from './LegalNoticesPage';
 
-
 const PageWrapper = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,12 +25,11 @@ const ContentWrapper = styled.div`
 `;
 
 export default function LegalNoticesTemplate() {
-
   return (
     <>
       <PageWrapper>
         <ContentWrapper>
-            <LegalNoticesPage></LegalNoticesPage>
+          <LegalNoticesPage></LegalNoticesPage>
         </ContentWrapper>
       </PageWrapper>
       <Footer />
