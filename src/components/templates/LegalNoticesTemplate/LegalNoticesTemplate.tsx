@@ -4,7 +4,8 @@ import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Footer } from '@/components/organisms';
-import LegacyPolicyPage from './LegacyPolicyPage';
+import LegalNoticesPage from './LegalNoticesPage';
+
 
 const PageWrapper = styled.div`
   display: flex;
@@ -24,13 +25,13 @@ const ContentWrapper = styled.div`
   }
 `;
 
-export default function LegacyPolicyTemplate() {
+export default function LegalNoticesTemplate() {
 
   return (
     <>
       <PageWrapper>
         <ContentWrapper>
-            <LegacyPolicyPage></LegacyPolicyPage>
+            <LegalNoticesPage></LegalNoticesPage>
         </ContentWrapper>
       </PageWrapper>
       <Footer />
