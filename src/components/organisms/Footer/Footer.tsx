@@ -7,6 +7,7 @@ import { mediaQueries } from '@/styles/globalStyles';
 import Image from 'next/image';
 import SVGIMG from '../../../../public/logo/logo-full-climate-white.svg';
 import ContentInfo from './content-info/ContentInfo';
+import { usePathname } from 'next/navigation';
 
 const FooterContainer = styled.footer`
   background-color: ${theme.colors.backgroundGreen};
@@ -122,6 +123,7 @@ const CopyrightText = styled.p`
 `;
 
 export default function Footer() {
+  const pathname = usePathname();
   return (
     <FooterContainer role="contentinfo">
       <MainFooterContainer>
@@ -141,19 +143,43 @@ export default function Footer() {
         <SecondaryFooterContent>
           <LegalLinks>
             <li>
-              <Link href="/mentions-legales">Mentions Légales</Link>
+              <Link
+                href="/mentions-legales"
+                passHref
+                aria-current={
+                  pathname === '/mentions-legales' ? 'page' : undefined
+                }
+              >
+                Mentions Légales
+              </Link>
             </li>
             <li>
-              <Link href="/politique-confidentialite">
+              <Link
+                href="/politique-de-confidentialite"
+                passHref
+                aria-current={
+                  pathname === '/politique-de-confidentialite'
+                    ? 'page'
+                    : undefined
+                }
+              >
                 Politique de confidentialité
               </Link>
             </li>
             <li>
-              <Link href="/politique-cookies">Politique de cookies</Link>
+              <Link
+                href="/politique-cookies"
+                passHref
+                aria-current={
+                  pathname === '/politique-cookies' ? 'page' : undefined
+                }
+              >
+                Politique de cookies
+              </Link>
             </li>
           </LegalLinks>
           <CopyrightText>
-            © 2024 Paula Rondao. All rights reserved.
+            © 2026 Paula Rondao. All rights reserved.
           </CopyrightText>
         </SecondaryFooterContent>
       </SecondaryFooter>
