@@ -70,6 +70,24 @@ export const Section = styled.section<SectionProps>`
   }
 `;
 
+export const SectionWithMap = styled.section`
+  padding: ${theme.spacing.xxl} ${theme.spacing.md};
+
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    display: flex;
+    align-items: center;
+    padding: ${theme.spacing.xxl};
+  }
+`;
+
+export const MapWrapper = styled.div`
+  display: none;
+
+  @media (min-width: ${theme.breakpoints.desktop}) {
+    display: block;
+  }
+`;
+
 export const CardGrid = styled.div`
   display: grid;
   grid-template-columns: repeat(1, 1fr);
@@ -109,16 +127,23 @@ export const TitleSection = styled.div<TitleSectionProps>`
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight : `${theme.typography.lineHeights.heading}`};
     text-align: center;
+    text-transform: uppercase;
   }
+
   p {
     font-size: ${({ $fontSizeText }) =>
       $fontSizeText ? $fontSizeText : `${theme.typography.fontSizes.md}`};
-    font-family: ${({ $fontFamily }) =>
-      $fontFamily ? $fontFamily : `${theme.typography.fontFamilies.heading}`};
     line-height: ${({ $lineHeightText }) =>
       $lineHeightText
         ? $lineHeightText
         : `${theme.typography.lineHeights.body}`};
+  }
+
+  hr {
+    width: 113px;
+    margin: ${theme.spacing.md} auto;
+    border: none;
+    border-top: 2px solid ${theme.colors.fluoGreen};
   }
 
   ${mediaQueries.desktop} {

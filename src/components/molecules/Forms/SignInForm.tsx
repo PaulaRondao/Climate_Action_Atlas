@@ -78,12 +78,14 @@ export default function SignInForm(): JSX.Element {
           )}
 
           <FormGroup>
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email">
+              Email (format attendu: exemple@mail.fr)
+            </Label>
             <Input
               id="email"
               {...methods.register('email')}
               name="email"
-              placeholder="Ex: prenom.nom@mail.com"
+              placeholder="Saisissez votre email"
               type="email"
               tabIndex={1}
             />
@@ -95,7 +97,7 @@ export default function SignInForm(): JSX.Element {
               id="password"
               {...methods.register('password')}
               name="password"
-              placeholder="Mot de passe"
+              placeholder="Saisissez votre de passe"
               type="password"
               tabIndex={2}
             />

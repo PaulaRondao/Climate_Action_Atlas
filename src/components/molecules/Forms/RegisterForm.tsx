@@ -96,13 +96,15 @@ const RegisterForm = () => {
       {globalError && <GlobalError>{globalError}</GlobalError>}
       <h1>Bienvenue !</h1>
       <p>Veuillez saisir vos informations pour la création de votre espace</p>
+
+      <p>Tous les champs du formulaire sont obligatoires</p>
       <FormGroup>
         <Label htmlFor="firstName">Prénom</Label>
         <Input
           id="firstName"
           type="text"
           {...register('firstName')}
-          placeholder="Votre prénom"
+          placeholder="Saisissez votre prénom"
         />
         {errors.firstName && (
           <ErrorMessage>{errors.firstName.message}</ErrorMessage>
@@ -115,7 +117,7 @@ const RegisterForm = () => {
           id="lastName"
           type="text"
           {...register('lastName')}
-          placeholder="Votre nom"
+          placeholder="Saisissez votre nom"
         />
         {errors.lastName && (
           <ErrorMessage>{errors.lastName.message}</ErrorMessage>
@@ -131,7 +133,7 @@ const RegisterForm = () => {
           id="userName"
           type="text"
           {...register('userName')}
-          placeholder="Nom d'utilisateur·trice"
+          placeholder="Saisissez votre nom d'utilisateur·trice"
         />
         {errors.lastName && (
           <ErrorMessage>{errors.lastName.message}</ErrorMessage>
@@ -139,12 +141,12 @@ const RegisterForm = () => {
       </FormGroup>
 
       <FormGroup>
-        <Label htmlFor="email">Email</Label>
+        <Label htmlFor="email">Email (format attendu : exemple@mail.fr)</Label>
         <Input
           id="email"
           type="email"
           {...register('email')}
-          placeholder="votre@email.com"
+          placeholder="Saisissez votre adresse email"
         />
         {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
       </FormGroup>
@@ -159,7 +161,7 @@ const RegisterForm = () => {
           id="password"
           type="password"
           {...register('password')}
-          placeholder="Votre mot de passe"
+          placeholder="Saisissez votre mot de passe"
         />
         {errors.password && (
           <ErrorMessage>{errors.password.message}</ErrorMessage>

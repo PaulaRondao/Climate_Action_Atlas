@@ -27,6 +27,7 @@ const CardWithImage: React.FC<CardWithImageProps> = ({ actionsOption }) => (
           </ImageContainer>
           <CardContent>
             <h3>{action.title}</h3>
+            <hr />
             <p>{action.description}</p>
           </CardContent>
         </CardWrapper>
