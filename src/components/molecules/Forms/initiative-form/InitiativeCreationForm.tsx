@@ -113,7 +113,12 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                     n&apos;en a pas&nbsp;:
                   </p>
                 </Label>
-                <Input id="name" type="text" placeholder="Saisir le nom de l'initiative" {...methods.register('name')} />
+                <Input
+                  id="name"
+                  type="text"
+                  placeholder="Saisir le nom de l'initiative"
+                  {...methods.register('name')}
+                />
                 {methods.formState.errors.name && (
                   <ErrorMessage>
                     {methods.formState.errors.name.message}
@@ -131,7 +136,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 </Label>
                 <TextareaRow
                   id="description"
-                  placeholder='Saisir une courte description...'
+                  placeholder="Saisir une courte description..."
                   {...methods.register('description')}
                   rows={6}
                 />
@@ -160,7 +165,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 </Label>
                 <TextareaRow
                   id="narrative"
-                  placeholder='Raconter votre expérience...'
+                  placeholder="Raconter votre expérience..."
                   {...methods.register('narrative')}
                   rows={10}
                 />
@@ -196,7 +201,12 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                   Adresse e-mail de l&apos;association (si existante)
                   <p>Format attendu : asso@email.com</p>
                 </Label>
-                <Input id="email" type="email" placeholder="Saisir l'adresse email" {...methods.register('email')} />
+                <Input
+                  id="email"
+                  type="email"
+                  placeholder="Saisir l'adresse email"
+                  {...methods.register('email')}
+                />
               </FormGroup>
 
               <FormGroup>

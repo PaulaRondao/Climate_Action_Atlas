@@ -61,7 +61,8 @@ const List = styled.li<{ $active?: boolean }>`
   gap: 8px;
   padding: 8px;
   background-color: ${({ $active }) => ($active ? '#d9ead3' : 'white')};
-  border: ${({ $active }) => ($active ? '1px solid var(--foreground-green)' : '1px solid white')};
+  border: ${({ $active }) =>
+    $active ? '1px solid var(--foreground-green)' : '1px solid white'};
   border-radius: 8px;
 
   button {

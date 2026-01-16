@@ -86,8 +86,7 @@ export const MapWrapper = styled.div`
   @media (min-width: ${theme.breakpoints.desktop}) {
     display: block;
   }
-
-`
+`;
 
 export const CardGrid = styled.div`
   display: grid;
@@ -138,7 +137,6 @@ export const TitleSection = styled.div<TitleSectionProps>`
       $lineHeightText
         ? $lineHeightText
         : `${theme.typography.lineHeights.body}`};
-  
   }
 
   hr {

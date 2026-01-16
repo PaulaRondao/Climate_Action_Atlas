@@ -78,7 +78,9 @@ export default function SignInForm(): JSX.Element {
           )}
 
           <FormGroup>
-            <Label htmlFor="email">Email (format attendu: exemple@mail.fr)</Label>
+            <Label htmlFor="email">
+              Email (format attendu: exemple@mail.fr)
+            </Label>
             <Input
               id="email"
               {...methods.register('email')}

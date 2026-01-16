@@ -96,7 +96,7 @@ const RegisterForm = () => {
       {globalError && <GlobalError>{globalError}</GlobalError>}
       <h1>Bienvenue !</h1>
       <p>Veuillez saisir vos informations pour la création de votre espace</p>
-      
+
       <p>Tous les champs du formulaire sont obligatoires</p>
       <FormGroup>
         <Label htmlFor="firstName">Prénom</Label>
