@@ -10,12 +10,13 @@ import {
   HeroSection,
   ImageWrapper,
   Section,
+  SectionWithMap,
   TitleSection,
+  MapWrapper,
 } from './homePage.styles';
 import CardWithImage from '@/components/molecules/Card/Card-with-image/CardWithImage';
 import {
   ButtonContainer,
-  LinkWithIcon,
   StyledLink,
 } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
@@ -63,6 +64,7 @@ export default function HomePage() {
           >
             <h2>Ce que propose</h2>
             <p> climate atlas action</p>
+            <hr />
           </TitleSection>
           <CardWithImage actionsOption={ActionsOption}></CardWithImage>
         </Section>
@@ -74,7 +76,7 @@ export default function HomePage() {
           <CardWithLogo initiatives={InitiativeOptions}></CardWithLogo>
         </Section>
 
-        <Section>
+        <SectionWithMap>
           <EngagementSection>
             <TitleSection
               $gap="16px"
@@ -113,7 +115,16 @@ export default function HomePage() {
               </StyledLink>
             </ButtonContainer>
           </EngagementSection>
-        </Section>
+          <MapWrapper>
+          <Image
+              src="/images/France-map.svg"
+              alt=""
+              width={500}
+              height={500}
+              priority
+            />
+          </MapWrapper>
+        </SectionWithMap>
 
         <Section>
           <EngagementSection>

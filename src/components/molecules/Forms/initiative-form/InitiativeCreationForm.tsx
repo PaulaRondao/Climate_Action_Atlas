@@ -101,8 +101,8 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
           <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
             <>
               <TitleSection>
-                <h3>Votre recherche</h3>
-                <span>* Champs obligatoires</span>
+                <h3>Ajouter une initiative</h3>
+                <span>Tous les champs marqués (*) sont obligatoires.</span>
               </TitleSection>
 
               <FormGroup>
@@ -113,7 +113,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                     n&apos;en a pas&nbsp;:
                   </p>
                 </Label>
-                <Input id="name" type="text" {...methods.register('name')} />
+                <Input id="name" type="text" placeholder="Saisir le nom de l'initiative" {...methods.register('name')} />
                 {methods.formState.errors.name && (
                   <ErrorMessage>
                     {methods.formState.errors.name.message}
@@ -131,6 +131,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 </Label>
                 <TextareaRow
                   id="description"
+                  placeholder='Saisir une courte description...'
                   {...methods.register('description')}
                   rows={6}
                 />
@@ -159,6 +160,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 </Label>
                 <TextareaRow
                   id="narrative"
+                  placeholder='Raconter votre expérience...'
                   {...methods.register('narrative')}
                   rows={10}
                 />
@@ -171,6 +173,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 <Input
                   id="associationName"
                   type="text"
+                  placeholder="Saisir le nom de l'association"
                   {...methods.register('associationName')}
                 />
               </FormGroup>
@@ -193,7 +196,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                   Adresse e-mail de l&apos;association (si existante)
                   <p>Format attendu : asso@email.com</p>
                 </Label>
-                <Input id="email" type="email" {...methods.register('email')} />
+                <Input id="email" type="email" placeholder="Saisir l'adresse email" {...methods.register('email')} />
               </FormGroup>
 
               <FormGroup>
@@ -206,6 +209,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 <Input
                   id="webSite"
                   type="url"
+                  placeholder="Saisir l'adresse du site web"
                   {...methods.register('webSite')}
                 />
               </FormGroup>

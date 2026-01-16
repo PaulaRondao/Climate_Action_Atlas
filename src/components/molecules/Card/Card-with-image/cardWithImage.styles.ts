@@ -25,6 +25,15 @@ export const CardContent = styled.div`
   h3 {
     font-weight: bold;
     line-height: 1.5rem;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+  }
+
+  hr {
+    width: 40px;
+    padding: 4px;
+    border: none;
+    border-top: 2px solid ${theme.colors.fluoGreen};
   }
 `;
 

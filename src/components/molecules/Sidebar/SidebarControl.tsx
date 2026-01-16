@@ -61,6 +61,14 @@ const List = styled.li<{ $active?: boolean }>`
   gap: 8px;
   padding: 8px;
   background-color: ${({ $active }) => ($active ? '#d9ead3' : 'white')};
+  border: ${({ $active }) => ($active ? '1px solid var(--foreground-green)' : '1px solid white')};
+  border-radius: 8px;
+
+  button {
+    align-items: center;
+    display: flex;
+    gap: 8px;
+  }
 `;
 
 interface SidebarControlProps {
@@ -98,11 +106,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
               $active={
                 selectedType === InitiativesLabel.ClimateAgricultureEnergy
               }
-              onClick={() =>
-                handleSelect(InitiativesLabel.ClimateAgricultureEnergy)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.ClimateAgricultureEnergy)
+                }
+              >
                 <Image src="/icons/climat.svg" alt="" width={34} height={34} />
                 Climat, Agriculture et Énergie
               </button>
@@ -110,11 +119,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
 
             <List
               $active={selectedType === InitiativesLabel.CultureAndTransmission}
-              onClick={() =>
-                handleSelect(InitiativesLabel.CultureAndTransmission)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.CultureAndTransmission)
+                }
+              >
                 <Image src="/icons/culture.svg" alt="" width={34} height={34} />
                 Culture et Transmission
               </button>
@@ -122,11 +132,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
 
             <List
               $active={selectedType === InitiativesLabel.EducationAndAwareness}
-              onClick={() =>
-                handleSelect(InitiativesLabel.EducationAndAwareness)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.EducationAndAwareness)
+                }
+              >
                 <Image
                   src="/icons/education.svg"
                   alt=""
@@ -141,11 +152,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
               $active={
                 selectedType === InitiativesLabel.SolidarityAndCommunities
               }
-              onClick={() =>
-                handleSelect(InitiativesLabel.SolidarityAndCommunities)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.SolidarityAndCommunities)
+                }
+              >
                 <Image
                   src="/icons/solidarite.svg"
                   alt=""
@@ -160,11 +172,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
               $active={
                 selectedType === InitiativesLabel.SocialAndSolidarityEconomy
               }
-              onClick={() =>
-                handleSelect(InitiativesLabel.SocialAndSolidarityEconomy)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.SocialAndSolidarityEconomy)
+                }
+              >
                 <Image
                   src="/icons/economie.svg"
                   alt=""
@@ -177,11 +190,12 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
 
             <List
               $active={selectedType === InitiativesLabel.UrbanismAndTechnology}
-              onClick={() =>
-                handleSelect(InitiativesLabel.UrbanismAndTechnology)
-              }
             >
-              <button>
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.UrbanismAndTechnology)
+                }
+              >
                 <Image
                   src="/icons/urbanisme.svg"
                   alt=""
