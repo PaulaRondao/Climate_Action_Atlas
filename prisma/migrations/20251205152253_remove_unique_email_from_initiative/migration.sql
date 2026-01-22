@@ -1,2 +1,2 @@
 -- DropIndex
-DROP INDEX "sample"."Initiative_email_key";
+DROP INDEX "public"."Initiative_email_key";

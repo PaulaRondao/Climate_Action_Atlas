@@ -32,7 +32,7 @@ const DashboardPage = ({ initialSession }: DashboardPageProps) => {
           {displayLoading && <Loading />}
           {authenticatedUser && (
             <h1>
-              Bienvenue, {displaySession?.user?.name} sur votre espace personnel
+              Bienvenue {displaySession?.user?.name}, sur votre espace personnel
             </h1>
           )}
           <Table></Table>

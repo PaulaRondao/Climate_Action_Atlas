@@ -8,9 +8,17 @@ import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { useEffect, useState } from 'react';
-import { InitiativesLabel, LabelToInitiativeType } from '@/constants';
+import {
+  InitiativesLabel,
+  initiativesLabelTypeObject,
+  InitiativeTypeToLabel,
+  LabelToInitiativeType,
+} from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
+import { Paragraphe, Title } from './MapView.style';
+import { useRouter } from 'next/navigation';
+import { formattedDate } from '@/components/helpers/helper';
 
 L.Icon.Default.mergeOptions({
   iconRetinaUrl: iconRetina.src,
@@ -26,11 +34,13 @@ interface MapViewProps {
   filteredInitiativeType: InitiativesLabel | null;
 }
 
-export default function MapView({
+const MapView = ({
   position,
   zoom = 6,
   filteredInitiativeType,
-}: MapViewProps) {
+}: MapViewProps) => {
+  const router = useRouter();
+
   const { getInitiatives, loading, error } = useInitiatives();
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
 
@@ -78,9 +88,56 @@ export default function MapView({
           return (
             <Marker key={initiative.id} position={[lat, lon]}>
               <Popup>
-                <strong>{initiative.name}</strong>
-                <br />
-                {initiative.description || 'Pas de description'}
+                <header role="banner">
+                  <Title>{initiative.name}</Title>
+                </header>
+                <hr></hr>
+                <main role="main">
+                  <Paragraphe>{initiative.description}</Paragraphe>
+                  <hr></hr>
+                  <Paragraphe>
+                    <span>Adresse : </span>
+                    {`${initiative.initiativeLocation?.postcode} ${initiative.initiativeLocation?.street}, ${initiative.initiativeLocation?.city} `}
+                  </Paragraphe>
+                  {initiative.initiativeType.map((type) => (
+                    <Paragraphe key={type}>
+                      <span>Type d&apos;impact : </span>
+                      {InitiativeTypeToLabel[type]}
+                    </Paragraphe>
+                  ))}
+                  <hr></hr>
+                  {initiative.narrative && (
+                    <Paragraphe>{initiative.narrative}</Paragraphe>
+                  )}
+                  <hr></hr>
+                  <ul>
+                    <li>
+                      {initiative.email && (
+                        <Paragraphe>
+                          <span>Email de contact : </span>
+                          {initiative.email}
+                        </Paragraphe>
+                      )}
+                    </li>
+                    <li>
+                      {initiative.webSite && (
+                        <Paragraphe>
+                          <span>Site web : </span>
+                          {initiative.webSite}
+                        </Paragraphe>
+                      )}
+                    </li>
+                  </ul>
+                </main>
+                <hr></hr>
+                <footer role="contentinfo">
+                  {initiative.user && (
+                    <Paragraphe>
+                      Ajouté par {initiative.user?.userName},
+                    </Paragraphe>
+                  )}
+                  <span>Mise à jour le {formattedDate(initiative)}</span>
+                </footer>
               </Popup>
             </Marker>
           );
@@ -88,4 +145,6 @@ export default function MapView({
       </MapContainer>
     </>
   );
-}
+};
+
+export default MapView;

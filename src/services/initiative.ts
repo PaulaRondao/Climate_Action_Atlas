@@ -10,8 +10,8 @@ export async function createAnInitiative(
       street: initiative.address.street,
       postcode: initiative.address.zipCode,
       city: initiative.address.city,
-      latitude: initiative.address.gps[0],
-      longitude: initiative.address.gps[1],
+      latitude: initiative.address.gps[1],
+      longitude: initiative.address.gps[0],
     },
   });
 

@@ -1,11 +1,10 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 import { InitiativesLabel } from '@/constants';
-import Link from 'next/link';
 
 const SidebarContainer = styled.div<{ $open: boolean }>`
   position: absolute;
