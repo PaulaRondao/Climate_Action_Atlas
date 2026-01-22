@@ -53,7 +53,7 @@ const seedDatabase = async () => {
       }),
     );
 
-    const testUser = await prisma.user.upsert({
+    await prisma.user.upsert({
       where: {
         email: 'user@mail.com',
       },
@@ -69,8 +69,6 @@ const seedDatabase = async () => {
         createdAt,
       },
     });
-
-    users.push(testUser);
 
     const fixedInitiatives = [
       {

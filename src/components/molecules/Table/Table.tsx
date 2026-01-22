@@ -1,5 +1,6 @@
 'use client';
 
+import { InitiativeTypeToLabel } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
 import { Notification } from '@/types/Notification';
@@ -154,7 +155,9 @@ const Table = (): JSX.Element => {
             {initiatives.map((initiative) => (
               <tr key={initiative.id}>
                 <CellSpan>{initiative.name}</CellSpan>
-                <CellSpan>{initiative.initiativeType}</CellSpan>
+                {initiative.initiativeType.map((type) => (
+                  <CellSpan key={type}>{InitiativeTypeToLabel[type]}</CellSpan>
+                ))}
                 <CellSpan>
                   <ButtonContainer>
                     <Button onClick={() => handleDelete(initiative.id)}>

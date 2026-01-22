@@ -18,7 +18,6 @@ export const authOptions: AuthOptions = {
 
         try {
           const user = await login(credentials.email, credentials.password);
-          logger.info({ user }, 'Utilisteur authentifié');
 
           if (!user) return null;
 
