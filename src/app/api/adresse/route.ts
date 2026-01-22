@@ -5,7 +5,7 @@ export async function GET(request: Request) {
   const query = searchParams.get('q');
 
   const res = await fetch(
-    'https://api-adresse.data.gouv.fr/search/?q=' + query,
+    'https://data.geopf.fr/geocodage/search/?q=' + query,
   );
   const data = await res.json();
 
