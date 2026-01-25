@@ -34,12 +34,10 @@ export const initiativesLabelTypeObject = Object.values(InitiativesLabel) as [
   ...InitiativesLabel[],
 ];
 
-export const TypeImpact = Object.entries(InitiativesLabel).map(
-  ([key, label]) => ({
-    label,
-    value: key,
-  }),
-) as { label: string; value: keyof typeof InitiativesLabel }[];
+export const TypeImpact = Object.entries(InitiativesLabel).map(([key, label]) => ({
+  label,
+  value: key,
+})) as { label: string; value: keyof typeof InitiativesLabel }[];
 
 export const InitiativeOptions: {
   label: InitiativesLabel;
@@ -96,10 +94,7 @@ export const SelectOptions: Options[] = [
   { label: 'Je ne sais pas', value: SelectItems.INDEFINI },
 ];
 
-export const InitiativeTypeToLabel: Record<
-  $Enums.InitiativeType,
-  InitiativesLabel
-> = {
+export const InitiativeTypeToLabel: Record<$Enums.InitiativeType, InitiativesLabel> = {
   ClimateAgricultureEnergy: InitiativesLabel.ClimateAgricultureEnergy,
   UrbanismAndTechnology: InitiativesLabel.UrbanismAndTechnology,
   SolidarityAndCommunities: InitiativesLabel.SolidarityAndCommunities,
@@ -108,10 +103,7 @@ export const InitiativeTypeToLabel: Record<
   SocialAndSolidarityEconomy: InitiativesLabel.SocialAndSolidarityEconomy,
 };
 
-export const LabelToInitiativeType: Record<
-  InitiativesLabel,
-  $Enums.InitiativeType
-> = {
+export const LabelToInitiativeType: Record<InitiativesLabel, $Enums.InitiativeType> = {
   [InitiativesLabel.ClimateAgricultureEnergy]: 'ClimateAgricultureEnergy',
   [InitiativesLabel.UrbanismAndTechnology]: 'UrbanismAndTechnology',
   [InitiativesLabel.SolidarityAndCommunities]: 'SolidarityAndCommunities',
@@ -145,8 +137,7 @@ export const ActionsOption: {
   },
   {
     title: 'Impact réel',
-    description:
-      'Chaque action compte : faites la différence aujourd’hui, pour un demain durable.',
+    description: 'Chaque action compte : faites la différence aujourd’hui, pour un demain durable.',
     image: '/images/impact.png',
   },
 ];

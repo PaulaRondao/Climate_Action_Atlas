@@ -23,9 +23,7 @@ const GlobalError = styled(ErrorMessage)`
 
 const registerSchema = z
   .object({
-    firstName: z
-      .string()
-      .min(2, 'Le prénom doit contenir au moins 2 caractères'),
+    firstName: z.string().min(2, 'Le prénom doit contenir au moins 2 caractères'),
     lastName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
     userName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
     email: z.string().email('Adresse email invalide'),
@@ -35,10 +33,7 @@ const registerSchema = z
       .regex(/[A-Z]/, 'Le mot de passe doit contenir au moins une majuscule')
       .regex(/[a-z]/, 'Le mot de passe doit contenir au moins une minuscule')
       .regex(/[0-9]/, 'Le mot de passe doit contenir au moins un chiffre')
-      .regex(
-        /[^A-Za-z0-9]/,
-        'Le mot de passe doit contenir au moins un caractère spécial',
-      ),
+      .regex(/[^A-Za-z0-9]/, 'Le mot de passe doit contenir au moins un caractère spécial'),
     confirmPassword: z.string(),
   })
   .refine((data) => data.password === data.confirmPassword, {
@@ -74,9 +69,7 @@ const RegisterForm = () => {
       const result = await response.json();
 
       if (!response.ok) {
-        setGlobalError(
-          result.error || "Une erreur est survenue lors de l'inscription",
-        );
+        setGlobalError(result.error || "Une erreur est survenue lors de l'inscription");
         return;
       }
 
@@ -106,9 +99,7 @@ const RegisterForm = () => {
           {...register('firstName')}
           placeholder="Saisissez votre prénom"
         />
-        {errors.firstName && (
-          <ErrorMessage>{errors.firstName.message}</ErrorMessage>
-        )}
+        {errors.firstName && <ErrorMessage>{errors.firstName.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
@@ -119,25 +110,19 @@ const RegisterForm = () => {
           {...register('lastName')}
           placeholder="Saisissez votre nom"
         />
-        {errors.lastName && (
-          <ErrorMessage>{errors.lastName.message}</ErrorMessage>
-        )}
+        {errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
         <Label htmlFor="userName">Nom d&apos;utilisateur·trice</Label>
-        <span>
-          Saisissez un nom que vous pourrez utiliser dans l&apos;application
-        </span>
+        <span>Saisissez un nom que vous pourrez utiliser dans l&apos;application</span>
         <Input
           id="userName"
           type="text"
           {...register('userName')}
           placeholder="Saisissez votre nom d'utilisateur·trice"
         />
-        {errors.lastName && (
-          <ErrorMessage>{errors.lastName.message}</ErrorMessage>
-        )}
+        {errors.lastName && <ErrorMessage>{errors.lastName.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
@@ -154,8 +139,8 @@ const RegisterForm = () => {
       <FormGroup>
         <Label htmlFor="password">Mot de passe</Label>
         <span>
-          Votre mot de passe doit contenir au moins 8 caractères, une majuscule,
-          un chiffre et un caractère spécial
+          Votre mot de passe doit contenir au moins 8 caractères, une majuscule, un chiffre et un
+          caractère spécial
         </span>
         <Input
           id="password"
@@ -163,9 +148,7 @@ const RegisterForm = () => {
           {...register('password')}
           placeholder="Saisissez votre mot de passe"
         />
-        {errors.password && (
-          <ErrorMessage>{errors.password.message}</ErrorMessage>
-        )}
+        {errors.password && <ErrorMessage>{errors.password.message}</ErrorMessage>}
       </FormGroup>
 
       <FormGroup>
@@ -176,9 +159,7 @@ const RegisterForm = () => {
           {...register('confirmPassword')}
           placeholder="Confirmez votre mot de passe"
         />
-        {errors.confirmPassword && (
-          <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
-        )}
+        {errors.confirmPassword && <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>}
       </FormGroup>
 
       <Button type="submit" fullWidth>

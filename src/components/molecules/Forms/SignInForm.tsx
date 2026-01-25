@@ -16,15 +16,12 @@ const UserFormRegistration = z.object({
     .string()
     .min(1, { message: 'Veuillez renseigner votre email' })
     .email({ message: "format d'email invalide" }),
-  password: z
-    .string()
-    .min(1, { message: 'Veuillez renseigner un mot de passe' }),
+  password: z.string().min(1, { message: 'Veuillez renseigner un mot de passe' }),
 });
 
 export default function SignInForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
-  const [showRegisterIndication, setShowRegisterIndication] =
-    useState<boolean>(false);
+  const [showRegisterIndication, setShowRegisterIndication] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -40,10 +37,7 @@ export default function SignInForm(): JSX.Element {
     formState: { errors, isValid },
   } = methods;
 
-  const onSubmit: SubmitHandler<UserLoginForm> = async ({
-    email,
-    password,
-  }) => {
+  const onSubmit: SubmitHandler<UserLoginForm> = async ({ email, password }) => {
     await signIn('credentials', {
       email,
       password,
@@ -62,10 +56,7 @@ export default function SignInForm(): JSX.Element {
     <FormContainer onSubmit={handleSubmit(onSubmit)} noValidate>
       <h1>Connexion</h1>
       {showRegisterIndication && (
-        <p>
-          Votre compte a été créé avec succès ! Vous pouvez maintenant vous
-          connecter
-        </p>
+        <p>Votre compte a été créé avec succès ! Vous pouvez maintenant vous connecter</p>
       )}
       <FormProvider {...methods}>
         <FormWrapper>
@@ -78,9 +69,7 @@ export default function SignInForm(): JSX.Element {
           )}
 
           <FormGroup>
-            <Label htmlFor="email">
-              Email (format attendu: exemple@mail.fr)
-            </Label>
+            <Label htmlFor="email">Email (format attendu: exemple@mail.fr)</Label>
             <Input
               id="email"
               {...methods.register('email')}

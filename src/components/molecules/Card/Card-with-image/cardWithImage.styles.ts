@@ -42,7 +42,6 @@ interface ParagrapheProps {
 
 export const Paragraphe = styled.p<ParagrapheProps>`
   text-align: center;
-  font-weight: ${({ $fontWeightBold }) =>
-    $fontWeightBold ? 'bold' : 'normal'};
+  font-weight: ${({ $fontWeightBold }) => ($fontWeightBold ? 'bold' : 'normal')};
   margin: 30px auto;
 `;

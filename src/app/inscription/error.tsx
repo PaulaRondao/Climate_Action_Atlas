@@ -43,8 +43,7 @@ export default function SignUpError({
     <ErrorContainer>
       <ErrorTitle>Erreur lors de l&apos;inscription</ErrorTitle>
       <ErrorMessage>
-        {error.message ||
-          "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."}
+        {error.message || "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."}
       </ErrorMessage>
       <Button onClick={reset}>Réessayer</Button>
     </ErrorContainer>

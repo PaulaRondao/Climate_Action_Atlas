@@ -12,10 +12,7 @@ export async function GET(request: Request) {
     const email = searchParams.get('email');
 
     if (!email) {
-      return NextResponse.json(
-        { error: 'Email parameter is required' },
-        { status: 400 },
-      );
+      return NextResponse.json({ error: 'Email parameter is required' }, { status: 400 });
     }
 
     const user = await prisma.user.findUnique({
@@ -25,7 +22,7 @@ export async function GET(request: Request) {
     if (!user) {
       return NextResponse.json(
         { error: 'User not found' },
-        { status: HttpStatusCode.HTTP_NOT_FOUND },
+        { status: HttpStatusCode.HTTP_NOT_FOUND }
       );
     }
 
@@ -34,7 +31,7 @@ export async function GET(request: Request) {
     logger.error(error, 'Error fetching user');
     return NextResponse.json(
       { error: 'Internal server error' },
-      { status: HttpStatusCode.HTTP_SERVER_ERROR },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR }
     );
   }
 }
@@ -50,13 +47,13 @@ export async function POST(request: Request) {
         type: BackendApiResponseType.SUCCESS,
         data: user,
       },
-      { status: HttpStatusCode.HTTP_CREATED },
+      { status: HttpStatusCode.HTTP_CREATED }
     );
   } catch (error) {
     logger.error(error, 'Erreur création utilisateur');
     return NextResponse.json(
       { error: 'Erreur interne du serveur' },
-      { status: HttpStatusCode.HTTP_SERVER_ERROR },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR }
     );
   }
 }

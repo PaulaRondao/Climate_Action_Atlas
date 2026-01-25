@@ -32,12 +32,7 @@ const Logo = ({ connected }: LogoProps) => {
         passHref
         aria-current={pathname === '/' ? 'page' : undefined}
       >
-        <Image
-          src={SVGIMG}
-          alt="Retour à la page d'accueil"
-          width={186}
-          height={41}
-        />
+        <Image src={SVGIMG} alt="Retour à la page d'accueil" width={186} height={41} />
       </Link>
     </LinkWrapper>
   );

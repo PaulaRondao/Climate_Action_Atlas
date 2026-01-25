@@ -67,20 +67,10 @@ export const NavbarDropdown = (): JSX.Element => {
 
   return (
     <ListWrapper aria-label="menu profil">
-      <button
-        type="button"
-        aria-haspopup="true"
-        aria-expanded="false"
-        aria-controls="menu1"
-      >
+      <button type="button" aria-haspopup="true" aria-expanded="false" aria-controls="menu1">
         <Image src="/icons/login-icon.svg" alt="" width={36} height={36} />
       </button>
-      <ListItem
-        id="menu1"
-        role="menu"
-        aria-labelledby="menubutton1"
-        aria-activedescendant="mi1"
-      >
+      <ListItem id="menu1" role="menu" aria-labelledby="menubutton1" aria-activedescendant="mi1">
         <List id="mi1" role="menuitem">
           <Link
             href="/profile"

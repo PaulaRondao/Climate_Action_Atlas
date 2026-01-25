@@ -47,11 +47,7 @@ const BurgerMenu = ({
       aria-controls="menu-principal"
       data-test-id="burger-menu"
     >
-      {isBurgerMenuOpen ? (
-        <FaTimes aria-label="Fermer le menu" />
-      ) : (
-        <FaBars aria-hidden />
-      )}
+      {isBurgerMenuOpen ? <FaTimes aria-label="Fermer le menu" /> : <FaBars aria-hidden />}
     </BurgerMenuButton>
   );
 };

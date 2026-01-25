@@ -16,11 +16,7 @@ export const useInitiatives = () => {
   const [error, setError] = useState<string | null>(null);
 
   const getInitiatives = useCallback(
-    async (
-      page = 1,
-      limit = 10,
-      search = '',
-    ): Promise<PaginatedResponse | null> => {
+    async (page = 1, limit = 10, search = ''): Promise<PaginatedResponse | null> => {
       try {
         setLoading(true);
         setError(null);
@@ -36,38 +32,31 @@ export const useInitiatives = () => {
         }
         return await response.json();
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Une erreur est survenue',
-        );
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         return null;
       } finally {
         setLoading(false);
       }
     },
-    [],
+    []
   );
 
-  const getInitiativeById = useCallback(
-    async (id: number): Promise<Initiative | null> => {
-      try {
-        setLoading(true);
-        setError(null);
-        const response = await fetch(`/api/initiatives/${id}`);
-        if (!response.ok) {
-          throw new Error('Initiative not found');
-        }
-        return await response.json();
-      } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Une erreur est survenue',
-        );
-        return null;
-      } finally {
-        setLoading(false);
+  const getInitiativeById = useCallback(async (id: number): Promise<Initiative | null> => {
+    try {
+      setLoading(true);
+      setError(null);
+      const response = await fetch(`/api/initiatives/${id}`);
+      if (!response.ok) {
+        throw new Error('Initiative not found');
       }
-    },
-    [],
-  );
+      return await response.json();
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Une erreur est survenue');
+      return null;
+    } finally {
+      setLoading(false);
+    }
+  }, []);
 
   const createInitiative = useCallback(
     async (data: Partial<Initiative>): Promise<Initiative | null> => {
@@ -86,22 +75,17 @@ export const useInitiatives = () => {
         }
         return await response.json();
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Une erreur est survenue',
-        );
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         return null;
       } finally {
         setLoading(false);
       }
     },
-    [],
+    []
   );
 
   const updateInitiative = useCallback(
-    async (
-      id: number,
-      data: Partial<Initiative>,
-    ): Promise<Initiative | null> => {
+    async (id: number, data: Partial<Initiative>): Promise<Initiative | null> => {
       try {
         setLoading(true);
         setError(null);
@@ -117,15 +101,13 @@ export const useInitiatives = () => {
         }
         return await response.json();
       } catch (err) {
-        setError(
-          err instanceof Error ? err.message : 'Une erreur est survenue',
-        );
+        setError(err instanceof Error ? err.message : 'Une erreur est survenue');
         return null;
       } finally {
         setLoading(false);
       }
     },
-    [],
+    []
   );
 
   const deleteInitiative = useCallback(async (id: number): Promise<boolean> => {

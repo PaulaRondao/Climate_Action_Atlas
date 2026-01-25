@@ -23,9 +23,7 @@ interface InitiativeCreationTemplateProps {
   session: Session | null;
 }
 
-export default function InitiativeCreationTemplate({
-  session,
-}: InitiativeCreationTemplateProps) {
+export default function InitiativeCreationTemplate({ session }: InitiativeCreationTemplateProps) {
   return (
     <>
       <MainContent>

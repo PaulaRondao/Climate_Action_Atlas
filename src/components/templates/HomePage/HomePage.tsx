@@ -15,10 +15,7 @@ import {
   MapWrapper,
 } from './homePage.styles';
 import CardWithImage from '@/components/molecules/Card/Card-with-image/CardWithImage';
-import {
-  ButtonContainer,
-  StyledLink,
-} from '@/components/atoms/Button/button.styles';
+import { ButtonContainer, StyledLink } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
 import { Footer } from '@/components/organisms';
 
@@ -48,9 +45,9 @@ export default function HomePage() {
               Un mouvement pour <span>changer</span>
             </h1>
             <p>
-              Climate Action Atlas est un mouvement collectif engagé pour une
-              action rapide, juste et inclusive face aux défis climatiques,
-              sociaux et sociétaux qui impactent nos territoires.
+              Climate Action Atlas est un mouvement collectif engagé pour une action rapide, juste
+              et inclusive face aux défis climatiques, sociaux et sociétaux qui impactent nos
+              territoires.
             </p>
           </HeroContent>
         </HeroSection>
@@ -78,16 +75,11 @@ export default function HomePage() {
 
         <SectionWithMap>
           <EngagementSection>
-            <TitleSection
-              $gap="16px"
-              $textAlign="left"
-              $textAlignHeading="left"
-            >
+            <TitleSection $gap="16px" $textAlign="left" $textAlignHeading="left">
               <h2>Notre carte intéractive</h2>
               <hr />
               <p>
-                Trouvez et rejoignez facilement des projets concrets et
-                inspirants autour de vous.
+                Trouvez et rejoignez facilement des projets concrets et inspirants autour de vous.
               </p>
             </TitleSection>
             <ButtonContainer>
@@ -116,13 +108,7 @@ export default function HomePage() {
             </ButtonContainer>
           </EngagementSection>
           <MapWrapper>
-            <Image
-              src="/images/France-map.svg"
-              alt=""
-              width={500}
-              height={500}
-              priority
-            />
+            <Image src="/images/France-map.svg" alt="" width={500} height={500} priority />
           </MapWrapper>
         </SectionWithMap>
 
@@ -133,9 +119,9 @@ export default function HomePage() {
               <hr />
             </TitleSection>
             <p>
-              L&apos;engagement de chacun est essentiel pour préserver notre
-              planète. Agissez dès aujourd&apos;hui pour un futur plus vert. En
-              vous inscrivant, vous pourrez ajouter une initiative.
+              L&apos;engagement de chacun est essentiel pour préserver notre planète. Agissez dès
+              aujourd&apos;hui pour un futur plus vert. En vous inscrivant, vous pourrez ajouter une
+              initiative.
             </p>
             <ButtonContainer>
               <StyledLink

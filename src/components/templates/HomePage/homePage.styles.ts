@@ -60,8 +60,7 @@ interface SectionProps {
 
 export const Section = styled.section<SectionProps>`
   padding: ${theme.spacing.xxl} ${theme.spacing.md};
-  background-color: ${({ $backgroundColorGreen }) =>
-    $backgroundColorGreen ? '#072A32' : ''};
+  background-color: ${({ $backgroundColorGreen }) => ($backgroundColorGreen ? '#072A32' : '')};
   color: ${({ $colorBeige }) => ($colorBeige ? '#F0EDEB' : '#072A32')};
   border-radius: 0 0 40px 40px;
 
@@ -122,8 +121,7 @@ export const TitleSection = styled.div<TitleSectionProps>`
   margin-bottom: ${theme.spacing.xl};
 
   h2 {
-    font-size: ${({ $fontSize }) =>
-      $fontSize ? $fontSize : `${theme.typography.fontSizes.xxl}`};
+    font-size: ${({ $fontSize }) => ($fontSize ? $fontSize : `${theme.typography.fontSizes.xxl}`)};
     line-height: ${({ $lineHeight }) =>
       $lineHeight ? $lineHeight : `${theme.typography.lineHeights.heading}`};
     text-align: center;
@@ -134,9 +132,7 @@ export const TitleSection = styled.div<TitleSectionProps>`
     font-size: ${({ $fontSizeText }) =>
       $fontSizeText ? $fontSizeText : `${theme.typography.fontSizes.md}`};
     line-height: ${({ $lineHeightText }) =>
-      $lineHeightText
-        ? $lineHeightText
-        : `${theme.typography.lineHeights.body}`};
+      $lineHeightText ? $lineHeightText : `${theme.typography.lineHeights.body}`};
   }
 
   hr {
@@ -148,8 +144,7 @@ export const TitleSection = styled.div<TitleSectionProps>`
 
   ${mediaQueries.desktop} {
     h2 {
-      text-align: ${({ $textAlignHeading }) =>
-        $textAlignHeading ? $textAlignHeading : 'center'};
+      text-align: ${({ $textAlignHeading }) => ($textAlignHeading ? $textAlignHeading : 'center')};
     }
   }
 `;

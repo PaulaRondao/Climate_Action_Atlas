@@ -2,11 +2,7 @@
 
 import React from 'react';
 import Image from 'next/image';
-import {
-  BackgroundContainer,
-  BackgroundImage,
-  Content,
-} from './backgroundLayout.styles';
+import { BackgroundContainer, BackgroundImage, Content } from './backgroundLayout.styles';
 
 interface BackgroundLayoutProps {
   children: React.ReactNode;

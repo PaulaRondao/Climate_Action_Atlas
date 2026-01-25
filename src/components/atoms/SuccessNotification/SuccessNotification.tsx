@@ -30,9 +30,7 @@ export interface SuccessNotificationProps {
   message: string;
 }
 
-const SuccessNotification: React.FC<SuccessNotificationProps> = ({
-  message,
-}) => (
+const SuccessNotification: React.FC<SuccessNotificationProps> = ({ message }) => (
   <NotificationContainer>
     <FaCheckCircle aria-hidden="true" />
     <p>{message}</p>

@@ -74,8 +74,7 @@ export const StyledLink = styled(Link)<StyledLinkProps>`
     border-color: ${theme.colors.green};
     background-color: ${({ $backgroundColorHover }) =>
       $backgroundColorHover ? $backgroundColorHover : 'transparent'};
-    color: ${({ $colorHover }) =>
-      $colorHover ? $colorHover : `${theme.colors.green}`};
+    color: ${({ $colorHover }) => ($colorHover ? $colorHover : `${theme.colors.green}`)};
   },
 `;
 

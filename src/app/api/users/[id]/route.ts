@@ -3,10 +3,7 @@ import prisma from '@/lib/prisma/client';
 import type { UpdateUserDTO } from '@/constants/types';
 import logger from '@/lib/pino/logger.server';
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
+export async function GET(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const userId = parseInt(id, 10);
@@ -28,17 +25,11 @@ export async function GET(
     return NextResponse.json(user);
   } catch (error) {
     logger.error(error, 'Error fetching user');
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-export async function PATCH(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
+export async function PATCH(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const userId = parseInt(id, 10);
@@ -52,23 +43,14 @@ export async function PATCH(
       data,
     });
 
-    return NextResponse.json(
-      { error: 'User updated successfully' },
-      { status: 200 },
-    );
+    return NextResponse.json({ error: 'User updated successfully' }, { status: 200 });
   } catch (error) {
     logger.error(error, 'Error updating user');
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
+export async function DELETE(request: Request, { params }: { params: Promise<{ id: string }> }) {
   try {
     const { id } = await params;
     const userId = parseInt(id, 10);
@@ -85,9 +67,6 @@ export async function DELETE(
     });
   } catch (error) {
     logger.error(error, 'Error deleting user');
-    return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
-    );
+    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
   }
 }

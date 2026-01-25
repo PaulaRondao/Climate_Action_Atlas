@@ -1,12 +1,8 @@
 import { ApiAddressResponse, ResponseAddress } from '@/types/city.interface';
 
-export const searchAddresses = async (
-  searchedValue: string,
-): Promise<ResponseAddress[]> => {
+export const searchAddresses = async (searchedValue: string): Promise<ResponseAddress[]> => {
   try {
-    const res = await fetch(
-      `/api/adresse?q=${encodeURIComponent(searchedValue)}`,
-    );
+    const res = await fetch(`/api/adresse?q=${encodeURIComponent(searchedValue)}`);
     const data: ApiAddressResponse = await res.json();
 
     return data.features.map((address) => ({

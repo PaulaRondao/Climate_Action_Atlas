@@ -29,8 +29,7 @@ const StyledButton = styled.button<StyledButtonProps>`
   max-width: 330px;
 
   &:hover {
-    color: ${({ $colorHover }) =>
-      $colorHover ? $colorHover : `${theme.colors.green}`};
+    color: ${({ $colorHover }) => ($colorHover ? $colorHover : `${theme.colors.green}`)};
     background-color: ${({ $backgroundColorHover }) =>
       $backgroundColorHover ? $backgroundColorHover : 'transparent'};
   }

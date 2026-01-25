@@ -6,9 +6,7 @@ export type IUser = UserModel;
 
 // DTOs
 export type CreateUserDTO = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>;
-export type UpdateUserDTO = Partial<
-  Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>
->;
+export type UpdateUserDTO = Partial<Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>>;
 
 // Types d'état
 export type InitiativeStatus = 'DRAFT' | 'PUBLISHED' | 'ARCHIVED';

@@ -13,8 +13,7 @@ const SidebarContainer = styled.div<{ $open: boolean }>`
   height: 75%;
   width: ${({ $open }) => ($open ? '380px' : '0')};
   background-color: #f3f6f4;
-  box-shadow: ${({ $open }) =>
-    $open ? '2px 0 8px rgba(0, 0, 0, 0.2)' : 'none'};
+  box-shadow: ${({ $open }) => ($open ? '2px 0 8px rgba(0, 0, 0, 0.2)' : 'none')};
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
@@ -60,8 +59,7 @@ const List = styled.li<{ $active?: boolean }>`
   gap: 8px;
   padding: 8px;
   background-color: ${({ $active }) => ($active ? '#d9ead3' : 'white')};
-  border: ${({ $active }) =>
-    $active ? '1px solid var(--foreground-green)' : '1px solid white'};
+  border: ${({ $active }) => ($active ? '1px solid var(--foreground-green)' : '1px solid white')};
   border-radius: 8px;
 
   button {
@@ -78,9 +76,7 @@ interface SidebarControlProps {
 const SidebarControl = ({ onChange }: SidebarControlProps) => {
   const [open, setOpen] = useState(false);
 
-  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
-    null,
-  );
+  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(null);
 
   const handleSelect = (type: InitiativesLabel) => {
     const newType = selectedType === type ? null : type;
@@ -102,106 +98,44 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
               marginTop: '12px',
             }}
           >
-            <List
-              $active={
-                selectedType === InitiativesLabel.ClimateAgricultureEnergy
-              }
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.ClimateAgricultureEnergy)
-                }
-              >
+            <List $active={selectedType === InitiativesLabel.ClimateAgricultureEnergy}>
+              <button onClick={() => handleSelect(InitiativesLabel.ClimateAgricultureEnergy)}>
                 <Image src="/icons/climat.svg" alt="" width={34} height={34} />
                 Climat, Agriculture et Énergie
               </button>
             </List>
 
-            <List
-              $active={selectedType === InitiativesLabel.CultureAndTransmission}
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.CultureAndTransmission)
-                }
-              >
+            <List $active={selectedType === InitiativesLabel.CultureAndTransmission}>
+              <button onClick={() => handleSelect(InitiativesLabel.CultureAndTransmission)}>
                 <Image src="/icons/culture.svg" alt="" width={34} height={34} />
                 Culture et Transmission
               </button>
             </List>
 
-            <List
-              $active={selectedType === InitiativesLabel.EducationAndAwareness}
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.EducationAndAwareness)
-                }
-              >
-                <Image
-                  src="/icons/education.svg"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
+            <List $active={selectedType === InitiativesLabel.EducationAndAwareness}>
+              <button onClick={() => handleSelect(InitiativesLabel.EducationAndAwareness)}>
+                <Image src="/icons/education.svg" alt="" width={34} height={34} />
                 Éducation et Sensibilisation
               </button>
             </List>
 
-            <List
-              $active={
-                selectedType === InitiativesLabel.SolidarityAndCommunities
-              }
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.SolidarityAndCommunities)
-                }
-              >
-                <Image
-                  src="/icons/solidarite.svg"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
+            <List $active={selectedType === InitiativesLabel.SolidarityAndCommunities}>
+              <button onClick={() => handleSelect(InitiativesLabel.SolidarityAndCommunities)}>
+                <Image src="/icons/solidarite.svg" alt="" width={34} height={34} />
                 Solidarité et Communautés
               </button>
             </List>
 
-            <List
-              $active={
-                selectedType === InitiativesLabel.SocialAndSolidarityEconomy
-              }
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.SocialAndSolidarityEconomy)
-                }
-              >
-                <Image
-                  src="/icons/economie.svg"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
+            <List $active={selectedType === InitiativesLabel.SocialAndSolidarityEconomy}>
+              <button onClick={() => handleSelect(InitiativesLabel.SocialAndSolidarityEconomy)}>
+                <Image src="/icons/economie.svg" alt="" width={34} height={34} />
                 Économie Sociale et Solidaire
               </button>
             </List>
 
-            <List
-              $active={selectedType === InitiativesLabel.UrbanismAndTechnology}
-            >
-              <button
-                onClick={() =>
-                  handleSelect(InitiativesLabel.UrbanismAndTechnology)
-                }
-              >
-                <Image
-                  src="/icons/urbanisme.svg"
-                  alt=""
-                  width={34}
-                  height={34}
-                />
+            <List $active={selectedType === InitiativesLabel.UrbanismAndTechnology}>
+              <button onClick={() => handleSelect(InitiativesLabel.UrbanismAndTechnology)}>
+                <Image src="/icons/urbanisme.svg" alt="" width={34} height={34} />
                 Urbanisme et Technologie
               </button>
             </List>
