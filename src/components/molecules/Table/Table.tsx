@@ -106,7 +106,9 @@ const Table = (): JSX.Element => {
     if (!result) return;
 
     const initiativeByUser =
-      result?.initiatives?.filter((initiative) => initiative.contributorId === userId) || [];
+      result?.initiatives?.filter(
+        (initiative) => initiative.contributorId === userId,
+      ) || [];
 
     setInitiatives(initiativeByUser);
   }, [userId, getInitiatives]);
@@ -119,7 +121,9 @@ const Table = (): JSX.Element => {
       return;
     }
 
-    const result = initiatives.filter((initiative) => initiative.id !== initiativeId);
+    const result = initiatives.filter(
+      (initiative) => initiative.id !== initiativeId,
+    );
 
     setInitiatives(result);
   };
@@ -155,8 +159,14 @@ const Table = (): JSX.Element => {
                 ))}
                 <CellSpan>
                   <ButtonContainer>
-                    <Button onClick={() => handleDelete(initiative.id)}>Supprimer</Button>
-                    <Button $color="#127A27" $backgroundColor="#127A272e" $fontColor="#127A27">
+                    <Button onClick={() => handleDelete(initiative.id)}>
+                      Supprimer
+                    </Button>
+                    <Button
+                      $color="#127A27"
+                      $backgroundColor="#127A272e"
+                      $fontColor="#127A27"
+                    >
                       Mettre à jour
                     </Button>
                   </ButtonContainer>

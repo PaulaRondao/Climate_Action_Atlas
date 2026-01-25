@@ -8,7 +8,9 @@ export const useUser = () => {
   const getUserByEmail = async (email: string): Promise<IUser | null> => {
     try {
       setLoading(true);
-      const response = await fetch(`/api/users?email=${encodeURIComponent(email)}`);
+      const response = await fetch(
+        `/api/users?email=${encodeURIComponent(email)}`,
+      );
       if (!response.ok) {
         throw new Error('User not found');
       }
@@ -43,7 +45,10 @@ export const useUser = () => {
     }
   };
 
-  const updateUser = async (id: number, data: UpdateUserDTO): Promise<IUser | null> => {
+  const updateUser = async (
+    id: number,
+    data: UpdateUserDTO,
+  ): Promise<IUser | null> => {
     try {
       setLoading(true);
       const response = await fetch(`/api/users/${id}`, {
@@ -79,7 +84,7 @@ export const useUser = () => {
       setError(
         err instanceof Error
           ? err.message
-          : 'Une erreur est survenue lors de la suppression du compte'
+          : 'Une erreur est survenue lors de la suppression du compte',
       );
       return false;
     } finally {

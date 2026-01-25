@@ -2,7 +2,12 @@
 
 import React from 'react';
 import { InitiativesLabel } from '@/types/enums/enums';
-import { Card, CardContainer, LogoContainer, LogoWrapper } from './cardWithLogo.styles';
+import {
+  Card,
+  CardContainer,
+  LogoContainer,
+  LogoWrapper,
+} from './cardWithLogo.styles';
 import Image from 'next/image';
 
 interface CardSectionProps {
@@ -16,7 +21,12 @@ const CardWithLogo: React.FC<CardSectionProps> = ({ initiatives }) => (
         <Card key={index}>
           <LogoWrapper>
             <LogoContainer>
-              <Image src={initiative.logo} alt="" width="34" height="34"></Image>
+              <Image
+                src={initiative.logo}
+                alt=""
+                width="34"
+                height="34"
+              ></Image>
             </LogoContainer>
             <p>{initiative.label}</p>
           </LogoWrapper>

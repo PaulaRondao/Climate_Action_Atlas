@@ -50,7 +50,7 @@ const seedDatabase = async () => {
             updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
           },
         });
-      })
+      }),
     );
 
     await prisma.user.upsert({
@@ -135,7 +135,10 @@ const seedDatabase = async () => {
         data: {
           name: faker.company.name(),
           description: faker.lorem.paragraph(),
-          initiativeType: faker.helpers.arrayElements(initiativeTypes, randomCount),
+          initiativeType: faker.helpers.arrayElements(
+            initiativeTypes,
+            randomCount,
+          ),
           narrative: faker.lorem.paragraph(),
           email: faker.internet.email(),
           webSite: faker.internet.url(),

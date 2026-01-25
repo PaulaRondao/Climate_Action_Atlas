@@ -3,7 +3,11 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Button, SelectDropdown, SuccessNotification } from '@/components/atoms';
+import {
+  Button,
+  SelectDropdown,
+  SuccessNotification,
+} from '@/components/atoms';
 import {
   ErrorMessage,
   FormContainer,
@@ -61,7 +65,9 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
       if (!response.ok) {
         setNotification({
           status: 'error',
-          message: result.error || "Une erreur est survenue lors de la création de l'initiative",
+          message:
+            result.error ||
+            "Une erreur est survenue lors de la création de l'initiative",
         });
         return;
       }
@@ -103,8 +109,8 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 <Label htmlFor="name">
                   Nom de l&apos;initiative ou un titre *
                   <p>
-                    Saisissez un nom clair et significatif si l&apos;initiative n&apos;en a
-                    pas&nbsp;:
+                    Saisissez un nom clair et significatif si l&apos;initiative
+                    n&apos;en a pas&nbsp;:
                   </p>
                 </Label>
                 <Input
@@ -114,7 +120,9 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                   {...methods.register('name')}
                 />
                 {methods.formState.errors.name && (
-                  <ErrorMessage>{methods.formState.errors.name.message}</ErrorMessage>
+                  <ErrorMessage>
+                    {methods.formState.errors.name.message}
+                  </ErrorMessage>
                 )}
               </FormGroup>
 
@@ -122,8 +130,8 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 <Label htmlFor="description">
                   Description *
                   <p>
-                    Indiquez une courte description de l&apos;initiative&nbsp;, un minimum de 10
-                    caractères est requis&nbsp;:
+                    Indiquez une courte description de l&apos;initiative&nbsp;,
+                    un minimum de 10 caractères est requis&nbsp;:
                   </p>
                 </Label>
                 <TextareaRow
@@ -133,7 +141,9 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                   rows={6}
                 />
                 {methods.formState.errors.description && (
-                  <ErrorMessage>{methods.formState.errors.description.message}</ErrorMessage>
+                  <ErrorMessage>
+                    {methods.formState.errors.description.message}
+                  </ErrorMessage>
                 )}
               </FormGroup>
 
@@ -143,7 +153,9 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 </Label>
                 <CheckboxInput options={TypeImpact} name="initiativeType" />
                 {methods.formState.errors.initiativeType && (
-                  <ErrorMessage>{methods.formState.errors.initiativeType.message}</ErrorMessage>
+                  <ErrorMessage>
+                    {methods.formState.errors.initiativeType.message}
+                  </ErrorMessage>
                 )}
               </FormGroup>
 
@@ -173,9 +185,14 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
 
               <FormGroup>
                 <Label htmlFor="address">Adresse de l&apos;initiative *</Label>
-                <SelectDropdown name="address" placeholder="Sélectionner une adresse" />
+                <SelectDropdown
+                  name="address"
+                  placeholder="Sélectionner une adresse"
+                />
                 {methods.formState.errors.address && (
-                  <ErrorMessage>{methods.formState.errors.address.message}</ErrorMessage>
+                  <ErrorMessage>
+                    {methods.formState.errors.address.message}
+                  </ErrorMessage>
                 )}
               </FormGroup>
 
@@ -195,7 +212,9 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
               <FormGroup>
                 <Label htmlFor="webSite">
                   Site web
-                  <p>Indiquez l&apos;adresse du site web si disponible&nbsp;:</p>
+                  <p>
+                    Indiquez l&apos;adresse du site web si disponible&nbsp;:
+                  </p>
                 </Label>
                 <Input
                   id="webSite"

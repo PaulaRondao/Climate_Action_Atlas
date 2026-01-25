@@ -8,8 +8,12 @@ const initiativeTypeValues = Object.keys(InitiativesLabel) as [
 
 export const initiativeCreationSchema = z.object({
   name: z.string().min(1, "Le nom de l'initiative est requis"),
-  description: z.string().min(10, 'La description doit contenir au moins 10 caractères'),
-  initiativeType: z.array(z.enum(initiativeTypeValues)).min(1, 'Veuillez sélectionner un type'),
+  description: z
+    .string()
+    .min(10, 'La description doit contenir au moins 10 caractères'),
+  initiativeType: z
+    .array(z.enum(initiativeTypeValues))
+    .min(1, 'Veuillez sélectionner un type'),
   narrative: z.string().optional(),
   associationName: z.string().optional(),
   address: z.object({
@@ -23,4 +27,6 @@ export const initiativeCreationSchema = z.object({
   webSite: z.string().optional(),
 });
 
-export type InitiativeCreationFormData = z.infer<typeof initiativeCreationSchema>;
+export type InitiativeCreationFormData = z.infer<
+  typeof initiativeCreationSchema
+>;

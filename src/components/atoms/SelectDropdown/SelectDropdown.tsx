@@ -11,7 +11,10 @@ export interface SelectDropdownProps {
   placeholder: string;
 }
 
-const SelectDropdown: React.FC<SelectDropdownProps> = ({ name, placeholder }) => {
+const SelectDropdown: React.FC<SelectDropdownProps> = ({
+  name,
+  placeholder,
+}) => {
   const { control } = useFormContext();
   const inputRef = useRef<HTMLDivElement | null>(null);
 
@@ -29,12 +32,16 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({ name, placeholder }) =>
       ...styles,
       textDecoration: 'none',
       backgroundColor: state.isFocused ? 'var(--color-light-grey)' : '',
-      color: state.isSelected ? 'var(--foreground-dark-blue)' : 'var(--color-dark-grey)',
+      color: state.isSelected
+        ? 'var(--foreground-dark-blue)'
+        : 'var(--color-dark-grey)',
     }),
     menuPortal: (base: any) => ({ ...base, zIndex: 9999 }),
   };
 
-  const fetchAddress = async (inputValue: string): Promise<ResponseAddress[]> => {
+  const fetchAddress = async (
+    inputValue: string,
+  ): Promise<ResponseAddress[]> => {
     try {
       if (!inputValue) return [];
       return await searchAddresses(inputValue);

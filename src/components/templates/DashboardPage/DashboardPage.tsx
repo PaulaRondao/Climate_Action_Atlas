@@ -30,7 +30,9 @@ const DashboardPage = ({ initialSession }: DashboardPageProps) => {
         <Wrapper>
           {displayLoading && <Loading />}
           {authenticatedUser && (
-            <h1>Bienvenue {displaySession?.user?.name}, sur votre espace personnel</h1>
+            <h1>
+              Bienvenue {displaySession?.user?.name}, sur votre espace personnel
+            </h1>
           )}
           <Table></Table>
           <DeleteCard></DeleteCard>

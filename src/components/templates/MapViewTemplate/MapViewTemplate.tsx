@@ -8,10 +8,13 @@ import { InitiativesLabel } from '@/types/enums/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
 
-const MapView = dynamic(() => import('@/components/molecules/MapView/MapView'), {
-  loading: () => <p>La carte est en cours de chargement...</p>,
-  ssr: false,
-});
+const MapView = dynamic(
+  () => import('@/components/molecules/MapView/MapView'),
+  {
+    loading: () => <p>La carte est en cours de chargement...</p>,
+    ssr: false,
+  },
+);
 
 interface MapViewTemplateProps {
   position: [number, number];
@@ -46,7 +49,9 @@ const MapWrapper = styled.div`
 `;
 
 export default function MapViewTemplate({ position }: MapViewTemplateProps) {
-  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(null);
+  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
+    null,
+  );
 
   return (
     <>
@@ -54,7 +59,10 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
         <ContentWrapper>
           <SidebarControl onChange={setSelectedType} />
           <MapWrapper>
-            <MapView position={position} filteredInitiativeType={selectedType} />
+            <MapView
+              position={position}
+              filteredInitiativeType={selectedType}
+            />
           </MapWrapper>
         </ContentWrapper>
       </PageWrapper>

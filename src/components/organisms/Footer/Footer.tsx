@@ -128,7 +128,12 @@ export default function Footer() {
     <FooterContainer role="contentinfo">
       <MainFooterContainer>
         <MainFooterWrapper>
-          <Image src={SVGIMG} alt="Climate Action Atlas" width={219} height={49} />
+          <Image
+            src={SVGIMG}
+            alt="Climate Action Atlas"
+            width={219}
+            height={49}
+          />
           <ContentWrapper>
             <ContentInfo isMainFooter={true} />
           </ContentWrapper>
@@ -141,7 +146,9 @@ export default function Footer() {
               <Link
                 href="/mentions-legales"
                 passHref
-                aria-current={pathname === '/mentions-legales' ? 'page' : undefined}
+                aria-current={
+                  pathname === '/mentions-legales' ? 'page' : undefined
+                }
               >
                 Mentions Légales
               </Link>
@@ -150,7 +157,11 @@ export default function Footer() {
               <Link
                 href="/politique-de-confidentialite"
                 passHref
-                aria-current={pathname === '/politique-de-confidentialite' ? 'page' : undefined}
+                aria-current={
+                  pathname === '/politique-de-confidentialite'
+                    ? 'page'
+                    : undefined
+                }
               >
                 Politique de confidentialité
               </Link>
@@ -159,13 +170,17 @@ export default function Footer() {
               <Link
                 href="/politique-cookies"
                 passHref
-                aria-current={pathname === '/politique-cookies' ? 'page' : undefined}
+                aria-current={
+                  pathname === '/politique-cookies' ? 'page' : undefined
+                }
               >
                 Politique de cookies
               </Link>
             </li>
           </LegalLinks>
-          <CopyrightText>© 2026 Paula Rondao. All rights reserved.</CopyrightText>
+          <CopyrightText>
+            © 2026 Paula Rondao. All rights reserved.
+          </CopyrightText>
         </SecondaryFooterContent>
       </SecondaryFooter>
     </FooterContainer>

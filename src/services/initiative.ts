@@ -3,7 +3,7 @@ import prisma from '@/lib/prisma/client';
 
 export async function createAnInitiative(
   initiative: InitiativeCreationFormData,
-  contributorId: number
+  contributorId: number,
 ) {
   const location = await prisma.initiativeLocation.create({
     data: {

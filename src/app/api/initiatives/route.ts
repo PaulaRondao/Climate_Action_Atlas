@@ -44,7 +44,10 @@ export async function GET(request: Request) {
     });
   } catch (error) {
     logger.error(error, 'Error fetching initiatives');
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    );
   }
 }
 
@@ -67,6 +70,9 @@ export async function POST(request: Request) {
     return NextResponse.json(createdInitiative, { status: 201 });
   } catch (error) {
     logger.error(error, 'Error creating initiative');
-    return NextResponse.json({ error: 'Internal server error' }, { status: 500 });
+    return NextResponse.json(
+      { error: 'Internal server error' },
+      { status: 500 },
+    );
   }
 }

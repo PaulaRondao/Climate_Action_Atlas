@@ -8,7 +8,11 @@ import iconRetina from 'leaflet/dist/images/marker-icon-2x.png';
 import iconUrl from 'leaflet/dist/images/marker-icon.png';
 import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { useEffect, useState } from 'react';
-import { InitiativesLabel, InitiativeTypeToLabel, LabelToInitiativeType } from '@/constants';
+import {
+  InitiativesLabel,
+  InitiativeTypeToLabel,
+  LabelToInitiativeType,
+} from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
 import { Paragraphe, Title } from './MapView.style';
@@ -28,7 +32,11 @@ interface MapViewProps {
   filteredInitiativeType: InitiativesLabel | null;
 }
 
-const MapView = ({ position, zoom = 6, filteredInitiativeType }: MapViewProps) => {
+const MapView = ({
+  position,
+  zoom = 6,
+  filteredInitiativeType,
+}: MapViewProps) => {
   const { getInitiatives, loading, error } = useInitiatives();
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
 
@@ -41,8 +49,8 @@ const MapView = ({ position, zoom = 6, filteredInitiativeType }: MapViewProps) =
 
       if (filteredInitiativeType) {
         const mappedType = LabelToInitiativeType[filteredInitiativeType];
-        initiativeList = initiativeList.filter(
-          (initiative) => initiative.initiativeType?.includes(mappedType)
+        initiativeList = initiativeList.filter((initiative) =>
+          initiative.initiativeType?.includes(mappedType),
         );
       }
 
@@ -94,7 +102,9 @@ const MapView = ({ position, zoom = 6, filteredInitiativeType }: MapViewProps) =
                     </Paragraphe>
                   ))}
                   <hr></hr>
-                  {initiative.narrative && <Paragraphe>{initiative.narrative}</Paragraphe>}
+                  {initiative.narrative && (
+                    <Paragraphe>{initiative.narrative}</Paragraphe>
+                  )}
                   <hr></hr>
                   <ul>
                     <li>
@@ -118,7 +128,9 @@ const MapView = ({ position, zoom = 6, filteredInitiativeType }: MapViewProps) =
                 <hr></hr>
                 <footer role="contentinfo">
                   {initiative.user && (
-                    <Paragraphe>Ajouté par {initiative.user?.userName},</Paragraphe>
+                    <Paragraphe>
+                      Ajouté par {initiative.user?.userName},
+                    </Paragraphe>
                   )}
                   <span>Mise à jour le {formattedDate(initiative)}</span>
                 </footer>

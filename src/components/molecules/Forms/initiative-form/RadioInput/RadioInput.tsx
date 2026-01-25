@@ -3,7 +3,12 @@
 import React from 'react';
 import { useFormContext } from 'react-hook-form';
 import { StyledRadio, Label } from './radioInput.styles';
-import { Fieldset, InputContainer, InputWrapper, Legend } from '../initiativeCreationForm.styles';
+import {
+  Fieldset,
+  InputContainer,
+  InputWrapper,
+  Legend,
+} from '../initiativeCreationForm.styles';
 import { Options } from '@/types/Form';
 
 interface RadioInputProps {
@@ -30,7 +35,9 @@ const RadioInput = ({ radioList, name }: RadioInputProps): JSX.Element => {
               id={`radio-${name}-${radio.value}`}
               {...register(name)}
             />
-            <Label htmlFor={`radio-${name}-${radio.value}`}>{radio.label}</Label>
+            <Label htmlFor={`radio-${name}-${radio.value}`}>
+              {radio.label}
+            </Label>
           </InputWrapper>
         </InputContainer>
       ))}

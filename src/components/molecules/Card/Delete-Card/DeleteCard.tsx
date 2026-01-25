@@ -94,8 +94,8 @@ const DeleteCard: React.FC = () => {
         <CardWrapper>
           <h2>Suppression de compte</h2>
           <p>
-            Une fois votre compte supprimé, toutes vos données seront définitivement effacées. Cette
-            action est irréversible.
+            Une fois votre compte supprimé, toutes vos données seront
+            définitivement effacées. Cette action est irréversible.
           </p>
           <Button onClick={handleDelete} disabled={loading}>
             {loading ? (

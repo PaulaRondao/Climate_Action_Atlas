@@ -19,16 +19,25 @@ declare global {
   }
 }
 
-const AppHead = ({ title, metaTag = '', canonical = '' }: AppHeadProps): JSX.Element => {
+const AppHead = ({
+  title,
+  metaTag = '',
+  canonical = '',
+}: AppHeadProps): JSX.Element => {
   return (
     <>
       <Head>
         <title>{title}</title>
         {metaTag && <meta name="description" content={metaTag} />}
         {metaTag && <meta property="og:description" content={metaTag} />}
-        <link rel="canonical" href={`${process.env.NEXT_PUBLIC_BASE_URL}${canonical}`} />
+        <link
+          rel="canonical"
+          href={`${process.env.NEXT_PUBLIC_BASE_URL}${canonical}`}
+        />
         <link rel="icon" type="image/png" href="/favicon-32x32.png" />
-        {process.env.IS_DEV_ENV === 'true' && <meta name="robots" content="noindex" />}
+        {process.env.IS_DEV_ENV === 'true' && (
+          <meta name="robots" content="noindex" />
+        )}
       </Head>
       <Script src="/scripts/api-engagement.js" />
       {process.env.NEXT_PUBLIC_CLOUDFLARE_TRACKING_ID && (

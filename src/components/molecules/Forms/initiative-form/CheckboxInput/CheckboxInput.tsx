@@ -1,6 +1,11 @@
 import React from 'react';
 import { Controller, useFormContext } from 'react-hook-form';
-import { Fieldset, InputContainer, InputWrapper, Legend } from '../initiativeCreationForm.styles';
+import {
+  Fieldset,
+  InputContainer,
+  InputWrapper,
+  Legend,
+} from '../initiativeCreationForm.styles';
 import { Checkbox } from './CheckboxInput.styles';
 import { Label } from '../RadioInput/radioInput.styles';
 
@@ -35,7 +40,9 @@ const CheckboxInput = ({ options, name }: CheckboxInputProps): JSX.Element => {
                     }
                   }}
                 />
-                <Label htmlFor={`checkbox-${name}-${option.value}`}>{option.label}</Label>
+                <Label htmlFor={`checkbox-${name}-${option.value}`}>
+                  {option.label}
+                </Label>
               </InputWrapper>
             </InputContainer>
           ))}

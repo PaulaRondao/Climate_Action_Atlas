@@ -14,7 +14,7 @@ const wrongPassword = async (user: UserAccount) => {
       },
     });
     throw new Error(
-      "Votre compte vient d'être bloqué car trop de tentatives ont échouées. Veuillez contacter l'administrateur."
+      "Votre compte vient d'être bloqué car trop de tentatives ont échouées. Veuillez contacter l'administrateur.",
     );
   }
 
@@ -23,7 +23,7 @@ const wrongPassword = async (user: UserAccount) => {
     data: { loginAttempts: updateTry },
   });
   throw new Error(
-    'Vérifiez votre adresse e-mail et mot de passe. Attention 5 tentatives autorisées.'
+    'Vérifiez votre adresse e-mail et mot de passe. Attention 5 tentatives autorisées.',
   );
 };
 

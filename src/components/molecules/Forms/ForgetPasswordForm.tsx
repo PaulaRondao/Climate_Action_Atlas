@@ -16,7 +16,9 @@ const UserFormRegistration = z.object({
     .string()
     .min(1, { message: 'Veuillez renseigner votre email' })
     .email({ message: "format d'email invalide" }),
-  password: z.string().min(1, { message: 'Veuillez renseigner un mot de passe' }),
+  password: z
+    .string()
+    .min(1, { message: 'Veuillez renseigner un mot de passe' }),
 });
 
 export default function ForgetPasswordForm(): JSX.Element {
@@ -37,7 +39,10 @@ export default function ForgetPasswordForm(): JSX.Element {
     formState: { errors, isValid },
   } = methods;
 
-  const onSubmit: SubmitHandler<UserLoginForm> = async ({ email, password }) => {
+  const onSubmit: SubmitHandler<UserLoginForm> = async ({
+    email,
+    password,
+  }) => {
     await signIn('credentials', {
       email,
       password,
@@ -57,8 +62,8 @@ export default function ForgetPasswordForm(): JSX.Element {
     <FormContainer onSubmit={handleSubmit(onSubmit)} noValidate>
       <h1>J&apos;ai oublié mon mot passe</h1>
       <p>
-        Veuillez saisir votre email pour recevoir un mot de passe temporaire vous permettant
-        d&apos;accéder à votre espace
+        Veuillez saisir votre email pour recevoir un mot de passe temporaire
+        vous permettant d&apos;accéder à votre espace
       </p>
       <FormProvider {...methods}>
         <FormWrapper>
