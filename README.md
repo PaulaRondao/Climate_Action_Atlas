@@ -164,7 +164,7 @@ Prisma a besoin de générer son client avant que Next.js puisse construire l'ap
 vous devez exécuter :
 
 ```bash
-npx prisma generate && next build
+npx prisma generate && npx next build
 ```
 
 

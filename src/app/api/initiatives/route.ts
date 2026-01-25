@@ -4,7 +4,7 @@ import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
 import { authOptions } from '@/lib/next-auth/authOptions';
 import { getServerSession } from 'next-auth';
-import { createAnInitiative } from '@/services/initiative';
+import { createAnInitiative } from '@/services/Initiative/initiative';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
 
 export async function GET(request: Request) {

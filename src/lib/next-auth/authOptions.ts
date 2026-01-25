@@ -1,6 +1,6 @@
 import NextAuth, { type AuthOptions, User } from 'next-auth';
 import CredentialsProvider from 'next-auth/providers/credentials';
-import { login } from '@/services/login';
+import { login } from '@/services/User/login';
 import logger from '@/lib/pino/logger.server';
 
 export const authOptions: AuthOptions = {

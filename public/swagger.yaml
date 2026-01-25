@@ -6,7 +6,7 @@ info:
   description: API to handle users and initiatives
 
 servers:
-  - url: http://climate-action-atlas.fr
+  - url: http://localhost:3000/api
     description: Climate Action Atlas API
 
 tags:
