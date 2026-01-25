@@ -70,7 +70,12 @@ export const Container = styled.div<ContainerProps>`
 
 interface FlexContainerProps {
   direction?: 'row' | 'column';
-  justify?: 'flex-start' | 'flex-end' | 'center' | 'space-between' | 'space-around';
+  justify?:
+    | 'flex-start'
+    | 'flex-end'
+    | 'center'
+    | 'space-between'
+    | 'space-around';
   align?: 'flex-start' | 'flex-end' | 'center' | 'stretch';
   gap?: string;
   wrap?: boolean;
