@@ -3,8 +3,8 @@
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
-    swcFileReading: false
-  }
+    swcFileReading: false,
+  },
 };
 
 export default nextConfig;
