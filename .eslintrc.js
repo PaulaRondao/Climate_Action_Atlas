@@ -1,5 +1,11 @@
 module.exports = {
   root: true,
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2022,
+    sourceType: 'module',
+  },
+  plugins: ['@typescript-eslint', 'prettier'],
   extends: [
     'next/core-web-vitals',
     'plugin:@typescript-eslint/recommended',
@@ -7,16 +13,6 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
-    '@typescript-eslint/no-unused-vars': 'warn',
-    'prettier/prettier': [
-      'error',
-      {
-        singleQuote: true,
-        semi: true,
-        trailingComma: 'es5',
-        printWidth: 100,
-        tabWidth: 2,
-      },
-    ],
+    'prettier/prettier': 'error',
   },
 };

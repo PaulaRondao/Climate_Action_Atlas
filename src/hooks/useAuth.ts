@@ -49,12 +49,13 @@ export const useAuth = () => {
         Cookies.remove('token');
         setAuthState({ user: null, isLoading: false, error: null });
       }
-    } catch (error) {
+    } catch (error: any) {
       setAuthState({
         user: null,
         isLoading: false,
         error: 'Erreur de vérification',
       });
+      throw new Error(error.message);
     }
   };
 
@@ -75,8 +76,9 @@ export const useAuth = () => {
       } else {
         setAuthState((prev) => ({ ...prev, error: data.error }));
       }
-    } catch (error) {
+    } catch (error: any) {
       setAuthState((prev) => ({ ...prev, error: 'Erreur de connexion' }));
+      throw new Error(error.message);
     }
   };
 

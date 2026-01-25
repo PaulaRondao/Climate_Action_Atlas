@@ -16,7 +16,7 @@ export const searchAddresses = async (
       zipCode: address.properties.postcode,
       gps: address.geometry.coordinates,
     }));
-  } catch (error) {
-    return [];
+  } catch (error: any) {
+    throw new Error(error.message);
   }
 };

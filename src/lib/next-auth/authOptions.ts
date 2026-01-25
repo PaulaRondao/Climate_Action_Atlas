@@ -26,9 +26,9 @@ export const authOptions: AuthOptions = {
             email: user.email,
             name: user.userName,
           };
-        } catch (error) {
+        } catch (error: any) {
           logger.error("Erreur d'authentification");
-          throw new Error("Erreur d'authentification");
+          throw new Error(error.message);
         }
       },
     }),

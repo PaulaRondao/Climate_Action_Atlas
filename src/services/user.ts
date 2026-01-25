@@ -24,7 +24,7 @@ export async function createUser(userDTO: CreateUserInput) {
 
   const encryptedPassword = await encryptPassword(userDTO.password);
 
-  const { confirmPassword, ...userData } = userDTO;
+  const { ...userData } = userDTO;
 
   const createdUser = await prisma.user.create({
     data: {
