@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { mediaQueries } from '@/styles/globalStyles';
 
 export const FormContainer = styled.form`
   display: flex;

@@ -46,13 +46,13 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: 'Demande d\'inscription envoyée',
+        message: "Demande d'inscription envoyée",
         type: BackendApiResponseType.SUCCESS,
         data: user,
       },
       { status: HttpStatusCode.HTTP_CREATED },
     );
-  } catch (error: any) {
+  } catch (error) {
     logger.error(error, 'Erreur création utilisateur');
     return NextResponse.json(
       { error: 'Erreur interne du serveur' },

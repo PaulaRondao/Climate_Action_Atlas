@@ -15,7 +15,7 @@ const UserFormRegistration = z.object({
   email: z
     .string()
     .min(1, { message: 'Veuillez renseigner votre email' })
-    .email({ message: 'format d\'email invalide' }),
+    .email({ message: "format d'email invalide" }),
   password: z
     .string()
     .min(1, { message: 'Veuillez renseigner un mot de passe' }),

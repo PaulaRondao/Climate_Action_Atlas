@@ -7,7 +7,7 @@ const initiativeTypeValues = Object.keys(InitiativesLabel) as [
 ];
 
 export const initiativeCreationSchema = z.object({
-  name: z.string().min(1, 'Le nom de l\'initiative est requis'),
+  name: z.string().min(1, "Le nom de l'initiative est requis"),
   description: z
     .string()
     .min(10, 'La description doit contenir au moins 10 caractères'),

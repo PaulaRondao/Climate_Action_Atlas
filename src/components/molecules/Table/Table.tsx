@@ -3,7 +3,6 @@
 import { InitiativeTypeToLabel } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
-import { Notification } from '@/types/Notification';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
@@ -118,7 +117,7 @@ const Table = (): JSX.Element => {
     const deletedInitiative = await deleteInitiative(initiativeId);
 
     if (!deletedInitiative) {
-      alert('Une erreur est survenue lors de la suppression de l\'initiative');
+      alert("Une erreur est survenue lors de la suppression de l'initiative");
       return;
     }
 

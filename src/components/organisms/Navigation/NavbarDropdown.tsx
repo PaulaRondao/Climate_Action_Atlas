@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import LoginButton from '@/components/atoms/Button/loginButton';
-import { theme } from '@/styles/theme';
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 
 const ListWrapper = styled.div`
   align-items: center;

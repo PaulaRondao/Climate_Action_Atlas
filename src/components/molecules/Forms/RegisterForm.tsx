@@ -75,7 +75,7 @@ const RegisterForm = () => {
 
       if (!response.ok) {
         setGlobalError(
-          result.error || 'Une erreur est survenue lors de l\'inscription',
+          result.error || "Une erreur est survenue lors de l'inscription",
         );
         return;
       }

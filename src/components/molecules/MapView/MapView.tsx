@@ -10,14 +10,12 @@ import shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import { useEffect, useState } from 'react';
 import {
   InitiativesLabel,
-  initiativesLabelTypeObject,
   InitiativeTypeToLabel,
   LabelToInitiativeType,
 } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
 import { Paragraphe, Title } from './MapView.style';
-import { useRouter } from 'next/navigation';
 import { formattedDate } from '@/components/helpers/helper';
 
 L.Icon.Default.mergeOptions({
@@ -39,8 +37,6 @@ const MapView = ({
   zoom = 6,
   filteredInitiativeType,
 }: MapViewProps) => {
-  const router = useRouter();
-
   const { getInitiatives, loading, error } = useInitiatives();
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
 
@@ -53,8 +49,8 @@ const MapView = ({
 
       if (filteredInitiativeType) {
         const mappedType = LabelToInitiativeType[filteredInitiativeType];
-        initiativeList = initiativeList.filter((initiative) =>
-          initiative.initiativeType?.includes(mappedType),
+        initiativeList = initiativeList.filter(
+          (initiative) => initiative.initiativeType?.includes(mappedType),
         );
       }
 

@@ -67,14 +67,14 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
           status: 'error',
           message:
             result.error ||
-            'Une erreur est survenue lors de la création de l\'initiative',
+            "Une erreur est survenue lors de la création de l'initiative",
         });
         return;
       }
 
       setNotification({
         status: 'success',
-        message: 'Ajout d\'initiative réussi',
+        message: "Ajout d'initiative réussi",
       });
 
       setTimeout(() => {
