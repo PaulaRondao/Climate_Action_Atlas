@@ -1,5 +1,4 @@
 import { NextResponse } from 'next/server';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma/client';
 import type { CreateUserDTO } from '@/constants/types';
 import { createUser } from '@/services/user';
@@ -47,7 +46,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: "Demande d'inscription envoyée",
+        message: 'Demande d\'inscription envoyée',
         type: BackendApiResponseType.SUCCESS,
         data: user,
       },

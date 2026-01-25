@@ -50,7 +50,7 @@ export default function Error({
     <ErrorContainer>
       <ErrorTitle>Une erreur est survenue</ErrorTitle>
       <ErrorMessage>
-        {error.message || "Quelque chose s'est mal passé"}
+        {error.message || 'Quelque chose s\'est mal passé'}
       </ErrorMessage>
       <RetryButton onClick={reset}>Réessayer</RetryButton>
     </ErrorContainer>

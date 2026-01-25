@@ -15,7 +15,7 @@ export enum PageTitle {
 export enum Description {
   ClimatActionTitle = 'Climate Action Atlas est un mouvement actif. Nous partageons le désir d’une action urgente et juste pour répondre aux urgences climatiques et naturelles.',
   InitiativeTitle = 'Ajoutez vos projets pour contribuer à un monde plus respectueux des limites écologiques et encourager un changement collectif',
-  CommitmentTitle = "L’engagement de chacun est essentiel pour préserver notre planète. Agissez dès aujourd'hui pour un futur plus vert.",
+  CommitmentTitle = 'L’engagement de chacun est essentiel pour préserver notre planète. Agissez dès aujourd\'hui pour un futur plus vert.',
   InitiativeToAdd = 'Chaque geste compte. En ajoutant une initiative, vous participez activement à un projet commun qui peut inspirer d’autres à s’engager. Ensemble, nous pouvons faire la différence, une initiative à la fois.',
   CommitmentToUser = 'Découvrez comment votre engagement peut contribuer à un avenir durable et respectueux des limites planétaires.',
   CommitmentToAssociation = 'Votre engagement fait la différence. Ensemble, nous pouvons dépasser les défis environnementaux.',
@@ -62,7 +62,7 @@ export const InitiativeOptions: {
   {
     label: InitiativesLabel.SolidarityAndCommunities,
     description:
-      "Projets ancrés dans l'entraide, l'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l'action citoyenne.",
+      'Projets ancrés dans l\'entraide, l\'inclusion, les dynamiques collectives et les réseaux de solidarité locale, pour renforcer le lien social et l\'action citoyenne.',
     logo: '/icons/solidarite.svg',
   },
   {

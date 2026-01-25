@@ -118,7 +118,7 @@ const Table = (): JSX.Element => {
     const deletedInitiative = await deleteInitiative(initiativeId);
 
     if (!deletedInitiative) {
-      alert("Une erreur est survenue lors de la suppression de l'initiative");
+      alert('Une erreur est survenue lors de la suppression de l\'initiative');
       return;
     }
 

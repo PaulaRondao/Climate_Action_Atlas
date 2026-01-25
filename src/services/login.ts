@@ -14,7 +14,7 @@ const wrongPassword = async (user: UserAccount) => {
       },
     });
     throw new Error(
-      "Votre compte vient d'être bloqué car trop de tentatives ont échouées. Veuillez contacter l'administrateur.",
+      'Votre compte vient d\'être bloqué car trop de tentatives ont échouées. Veuillez contacter l\'administrateur.',
     );
   }
 
