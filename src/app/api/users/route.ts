@@ -1,8 +1,7 @@
 import { NextResponse } from 'next/server';
-import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '@/lib/prisma/client';
 import type { CreateUserDTO } from '@/constants/types';
-import { createUser } from '@/services/user';
+import { createUser } from '@/services/User/create';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
 import logger from '@/lib/pino/logger.server';

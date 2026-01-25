@@ -1,6 +1,7 @@
 services:
   climate-db:
     image: postgres:12.20
+    container_name: climate-db
     ports:
       - '5432:5432'
     environment:
