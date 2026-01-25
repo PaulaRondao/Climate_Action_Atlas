@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
+import { prisma } from '@/lib/prisma/client';
 import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
 import { authOptions } from '@/lib/next-auth/authOptions';

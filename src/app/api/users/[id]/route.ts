@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
+import { prisma } from '@/lib/prisma/client';
 import type { UpdateUserDTO } from '@/constants/types';
 import logger from '@/lib/pino/logger.server';
 

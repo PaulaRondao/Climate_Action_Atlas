@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
+import { prisma } from '@/lib/prisma/client';
 import type { CreateUserDTO } from '@/constants/types';
 import { createUser } from '@/services/user';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';

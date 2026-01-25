@@ -1,5 +1,5 @@
 import { CreateUserDTO } from '@/constants';
-import prisma from '@/lib/prisma/client';
+import { prisma } from '@/lib/prisma/client';
 import bcrypt from 'bcryptjs';
 
 const encryptPassword = async (password: string): Promise<string> => {

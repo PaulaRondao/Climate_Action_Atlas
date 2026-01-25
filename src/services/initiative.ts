@@ -1,5 +1,5 @@
 import { InitiativeCreationFormData } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
-import prisma from '@/lib/prisma/client';
+import { prisma } from '@/lib/prisma/client';
 
 export async function createAnInitiative(
   initiative: InitiativeCreationFormData,
