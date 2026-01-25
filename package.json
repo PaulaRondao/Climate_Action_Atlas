@@ -11,7 +11,7 @@
     "lint": "next lint",
     "prettier-check": "prettier --check .",
     "eslint-check": "eslint .",
-    "lint-fix": "eslint --fix .",
+    "lint-fix": "eslint --fix",
     "prettier-fix": "prettier --write .",
     "postinstall": "prisma generate"
   },
@@ -46,8 +46,8 @@
     "zod": "^3.24.2"
   },
   "devDependencies": {
-    "@eslint/eslintrc": "^3.3.1",
-    "@eslint/js": "^9.34.0",
+    "@eslint/eslintrc": "^2.1.4",
+    "@eslint/js": "^9.39.2",
     "@faker-js/faker": "^9.2.0",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "^6.9.1",
@@ -61,7 +61,7 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/swagger-ui-react": "^5.18.0",
-    "eslint": "^9.34.0",
+    "eslint": "^9.39.2",
     "eslint-config-next": "^15.5.2",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",
