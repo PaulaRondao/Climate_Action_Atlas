@@ -13,7 +13,8 @@
     "eslint-check": "eslint .",
     "lint-fix": "eslint --fix .",
     "prettier-fix": "prettier --write .",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "prisma:generate": "prisma generate"
   },
   "dependencies": {
     "@emotion/styled": "^11.14.0",
