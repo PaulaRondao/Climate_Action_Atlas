@@ -26,7 +26,10 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
       - run: npm ci
+      - name: Generate Prisma Client
+        run: npx prisma generate
+      - name: Build Next.js
+        run: npx next build
       - name: Run Prettier check
         run: npm run prettier-check
-      # - run: npm run build --if-present
       # - run: npm test
