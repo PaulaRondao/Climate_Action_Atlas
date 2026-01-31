@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { Container } from '@/styles/components';
 import { theme } from '@/styles/theme';
 import { Footer, Header } from '@/components/organisms';
 import { PageTitle, Description } from '@/types/enums/enums';

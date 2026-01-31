@@ -11,10 +11,11 @@ import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity(params);
+    const userWithValidatedId = checkIdValidity({ id });
     if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
 
     const userId = userWithValidatedId;
@@ -48,10 +49,11 @@ export async function GET(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity(params);
+    const userWithValidatedId = checkIdValidity({ id });
     if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
 
     const userId = userWithValidatedId;
@@ -65,7 +67,7 @@ export async function PATCH(
     try {
       data = await request.json();
     } catch (error) {
-      logger.error('Body invalide ou manquant');
+      logger.error(error, 'Body invalide ou manquant');
       return NextResponse.json(
         { error: 'Body invalide ou manquant' },
         { status: HttpStatusCode.HTTP_BAD_REQUEST },
@@ -107,10 +109,11 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity(params);
+    const userWithValidatedId = checkIdValidity({ id });
     if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
 
     const userId = userWithValidatedId;

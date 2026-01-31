@@ -23,7 +23,6 @@ const UserFormRegistration = z.object({
 
 export default function ForgetPasswordForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
-  const [showRegisterPopup, setShowRegisterPopup] = useState<boolean>(false);
 
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -53,9 +52,6 @@ export default function ForgetPasswordForm(): JSX.Element {
 
   useEffect(() => {
     setLoginError(error);
-    if (register) {
-      setShowRegisterPopup(true);
-    }
   }, [errors, error, register]);
 
   return (

@@ -5,7 +5,7 @@ import { NextResponse } from 'next/server';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 import logger from '@/lib/pino/logger.server';
 
-export default async function serverAsyncResolve<T>(
+export default async function serverAsyncResolve(
   asyncCallback: () => Promise<NextResponse>,
 ): Promise<NextResponse> {
   try {

@@ -3,7 +3,6 @@
 import { InitiativeTypeToLabel } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
 import { InitiativeWithRelations } from '@/types/initiatives';
-import { Notification } from '@/types/Notification';
 import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';

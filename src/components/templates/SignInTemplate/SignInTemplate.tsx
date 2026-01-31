@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import SignInForm from '@/components/molecules/Forms/SignInForm';
 import { Container } from '@/styles/components';
 import { MainContent, SignContainer } from './signTemplate.styles';

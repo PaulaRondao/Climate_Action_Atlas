@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-import { useRouter } from 'next/router';
 import Head from 'next/head';
 import Script from 'next/script';
 import { PageTitle } from '@/constants';
@@ -14,8 +13,8 @@ interface AppHeadProps {
 
 declare global {
   interface Window {
-    apieng: any;
-    dataLayer: Record<string, any>;
+    apieng: unknown;
+    dataLayer: Record<string, unknown>;
   }
 }
 

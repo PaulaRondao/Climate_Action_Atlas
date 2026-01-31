@@ -11,10 +11,11 @@ import { UpdateInitiativeDTO } from '@/constants';
 
 export async function GET(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity(params);
+    const initiativeWithValidatedId = checkIdValidity({ id });
     if (initiativeWithValidatedId instanceof NextResponse)
       return initiativeWithValidatedId;
 
@@ -61,10 +62,11 @@ export async function GET(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity(params);
+    const initiativeWithValidatedId = checkIdValidity({ id });
     if (initiativeWithValidatedId instanceof NextResponse)
       return initiativeWithValidatedId;
 
@@ -106,10 +108,11 @@ export async function DELETE(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } },
+  { params }: { params: Promise<{ id: string }> },
 ) {
+  const { id } = await params;
   return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity(params);
+    const initiativeWithValidatedId = checkIdValidity({ id });
     if (initiativeWithValidatedId instanceof NextResponse)
       return initiativeWithValidatedId;
 
@@ -151,7 +154,7 @@ export async function PATCH(
         );
       }
     } catch (error) {
-      logger.error('Body invalide ou manquant');
+      logger.error(error, 'Body invalide ou manquant');
       return NextResponse.json(
         {
           type: BackendApiResponseType.ERROR,
