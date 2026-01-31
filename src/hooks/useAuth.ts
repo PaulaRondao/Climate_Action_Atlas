@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Cookies from 'js-cookie';
+import logger from '@/lib/pino/logger.client';
 
 interface User {
   userAccountId: number;
@@ -50,6 +51,7 @@ export const useAuth = () => {
         setAuthState({ user: null, isLoading: false, error: null });
       }
     } catch (error) {
+      logger.error(error, 'Erreur de vérification');
       setAuthState({
         user: null,
         isLoading: false,
@@ -76,6 +78,7 @@ export const useAuth = () => {
         setAuthState((prev) => ({ ...prev, error: data.error }));
       }
     } catch (error) {
+      logger.error(error, 'Erreur de connexion');
       setAuthState((prev) => ({ ...prev, error: 'Erreur de connexion' }));
     }
   };

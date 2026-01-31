@@ -1,6 +1,5 @@
 import { Options } from '@/types/Form';
 import { $Enums } from '@prisma/client';
-import { ReactSVG } from 'react';
 
 export enum PageTitle {
   MovementForChange = 'Un mouvement pour changer',

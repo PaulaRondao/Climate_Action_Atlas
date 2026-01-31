@@ -4,8 +4,9 @@ import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
 import { authOptions } from '@/lib/next-auth/authOptions';
 import { getServerSession } from 'next-auth';
-import { createAnInitiative } from '@/services/Initiative/initiative';
+import { createAnInitiative } from '@/services/Initiative/create';
 import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
+import { HttpStatusCode } from '@/types/enums/httpStatusCode';
 
 export async function GET(request: Request) {
   try {
@@ -43,10 +44,10 @@ export async function GET(request: Request) {
       initiatives,
     });
   } catch (error) {
-    logger.error(error, 'Error fetching initiatives');
+    logger.error(error, "Erreur lors de la récupération d'une initiative");
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
+      { error: 'Erreur serveur interne' },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR },
     );
   }
 }
@@ -56,7 +57,10 @@ export async function POST(request: Request) {
     const session = await getServerSession(authOptions);
 
     if (!session || !session.user?.id) {
-      return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
+      return NextResponse.json(
+        { error: 'Non autorisé' },
+        { status: HttpStatusCode.HTTP_NOT_AUTHORIZED },
+      );
     }
 
     const contributorId = Number(session.user.id);
@@ -69,10 +73,10 @@ export async function POST(request: Request) {
 
     return NextResponse.json(createdInitiative, { status: 201 });
   } catch (error) {
-    logger.error(error, 'Error creating initiative');
+    logger.error(error, "Erreur dans la création d'une initiative");
     return NextResponse.json(
-      { error: 'Internal server error' },
-      { status: 500 },
+      { error: 'Erreur serveur interne' },
+      { status: HttpStatusCode.HTTP_SERVER_ERROR },
     );
   }
 }

@@ -1,3 +1,4 @@
+import logger from '@/lib/pino/logger.client';
 import { useState, useEffect, useCallback } from 'react';
 
 const useLocalStorage = <T>(key: string, initialValue: T) => {
@@ -17,7 +18,9 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
       } else {
         localStorage.removeItem(key);
       }
-    } catch {}
+    } catch (error) {
+      logger.error(error, 'LocalStorage does not work');
+    }
   }, [key, state]);
 
   const setValue = useCallback((value: T) => {
@@ -28,7 +31,9 @@ const useLocalStorage = <T>(key: string, initialValue: T) => {
     try {
       localStorage.removeItem(key);
       setState(undefined);
-    } catch {}
+    } catch (error) {
+      logger.error(error, 'LocalStorage does not remove');
+    }
   }, [key]);
 
   return [state, setValue, remove];

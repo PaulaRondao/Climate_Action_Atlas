@@ -3,11 +3,15 @@ import { User as UserModel } from '@prisma/client';
 
 // Types de base
 export type IUser = UserModel;
+export type IInitiative = UserModel;
 
 // DTOs
 export type CreateUserDTO = Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>;
 export type UpdateUserDTO = Partial<
   Omit<IUser, 'id' | 'createdAt' | 'updatedAt'>
+>;
+export type UpdateInitiativeDTO = Partial<
+  Omit<IInitiative, 'id' | 'contributorId' | 'createdAt' | 'updatedAt'>
 >;
 
 // Types d'état

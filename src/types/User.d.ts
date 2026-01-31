@@ -9,7 +9,7 @@ export interface UserCreate {
 }
 
 export interface UserAccount {
-  id?: any;
+  id?: number;
   userName: string;
   password?: string;
   loginAttempts?: number;

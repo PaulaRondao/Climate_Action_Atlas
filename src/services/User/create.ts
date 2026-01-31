@@ -4,7 +4,7 @@ import bcrypt from 'bcryptjs';
 
 const encryptPassword = async (password: string): Promise<string> => {
   const salt = await bcrypt.genSalt(10);
-  return bcrypt.hashSync(password, salt);
+  return await bcrypt.hashSync(password, salt);
 };
 
 type CreateUserInput = CreateUserDTO & { confirmPassword?: string };
@@ -24,13 +24,13 @@ export async function createUser(userDTO: CreateUserInput) {
 
   const encryptedPassword = await encryptPassword(userDTO.password);
 
+  /* eslint-disable @typescript-eslint/no-unused-vars */
   const { confirmPassword, ...userData } = userDTO;
 
   const createdUser = await prisma.user.create({
     data: {
       ...userData,
       password: encryptedPassword,
-      updatedAt: new Date(),
     },
   });
 

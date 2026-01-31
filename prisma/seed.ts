@@ -9,12 +9,12 @@ async function importGeoJson(filePath: string) {
   try {
     const fileContent = await fs.readFile(filePath, 'utf-8');
     const geoJson = JSON.parse(fileContent);
-    return geoJson.features.map((feature: any) => ({
-      street: feature.properties.street,
-      postcode: feature.properties.postcode,
-      city: feature.properties.city,
-      latitude: feature.geometry.coordinates[1],
-      longitude: feature.geometry.coordinates[0],
+    return geoJson.features.map((address: any) => ({
+      street: address.properties.street,
+      postcode: address.properties.postcode,
+      city: address.properties.city,
+      latitude: address.geometry.coordinates[1],
+      longitude: address.geometry.coordinates[0],
     }));
   } catch (error) {
     throw new Error(`Error parsing GeoJSON file: ${error}`);
