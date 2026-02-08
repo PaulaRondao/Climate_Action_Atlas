@@ -1,14 +1,17 @@
-import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
+import { NextRequest, NextResponse } from 'next/server';
+import { createAnInitiative } from '@/services/Initiative/create';
+import { HttpStatusCode } from '@/types/enums/httpStatusCode';
+import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
+import { apiHandler } from '@/services/api/api-handler';
+import {
+  InitiativeCreationFormData,
+  initiativeCreationSchema,
+} from '@/validation/initiativeSchema';
+import prisma from '@/lib/prisma';
 import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
-import { authOptions } from '@/lib/next-auth/authOptions';
-import { getServerSession } from 'next-auth';
-import { createAnInitiative } from '@/services/Initiative/create';
-import { initiativeCreationSchema } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
-import { HttpStatusCode } from '@/types/enums/httpStatusCode';
 
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
@@ -35,9 +38,6 @@ export async function GET(request: Request) {
         contributor: true,
         initiativeLocation: true,
       },
-      orderBy: {
-        createdAt: 'desc',
-      },
     });
 
     return NextResponse.json({
@@ -52,31 +52,26 @@ export async function GET(request: Request) {
   }
 }
 
-export async function POST(request: Request) {
-  try {
-    const session = await getServerSession(authOptions);
+const post = async (request: NextRequest, body: InitiativeCreationFormData) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
 
-    if (!session || !session.user?.id) {
-      return NextResponse.json(
-        { error: 'Non autorisé' },
-        { status: HttpStatusCode.HTTP_NOT_AUTHORIZED },
-      );
-    }
-
-    const contributorId = Number(session.user.id);
-
-    const bodyRequest = await request.json();
-
-    const parsed = initiativeCreationSchema.parse(bodyRequest);
-
-    const createdInitiative = await createAnInitiative(parsed, contributorId);
-
-    return NextResponse.json(createdInitiative, { status: 201 });
-  } catch (error) {
-    logger.error(error, "Erreur dans la création d'une initiative");
+  if (!user?.id) {
     return NextResponse.json(
-      { error: 'Erreur serveur interne' },
-      { status: HttpStatusCode.HTTP_SERVER_ERROR },
+      { type: BackendApiResponseType.ERROR, error: 'Non autorisé' },
+      { status: HttpStatusCode.HTTP_NOT_AUTHORIZED },
     );
   }
-}
+
+  const createdInitiative = await createAnInitiative(body, user.id);
+
+  return NextResponse.json(
+    { type: BackendApiResponseType.SUCCESS, data: createdInitiative },
+    { status: HttpStatusCode.HTTP_CREATED },
+  );
+};
+
+export const POST = apiHandler({
+  fn: post,
+  bodySchema: initiativeCreationSchema,
+});

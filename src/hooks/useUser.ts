@@ -70,7 +70,7 @@ export const useUser = () => {
     }
   };
 
-  const deleteUser = async (id: number): Promise<boolean> => {
+  const deleteUser = async (id: string): Promise<boolean> => {
     try {
       setLoading(true);
       const response = await fetch(`/api/users/${id}`, {

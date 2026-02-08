@@ -1,147 +1,105 @@
-import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
-import type { UpdateUserDTO } from '@/constants/types';
-import logger from '@/lib/pino/logger.server';
+import { NextRequest, NextResponse } from 'next/server';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
-import serverAsyncResolve, {
-  checkIdValidity,
-  checkSessionValidityAndAuthentificated,
-} from '@/services/api/api-handler';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
+import { apiHandler } from '@/services/api/api-handler';
+import { getUser } from '@/services/User/getUser';
+import { pathIdTypeParamsSchema } from '@/validation/commonSchema';
+import { updateUser } from '@/services/User/update';
+import { deleteUser } from '@/services/User/delete';
+import { updateUserSchema, UpdateUserBody } from '@/validation/userSchema';
+import { UserParams, UserProfil } from '@/types/User';
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity({ id });
-    if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
+const get = async (request: NextRequest, { id }: { id: string }) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
 
-    const userId = userWithValidatedId;
-    const authentificatedUser = await checkSessionValidityAndAuthentificated(
-      userId,
-    );
-    if (authentificatedUser instanceof NextResponse) return authentificatedUser;
-
-    const user = await prisma.user.findUnique({
-      where: { id: userId },
-      omit: {
-        password: true,
-        loginAttempts: true,
-      },
-      include: { initiatives: true },
-    });
-
-    if (!user) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Utilisateur non trouvé' },
-        { status: HttpStatusCode.HTTP_BAD_REQUEST },
-      );
-    }
-
+  if (user.id !== id) {
     return NextResponse.json(
-      { type: BackendApiResponseType.SUCCESS, data: user },
-      { status: HttpStatusCode.HTTP_OK },
+      { type: BackendApiResponseType.ERROR, error: 'Utilisateur non trouvé' },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
     );
-  });
-}
+  }
 
-export async function PATCH(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity({ id });
-    if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
+  const result = await getUser(id);
 
-    const userId = userWithValidatedId;
-    const authentificatedUser = await checkSessionValidityAndAuthentificated(
-      userId,
-    );
-    if (authentificatedUser instanceof NextResponse) return authentificatedUser;
-
-    let data: UpdateUserDTO;
-
-    try {
-      data = await request.json();
-    } catch (error) {
-      logger.error(error, 'Body invalide ou manquant');
-      return NextResponse.json(
-        { error: 'Body invalide ou manquant' },
-        { status: HttpStatusCode.HTTP_BAD_REQUEST },
-      );
-    }
-
-    if (Object.keys(data).length === 0) {
-      return NextResponse.json(
-        { error: 'Aucune donnée à mettre à jour' },
-        { status: HttpStatusCode.HTTP_BAD_REQUEST },
-      );
-    }
-
-    const userToUpdate = await prisma.user.update({
-      where: { id: userId },
-      data,
-    });
-
-    if (!userToUpdate) {
-      return NextResponse.json(
-        {
-          type: BackendApiResponseType.ERROR,
-          error: 'Utilisateur non mis à jour',
-        },
-        { status: HttpStatusCode.HTTP_BAD_REQUEST },
-      );
-    }
-
+  if (!result) {
     return NextResponse.json(
-      {
-        type: BackendApiResponseType.SUCCESS,
-        message: 'Utilisateur mis à jour avec succès',
-        data: userToUpdate,
-      },
-      { status: HttpStatusCode.HTTP_OK },
+      { type: BackendApiResponseType.ERROR, error: 'Utilisateur non trouvé' },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
     );
-  });
-}
+  }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const userWithValidatedId = checkIdValidity({ id });
-    if (userWithValidatedId instanceof NextResponse) return userWithValidatedId;
+  return NextResponse.json(
+    { type: BackendApiResponseType.SUCCESS, data: result },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
 
-    const userId = userWithValidatedId;
-    const authentificatedUser = await checkSessionValidityAndAuthentificated(
-      userId,
-    );
-    if (authentificatedUser instanceof NextResponse) return authentificatedUser;
+export const GET = apiHandler({
+  fn: get,
+  paramsSchema: pathIdTypeParamsSchema,
+});
 
-    const user = await prisma.user.delete({
-      where: { id: userId },
-    });
+const update = async (
+  request: NextRequest,
+  body: UpdateUserBody,
+  params: UserParams,
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
 
-    if (!user) {
-      return NextResponse.json(
-        {
-          type: BackendApiResponseType.ERROR,
-          error: 'Erreur lors de la suppression utilisateur',
-        },
-        { status: HttpStatusCode.HTTP_BAD_REQUEST },
-      );
-    }
-
+  if (user.id !== params) {
     return NextResponse.json(
-      {
-        type: BackendApiResponseType.SUCCESS,
-        message: 'Utilisateur supprimé avec succès',
-      },
-      { status: HttpStatusCode.HTTP_OK },
+      { type: BackendApiResponseType.ERROR, error: 'Accès interdit' },
+      { status: HttpStatusCode.HTTP_FORBIDDEN },
     );
-  });
-}
+  }
+
+  const result = await updateUser(params.id, body);
+
+  return NextResponse.json(
+    {
+      type: BackendApiResponseType.SUCCESS,
+      message: 'Utilisateur mis à jour',
+      data: result,
+    },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
+
+export const PATCH = apiHandler({
+  fn: update,
+  bodySchema: updateUserSchema,
+  paramsSchema: pathIdTypeParamsSchema,
+});
+
+const deletedUser = async (
+  request: NextRequest,
+  body: UserProfil,
+  params: UserParams & { id: string },
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
+
+  if (user.id !== params.id) {
+    return NextResponse.json(
+      { type: BackendApiResponseType.ERROR, error: 'Accès interdit' },
+      { status: HttpStatusCode.HTTP_FORBIDDEN },
+    );
+  }
+
+  await deleteUser(params.id);
+
+  return NextResponse.json(
+    {
+      type: BackendApiResponseType.SUCCESS,
+      message: 'Utilisateur supprimé',
+    },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
+
+export const DELETE = apiHandler({
+  fn: deletedUser,
+  paramsSchema: pathIdTypeParamsSchema,
+});
