@@ -1,7 +1,6 @@
-import bcrypt from 'bcryptjs';
-import { fakerFR as faker } from '@faker-js/faker';
 import { PrismaClient, InitiativeType } from '@prisma/client';
 import { promises as fs } from 'fs';
+import { fakerFR as faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
@@ -21,105 +20,69 @@ async function importGeoJson(filePath: string) {
   }
 }
 
-const createdAt = faker.date.between({
-  from: new Date('2020-01-01'),
-  to: new Date(),
-});
+const users = [
+  {
+    id: '1234',
+    name: 'Margot',
+    email: 'margot@mail.com',
+    role: 'CONTRIBUTOR',
+  },
+  {
+    id: '5678',
+    name: 'Olivier',
+    email: 'olivier@mail.com',
+    role: 'CONTRIBUTOR',
+  },
+  {
+    id: '9876',
+    name: 'Sarah',
+    email: 'sarah@mail.com',
+    role: 'CONTRIBUTOR',
+  },
+];
+
+const initiatives = [
+  {
+    name: 'Roule ma frite',
+    type: InitiativeType.ClimateAgricultureEnergy,
+    locationIndex: 0,
+    contributorId: '9876',
+  },
+  {
+    name: 'Cinema le Kursaal',
+    type: InitiativeType.CultureAndTransmission,
+    locationIndex: 1,
+    contributorId: '5678',
+  },
+  {
+    name: 'Eco-lieu familial Mandala',
+    type: InitiativeType.UrbanismAndTechnology,
+    locationIndex: 2,
+    contributorId: '1234',
+  },
+];
 
 const seedDatabase = async () => {
   try {
     const locations = await importGeoJson('prisma/data.structure.geojson');
 
-    const initiativeTypes = Object.values(InitiativeType);
+    await prisma.initiative.deleteMany({});
+    await prisma.initiativeLocation.deleteMany({});
+    await prisma.user.deleteMany({});
 
-    const password = faker.internet.password();
-    const hashedPassword = await bcrypt.hash(password, 10);
-
-    const users = await Promise.all(
-      Array.from({ length: 8 }).map(async () => {
-        const email = faker.internet.email();
-        await prisma.user.delete({ where: { email } }).catch(() => {});
-        return prisma.user.create({
-          data: {
-            firstName: faker.person.firstName(),
-            lastName: faker.person.lastName(),
-            userName: faker.person.middleName(),
-            email: email,
-            password: hashedPassword,
-            createdAt,
-            updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
-          },
-        });
-      }),
-    );
-
-    await prisma.user.upsert({
-      where: {
-        email: 'user@mail.com',
-      },
-      update: {
-        updatedAt: faker.date.between({ from: createdAt, to: new Date() }),
-      },
-      create: {
-        firstName: 'user',
-        lastName: 'userLastName',
-        userName: 'Paula',
-        email: 'user@mail.com',
-        password: await bcrypt.hash('user', 10),
-        createdAt,
-      },
-    });
-
-    const fixedInitiatives = [
-      {
-        name: 'Roule ma frite',
-        type: InitiativeType.ClimateAgricultureEnergy,
-        locationIndex: 0,
-      },
-      {
-        name: 'Cinema le Kursaal',
-        type: InitiativeType.CultureAndTransmission,
-        locationIndex: 1,
-      },
-      {
-        name: 'Eco-lieu familial Mandala',
-        type: InitiativeType.UrbanismAndTechnology,
-        locationIndex: 2,
-      },
-    ];
-
-    for (const fixed of fixedInitiatives) {
-      const randomUser = faker.helpers.arrayElement(users);
-      const loc = locations[fixed.locationIndex];
-
-      const newLocation = await prisma.initiativeLocation.create({
+    for (const user of users) {
+      await prisma.user.create({
         data: {
-          street: loc.street,
-          postcode: loc.postcode,
-          city: loc.city,
-          latitude: loc.latitude,
-          longitude: loc.longitude,
-        },
-      });
-
-      await prisma.initiative.create({
-        data: {
-          name: fixed.name,
-          description: faker.lorem.paragraph(),
-          initiativeType: [fixed.type],
-          narrative: faker.lorem.paragraph(),
-          email: faker.internet.email(),
-          webSite: faker.internet.url(),
-          contributor: { connect: { id: randomUser.id } },
-          initiativeLocation: { connect: { id: newLocation.id } },
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          emailVerified: true,
         },
       });
     }
 
-    for (let i = 3; i < locations.length; i++) {
-      const randomUser = faker.helpers.arrayElement(users);
-      const loc = locations[i];
-      const randomCount = Math.floor(Math.random() * 3) + 1;
+    for (const init of initiatives) {
+      const loc = locations[init.locationIndex];
 
       const newLocation = await prisma.initiativeLocation.create({
         data: {
@@ -133,16 +96,13 @@ const seedDatabase = async () => {
 
       await prisma.initiative.create({
         data: {
-          name: faker.company.name(),
+          name: init.name,
           description: faker.lorem.paragraph(),
-          initiativeType: faker.helpers.arrayElements(
-            initiativeTypes,
-            randomCount,
-          ),
+          initiativeType: [init.type],
           narrative: faker.lorem.paragraph(),
           email: faker.internet.email(),
           webSite: faker.internet.url(),
-          contributor: { connect: { id: randomUser.id } },
+          contributor: { connect: { id: init.contributorId } },
           initiativeLocation: { connect: { id: newLocation.id } },
         },
       });
@@ -150,11 +110,11 @@ const seedDatabase = async () => {
 
     console.log('Seeding completed successfully');
   } catch (error) {
-    console.warn('Error while generating seeds: ', error);
+    console.error('Error while seeding database: ', error);
     process.exit(1);
   } finally {
     await prisma.$disconnect();
   }
 };
 
-export default seedDatabase();
+seedDatabase();
