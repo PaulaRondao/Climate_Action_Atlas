@@ -3,8 +3,9 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { Footer } from '@/components/organisms';
 import LegalNoticesPage from './LegalNoticesPage';
+import { useSession } from '@/lib/auth-client';
+import { Navigation } from '@/components/organisms';
 
 const PageWrapper = styled.div`
   display: flex;
@@ -25,14 +26,17 @@ const ContentWrapper = styled.div`
 `;
 
 export default function LegalNoticesTemplate() {
+  const { data: session } = useSession();
+
+  const isLoggedIn = !!session?.user;
   return (
     <>
+      <Navigation session={isLoggedIn} />
       <PageWrapper>
         <ContentWrapper>
           <LegalNoticesPage></LegalNoticesPage>
         </ContentWrapper>
       </PageWrapper>
-      <Footer />
     </>
   );
 }

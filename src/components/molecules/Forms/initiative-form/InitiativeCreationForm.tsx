@@ -21,20 +21,19 @@ import {
 } from './initiativeCreationForm.styles';
 import { TypeImpact } from '@/constants';
 import CheckboxInput from './CheckboxInput/CheckboxInput';
-import { InitiativeCreationFormData } from './initiativeFormValidation';
-import { initiativeCreationSchema } from './initiativeFormValidation';
-import { Session } from 'next-auth';
 import { Notification } from '@/types/Notification';
 import { Container } from '@/styles/components';
-import Loading from '@/app/loading';
+import { useSession } from '@/lib/auth-client';
+import {
+  InitiativeCreationFormData,
+  initiativeCreationSchema,
+} from '@/validation/initiativeSchema';
 
-interface InitiativeCreationFormProps {
-  session: Session | null;
-}
-
-const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
+const InitiativeCreationForm = () => {
   const [notification, setNotification] = useState<Notification | null>(null);
   const [loading, setLoading] = useState(false);
+
+  const { data: session } = useSession();
 
   const methods = useForm<InitiativeCreationFormData>({
     resolver: zodResolver(initiativeCreationSchema),
@@ -51,7 +50,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
     setNotification(null);
     setLoading(true);
 
-    if (!session) return;
+    if (!session || !session.user?.id) return;
 
     try {
       const response = await fetch('/api/initiatives', {
@@ -78,7 +77,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
       });
 
       setTimeout(() => {
-        window.location.href = '/dashboard';
+        window.location.href = '/profil';
       }, 3000);
     } catch (error) {
       console.error(error);
@@ -107,10 +106,10 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
 
               <FormGroup>
                 <Label htmlFor="name">
-                  Nom de l&apos;initiative ou un titre *
+                  Nom de l'initiative ou un titre *
                   <p>
-                    Saisissez un nom clair et significatif si l&apos;initiative
-                    n&apos;en a pas&nbsp;:
+                    Saisissez un nom clair et significatif si l'initiative n'en
+                    a pas&nbsp;:
                   </p>
                 </Label>
                 <Input
@@ -130,8 +129,8 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 <Label htmlFor="description">
                   Description *
                   <p>
-                    Indiquez une courte description de l&apos;initiative&nbsp;,
-                    un minimum de 10 caractères est requis&nbsp;:
+                    Indiquez une courte description de l'initiative&nbsp;, un
+                    minimum de 10 caractères est requis&nbsp;:
                   </p>
                 </Label>
                 <TextareaRow
@@ -149,7 +148,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
 
               <FormGroup>
                 <Label htmlFor="initiativeType">
-                  À quel type correspond l&apos;initiative&nbsp;? *
+                  À quel type correspond l'initiative&nbsp;? *
                 </Label>
                 <CheckboxInput options={TypeImpact} name="initiativeType" />
                 {methods.formState.errors.initiativeType && (
@@ -184,7 +183,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
               </FormGroup>
 
               <FormGroup>
-                <Label htmlFor="address">Adresse de l&apos;initiative *</Label>
+                <Label htmlFor="address">Adresse de l'initiative *</Label>
                 <SelectDropdown
                   name="address"
                   placeholder="Sélectionner une adresse"
@@ -198,7 +197,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
 
               <FormGroup>
                 <Label htmlFor="email">
-                  Adresse e-mail de l&apos;association (si existante)
+                  Adresse e-mail de l'association (si existante)
                   <p>Format attendu : asso@email.com</p>
                 </Label>
                 <Input
@@ -212,9 +211,7 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
               <FormGroup>
                 <Label htmlFor="webSite">
                   Site web
-                  <p>
-                    Indiquez l&apos;adresse du site web si disponible&nbsp;:
-                  </p>
+                  <p>Indiquez l'adresse du site web si disponible&nbsp;:</p>
                 </Label>
                 <Input
                   id="webSite"
@@ -228,11 +225,11 @@ const InitiativeCreationForm = ({ session }: InitiativeCreationFormProps) => {
                 {loading ? (
                   <>
                     <Button disabled fullWidth />
-                    <Loading />
+                    {/* <Loading avoir /> */}
                   </>
                 ) : (
                   <Button type="submit" fullWidth>
-                    Ajouter l&apos;initiative
+                    Ajouter l'initiative
                   </Button>
                 )}
               </Wrapper>

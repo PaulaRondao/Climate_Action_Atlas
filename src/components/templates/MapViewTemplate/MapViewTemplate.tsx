@@ -3,7 +3,6 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { Footer } from '@/components/organisms';
 import { InitiativesLabel } from '@/types/enums/enums';
 import dynamic from 'next/dynamic';
 import SidebarControl from '@/components/molecules/Sidebar/SidebarControl';
@@ -64,7 +63,6 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
           </MapWrapper>
         </ContentWrapper>
       </PageWrapper>
-      <Footer />
     </>
   );
 }

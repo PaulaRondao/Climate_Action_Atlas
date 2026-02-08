@@ -17,10 +17,9 @@ import { usePathname } from 'next/navigation';
 import BurgerMenu from './BurgerMenu';
 import Logo from './Logo';
 import LoginButton from '@/components/atoms/Button/loginButton';
-import { Session } from 'next-auth';
 
 interface NavigationProps {
-  session: Session | null;
+  session: boolean;
 }
 
 const useIsMobile = () => {
@@ -28,7 +27,7 @@ const useIsMobile = () => {
 
   useEffect(() => {
     const checkIsMobile = () => {
-      setIsMobile(window.innerWidth < 1219);
+      setIsMobile(window.innerWidth < 1410);
     };
 
     checkIsMobile();
@@ -57,7 +56,7 @@ const CommonLinks = ({ pathname }: { pathname: string }) => (
       href="/inscription"
       aria-current={pathname === '/inscription' ? 'page' : undefined}
     >
-      S&apos;enregistrer
+      S'enregistrer
     </StyledLink>
     <LoginButton></LoginButton>
   </>
@@ -83,6 +82,12 @@ const AuthLinks = ({ pathname }: { pathname: string }) => (
     >
       Ajouter une initiative
     </LinkWithIcon>
+    <LinkWithIcon
+      href="/profil"
+      aria-current={pathname === '/profil' ? 'page' : undefined}
+    >
+      Profil
+    </LinkWithIcon>
     <LoginButton></LoginButton>
   </>
 );
@@ -91,7 +96,7 @@ const Navigation = ({ session }: NavigationProps): JSX.Element => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
   const isMobile = useIsMobile();
-  const isConnected = !!session;
+  const isConnected = session;
 
   return (
     <Wrapper $connected={isConnected}>

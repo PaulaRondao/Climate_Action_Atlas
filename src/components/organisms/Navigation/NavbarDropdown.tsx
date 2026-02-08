@@ -83,16 +83,16 @@ export const NavbarDropdown = (): JSX.Element => {
       >
         <List id="mi1" role="menuitem">
           <Link
-            href="/profile"
+            href="/profil"
             passHref
-            aria-current={pathname === '/profile' ? 'page' : undefined}
+            aria-current={pathname === '/profil' ? 'page' : undefined}
           >
             Profil
           </Link>
         </List>
         <List id="mi2" role="menuitem">
           <Link
-            href="/profile"
+            href="/profil"
             passHref
             aria-current={pathname === '/paramètre' ? 'page' : undefined}
           >

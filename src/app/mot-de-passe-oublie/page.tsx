@@ -1,6 +1,6 @@
 import React from 'react';
-import ForgetPasswordForm from '@/components/molecules/Forms/ForgetPasswordForm';
+import ForgetPasswordTemplate from '@/components/templates/ForgetPasswordTemplate/ForgetPasswordTemplate';
 
 export default function SignUpPage() {
-  return <ForgetPasswordForm />;
+  return <ForgetPasswordTemplate />;
 }

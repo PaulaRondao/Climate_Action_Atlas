@@ -281,24 +281,16 @@ components:
         - initiatives
       example:
         id: 1
-        firstName: Laura
-        lastName: Rime
-        userName: Laura_R
+        name: Laura_R
         email: laura.rime@mail.fr
 
     UserCreate:
       type: object
       required:
-        - firstName
-        - lastName
-        - userName
+        - name
         - email
       properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userName:
+        name:
           type: string
         email:
           type: string
@@ -307,11 +299,7 @@ components:
     UserUpdate:
       type: object
       properties:
-        firstName:
-          type: string
-        lastName:
-          type: string
-        userName:
+        name:
           type: string
         email:
           type: string
@@ -372,9 +360,7 @@ components:
         associationName: Roule ma frite
         contributor:
           id: 1
-          firstName: Laura
-          lastName: Emir
-          userName: LauraE
+          name: LauraE
           email: laura.emir@mail.fr
         initiativeLocationId: 1
 

@@ -17,7 +17,7 @@ interface CardWithImageProps {
 const CardWithImage: React.FC<CardWithImageProps> = ({ actionsOption }) => (
   <>
     <Paragraphe>
-      Une petite graine pour l&apos;humain, un grand pas pour l&apos;humanité
+      Une petite graine pour l'humain, un grand pas pour l'humanité
     </Paragraphe>
     <CardContainer $backgroundColorGreen>
       {actionsOption.map((action, index) => (

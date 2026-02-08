@@ -44,11 +44,11 @@ const HomeLink = styled(Link)`
   }
 `;
 
-export default function NotFound() {
+export default function DeletePage() {
   return (
     <NotFoundContainer>
-      <Title>404</Title>
-      <Message>Désolé, la page que vous recherchez n'existe pas.</Message>
+      <Title>Aurevoir !</Title>
+      <Message>Votre compte a bien été supprimé.</Message>
       <HomeLink href="/">Retour à l'accueil</HomeLink>
     </NotFoundContainer>
   );

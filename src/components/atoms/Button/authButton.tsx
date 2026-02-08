@@ -5,13 +5,12 @@ import { usePathname, useRouter } from 'next/navigation';
 import { ButtonWithIcon } from './button.styles';
 import { authClient, useSession } from '@/lib/auth-client';
 
-export default function LoginButton() {
+export const LoginButton = async () => {
   const { data: session } = useSession();
-
-  const router = useRouter();
   const pathname = usePathname();
+  const router = useRouter();
 
-  if (session) {
+  if (!session) {
     return (
       <>
         <ButtonWithIcon
@@ -35,7 +34,13 @@ export default function LoginButton() {
   return (
     <>
       <ButtonWithIcon
-        onClick={() => router.push('/connexion')}
+        onClick={() =>
+          authClient.signIn.email({
+            email: '',
+            password: '',
+            callbackURL: '/connexion',
+          })
+        }
         aria-current={pathname === '/connexion' ? 'page' : undefined}
       >
         <Image src="/icons/login.svg" alt="" width={26} height={26} />
@@ -43,4 +48,4 @@ export default function LoginButton() {
       </ButtonWithIcon>
     </>
   );
-}
+};

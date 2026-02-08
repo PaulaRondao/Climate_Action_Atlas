@@ -28,7 +28,7 @@ const Logo = ({ connected }: LogoProps) => {
   return (
     <LinkWrapper>
       <Link
-        href={connected ? '/dashboard' : '/'}
+        href={connected ? '/profil' : '/'}
         passHref
         aria-current={pathname === '/' ? 'page' : undefined}
       >

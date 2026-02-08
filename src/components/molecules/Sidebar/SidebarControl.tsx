@@ -92,7 +92,7 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
     <>
       <SidebarContainer $open={open}>
         <SidebarContent>
-          <h2>Type d&apos;impact</h2>
+          <h2>Type d'impact</h2>
           <ul
             style={{
               listStyle: 'none',

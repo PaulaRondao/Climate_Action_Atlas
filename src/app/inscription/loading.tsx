@@ -3,6 +3,7 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
 import { theme } from '@/styles/theme';
+import { Title } from '../not-found';
 
 const spin = keyframes`
   0% { transform: rotate(0deg); }
@@ -14,10 +15,10 @@ const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 60vh;
-  padding: ${theme.spacing.xl};
+  min-height: 100vh;
   background-color: ${theme.colors.backgroundBeige};
   border-radius: ${theme.borderRadius.medium};
+  padding: ${theme.spacing.xl};
   margin: ${theme.spacing.xl} auto;
   max-width: 600px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -35,14 +36,19 @@ const Spinner = styled.div`
 const LoadingText = styled.p`
   margin-top: ${theme.spacing.lg};
   color: ${theme.colors.darkBlue};
-  font-size: ${theme.typography.fontSizes.md};
+  font-size: ${theme.typography.fontSizes.xl};
+  text-align: center;
+  font-weight: bold;
 `;
 
 export default function SignUpLoading() {
   return (
     <LoadingContainer>
       <Spinner />
-      <LoadingText>Inscription en cours...</LoadingText>
+      <Title>Inscription en cours...</Title>
+      <LoadingText>
+        Vous serez bientôt redirigé vers votre dashboard
+      </LoadingText>
     </LoadingContainer>
   );
 }

@@ -1,4 +1,4 @@
-import { ApiAddressResponse, ResponseAddress } from '@/types/city.interface';
+import { ApiAddressResponse, ResponseAddress } from '@/types/City.interface';
 
 export const searchAddresses = async (
   searchedValue: string,

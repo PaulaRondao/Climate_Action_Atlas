@@ -44,11 +44,11 @@ const HomeLink = styled(Link)`
   }
 `;
 
-export default function NotFound() {
+export default function unauthorizedPage() {
   return (
     <NotFoundContainer>
-      <Title>404</Title>
-      <Message>Désolé, la page que vous recherchez n'existe pas.</Message>
+      <Title>401</Title>
+      <Message>Désolé, vous n'êtes pas autorisé à accéder à cette page</Message>
       <HomeLink href="/">Retour à l'accueil</HomeLink>
     </NotFoundContainer>
   );
