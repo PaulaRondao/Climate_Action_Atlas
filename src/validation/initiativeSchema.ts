@@ -42,4 +42,23 @@ export interface InitiativeParams {
   id: string;
 }
 
-export type UpdateInitiativeBody = z.infer<typeof initiativeCreationSchema>;
+export const updateInitiativeSchema = z.object({
+  name: z.string().min(1).optional(),
+  description: z.string().min(10).optional(),
+  initiativeType: z.array(z.enum(initiativeTypeValues)).min(1).optional(),
+  narrative: z.string().optional(),
+  associationName: z.string().optional(),
+  address: z
+    .object({
+      city: z.string(),
+      label: z.string(),
+      street: z.string(),
+      zipCode: z.string(),
+      gps: z.array(z.number()).length(2),
+    })
+    .optional(),
+  email: z.string().optional(),
+  webSite: z.string().optional(),
+});
+
+export type UpdateInitiativeBody = z.infer<typeof updateInitiativeSchema>;
