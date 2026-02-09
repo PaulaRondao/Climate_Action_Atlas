@@ -10,9 +10,9 @@ import {
 import { getOneInitiative } from '@/services/Initiative/getOneInitiative';
 import { pathIdTypeParamsSchema } from '@/validation/commonSchema';
 import {
-  initiativeCreationSchema,
   InitiativeParams,
   UpdateInitiativeBody,
+  updateInitiativeSchema,
 } from '@/validation/initiativeSchema';
 
 const get = async (
@@ -32,7 +32,7 @@ const get = async (
     );
   }
 
-  await checkContributorValidity(user, initiativeId);
+  await checkContributorValidity(user.id, initiativeId);
 
   const initiative = await getOneInitiative(initiativeId);
 
@@ -103,7 +103,7 @@ const patch = async (
     );
   }
 
-  await checkContributorValidity(user, initiativeId);
+  await checkContributorValidity(user.id, initiativeId);
 
   if (!body || Object.keys(body).length === 0) {
     return NextResponse.json(
@@ -132,6 +132,6 @@ const patch = async (
 
 export const PATCH = apiHandler({
   fn: patch,
-  bodySchema: initiativeCreationSchema,
+  bodySchema: updateInitiativeSchema,
   paramsSchema: pathIdTypeParamsSchema,
 });
