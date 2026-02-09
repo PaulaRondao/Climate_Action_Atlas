@@ -8,10 +8,6 @@ export const SecondFooterLinks = {
       label: 'Politique de confidentialité',
       url: '/politique-confidentialite',
     },
-    {
-      label: 'Politique de cookies',
-      url: '/politique-cookies',
-    },
   ],
 };
 

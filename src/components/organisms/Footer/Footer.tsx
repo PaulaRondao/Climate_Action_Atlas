@@ -166,17 +166,6 @@ export default function Footer() {
                 Politique de confidentialité
               </Link>
             </li>
-            <li>
-              <Link
-                href="/politique-cookies"
-                passHref
-                aria-current={
-                  pathname === '/politique-cookies' ? 'page' : undefined
-                }
-              >
-                Politique de cookies
-              </Link>
-            </li>
           </LegalLinks>
           <CopyrightText>
             © 2026 Paula Rondao. All rights reserved.

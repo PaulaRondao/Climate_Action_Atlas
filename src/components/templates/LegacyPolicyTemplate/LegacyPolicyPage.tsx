@@ -1,10 +1,10 @@
 import React from 'react';
-import { Container } from '@/styles/components';
+import { Container } from '../LegalNoticesTemplate/legalyPage.styles';
 
 const LegacyPolicyPage = (): JSX.Element => (
   <Container>
     <h1>Politique de confidentialité </h1>
-    <p>Climate Action Atlas</p>
+    <h2>Climate Action Atlas</h2>
     <h2>ARTICLE 1 : PRÉAMBULE </h2>
     <p>
       La présente politique de confidentialité a pour but d’informer les
