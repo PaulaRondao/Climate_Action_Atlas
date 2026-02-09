@@ -3,10 +3,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
-import { Footer, Header } from '@/components/organisms';
+import { Header, Navigation } from '@/components/organisms';
 import { PageTitle, Description } from '@/types/enums/enums';
 import InitiativeCreationForm from '@/components/molecules/Forms/initiative-form/InitiativeCreationForm';
-import { Session } from 'next-auth';
+import { useSession } from '@/lib/auth-client';
 
 const InitiativeCreationContainer = styled.div`
   position: relative;
@@ -19,25 +19,22 @@ const MainContent = styled.main`
   position: relative;
 `;
 
-interface InitiativeCreationTemplateProps {
-  session: Session | null;
-}
+export default function InitiativeCreationTemplate() {
+  const { data: session } = useSession();
 
-export default function InitiativeCreationTemplate({
-  session,
-}: InitiativeCreationTemplateProps) {
+  const isLoggedIn = !!session?.user;
   return (
     <>
+      <Navigation session={isLoggedIn} />
       <MainContent>
         <Header
           pageTitle={PageTitle.InitiativeForm}
           description={Description.InitiativeToAdd}
         ></Header>
         <InitiativeCreationContainer>
-          <InitiativeCreationForm session={session} />
+          <InitiativeCreationForm />
         </InitiativeCreationContainer>
       </MainContent>
-      <Footer />
     </>
   );
 }

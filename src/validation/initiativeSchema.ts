@@ -1,7 +1,7 @@
 import * as z from 'zod';
 import { InitiativesLabel } from '@/constants';
 
-const initiativeTypeValues = Object.keys(InitiativesLabel) as [
+export const initiativeTypeValues = Object.keys(InitiativesLabel) as [
   keyof typeof InitiativesLabel,
   ...Array<keyof typeof InitiativesLabel>,
 ];
@@ -30,3 +30,16 @@ export const initiativeCreationSchema = z.object({
 export type InitiativeCreationFormData = z.infer<
   typeof initiativeCreationSchema
 >;
+
+export const queryAllInitiativesSchema = z.object({
+  page: z.string().optional(),
+  limit: z.string().optional(),
+  search: z.string().optional(),
+  type: z.string().optional(),
+});
+
+export interface InitiativeParams {
+  id: string;
+}
+
+export type UpdateInitiativeBody = z.infer<typeof initiativeCreationSchema>;

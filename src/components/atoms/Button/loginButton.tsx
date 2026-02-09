@@ -1,25 +1,33 @@
 'use client';
 
-import useCustomSession from '@/hooks/useCustomSession';
-
-import { signIn, signOut } from 'next-auth/react';
 import Image from 'next/image';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { ButtonWithIcon } from './button.styles';
+import { authClient, useSession } from '@/lib/auth-client';
 
 export default function LoginButton() {
-  const { data: session, status } = useCustomSession();
+  const { data: session } = useSession();
+
+  const router = useRouter();
   const pathname = usePathname();
 
-  if (session && status === 'authenticated') {
+  if (session) {
     return (
       <>
         <ButtonWithIcon
-          onClick={() => signOut({ callbackUrl: '/' })}
+          onClick={() =>
+            authClient.signOut({
+              fetchOptions: {
+                onSuccess: () => {
+                  router.push('/');
+                },
+              },
+            })
+          }
           aria-current={pathname === '/déconnexion' ? 'page' : undefined}
         >
           <Image src="/icons/login.svg" alt="" width={26} height={26} />
-          Se déconnecter
+          se déconnecter
         </ButtonWithIcon>
       </>
     );
@@ -27,7 +35,7 @@ export default function LoginButton() {
   return (
     <>
       <ButtonWithIcon
-        onClick={() => signIn()}
+        onClick={() => router.push('/connexion')}
         aria-current={pathname === '/connexion' ? 'page' : undefined}
       >
         <Image src="/icons/login.svg" alt="" width={26} height={26} />

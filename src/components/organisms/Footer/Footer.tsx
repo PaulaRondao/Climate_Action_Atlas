@@ -9,7 +9,7 @@ import SVGIMG from '../../../../public/logo/logo-full-climate-white.svg';
 import ContentInfo from './content-info/ContentInfo';
 import { usePathname } from 'next/navigation';
 
-const FooterContainer = styled.footer`
+const FooterContainer = styled.div`
   background-color: ${theme.colors.backgroundGreen};
   color: ${theme.colors.white};
   width: 100%;
@@ -125,7 +125,7 @@ const CopyrightText = styled.p`
 export default function Footer() {
   const pathname = usePathname();
   return (
-    <FooterContainer role="contentinfo">
+    <FooterContainer>
       <MainFooterContainer>
         <MainFooterWrapper>
           <Image

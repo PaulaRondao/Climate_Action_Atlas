@@ -7,11 +7,16 @@ import {
   SignContainer,
 } from '../SignInTemplate/signTemplate.styles';
 import RegisterForm from '@/components/molecules/Forms/RegisterForm';
-import { Footer } from '@/components/organisms';
+import { Navigation } from '@/components/organisms';
+import { useSession } from '@/lib/auth-client';
 
 export default function RegisterTemplate() {
+  const { data: session } = useSession();
+
+  const isLoggedIn = !!session?.user;
   return (
     <>
+      <Navigation session={isLoggedIn} />
       <SignContainer $backgroundImage="/images/glacier.jpg">
         <MainContent>
           <Container>
@@ -19,7 +24,6 @@ export default function RegisterTemplate() {
           </Container>
         </MainContent>
       </SignContainer>
-      <Footer />
     </>
   );
 }

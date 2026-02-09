@@ -41,9 +41,9 @@ export const FormGroup = styled.div`
 `;
 
 export const Label = styled.label`
-  color: ${theme.colors.darkBlue};
+  color: ${theme.colors.green};
   font-size: ${theme.typography.fontSizes.md};
-  font-weight: 500;
+  font-weight: 600;
 `;
 
 export const Input = styled.input`

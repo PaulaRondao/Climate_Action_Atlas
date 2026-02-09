@@ -20,12 +20,17 @@ import {
   StyledLink,
 } from '@/components/atoms/Button/button.styles';
 import { usePathname } from 'next/navigation';
-import { Footer } from '@/components/organisms';
+import { useSession } from '@/lib/auth-client';
+import { Navigation } from '@/components/organisms';
 
 export default function HomePage() {
   const pathname = usePathname();
+  const { data: session } = useSession();
+
+  const isLoggedIn = !!session?.user;
   return (
     <>
+      <Navigation session={isLoggedIn} />
       <main>
         <HeroSection>
           <ImageWrapper>
@@ -71,7 +76,7 @@ export default function HomePage() {
 
         <Section>
           <TitleSection>
-            <h2>Découvrez les types d&apos;impacts</h2>
+            <h2>Découvrez les types d'impacts</h2>
           </TitleSection>
           <CardWithLogo initiatives={InitiativeOptions}></CardWithLogo>
         </Section>
@@ -133,9 +138,9 @@ export default function HomePage() {
               <hr />
             </TitleSection>
             <p>
-              L&apos;engagement de chacun est essentiel pour préserver notre
-              planète. Agissez dès aujourd&apos;hui pour un futur plus vert. En
-              vous inscrivant, vous pourrez ajouter une initiative.
+              L'engagement de chacun est essentiel pour préserver notre planète.
+              Agissez dès aujourd'hui pour un futur plus vert. En vous
+              inscrivant, vous pourrez ajouter une initiative.
             </p>
             <ButtonContainer>
               <StyledLink
@@ -148,7 +153,6 @@ export default function HomePage() {
           </EngagementSection>
         </Section>
       </main>
-      <Footer />
     </>
   );
 }

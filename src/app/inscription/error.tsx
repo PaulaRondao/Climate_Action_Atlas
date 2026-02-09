@@ -41,7 +41,7 @@ export default function SignUpError({
 }) {
   return (
     <ErrorContainer>
-      <ErrorTitle>Erreur lors de l&apos;inscription</ErrorTitle>
+      <ErrorTitle>Erreur lors de l'inscription</ErrorTitle>
       <ErrorMessage>
         {error.message ||
           "Une erreur s'est produite lors de l'inscription. Veuillez réessayer."}

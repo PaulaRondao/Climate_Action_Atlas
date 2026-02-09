@@ -16,7 +16,7 @@ const NotFoundContainer = styled.div`
   color: ${theme.colors.green};
 `;
 
-const Title = styled.h1`
+export const Title = styled.h1`
   font-size: ${theme.typography.fontSizes.xxxl};
   margin-bottom: ${theme.spacing.lg};
 `;
@@ -48,8 +48,8 @@ export default function NotFound() {
   return (
     <NotFoundContainer>
       <Title>404</Title>
-      <Message>Désolé, la page que vous recherchez n&apos;existe pas.</Message>
-      <HomeLink href="/">Retour à l&apos;accueil</HomeLink>
+      <Message>Désolé, la page que vous recherchez n'existe pas.</Message>
+      <HomeLink href="/">Retour à l'accueil</HomeLink>
     </NotFoundContainer>
   );
 }

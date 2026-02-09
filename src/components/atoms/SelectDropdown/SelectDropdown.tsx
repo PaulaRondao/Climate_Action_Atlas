@@ -1,10 +1,10 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
-import { ResponseAddress } from '@/types/city.interface';
 import AsyncSelect from 'react-select/async';
 import { Controller, useFormContext } from 'react-hook-form';
 import { searchAddresses } from '@/services/address';
+import { ResponseAddress } from '@/types/City-interface';
 
 export interface SelectDropdownProps {
   name: string;

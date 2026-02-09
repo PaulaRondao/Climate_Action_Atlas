@@ -1,12 +1,10 @@
-import { SuccessNotification } from '@/components/atoms';
 import { useUser } from '@/hooks/useUser';
-import { Container } from '@/styles/components';
+import { useSession } from '@/lib/auth-client';
 import { Notification } from '@/types/Notification';
-import { useSession } from 'next-auth/react';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import { useRouter } from 'next/navigation';
+import React, { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import { signOut } from 'next-auth/react';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -56,8 +54,10 @@ const DeleteCard: React.FC = () => {
 
   const { deleteUser, loading } = useUser();
 
+  const router = useRouter();
+
   const { data: session } = useSession();
-  const userId = Number(session?.user?.id);
+  const userId = session?.user?.id;
 
   const handleDelete = async () => {
     setNotification(null);
@@ -78,38 +78,32 @@ const DeleteCard: React.FC = () => {
       status: 'success',
       message: 'Suppression du compte utilisateur réussie',
     });
-
-    setTimeout(() => {
-      signOut({ callbackUrl: '/' });
-    }, 3000);
   };
 
+  useEffect(() => {
+    if (notification?.status === 'success') {
+      router.push('/suppression');
+    }
+  }, [notification]);
+
   return (
-    <>
-      {notification && notification.status === 'success' ? (
-        <Container>
-          <SuccessNotification message="Vous compte a bien été supprimé" />
-        </Container>
-      ) : (
-        <CardWrapper>
-          <h2>Suppression de compte</h2>
-          <p>
-            Une fois votre compte supprimé, toutes vos données seront
-            définitivement effacées. Cette action est irréversible.
-          </p>
-          <Button onClick={handleDelete} disabled={loading}>
-            {loading ? (
-              'Suppression en cours'
-            ) : (
-              <>
-                <Image src="/icons/Trash.svg" alt="" width={26} height={26} />
-                Supprimer mon compte
-              </>
-            )}
-          </Button>
-        </CardWrapper>
-      )}
-    </>
+    <CardWrapper>
+      <h2>Suppression de compte</h2>
+      <p>
+        Une fois votre compte supprimé, toutes vos données seront définitivement
+        effacées. Cette action est irréversible.
+      </p>
+      <Button onClick={handleDelete} disabled={loading}>
+        {loading ? (
+          'Suppression en cours'
+        ) : (
+          <>
+            <Image src="/icons/Trash.svg" alt="" width={26} height={26} />
+            Supprimer mon compte
+          </>
+        )}
+      </Button>
+    </CardWrapper>
   );
 };
 

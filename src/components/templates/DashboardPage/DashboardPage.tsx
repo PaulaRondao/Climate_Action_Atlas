@@ -3,44 +3,46 @@
 import Loading from '@/app/loading';
 import DeleteCard from '@/components/molecules/Card/Delete-Card/DeleteCard';
 import Table from '@/components/molecules/Table/Table';
-import { Footer } from '@/components/organisms';
+import { Navigation } from '@/components/organisms';
 import { Wrapper } from '@/components/shared';
-import useCustomSession from '@/hooks/useCustomSession';
-import { Session } from 'next-auth';
+import { useSession } from '@/lib/auth-client';
 import styled from 'styled-components';
 
 const Main = styled('main')(() => ({
   minHeight: '100vh',
 }));
 
-interface DashboardPageProps {
-  initialSession: Session | null;
-}
+const DashboardPage = () => {
+  const { data: session, isPending } = useSession();
 
-const DashboardPage = ({ initialSession }: DashboardPageProps) => {
-  const { data: session, status } = useCustomSession();
-  const displaySession = session ?? initialSession;
+  const isLoggedIn = !!session?.user;
 
-  const displayLoading = status === 'loading' && !displaySession;
-  const authenticatedUser = status === 'authenticated' && displaySession;
-
-  return (
-    <>
-      <Main>
-        <Wrapper>
-          {displayLoading && <Loading />}
-          {authenticatedUser && (
-            <h1>
-              Bienvenue {displaySession?.user?.name}, sur votre espace personnel
-            </h1>
-          )}
-          <Table></Table>
-          <DeleteCard></DeleteCard>
-        </Wrapper>
-      </Main>
-      <Footer />
-    </>
-  );
+  if (isPending) {
+    return (
+      <>
+        <Navigation session={isLoggedIn} />
+        <Main>
+          <Wrapper>
+            <Loading> Chargement en cours...</Loading>
+          </Wrapper>
+        </Main>
+      </>
+    );
+  }
+  if (session) {
+    return (
+      <>
+        <Navigation session={isLoggedIn} />
+        <Main>
+          <Wrapper>
+            <h1>Bienvenue {session.user?.name}, sur votre espace personnel</h1>
+            <Table></Table>
+            <DeleteCard></DeleteCard>
+          </Wrapper>
+        </Main>
+      </>
+    );
+  }
 };
 
 export default DashboardPage;

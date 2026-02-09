@@ -1,7 +1,7 @@
 'use client';
 
 import ClientLayout from '@/app/client-layout';
-import { SessionProvider } from 'next-auth/react';
+import { Footer } from '@/components/organisms';
 
 export default function RootLayout({
   children,
@@ -12,9 +12,10 @@ export default function RootLayout({
     <html lang="fr" suppressHydrationWarning>
       <head />
       <body>
-        <SessionProvider>
-          <ClientLayout>{children}</ClientLayout>
-        </SessionProvider>
+        <ClientLayout>{children}</ClientLayout>
+        <footer role="contentinfo">
+          <Footer></Footer>
+        </footer>
       </body>
     </html>
   );

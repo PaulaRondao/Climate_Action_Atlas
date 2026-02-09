@@ -14,13 +14,15 @@ const LoadingContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh;
+  min-height: 50vh;
+  border-radius: 12px;
+  padding: 12px;
   background-color: ${theme.colors.backgroundBeige};
 `;
 
 const Spinner = styled.div`
-  width: 50px;
-  height: 50px;
+  width: 30px;
+  height: 30px;
   border: 5px solid ${theme.colors.backgroundBeige};
   border-top: 5px solid ${theme.colors.darkBlue};
   border-radius: 50%;
@@ -28,16 +30,17 @@ const Spinner = styled.div`
 `;
 
 const LoadingText = styled.p`
+  text-align: center;
   margin-top: ${theme.spacing.lg};
   color: ${theme.colors.darkBlue};
-  font-size: ${theme.typography.fontSizes.lg};
+  font-size: ${theme.typography.fontSizes.xl};
 `;
 
-export default function Loading() {
+export default function Loading({ children }: { children: React.ReactNode }) {
   return (
     <LoadingContainer>
       <Spinner />
-      <LoadingText>Chargement en cours...</LoadingText>
+      <LoadingText>{children}</LoadingText>
     </LoadingContainer>
   );
 }

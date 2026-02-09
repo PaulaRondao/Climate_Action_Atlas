@@ -2,12 +2,21 @@
 
 import React from 'react';
 import MapViewTemplate from '@/components/templates/MapViewTemplate/MapViewTemplate';
+import { Navigation } from '@/components/organisms';
+import { useSession } from '@/lib/auth-client';
 
 interface MapViewClientProps {
   position: [number, number];
 }
 
 export default function MapViewClient({ position }: MapViewClientProps) {
-  // Tout ce qui utilise Leaflet ou client-only est ici
-  return <MapViewTemplate position={position} />;
+  const { data: session } = useSession();
+
+  const isLoggedIn = !!session?.user;
+  return (
+    <>
+      <Navigation session={isLoggedIn} />
+      <MapViewTemplate position={position} />
+    </>
+  );
 }

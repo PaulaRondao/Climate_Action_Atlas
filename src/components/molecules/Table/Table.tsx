@@ -2,8 +2,8 @@
 
 import { InitiativeTypeToLabel } from '@/constants';
 import { useInitiatives } from '@/hooks/useInitiatives';
+import { useSession } from '@/lib/auth-client';
 import { InitiativeWithRelations } from '@/types/initiatives';
-import { useSession } from 'next-auth/react';
 import { useCallback, useEffect, useState } from 'react';
 import styled from 'styled-components';
 
@@ -97,7 +97,7 @@ const Table = (): JSX.Element => {
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
 
   const { data: session } = useSession();
-  const userId = Number(session?.user?.id);
+  const userId = session?.user?.id;
 
   const load = useCallback(async () => {
     if (!userId) return;
@@ -144,8 +144,8 @@ const Table = (): JSX.Element => {
 
           <thead>
             <tr>
-              <ColumnHeader>Nom d&apos;initiative</ColumnHeader>
-              <ColumnHeader>Type d&apos;impact</ColumnHeader>
+              <ColumnHeader>Nom d'initiative</ColumnHeader>
+              <ColumnHeader>Type d'impact</ColumnHeader>
               <ColumnHeader>Actions</ColumnHeader>
             </tr>
           </thead>
@@ -176,7 +176,7 @@ const Table = (): JSX.Element => {
           </tbody>
         </TableContainer>
       ) : (
-        <p>Vous n&apos;avez pas encore enregistré d&apos;initiative.</p>
+        <p>Vous n'avez pas encore enregistré d'initiative.</p>
       )}
     </>
   );

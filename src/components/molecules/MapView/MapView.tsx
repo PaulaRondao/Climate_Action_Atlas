@@ -43,7 +43,7 @@ const MapView = ({
   useEffect(() => {
     const fetchData = async () => {
       const response = await getInitiatives(1, 100);
-      if (!response) return;
+      if (!response || !response.initiatives) return;
 
       let initiativeList = response.initiatives;
 
@@ -97,7 +97,7 @@ const MapView = ({
                   </Paragraphe>
                   {initiative.initiativeType.map((type) => (
                     <Paragraphe key={type}>
-                      <span>Type d&apos;impact : </span>
+                      <span>Type d'impact : </span>
                       {InitiativeTypeToLabel[type]}
                     </Paragraphe>
                   ))}
@@ -128,9 +128,7 @@ const MapView = ({
                 <hr></hr>
                 <footer role="contentinfo">
                   {initiative.user && (
-                    <Paragraphe>
-                      Ajouté par {initiative.user?.userName},
-                    </Paragraphe>
+                    <Paragraphe>Ajouté par {initiative.user?.name},</Paragraphe>
                   )}
                   <span>Mise à jour le {formattedDate(initiative)}</span>
                 </footer>

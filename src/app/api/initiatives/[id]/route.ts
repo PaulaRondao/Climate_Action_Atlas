@@ -1,183 +1,137 @@
-import { NextResponse } from 'next/server';
-import prisma from '@/lib/prisma/client';
-import logger from '@/lib/pino/logger.server';
+import { NextRequest, NextResponse } from 'next/server';
+import prisma from '@/lib/prisma';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
-import serverAsyncResolve, {
-  checkIdValidity,
-  checkSessionValidity,
-} from '@/services/api/api-handler';
 import { BackendApiResponseType } from '@/types/enums/backendApiResponse';
 import { UpdateInitiativeDTO } from '@/constants';
+import {
+  apiHandler,
+  checkContributorValidity,
+} from '@/services/api/api-handler';
+import { getOneInitiative } from '@/services/Initiative/getOneInitiative';
+import { pathIdTypeParamsSchema } from '@/validation/commonSchema';
+import {
+  initiativeCreationSchema,
+  InitiativeParams,
+  UpdateInitiativeBody,
+} from '@/validation/initiativeSchema';
 
-export async function GET(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity({ id });
-    if (initiativeWithValidatedId instanceof NextResponse)
-      return initiativeWithValidatedId;
+const get = async (
+  request: NextRequest,
+  body: undefined,
+  params: InitiativeParams & { id: string },
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
 
-    const initiative = await prisma.initiative.findUnique({
-      where: { id: initiativeWithValidatedId },
-      include: {
-        contributor: {
-          select: {
-            id: true,
-            email: true,
-            userName: true,
-            createdAt: true,
-            updatedAt: true,
-          },
-        },
-        initiativeLocation: true,
-      },
-    });
+  const initiativeId = parseInt(params.id, 10);
 
-    const contributor = await checkSessionValidity();
-    if (contributor instanceof NextResponse) return contributor;
-    const contributorId = Number(contributor.user.id);
-
-    if (!initiative) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Initiative non trouvée' },
-        { status: HttpStatusCode.HTTP_NOT_FOUND },
-      );
-    }
-
-    if (contributorId != initiative.contributor.id) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Accès interdit' },
-        { status: HttpStatusCode.HTTP_FORBIDDEN },
-      );
-    }
-
+  if (isNaN(initiativeId)) {
     return NextResponse.json(
-      { type: BackendApiResponseType.SUCCESS, data: initiative },
-      { status: HttpStatusCode.HTTP_OK },
+      { type: BackendApiResponseType.ERROR, error: 'Id invalide' },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
     );
-  });
-}
+  }
 
-export async function DELETE(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity({ id });
-    if (initiativeWithValidatedId instanceof NextResponse)
-      return initiativeWithValidatedId;
+  await checkContributorValidity(user, initiativeId);
 
-    const contributor = await checkSessionValidity();
-    if (contributor instanceof NextResponse) return contributor;
-    const contributorId = Number(contributor.user.id);
+  const initiative = await getOneInitiative(initiativeId);
 
-    const findInitiativeId = await prisma.initiative.findUnique({
-      where: { id: initiativeWithValidatedId },
-    });
-
-    if (!findInitiativeId) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Initiative non trouvée' },
-        { status: HttpStatusCode.HTTP_NOT_FOUND },
-      );
-    }
-
-    if (contributorId !== findInitiativeId?.contributorId) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Accès interdit' },
-        { status: HttpStatusCode.HTTP_FORBIDDEN },
-      );
-    }
-
-    await prisma.initiative.delete({
-      where: { id: initiativeWithValidatedId },
-    });
-
+  if (!initiative) {
     return NextResponse.json(
-      {
-        type: BackendApiResponseType.SUCCESS,
-        message: 'Initiative supprimée avec succès',
-      },
-      { status: HttpStatusCode.HTTP_OK },
+      { type: BackendApiResponseType.ERROR, error: 'Initiative non trouvée' },
+      { status: HttpStatusCode.HTTP_NOT_FOUND },
     );
+  }
+
+  return NextResponse.json(
+    { type: BackendApiResponseType.SUCCESS, data: initiative },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
+
+export const GET = apiHandler({
+  fn: get,
+  paramsSchema: pathIdTypeParamsSchema,
+});
+
+const deleted = async (
+  request: NextRequest,
+  body: undefined,
+  params: InitiativeParams & { id: string },
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
+
+  const initiativeId = parseInt(params.id, 10);
+  if (isNaN(initiativeId)) {
+    return NextResponse.json(
+      { type: BackendApiResponseType.ERROR, error: 'Id invalide' },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
+    );
+  }
+
+  await checkContributorValidity(user.id, initiativeId);
+
+  await prisma.initiative.delete({
+    where: { id: initiativeId },
   });
-}
 
-export async function PATCH(
-  request: Request,
-  { params }: { params: Promise<{ id: string }> },
-) {
-  const { id } = await params;
-  return serverAsyncResolve(async () => {
-    const initiativeWithValidatedId = checkIdValidity({ id });
-    if (initiativeWithValidatedId instanceof NextResponse)
-      return initiativeWithValidatedId;
+  return NextResponse.json(
+    { type: BackendApiResponseType.SUCCESS, message: 'Initiative supprimée' },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
 
-    const contributor = await checkSessionValidity();
-    if (contributor instanceof NextResponse) return contributor;
-    const contributorId = Number(contributor.user.id);
+export const DELETE = apiHandler({
+  fn: deleted,
+  paramsSchema: pathIdTypeParamsSchema,
+});
 
-    const findInitiativeId = await prisma.initiative.findUnique({
-      where: { id: initiativeWithValidatedId },
-    });
+const patch = async (
+  request: NextRequest,
+  body: UpdateInitiativeBody,
+  params: InitiativeParams & { id: string },
+) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const user = (request as any).user;
 
-    if (!findInitiativeId) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Initiative non trouvée' },
-        { status: HttpStatusCode.HTTP_NOT_FOUND },
-      );
-    }
+  const initiativeId = parseInt(params.id, 10);
+  if (isNaN(initiativeId)) {
+    return NextResponse.json(
+      { type: BackendApiResponseType.ERROR, error: 'Id invalide' },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
+    );
+  }
 
-    if (contributorId !== findInitiativeId.contributorId) {
-      return NextResponse.json(
-        { type: BackendApiResponseType.ERROR, error: 'Accès interdit' },
-        { status: HttpStatusCode.HTTP_FORBIDDEN },
-      );
-    }
+  await checkContributorValidity(user, initiativeId);
 
-    let data: UpdateInitiativeDTO;
-
-    try {
-      data = await request.json();
-      if (Object.keys(data).length === 0) {
-        return NextResponse.json(
-          {
-            type: BackendApiResponseType.ERROR,
-            error: 'Aucune donnée à mettre à jour',
-          },
-          {
-            status: HttpStatusCode.HTTP_BAD_REQUEST,
-          },
-        );
-      }
-    } catch (error) {
-      logger.error(error, 'Body invalide ou manquant');
-      return NextResponse.json(
-        {
-          type: BackendApiResponseType.ERROR,
-          error: 'Body invalide ou manquant',
-        },
-        {
-          status: HttpStatusCode.HTTP_BAD_REQUEST,
-        },
-      );
-    }
-
-    const initiativeToUpdate = await prisma.initiative.update({
-      where: { id: initiativeWithValidatedId },
-      data: { ...data, updatedAt: new Date() },
-    });
-
+  if (!body || Object.keys(body).length === 0) {
     return NextResponse.json(
       {
-        type: BackendApiResponseType.SUCCESS,
-        message: 'Initiative mise à jour avec succès',
-        data: initiativeToUpdate,
+        type: BackendApiResponseType.ERROR,
+        error: 'Aucune donnée à mettre à jour',
       },
-      { status: HttpStatusCode.HTTP_OK },
+      { status: HttpStatusCode.HTTP_BAD_REQUEST },
     );
+  }
+
+  const updated = await prisma.initiative.update({
+    where: { id: initiativeId },
+    data: { ...body, updatedAt: new Date() } as UpdateInitiativeDTO,
   });
-}
+
+  return NextResponse.json(
+    {
+      type: BackendApiResponseType.SUCCESS,
+      message: 'Initiative mise à jour',
+      data: updated,
+    },
+    { status: HttpStatusCode.HTTP_OK },
+  );
+};
+
+export const PATCH = apiHandler({
+  fn: patch,
+  bodySchema: initiativeCreationSchema,
+  paramsSchema: pathIdTypeParamsSchema,
+});

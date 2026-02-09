@@ -1,9 +1,9 @@
-import { InitiativeCreationFormData } from '@/components/molecules/Forms/initiative-form/initiativeFormValidation';
-import prisma from '@/lib/prisma/client';
+import prisma from '@/lib/prisma';
+import { InitiativeCreationFormData } from '@/validation/initiativeSchema';
 
 export async function createAnInitiative(
   initiative: InitiativeCreationFormData,
-  contributorId: number,
+  contributorId: string,
 ) {
   const location = await prisma.initiativeLocation.create({
     data: {
