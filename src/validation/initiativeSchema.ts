@@ -48,13 +48,15 @@ export const updateInitiativeSchema = z.object({
   initiativeType: z.array(z.enum(initiativeTypeValues)).min(1).optional(),
   narrative: z.string().optional(),
   associationName: z.string().optional(),
-  address: z.object({
-    city: z.string(),
-    label: z.string(),
-    street: z.string(),
-    zipCode: z.string(),
-    gps: z.array(z.number()).length(2),
-  }).optional(),
+  address: z
+    .object({
+      city: z.string(),
+      label: z.string(),
+      street: z.string(),
+      zipCode: z.string(),
+      gps: z.array(z.number()).length(2),
+    })
+    .optional(),
   email: z.string().optional(),
   webSite: z.string().optional(),
 });
