@@ -1,10 +1,9 @@
-import { Container } from '@/styles/components';
 import React from 'react';
+import { Container, Wrapper } from './legalyPage.styles';
 
 const LegalNoticesPage = (): JSX.Element => (
   <Container>
     <h1>Mentions légales</h1>
-    <p>Mise à jour le 05/05/2026</p>
     <p>
       Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour
       la confiance en l'économie numérique, il est précisé aux utilisateurs du
@@ -12,34 +11,56 @@ const LegalNoticesPage = (): JSX.Element => (
       cadre de sa réalisation et de son suivi.
     </p>
 
-    <h2>Édition du site</h2>
+    <h2>1. L'éditeur</h2>
     <p>
-      Le présent site, accessible à l’URL www.climate-action-atlas.fr (le « Site
-      »), est édité par : Maud Paula Rondao, résidant 47 chemin des alouettes
-      17610 Chaniers, de nationalité Française (France), né(e) le 19/07/1987,
+      Le présent site,{' '}
+      <a href="www.climate-action-atlas.fr">www.climate-action-atlas.fr</a>, est
+      édité par Maud Paula Rondao, résidant 47 chemin des alouettes 17610
+      Chaniers.
     </p>
-    <h2>Hébergement</h2>
+    <h2>2. Responsable de publication</h2>
     <p>
-      Le Site est hébergé par la société Vercel, situé Vercel Inc. Adresse
-      postale : 440 N. Barranca Ave #4133 Covina California 9172, (contact
-      téléphonique ou email : +18662583217).
+      Madame Maud Paula Rondao est la responsable de la publication et de la
+      rédaction du site.
     </p>
-    <h2>Directrice de publication</h2>
-    <p>La Directrice de la publication du Site est Maud Paula Rondao.</p>
-    <h2>Nous contacter</h2>
+    <h2>3. Nous contacter</h2>
     <ul>
-      <li>Par téléphone : +33645590467</li>
-      <li>Par email : maud.rondao@gmail.com</li>
+      <li>Par téléphone : 0645590467</li>
+      <li>
+        Par email : <a href="mailto:maud.rondao@gmail.com">contact@gmail.com</a>
+      </li>
       <li>Par courrier : 47 chemin des alouettes 17610 Chaniers</li>
     </ul>
-    <h2>Données personnelles</h2>
+    <h2>4. L'hébergeur</h2>
+    <p>
+      Le site{' '}
+      <a href="www.climate-action-atlas.fr">www.climate-action-atlas.fr</a> est
+      hébergé par la société Vercel, situé Vercel Inc. Adresse postale : 440 N.
+      Barranca Ave #4133 Covina California 9172, (contact téléphonique ou email
+      : +18662583217).
+    </p>
+    <h2>4. Accès au site</h2>
+    <p>
+      Le site est accessible par tout endroit, 7j/7, 24h/24 sauf cas de force
+      majeur, interruption programmée ou non et pouvant découler d'une nécessité
+      de maintenance.
+    </p>
+    <p>
+      En cas de modification, interruption ou suspension des services, vous
+      serez avertis par un message lors de votre connexion sur le site.
+    </p>
+    <h2>5. Données personnelles</h2>
     <p>
       Le traitement de vos données à caractère personnel est régi par notre
-      Charte du respect de la vie privée, disponible depuis la section
-      &quot;Charte de Protection des Données Personnelles&quot;, conformément au
-      Règlement Général sur la Protection des Données 2016/679 du 27 avril 2016
-      («RGPD»).
+      Politique de confidentialitée, disponible depuis le pied de page à
+      &quot;Politique de confidentialité&quot;, conformément au Règlement
+      Général sur la Protection des Données («RGPD»). Règlement (UE) 2016/679 du
+      Parlement européen et du Conseil du 27 avril 2016, rendu obligatoire
+      depuis le 25 mai 2018.
     </p>
+    <Wrapper>
+      <span>Mise à jour le 05/05/2026</span>
+    </Wrapper>
   </Container>
 );
 

@@ -8,7 +8,6 @@ export enum PageTitle {
   InitiativeForm = 'Engagez-vous',
   MentionsLegales = 'Mentions légales - Climate Action Atlas',
   PolitiqueDeConfidentialite = 'Politique de confidentialité - Climate Action Atlas',
-  PolitiqueDeCookies = 'Politique de Cookies - Climate Action Atlas',
 }
 
 export enum Description {

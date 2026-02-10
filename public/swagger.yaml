@@ -18,7 +18,7 @@ tags:
     description: Address search via API French Gouv - Base Adresse Nationale
 
 paths:
-  /users:
+  /auth/[...all]:
     get:
       summary: Get all users
       tags:
@@ -61,7 +61,7 @@ paths:
           name: userId
           required: true
           schema:
-            type: integer
+            type: string
       responses:
         '200':
           description: A single user
@@ -70,11 +70,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/User'
         '400':
-          description: Invalid ID
-        '404':
-          description: User not found
+          description: Utilisateur non trouvé
         '500':
-          description: Internal server error
+          description: Erreur server interne
 
     patch:
       summary: Update a user by ID
@@ -88,7 +86,7 @@ paths:
               $ref: '#/components/schemas/UserUpdate'
       responses:
         '200':
-          description: User updated succesfully
+          description: Utilisateur mis à jour
           content:
             application/json:
               schema:
@@ -99,8 +97,8 @@ paths:
       tags:
         - Users
       responses:
-        '204':
-          description: User deleted successfully
+        '200':
+          description: Utilisateur supprimé
 
   /initiatives:
     get:
@@ -129,7 +127,7 @@ paths:
             schema:
               $ref: '#/components/schemas/InitiativeCreate'
       responses:
-        '201':
+        '200':
           description: Initiative created succesfully
           content:
             application/json:
@@ -155,11 +153,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/Initiative'
         '400':
-          description: Invalid ID
+          description: Initiative non trouvée
         '500':
-          description: Internal server error
-        '404':
-          description: Initiative not found
+          description: Error server interne
 
     patch:
       summary: Update a initiative by ID
@@ -175,7 +171,7 @@ paths:
               $ref: '#/components/schemas/InitiativeUpdate'
       responses:
         '200':
-          description: Initiative updated successfully
+          description: Initiative mise à jour
           content:
             application/json:
               schema:
@@ -188,8 +184,8 @@ paths:
       security:
         - bearerAuth: []
       responses:
-        '204':
-          description: Initiative deleted successfully
+        '200':
+          description: Initiative supprimée
 
   /addresses:
     get:
@@ -253,14 +249,14 @@ components:
       type: object
       properties:
         id:
-          type: integer
-        firstName:
           type: string
-        lastName:
+        name:
           type: string
         email:
           type: string
           format: email
+        emailVerified:
+          type: boolean
         createdAt:
           type: string
           format: date-time
@@ -273,14 +269,13 @@ components:
             $ref: '#/components/schemas/Initiative'
       required:
         - id
-        - firstName
-        - lastName
+        - name
         - email
         - createdAt
         - updatedAt
         - initiatives
       example:
-        id: 1
+        id: 'Mt1234'
         name: Laura_R
         email: laura.rime@mail.fr
 
@@ -359,7 +354,7 @@ components:
           - ClimateAgricultureEnergy
         associationName: Roule ma frite
         contributor:
-          id: 1
+          id: 'Mt1234'
           name: LauraE
           email: laura.emir@mail.fr
         initiativeLocationId: 1

@@ -168,10 +168,10 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/politique-cookies"
+                href="/politique-de-cookies"
                 passHref
                 aria-current={
-                  pathname === '/politique-cookies' ? 'page' : undefined
+                  pathname === '/politique-de-cookies' ? 'page' : undefined
                 }
               >
                 Politique de cookies

@@ -6,11 +6,11 @@ export const SecondFooterLinks = {
     },
     {
       label: 'Politique de confidentialité',
-      url: '/politique-confidentialite',
+      url: '/politique-de-confidentialite',
     },
     {
       label: 'Politique de cookies',
-      url: '/politique-cookies',
+      url: '/politique-de-cookies',
     },
   ],
 };
