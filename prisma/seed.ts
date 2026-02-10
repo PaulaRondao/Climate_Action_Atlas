@@ -1,4 +1,4 @@
-import { PrismaClient, InitiativeType } from '@prisma/client';
+import { PrismaClient, InitiativeType, UserRole } from '@prisma/client';
 import { promises as fs } from 'fs';
 import { fakerFR as faker } from '@faker-js/faker';
 
@@ -25,19 +25,19 @@ const users = [
     id: '1234',
     name: 'Margot',
     email: 'margot@mail.com',
-    role: 'CONTRIBUTOR',
+    role: UserRole.CONTRIBUTOR,
   },
   {
     id: '5678',
     name: 'Olivier',
     email: 'olivier@mail.com',
-    role: 'CONTRIBUTOR',
+    role: UserRole.CONTRIBUTOR,
   },
   {
     id: '9876',
     name: 'Sarah',
     email: 'sarah@mail.com',
-    role: 'CONTRIBUTOR',
+    role: UserRole.CONTRIBUTOR,
   },
 ];
 
@@ -77,6 +77,7 @@ const seedDatabase = async () => {
           name: user.name,
           email: user.email,
           emailVerified: true,
+          role: user.role,
         },
       });
     }

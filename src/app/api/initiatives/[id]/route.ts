@@ -14,6 +14,7 @@ import {
   UpdateInitiativeBody,
   updateInitiativeSchema,
 } from '@/validation/initiativeSchema';
+import { UserRole } from '@/types/enums/userRole';
 
 const get = async (
   request: NextRequest,
@@ -52,6 +53,7 @@ const get = async (
 export const GET = apiHandler({
   fn: get,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
 const deleted = async (
@@ -85,6 +87,7 @@ const deleted = async (
 export const DELETE = apiHandler({
   fn: deleted,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
 const patch = async (
@@ -134,4 +137,5 @@ export const PATCH = apiHandler({
   fn: patch,
   bodySchema: updateInitiativeSchema,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });

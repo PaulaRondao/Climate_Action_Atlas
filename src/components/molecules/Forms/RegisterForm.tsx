@@ -6,12 +6,19 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import styled from 'styled-components';
 import { theme } from '@/styles/theme';
 import { Button } from '@/components/atoms';
-import { FormContainer, FormGroup, Input, Label } from './signForm.styles';
+import {
+  FormContainer,
+  FormGroup,
+  PasswordWrapper,
+  Input,
+  Label,
+} from './signForm.styles';
 import { UserRegister } from '@/types/User';
 import { useRouter } from 'next/navigation';
 import { authClient } from '@/lib/auth-client';
 import SignUpLoading from '@/app/inscription/loading';
 import { userRegisterSchema } from '@/validation/userSchema';
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 const ErrorMessage = styled.span`
   color: #ef4444;
@@ -27,6 +34,8 @@ const RegisterForm = () => {
   const router = useRouter();
   const [globalError, setGlobalError] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const methods = useForm<UserRegister>({
     resolver: zodResolver(userRegisterSchema),
@@ -101,12 +110,21 @@ const RegisterForm = () => {
               Votre mot de passe doit contenir au moins 8 caractères, une
               majuscule, un chiffre et un caractère spécial
             </span>
-            <Input
-              id="password"
-              type="password"
-              {...register('password')}
-              placeholder="Saisissez votre mot de passe"
-            />
+            <PasswordWrapper>
+              <Input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                {...register('password')}
+                placeholder="Saisissez votre mot de passe"
+              />
+              <button
+                type="button"
+                aria-label="Montrer le mot de passe"
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+              </button>
+            </PasswordWrapper>
             {errors.password && (
               <ErrorMessage>{errors.password.message}</ErrorMessage>
             )}
@@ -114,17 +132,25 @@ const RegisterForm = () => {
 
           <FormGroup>
             <Label htmlFor="confirmPassword">Confirmer le mot de passe</Label>
-            <Input
-              id="confirmPassword"
-              type="password"
-              {...register('confirmPassword')}
-              placeholder="Confirmez votre mot de passe"
-            />
+            <PasswordWrapper>
+              <Input
+                id="confirmPassword"
+                type={showConfirmPassword ? 'text' : 'password'}
+                {...register('confirmPassword')}
+                placeholder="Confirmez votre mot de passe"
+              />
+              <button
+                type="button"
+                aria-label="Montrer le mot de passe"
+                onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+              >
+                {showConfirmPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+              </button>
+            </PasswordWrapper>
             {errors.confirmPassword && (
               <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
             )}
           </FormGroup>
-
           <Button type="submit" disabled={!isValid} fullWidth>
             S'inscrire
           </Button>

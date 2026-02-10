@@ -22,11 +22,11 @@ model User {
   email String
   emailVerified Boolean
   image String?
-  createdAt DateTime @map("created_at") @default(now())
-  updatedAt DateTime @map("updated_at") @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   loginAttempts Int @default(0)
 
-  userRule Role?
+  role UserRole?
 
   sessions Session[]
   accounts Account[]
@@ -57,13 +57,13 @@ model Initiative {
   id Int @id @default(autoincrement())
   name String
   description String
-  initiativeType InitiativeType[] @map("initiative_type")
+  initiativeType InitiativeType[]
   narrative String?
   associationName String?
   email String? 
   webSite String?                     
-  createdAt DateTime @map("created_at") @default(now())
-  updatedAt DateTime @map("updated_at") @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   
   contributorId String
   contributor User @relation(fields: [contributorId], references: [id], onDelete: Cascade, onUpdate: Cascade) 
@@ -130,6 +130,6 @@ enum InitiativeType {
   SocialAndSolidarityEconomy
 }
 
-enum Role {
+enum UserRole {
   CONTRIBUTOR
 }

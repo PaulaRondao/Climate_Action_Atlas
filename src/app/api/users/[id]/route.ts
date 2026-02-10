@@ -8,6 +8,7 @@ import { updateUser } from '@/services/User/update';
 import { deleteUser } from '@/services/User/delete';
 import { updateUserSchema, UpdateUserBody } from '@/validation/userSchema';
 import { UserParams, UserProfil } from '@/types/User';
+import { UserRole } from '@/types/enums/userRole';
 
 const get = async (request: NextRequest, { id }: { id: string }) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -38,6 +39,7 @@ const get = async (request: NextRequest, { id }: { id: string }) => {
 export const GET = apiHandler({
   fn: get,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
 const update = async (
@@ -71,6 +73,7 @@ export const PATCH = apiHandler({
   fn: update,
   bodySchema: updateUserSchema,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
 const deletedUser = async (
@@ -102,4 +105,5 @@ const deletedUser = async (
 export const DELETE = apiHandler({
   fn: deletedUser,
   paramsSchema: pathIdTypeParamsSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });

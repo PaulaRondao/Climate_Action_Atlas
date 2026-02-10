@@ -7,6 +7,7 @@ import prisma from '@/lib/prisma';
 import { HttpStatusCode } from '@/types/enums/httpStatusCode';
 import z from 'zod';
 import { getSession } from '@/lib/auth-server';
+import { UserRole } from '@/types/enums/userRole';
 
 const convertQueryParams = (searchParams: URLSearchParams): Params => {
   const queryString = searchParams.toString();
@@ -15,12 +16,25 @@ const convertQueryParams = (searchParams: URLSearchParams): Params => {
   return parseTyped as Params;
 };
 
-export const checkSessionValidity = (session?: Session | null): string => {
+const checkSessionValidity = (session?: Session | null): string => {
   if (!session?.userId) {
     throw new Error('Not authorized');
   }
 
   return session.userId;
+};
+
+const checkRoleValidity = (
+  userRole: UserRole | undefined,
+  authorizeRoles: UserRole[],
+) => {
+  if (!userRole) {
+    throw new Error('Not authorized');
+  }
+
+  if (!authorizeRoles.includes(userRole)) {
+    throw new Error('Not authorized');
+  }
 };
 
 export const checkContributorValidity = async (
@@ -52,7 +66,7 @@ export const apiHandler =
       { params }: { params: Promise<Record<string, string>> },
     ): Promise<Response> => {
       const asyncParams: Record<string, string> = await params;
-      const data = await getSession();
+      const sessionData = await getSession();
 
       try {
         if (!handler) {
@@ -62,7 +76,13 @@ export const apiHandler =
           );
         }
 
-        await checkSessionValidity(data?.session);
+        if (handler.authorizeRoles && handler.authorizeRoles.length) {
+          checkSessionValidity(sessionData?.session);
+          checkRoleValidity(
+            sessionData?.user.role as UserRole | undefined,
+            handler.authorizeRoles,
+          );
+        }
 
         // BODY
         let body = undefined as TBody;
@@ -132,9 +152,9 @@ export const apiHandler =
           ...queryParams,
         };
 
-        if (data?.user) {
+        if (sessionData?.user) {
           // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (req as any).user = data.user;
+          (req as any).user = sessionData.user;
         }
 
         return await handler.fn(req, body, reqParams);
@@ -147,7 +167,7 @@ export const apiHandler =
         }
 
         return NextResponse.json(
-          { error: 'Error error' },
+          { error: 'Error server interne' },
           { status: HttpStatusCode.HTTP_SERVER_ERROR },
         );
       }

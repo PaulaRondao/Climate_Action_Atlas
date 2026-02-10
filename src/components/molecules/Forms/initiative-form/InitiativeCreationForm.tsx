@@ -3,11 +3,7 @@
 import React, { useState } from 'react';
 import { useForm, FormProvider } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
-import {
-  Button,
-  SelectDropdown,
-  SuccessNotification,
-} from '@/components/atoms';
+import { Button, SelectDropdown } from '@/components/atoms';
 import {
   ErrorMessage,
   FormContainer,
@@ -91,155 +87,150 @@ const InitiativeCreationForm = () => {
 
   return (
     <Container>
-      {notification && notification.status === 'success' ? (
-        <>
-          <SuccessNotification message="Bravo, l'initiative a été ajouté avec succès"></SuccessNotification>
-        </>
-      ) : (
-        <FormProvider {...methods}>
-          <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
-            <>
-              <TitleSection>
-                <h3>Ajouter une initiative</h3>
-                <span>Tous les champs marqués (*) sont obligatoires.</span>
-              </TitleSection>
+      <FormProvider {...methods}>
+        <FormContainer onSubmit={methods.handleSubmit(onSubmit)}>
+          <>
+            <TitleSection>
+              <h3>Ajouter une initiative</h3>
+              <span>Tous les champs marqués (*) sont obligatoires.</span>
+            </TitleSection>
 
-              <FormGroup>
-                <Label htmlFor="name">
-                  Nom de l'initiative ou un titre *
-                  <p>
-                    Saisissez un nom clair et significatif si l'initiative n'en
-                    a pas&nbsp;:
-                  </p>
-                </Label>
-                <Input
-                  id="name"
-                  type="text"
-                  placeholder="Saisir le nom de l'initiative"
-                  {...methods.register('name')}
-                />
-                {methods.formState.errors.name && (
-                  <ErrorMessage>
-                    {methods.formState.errors.name.message}
-                  </ErrorMessage>
-                )}
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="description">
-                  Description *
-                  <p>
-                    Indiquez une courte description de l'initiative&nbsp;, un
-                    minimum de 10 caractères est requis&nbsp;:
-                  </p>
-                </Label>
-                <TextareaRow
-                  id="description"
-                  placeholder="Saisir une courte description..."
-                  {...methods.register('description')}
-                  rows={6}
-                />
-                {methods.formState.errors.description && (
-                  <ErrorMessage>
-                    {methods.formState.errors.description.message}
-                  </ErrorMessage>
-                )}
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="initiativeType">
-                  À quel type correspond l'initiative&nbsp;? *
-                </Label>
-                <CheckboxInput options={TypeImpact} name="initiativeType" />
-                {methods.formState.errors.initiativeType && (
-                  <ErrorMessage>
-                    {methods.formState.errors.initiativeType.message}
-                  </ErrorMessage>
-                )}
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="narrative">
-                  Récit <p>Vous pouvez raconter votre expérience&nbsp;:</p>
-                </Label>
-                <TextareaRow
-                  id="narrative"
-                  placeholder="Raconter votre expérience..."
-                  {...methods.register('narrative')}
-                  rows={10}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="associationName">
-                  Association porteuse de cette initiative (si applicable)
-                </Label>
-                <Input
-                  id="associationName"
-                  type="text"
-                  placeholder="Saisir le nom de l'association"
-                  {...methods.register('associationName')}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="address">Adresse de l'initiative *</Label>
-                <SelectDropdown
-                  name="address"
-                  placeholder="Sélectionner une adresse"
-                />
-                {methods.formState.errors.address && (
-                  <ErrorMessage>
-                    {methods.formState.errors.address.message}
-                  </ErrorMessage>
-                )}
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="email">
-                  Adresse e-mail de l'association (si existante)
-                  <p>Format attendu : asso@email.com</p>
-                </Label>
-                <Input
-                  id="email"
-                  type="email"
-                  placeholder="Saisir l'adresse email"
-                  {...methods.register('email')}
-                />
-              </FormGroup>
-
-              <FormGroup>
-                <Label htmlFor="webSite">
-                  Site web
-                  <p>Indiquez l'adresse du site web si disponible&nbsp;:</p>
-                </Label>
-                <Input
-                  id="webSite"
-                  type="url"
-                  placeholder="Saisir l'adresse du site web"
-                  {...methods.register('webSite')}
-                />
-              </FormGroup>
-
-              <Wrapper>
-                {loading ? (
-                  <>
-                    <Button disabled fullWidth />
-                    {/* <Loading avoir /> */}
-                  </>
-                ) : (
-                  <Button type="submit" fullWidth>
-                    Ajouter l'initiative
-                  </Button>
-                )}
-              </Wrapper>
-              {notification && notification.status === 'error' && (
-                <GlobalError>{notification.message}</GlobalError>
+            <FormGroup>
+              <Label htmlFor="name">
+                Nom de l'initiative ou un titre *
+                <p>
+                  Saisissez un nom clair et significatif si l'initiative n'en a
+                  pas&nbsp;:
+                </p>
+              </Label>
+              <Input
+                id="name"
+                type="text"
+                placeholder="Saisir le nom de l'initiative"
+                {...methods.register('name')}
+              />
+              {methods.formState.errors.name && (
+                <ErrorMessage>
+                  {methods.formState.errors.name.message}
+                </ErrorMessage>
               )}
-            </>
-          </FormContainer>
-        </FormProvider>
-      )}
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="description">
+                Description *
+                <p>
+                  Indiquez une courte description de l'initiative&nbsp;, un
+                  minimum de 10 caractères est requis&nbsp;:
+                </p>
+              </Label>
+              <TextareaRow
+                id="description"
+                placeholder="Saisir une courte description..."
+                {...methods.register('description')}
+                rows={6}
+              />
+              {methods.formState.errors.description && (
+                <ErrorMessage>
+                  {methods.formState.errors.description.message}
+                </ErrorMessage>
+              )}
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="initiativeType">
+                À quel type correspond l'initiative&nbsp;? *
+              </Label>
+              <CheckboxInput options={TypeImpact} name="initiativeType" />
+              {methods.formState.errors.initiativeType && (
+                <ErrorMessage>
+                  {methods.formState.errors.initiativeType.message}
+                </ErrorMessage>
+              )}
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="narrative">
+                Récit <p>Vous pouvez raconter votre expérience&nbsp;:</p>
+              </Label>
+              <TextareaRow
+                id="narrative"
+                placeholder="Raconter votre expérience..."
+                {...methods.register('narrative')}
+                rows={10}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="associationName">
+                Association porteuse de cette initiative (si applicable)
+              </Label>
+              <Input
+                id="associationName"
+                type="text"
+                placeholder="Saisir le nom de l'association"
+                {...methods.register('associationName')}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="address">Adresse de l'initiative *</Label>
+              <SelectDropdown
+                name="address"
+                placeholder="Sélectionner une adresse"
+              />
+              {methods.formState.errors.address && (
+                <ErrorMessage>
+                  {methods.formState.errors.address.message}
+                </ErrorMessage>
+              )}
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="email">
+                Adresse e-mail de l'association (si existante)
+                <p>Format attendu : asso@email.com</p>
+              </Label>
+              <Input
+                id="email"
+                type="email"
+                placeholder="Saisir l'adresse email"
+                {...methods.register('email')}
+              />
+            </FormGroup>
+
+            <FormGroup>
+              <Label htmlFor="webSite">
+                Site web
+                <p>Indiquez l'adresse du site web si disponible&nbsp;:</p>
+              </Label>
+              <Input
+                id="webSite"
+                type="url"
+                placeholder="Saisir l'adresse du site web"
+                {...methods.register('webSite')}
+              />
+            </FormGroup>
+
+            <Wrapper>
+              {loading ? (
+                <>
+                  <Button disabled fullWidth>
+                    Ajout en cours
+                  </Button>
+                </>
+              ) : (
+                <Button type="submit" fullWidth>
+                  Ajouter l'initiative
+                </Button>
+              )}
+            </Wrapper>
+            {notification && notification.status === 'error' && (
+              <GlobalError>{notification.message}</GlobalError>
+            )}
+          </>
+        </FormContainer>
+      </FormProvider>
     </Container>
   );
 };

@@ -5,7 +5,6 @@ export const FormContainer = styled.form`
   display: flex;
   flex-direction: column;
   gap: ${theme.spacing.xl};
-  max-width: 450px;
   padding: ${theme.spacing.xl};
   background-color: ${theme.colors.backgroundBeige};
   border: solid 2px ${theme.colors.green};
@@ -20,11 +19,6 @@ export const FormContainer = styled.form`
   span {
     font-size: ${theme.typography.fontSizes.sm};
   }
-`;
-
-export const FormWrapper = styled.div`
-  display: grid;
-  gap: ${theme.spacing.md};
 
   a {
     text-decoration: underline;
@@ -52,10 +46,45 @@ export const Input = styled.input`
   border-radius: ${theme.borderRadius.small};
   font-size: ${theme.typography.fontSizes.md};
   transition: ${theme.transitions.default};
+  width: auto;
 
   &:focus {
     outline: none;
     border-color: ${theme.colors.backgroundGreen};
     box-shadow: 0 0 0 2px rgba(110, 231, 183, 0.2);
+  }
+`;
+
+export const PasswordWrapper = styled.div`
+  display: inline-flex;
+  position: relative;
+  justify-content: space-between;
+  flex-wrap: wrap;
+
+  input {
+    width: 55vw;
+
+    @media (min-width: 718px) {
+      width: 45vw;
+    }
+  }
+
+  @media (min-width: 718px) {
+      flex-wrap: nowrap;
+      gap: 8px;
+    }
+
+  button {
+    padding: ${theme.spacing.sm} ${theme.spacing.md};
+    border: 1px solid ${theme.colors.darkBlue};
+    border-radius: ${theme.borderRadius.small};
+    
+    &:hover {
+      cursor: pointer;
+    }
+    &:focus {
+      border: 1px dashed ${theme.colors.backgroundGreen};
+    }
+  }
   }
 `;
