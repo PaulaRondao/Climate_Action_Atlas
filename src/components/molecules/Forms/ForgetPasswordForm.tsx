@@ -8,7 +8,7 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
 import { UserForgetPassword } from '@/types/User';
 import { FormGroup } from './initiative-form/initiativeCreationForm.styles';
-import { FormContainer, FormWrapper, Input, Label } from './signForm.styles';
+import { FormContainer, Input, Label } from './signForm.styles';
 import { authClient } from '@/lib/auth-client';
 
 const ForgetPasswordFormSchema = z.object({
@@ -53,22 +53,20 @@ export default function ForgetPasswordForm(): JSX.Element {
         Veuillez saisir votre email pour recevoir un mot de passe temporaire.
       </p>
       <FormProvider {...methods}>
-        <FormWrapper>
-          {loginError ? <h3>{loginError}</h3> : ''}
+        {loginError ? <h3>{loginError}</h3> : ''}
 
-          <FormGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              name="email"
-              placeholder="Ex. prenom.nom@mail.com"
-              type="email"
-            />
-          </FormGroup>
-          <Button type="submit" disabled={!isValid}>
-            Envoyer un mot de passe temporaire
-          </Button>
-        </FormWrapper>
+        <FormGroup>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            name="email"
+            placeholder="Ex. prenom.nom@mail.com"
+            type="email"
+          />
+        </FormGroup>
+        <Button type="submit" disabled={!isValid}>
+          Envoyer un mot de passe temporaire
+        </Button>
       </FormProvider>
     </FormContainer>
   );

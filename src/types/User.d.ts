@@ -11,6 +11,7 @@ export interface UserRegister {
   email: string;
   password: string;
   confirmPassword: string;
+  // role: UserRole,
 }
 
 export interface UserForgetPassword {
@@ -21,6 +22,7 @@ export interface UserForgetPassword {
 export interface UserResetPassword {
   password: string;
   token: string;
+  confirmPassword: string;
 }
 
 export interface UserProfil {

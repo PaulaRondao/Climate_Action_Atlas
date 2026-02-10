@@ -7,13 +7,21 @@ import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
 import { UserLogin } from '@/types/User';
 import { FormGroup } from './initiative-form/initiativeCreationForm.styles';
-import { FormContainer, FormWrapper, Input, Label } from './signForm.styles';
+import {
+  FormContainer,
+  Input,
+  Label,
+  PasswordWrapper,
+} from './signForm.styles';
 import { authClient } from '@/lib/auth-client';
 import Link from 'next/link';
 import { userLoginSchema } from '@/validation/userSchema';
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 export default function SignInForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -29,6 +37,8 @@ export default function SignInForm(): JSX.Element {
   } = methods;
 
   const onSubmit: SubmitHandler<UserLogin> = async ({ email, password }) => {
+    setLoading(true);
+
     await authClient.signIn.email({
       email,
       password,
@@ -45,22 +55,22 @@ export default function SignInForm(): JSX.Element {
     <FormContainer onSubmit={handleSubmit(onSubmit)} noValidate>
       <h1>Connexion</h1>
       <FormProvider {...methods}>
-        <FormWrapper>
-          {loginError ? <h3>{loginError}</h3> : ''}
+        {loginError ? <h3>{loginError}</h3> : ''}
 
-          <FormGroup>
-            <Label htmlFor="email">Email</Label>
-            <Input
-              id="email"
-              {...methods.register('email')}
-              name="email"
-              placeholder="Saisissez votre email"
-              type="email"
-            />
-          </FormGroup>
+        <FormGroup>
+          <Label htmlFor="email">Email</Label>
+          <Input
+            id="email"
+            {...methods.register('email')}
+            name="email"
+            placeholder="Saisissez votre email"
+            type="email"
+          />
+        </FormGroup>
 
-          <FormGroup>
-            <Label htmlFor="mot de passe">Mot de passe</Label>
+        <FormGroup>
+          <Label htmlFor="mot de passe">Mot de passe</Label>
+          <PasswordWrapper>
             <Input
               id="password"
               {...methods.register('password')}
@@ -68,17 +78,31 @@ export default function SignInForm(): JSX.Element {
               placeholder="Saisissez votre de passe"
               type="password"
             />
-          </FormGroup>
-          <Link href="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
+            <button
+              type="button"
+              aria-label="Montrer le mot de passe"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+            </button>
+          </PasswordWrapper>
+        </FormGroup>
+
+        <Link href="/mot-de-passe-oublie">Mot de passe oublié ?</Link>
+        {loading ? (
           <Button
+            type="submit"
+            disabled
             backgroundColorHover="none"
             colorHover="none"
-            type="submit"
-            disabled={!isValid}
           >
+            Connexion en cours
+          </Button>
+        ) : (
+          <Button type="submit" disabled={!isValid}>
             Me connecter
           </Button>
-        </FormWrapper>
+        )}
       </FormProvider>
     </FormContainer>
   );

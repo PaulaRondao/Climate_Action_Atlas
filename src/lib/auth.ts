@@ -2,6 +2,7 @@ import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 // import { nextCookies } from 'better-auth/next-js';
 import prisma from './prisma';
+import { UserRole } from '@/types/enums/userRole';
 // import { Resend } from "resend";
 // import { Pool } from "pg";
 // import { headers } from 'next/headers';
@@ -29,7 +30,16 @@ export const auth = betterAuth({
         maxAge: 5 * 60,
       },
     },
+    additionalFields: {
+      role: {
+        type: 'string',
+        defaultValue: UserRole.CONTRIBUTOR,
+      },
+    },
+    //
   },
   // resetPasswordTokenExpiresIn: 3600,
   // plugins: [nextCookies()],
 });
+
+// export type AuthSession = typeof auth.$Infer.Session;

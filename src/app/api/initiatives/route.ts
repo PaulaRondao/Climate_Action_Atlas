@@ -10,6 +10,7 @@ import {
 import prisma from '@/lib/prisma';
 import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
+import { UserRole } from '@/types/enums/userRole';
 
 export async function GET(request: NextRequest) {
   try {
@@ -74,4 +75,5 @@ const post = async (request: NextRequest, body: InitiativeCreationFormData) => {
 export const POST = apiHandler({
   fn: post,
   bodySchema: initiativeCreationSchema,
+  authorizeRoles: [UserRole.CONTRIBUTOR],
 });

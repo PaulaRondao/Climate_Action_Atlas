@@ -15,8 +15,8 @@ export interface Handler<TBody = any, TParams = Params> {
     body: TBody,
     params: TParams,
   ) => Promise<NextResponse>;
-
   bodySchema?: ZodSchema<TBody>;
   querySchema?: ZodSchema<TParams>;
   paramsSchema?: ZodSchema<TParams>;
+  authorizeRoles?: userRole[];
 }
