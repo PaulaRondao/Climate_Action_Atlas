@@ -23,7 +23,7 @@
     "@next/eslint-plugin-next": "^16.1.6",
     "@prisma/client": "^6.19.2",
     "@react-icons/all-files": "^4.1.0",
-    "axios": "^1.12.2",
+    "axios": "^1.13.5",
     "bcryptjs": "^3.0.2",
     "better-auth": "^1.4.18",
     "eslint": "^9.39.2",
