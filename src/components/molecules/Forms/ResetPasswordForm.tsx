@@ -7,26 +7,24 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
 import { UserResetPassword } from '@/types/User';
-import { FormGroup } from './initiative-form/initiativeCreationForm.styles';
-import { FormContainer, FormWrapper, Input, Label } from './signForm.styles';
+import {
+  ErrorMessage,
+  FormGroup,
+} from './initiative-form/initiativeCreationForm.styles';
+import {
+  FormContainer,
+  Input,
+  Label,
+  PasswordWrapper,
+} from './signForm.styles';
 import { authClient } from '@/lib/auth-client';
-
-const ResetPasswordFormSchema = z.object({
-  password: z
-    .string()
-    .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
-    .regex(/[A-Z]/, 'Le mot de passe doit contenir au moins une majuscule')
-    .regex(/[a-z]/, 'Le mot de passe doit contenir au moins une minuscule')
-    .regex(/[0-9]/, 'Le mot de passe doit contenir au moins un chiffre')
-    .regex(
-      /[^A-Za-z0-9]/,
-      'Le mot de passe doit contenir au moins un caractère spécial',
-    ),
-  token: z.string(),
-});
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+import { ResetPasswordFormSchema } from '@/validation/userSchema';
 
 export default function ResetPasswordForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
@@ -40,6 +38,7 @@ export default function ResetPasswordForm(): JSX.Element {
   });
 
   const {
+    register,
     handleSubmit,
     formState: { errors, isValid },
   } = methods;
@@ -65,28 +64,61 @@ export default function ResetPasswordForm(): JSX.Element {
     <FormContainer onSubmit={handleSubmit(onSubmit)} noValidate>
       <h1>Réinitialisation du mot de passe</h1>
       <FormProvider {...methods}>
-        <FormWrapper>
-          {loginError ? <h3>{loginError}</h3> : ''}
+        {loginError ? <h3>{loginError}</h3> : ''}
 
-          <FormGroup>
-            <Label htmlFor="token">Token</Label>
-            <Input id="token" name="token" type="token" disabled>
-              {token}
-            </Input>
-          </FormGroup>
-          <FormGroup>
-            <Label htmlFor="password">Nouveau mot de passe</Label>
+        <FormGroup>
+          <Label htmlFor="token">Token</Label>
+          <Input id="token" name="token" type="token" disabled>
+            {token}
+          </Input>
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="password">Nouveau mot de passe</Label>
+          <PasswordWrapper>
             <Input
               id="password"
               name="password"
               placeholder="Saisissez votre de passe"
               type="password"
             />
-          </FormGroup>
-          <Button type="submit" disabled={!isValid}>
-            Réinitialiser le mot de passe
-          </Button>
-        </FormWrapper>
+            <button
+              type="button"
+              aria-label="Montrer le mot de passe"
+              onClick={() => setShowPassword(!showPassword)}
+            >
+              {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+            </button>
+          </PasswordWrapper>
+          {errors.password && (
+            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          )}
+        </FormGroup>
+        <FormGroup>
+          <Label htmlFor="confirmPassword">
+            Confirmer votre nouveau mot de passe
+          </Label>
+          <PasswordWrapper>
+            <Input
+              id="confirmPassword"
+              type={showConfirmPassword ? 'text' : 'password'}
+              {...register('confirmPassword')}
+              placeholder="Confirmez votre mot de passe"
+            />
+            <button
+              type="button"
+              aria-label="Montrer le mot de passe"
+              onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+            >
+              {showConfirmPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+            </button>
+          </PasswordWrapper>
+          {errors.confirmPassword && (
+            <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
+          )}
+        </FormGroup>
+        <Button type="submit" disabled={!isValid}>
+          Réinitialiser le mot de passe
+        </Button>
       </FormProvider>
     </FormContainer>
   );
