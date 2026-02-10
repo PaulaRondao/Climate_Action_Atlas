@@ -11,14 +11,27 @@ const LegalNoticesPage = (): JSX.Element => (
       cadre de sa réalisation et de son suivi.
     </p>
 
-    <h2>Édition du site</h2>
+    <h2>1. L'éditeur</h2>
     <p>
       Le présent site,{' '}
       <a href="www.climate-action-atlas.fr">www.climate-action-atlas.fr</a>, est
       édité par Maud Paula Rondao, résidant 47 chemin des alouettes 17610
       Chaniers.
     </p>
-    <h2>Hébergement</h2>
+    <h2>2. Responsable de publication</h2>
+    <p>
+      Madame Maud Paula Rondao est la responsable de la publication et de la
+      rédaction du site.
+    </p>
+    <h2>3. Nous contacter</h2>
+    <ul>
+      <li>Par téléphone : 0645590467</li>
+      <li>
+        Par email : <a href="mailto:maud.rondao@gmail.com">contact@gmail.com</a>
+      </li>
+      <li>Par courrier : 47 chemin des alouettes 17610 Chaniers</li>
+    </ul>
+    <h2>4. L'hébergeur</h2>
     <p>
       Le site{' '}
       <a href="www.climate-action-atlas.fr">www.climate-action-atlas.fr</a> est
@@ -26,18 +39,17 @@ const LegalNoticesPage = (): JSX.Element => (
       Barranca Ave #4133 Covina California 9172, (contact téléphonique ou email
       : +18662583217).
     </p>
-    <h2>Responsable de publication</h2>
+    <h2>4. Accès au site</h2>
     <p>
-      Madame Maud Paula Rondao est la responsable de la publication et de la
-      rédaction du site.
+      Le site est accessible par tout endroit, 7j/7, 24h/24 sauf cas de force
+      majeur, interruption programmée ou non et pouvant découler d'une nécessité
+      de maintenance.
     </p>
-    <h2>Nous contacter</h2>
-    <ul>
-      <li>Par téléphone : 0645590467</li>
-      <li>Par email : maud.rondao@gmail.com</li>
-      <li>Par courrier : 47 chemin des alouettes 17610 Chaniers</li>
-    </ul>
-    <h2>Données personnelles</h2>
+    <p>
+      En cas de modification, interruption ou suspension des services, vous
+      serez avertis par un message lors de votre connexion sur le site.
+    </p>
+    <h2>5. Données personnelles</h2>
     <p>
       Le traitement de vos données à caractère personnel est régi par notre
       Politique de confidentialitée, disponible depuis le pied de page à
