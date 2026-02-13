@@ -39,6 +39,30 @@ const users = [
     email: 'sarah@mail.com',
     role: UserRole.CONTRIBUTOR,
   },
+  {
+    id: '2468',
+    name: 'Fatima',
+    email: 'fatima@mail.com',
+    role: UserRole.CONTRIBUTOR,
+  },
+  {
+    id: '3570',
+    name: 'Karim',
+    email: 'karim@mail.com',
+    role: UserRole.CONTRIBUTOR,
+  },
+  {
+    id: '6498',
+    name: 'Sylla',
+    email: 'sylla@mail.com',
+    role: UserRole.CONTRIBUTOR,
+  },
+  {
+    id: '4936',
+    name: 'Lou',
+    email: 'lou@mail.com',
+    role: UserRole.CONTRIBUTOR,
+  },
 ];
 
 const initiatives = [
@@ -59,6 +83,18 @@ const initiatives = [
     type: InitiativeType.UrbanismAndTechnology,
     locationIndex: 2,
     contributorId: '1234',
+  },
+  {
+    name: 'Accorderie du Pays de Saint-Gilles-Croix-de-Vie',
+    type: InitiativeType.SolidarityAndCommunities,
+    locationIndex: 3,
+    contributorId: '2468',
+  },
+  {
+    name: 'Repair Café Montferrier',
+    type: InitiativeType.SocialAndSolidarityEconomy,
+    locationIndex: 4,
+    contributorId: '3570',
   },
 ];
 
