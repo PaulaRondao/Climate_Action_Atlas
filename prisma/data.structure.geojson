@@ -70,6 +70,52 @@
         "street": "Rue de la Borde",
         "_type": "address"
       }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [-1.928367, 46.696577]
+      },
+      "properties": {
+        "label": "Rue Jules Ferry, 85800 Saint-Gilles-Croix-de-Vie",
+        "score": 0.9523445454545454,
+        "id": "85222_1010",
+        "name": "Rue Jules Ferry",
+        "postcode": "85800",
+        "citycode": "85222",
+        "x": 323651.8,
+        "y": 6633579.9,
+        "city": "Saint-Gilles-Croix-de-Vie",
+        "context": "85, Vendée, Pays de la Loire",
+        "type": "street",
+        "importance": 0.47579,
+        "street": "Rue Jules Ferry",
+        "_type": "address"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [3.853275, 43.667011]
+      },
+      "properties": {
+        "label": "Chemin de la Qualité 34980 Montferrier-sur-Lez",
+        "score": 0.7976583003952568,
+        "id": "34169-0145",
+        "banId": "092b24af-4bae-439c-acce-9a5cec170f01",
+        "name": "Chemin de la Qualité",
+        "postcode": "34980",
+        "citycode": "34169",
+        "x": 768836.46,
+        "y": 6285702.19,
+        "city": "Montferrier-sur-Lez",
+        "context": "34, Hérault, Occitanie",
+        "importance": 0.55685,
+        "street": "Chemin de la Qualité",
+        "_type": "address"
+      }
     }
   ]
 }
