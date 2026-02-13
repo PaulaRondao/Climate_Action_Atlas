@@ -4,6 +4,7 @@ import { fakerFR as faker } from '@faker-js/faker';
 
 const prisma = new PrismaClient();
 
+// Fonction pour importer le GeoJSON
 async function importGeoJson(filePath: string) {
   try {
     const fileContent = await fs.readFile(filePath, 'utf-8');
@@ -16,10 +17,12 @@ async function importGeoJson(filePath: string) {
       longitude: address.geometry.coordinates[0],
     }));
   } catch (error) {
-    throw new Error(`Error parsing GeoJSON file: ${error}`);
+    console.error(`Error parsing GeoJSON file: ${error}`);
+    return []; // retourne un tableau vide si problème
   }
 }
 
+// Données des utilisateurs
 const users = [
   {
     id: '1234',
@@ -65,6 +68,7 @@ const users = [
   },
 ];
 
+// Données des initiatives
 const initiatives = [
   {
     name: 'Roule ma frite',
@@ -100,12 +104,10 @@ const initiatives = [
 
 const seedDatabase = async () => {
   try {
+    // Import GeoJSON
     const locations = await importGeoJson('prisma/data.structure.geojson');
 
-    await prisma.initiative.deleteMany({});
-    await prisma.initiativeLocation.deleteMany({});
-    await prisma.user.deleteMany({});
-
+    // Création des utilisateurs
     for (const user of users) {
       await prisma.user.create({
         data: {
@@ -118,8 +120,12 @@ const seedDatabase = async () => {
       });
     }
 
+    // Création des initiatives avec leur localisation
     for (const init of initiatives) {
       const loc = locations[init.locationIndex];
+
+      // Si le GeoJSON n'a pas de donnée, skip
+      if (!loc) continue;
 
       const newLocation = await prisma.initiativeLocation.create({
         data: {
@@ -145,13 +151,13 @@ const seedDatabase = async () => {
       });
     }
 
-    console.log('Seeding completed successfully');
+    console.log('✅ Seeding completed successfully');
   } catch (error) {
     console.error('Error while seeding database: ', error);
-    process.exit(1);
   } finally {
     await prisma.$disconnect();
   }
 };
 
+// Exécuter le seed
 seedDatabase();

@@ -19,7 +19,7 @@ services:
       dockerfile: Dockerfile
     command: sh -lc "npm ci --prefer-offline --no-audit --progress=false && npm run dev"
     env_file:
-      - .env
+      - .env.test
     ports:
       - '3000:3000'
     working_dir: /app
