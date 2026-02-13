@@ -35,9 +35,13 @@ export const userLoginSchema = z.object({
 
 export type UserLogin = z.infer<typeof userLoginSchema>;
 
-export const updateUserSchema = z.object({
-  name: z.string().min(2).optional(),
-});
+export const updateUserSchema = z
+  .object({
+    name: z.string().min(2).optional(),
+  })
+  .refine((data) => Object.keys(data).length > 0, {
+    message: 'Ce champs ne peut être vide',
+  });
 
 export type UpdateUserBody = z.infer<typeof updateUserSchema>;
 

@@ -12,9 +12,9 @@ const config: Config = {
   testEnvironment: 'jest-environment-jsdom',
   moduleNameMapper: {
     // Handle module aliases
-    '^@/(.*)$': '<rootDir>/$1',
+    '^@/(.*)$': '<rootDir>/src/$1',
   },
-  collectCoverage: true,
+  collectCoverage: false,
   collectCoverageFrom: [
     'app/**/*.{js,jsx,ts,tsx}',
     'src/**/*.{js,jsx,ts,tsx}',
@@ -35,9 +35,8 @@ const config: Config = {
     'index.tsx',
   ],
   testPathIgnorePatterns: [
-    '<rootDir>/.next/', 
-    '<rootDir>/node_modules/', 
-    '<rootDir>/__tests__/', 
+    '<rootDir>/.next/',
+    '<rootDir>/node_modules/',
     '<rootDir>/components',
     '<rootDir>/.cache',
   ],

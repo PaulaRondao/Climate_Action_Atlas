@@ -59,7 +59,6 @@ export const checkContributorValidity = async (
 export const apiHandler =
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
 
-
     <TBody = any, TParams = any>(handler: Handler<TBody, TParams>) =>
     async (
       req: NextRequest,
