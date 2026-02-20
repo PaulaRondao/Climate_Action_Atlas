@@ -88,18 +88,38 @@ $ cp .gitignore
 
 To run this project, you will need to add the following environment variables to your .env file
 
-`API_KEY`
+`DATABASE_URL`= URL de connexion PostgreSQL
 
-`ANOTHER_API_KEY`
+`BETTER_AUTH_SECRET`= clé secret pour Better Auth
+
+`BETTER_AUTH_URL`= URL de base de l'application
+
+---
+
+## Démarrer le projet
+
+```bash
+1. Démarrer l'application et la base de données
+docker compose up
+```
+
+```bash
+2. Appliquer les migrations dans le containeur
+docker compose exec web npx prisma migrate dev 
+```
+
+```bash
+4. Générer Prisma Client en local 
+npx prisma generate
+```
+
+```bash
+5. Seeder la base
+docker compose exec web npx prisma db seed
+```
 
 
 ### Utilisation avec Docker
-
-Démarrer une base de données PostgreSQL conteneurisée dans une image Docker :
-
-```bash
-docker compose up
-```
 
 Pour arrêter la base de données :
 
@@ -107,33 +127,24 @@ Pour arrêter la base de données :
 docker compose down
 ```
 
-Pour vider le volume de la base de données :
+Pour vider le volume de la base de données (reset complet de la DB):
 
 ```bash
 docker compose down -v
 ```
 
 
-### Créer une nouvelle migration
-
-```
-docker compose exec web npx prisma migrate dev --name <un nom parlant de migration>
-```
-
-<un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"
-
-
-### Appliquer les migrations
+### Commandes Prisma
 
 ```
 # Dev (crée/ajuste le schéma en développement)
-docker compose exec web npx prisma migrate dev 
+npx prisma migrate dev 
 
 # Client Prisma (le code TypeScript) soit régénéré
 npx prisma generate
 
 # Prod/CI (applique les migrations déjà créées)
-docker compose exec web npx prisma migrate deploy
+npx prisma migrate deploy
 ```
 
 
@@ -144,11 +155,13 @@ docker compose exec web npx prisma migrate reset --force
 ```
 
 
-### Seeder la base :
+### Créer une nouvelle migration
 
 ```
-docker compose exec web npx prisma db seed
+npx prisma migrate dev --name <un nom parlant de migration>
 ```
+
+<un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"
 
 
 ### Pour lancer l'éditeur graphique de Prisma
@@ -157,30 +170,42 @@ docker compose exec web npx prisma db seed
 docker compose exec web npx prisma studio --port 5555
 ```
 
+---
 
-### Build (production ou CI/CD ou création de nouveaux containers Docker)
+## Tests
+```bash
+# Tests unitaires
+npm run test
 
-Prisma a besoin de générer son client avant que Next.js puisse construire l'application, 
-vous devez exécuter :
+# Tests API (nécessite la DB en cours d'exécution)
+npm run test:api
+```
 
+---
+
+## Build (production ou CI/CD ou création de nouveaux containers Docker)
 ```bash
 npx prisma generate && npx next build
 ```
 
+---
 
-### Deployment
-
-Pour déployer ce projet :
-
+## Déploiement
 ```bash
-  npm run deploy
+npm run deploy
+npx prisma migrate deploy
 ```
 
 
-## Roadmap
-- Additional browser support
 
-- Add more integrations
+## Roadmap
+- [ ] Affichage des initiatives sur une carte intéractive
+- [ ] Filtre avancé par type d'impact
+- [ ] Page de profil contributeur avec ses initiatives
+- [ ] Système de favoris pour sauvegarder des initiatives
+- [ ] Mode hors ligne (PWA)
+- [ ] Export des données en CSV/JSON
+- [ ] API publique pour accéder aux données
 
 
 
