@@ -15,10 +15,10 @@ export const searchAddresses = async (
 
     return data.features.map((address) => ({
       city: address?.properties?.city || '',
+      gps: address?.geometry?.coordinates || [0, 0],
       label: address?.properties?.label || '',
       street: address?.properties?.name || '',
       zipCode: address?.properties?.postcode || '',
-      gps: address?.geometry?.coordinates || [0, 0],
     }));
   } catch (error) {
     console.error(error, 'Address fetch failed');

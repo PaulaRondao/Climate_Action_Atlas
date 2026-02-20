@@ -3,7 +3,7 @@
 import React, { useEffect, useRef } from 'react';
 import AsyncSelect from 'react-select/async';
 import { Controller, useFormContext } from 'react-hook-form';
-import { searchAddresses } from '@/services/address';
+import { searchAddresses } from '@/services/address/address';
 import { ResponseAddress } from '@/types/City-interface';
 
 export interface SelectDropdownProps {

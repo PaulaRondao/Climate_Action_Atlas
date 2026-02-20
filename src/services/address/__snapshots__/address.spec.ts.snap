@@ -1,0 +1,16 @@
+// Jest Snapshot v1, https://jestjs.io/docs/snapshot-testing
+
+exports[`searchAddress should return searched addresses 1`] = `
+[
+  {
+    "city": "Chenac-Saint-Seurin-d'Uzet",
+    "gps": [
+      -1.928367,
+      46.696577,
+    ],
+    "label": "9 Rue de la Borde 17120 Chenac-Saint-Seurin-d'Uzet",
+    "street": "9 Rue de la Borde",
+    "zipCode": "17120",
+  },
+]
+`;

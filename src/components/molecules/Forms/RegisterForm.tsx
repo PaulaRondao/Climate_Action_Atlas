@@ -39,6 +39,8 @@ const RegisterForm = () => {
 
   const methods = useForm<UserRegister>({
     resolver: zodResolver(userRegisterSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
   });
 
   const {
@@ -86,6 +88,7 @@ const RegisterForm = () => {
               type="text"
               {...register('name')}
               placeholder="Saisissez votre nom d'utilisateur·trice"
+              aria-required={true}
             />
             {errors.name && <ErrorMessage>{errors.name.message}</ErrorMessage>}
           </FormGroup>
@@ -98,6 +101,7 @@ const RegisterForm = () => {
               type="email"
               {...register('email')}
               placeholder="Saisissez votre adresse email"
+              aria-required={true}
             />
             {errors.email && (
               <ErrorMessage>{errors.email.message}</ErrorMessage>
@@ -116,6 +120,7 @@ const RegisterForm = () => {
                 type={showPassword ? 'text' : 'password'}
                 {...register('password')}
                 placeholder="Saisissez votre mot de passe"
+                aria-required={true}
               />
               <button
                 type="button"

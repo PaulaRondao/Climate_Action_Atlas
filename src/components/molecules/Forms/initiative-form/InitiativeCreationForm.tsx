@@ -33,6 +33,8 @@ const InitiativeCreationForm = () => {
 
   const methods = useForm<InitiativeCreationFormData>({
     resolver: zodResolver(initiativeCreationSchema),
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
     defaultValues: {
       initiativeType: [],
       narrative: '',
@@ -108,6 +110,7 @@ const InitiativeCreationForm = () => {
                 type="text"
                 placeholder="Saisir le nom de l'initiative"
                 {...methods.register('name')}
+                aria-required={true}
               />
               {methods.formState.errors.name && (
                 <ErrorMessage>
@@ -129,6 +132,7 @@ const InitiativeCreationForm = () => {
                 placeholder="Saisir une courte description..."
                 {...methods.register('description')}
                 rows={6}
+                aria-required={true}
               />
               {methods.formState.errors.description && (
                 <ErrorMessage>
@@ -141,7 +145,11 @@ const InitiativeCreationForm = () => {
               <Label htmlFor="initiativeType">
                 À quel type correspond l'initiative&nbsp;? *
               </Label>
-              <CheckboxInput options={TypeImpact} name="initiativeType" />
+              <CheckboxInput
+                options={TypeImpact}
+                name="initiativeType"
+                aria-required={true}
+              />
               {methods.formState.errors.initiativeType && (
                 <ErrorMessage>
                   {methods.formState.errors.initiativeType.message}
@@ -178,6 +186,7 @@ const InitiativeCreationForm = () => {
               <SelectDropdown
                 name="address"
                 placeholder="Sélectionner une adresse"
+                aria-required={true}
               />
               {methods.formState.errors.address && (
                 <ErrorMessage>

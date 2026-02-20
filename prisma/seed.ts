@@ -102,7 +102,7 @@ const initiatives = [
   },
 ];
 
-const seedDatabase = async () => {
+export const seedDatabase = async () => {
   try {
     // Import GeoJSON
     const locations = await importGeoJson('prisma/data.structure.geojson');
@@ -159,5 +159,4 @@ const seedDatabase = async () => {
   }
 };
 
-// Exécuter le seed
 seedDatabase();

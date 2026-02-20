@@ -3,7 +3,7 @@ import * as z from 'zod';
 export const userRegisterSchema = z
   .object({
     name: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
-    email: z.string().email('Adresse email invalide'),
+    email: z.string().email('Adresse email invalide. Exemple: lou@gmail.com'),
     password: z
       .string()
       .min(8, 'Le mot de passe doit contenir au moins 8 caractères')
@@ -24,10 +24,7 @@ export const userRegisterSchema = z
 export type UserRegister = z.infer<typeof userRegisterSchema>;
 
 export const userLoginSchema = z.object({
-  email: z
-    .string()
-    .min(1, { message: 'Veuillez renseigner votre email' })
-    .email({ message: "format d'email invalide" }),
+  email: z.string().email({ message: 'Adresse email invalide' }),
   password: z
     .string()
     .min(1, { message: 'Veuillez renseigner un mot de passe' }),
@@ -40,7 +37,7 @@ export const updateUserSchema = z
     name: z.string().min(2).optional(),
   })
   .refine((data) => Object.keys(data).length > 0, {
-    message: 'Ce champs ne peut être vide',
+    message: "Veuillez remplir ce champs s'il vous plait",
   });
 
 export type UpdateUserBody = z.infer<typeof updateUserSchema>;
