@@ -6,7 +6,10 @@ import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
 import { UserLogin } from '@/types/User';
-import { FormGroup } from './initiative-form/initiativeCreationForm.styles';
+import {
+  ErrorMessage,
+  FormGroup,
+} from './initiative-form/initiativeCreationForm.styles';
 import {
   FormContainer,
   Input,
@@ -28,7 +31,8 @@ export default function SignInForm(): JSX.Element {
 
   const methods = useForm<UserLogin>({
     resolver: zodResolver(userLoginSchema),
-    mode: 'all',
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
   });
 
   const {
@@ -65,7 +69,9 @@ export default function SignInForm(): JSX.Element {
             name="email"
             placeholder="Saisissez votre email"
             type="email"
+            aria-required={true}
           />
+          {errors.email && <ErrorMessage>{errors.email.message}</ErrorMessage>}
         </FormGroup>
 
         <FormGroup>
@@ -77,6 +83,7 @@ export default function SignInForm(): JSX.Element {
               name="password"
               placeholder="Saisissez votre de passe"
               type="password"
+              aria-required={true}
             />
             <button
               type="button"
@@ -86,6 +93,9 @@ export default function SignInForm(): JSX.Element {
               {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
             </button>
           </PasswordWrapper>
+          {errors.password && (
+            <ErrorMessage>{errors.password.message}</ErrorMessage>
+          )}
         </FormGroup>
 
         <Link href="/mot-de-passe-oublie">Mot de passe oublié ?</Link>

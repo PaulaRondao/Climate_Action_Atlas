@@ -32,7 +32,8 @@ model User {
   accounts Account[]
   initiatives Initiative[]
 
-  @@map("User")
+  @@unique([email])
+  @@map("user")
 }
 
 // Retrouver l'utilisateur quand il refresh sans se reconnecter
@@ -44,13 +45,13 @@ model Session {
   token String
   createdAt DateTime
   updatedAt DateTime
-  ipAddress String
-  userAgent String
+  ipAddress String?
+  userAgent String?
   userId String
   user User @relation(fields: [userId], references: [id], onDelete: Cascade, onUpdate: Cascade)
 
   @@unique([token])
-  @@map("Session")
+  @@map("session")
 }
 
 model Initiative {
@@ -71,7 +72,7 @@ model Initiative {
   initiativeLocation InitiativeLocation @relation(fields: [initiativeLocationId], references: [id])
   initiativeLocationId Int @unique
 
-  @@map("Initiative")
+  @@map("initiative")
 }
 
 //Moyen d'authentification
@@ -91,7 +92,7 @@ model Account {
   createdAt DateTime
   updatedAt DateTime
 
-  @@map("Account")
+  @@map("account")
 }
 
 //Vérifier des choses
@@ -101,10 +102,10 @@ model Verification {
   id String @id
   identifier String
   value String
-  expiresAt DateTime
+  expiresAt DateTime?
   createdAt DateTime?
 
-  @@map("Verification")
+  @@map("verification")
 }
 
 
@@ -118,7 +119,7 @@ model InitiativeLocation {
 
   initiativeId Initiative?
 
-  @@map("InitiativeLocation")
+  @@map("initiativeLocation")
 }
 
 enum InitiativeType {
