@@ -3,9 +3,12 @@ import { prismaAdapter } from 'better-auth/adapters/prisma';
 import prisma from './prisma';
 import { customSession } from 'better-auth/plugins';
 import { getUser } from '@/services/User/getUser';
-import { resend } from './resend';
 import { nextCookies } from 'better-auth/next-js';
 import { warn } from 'console';
+import { Resend } from 'resend';
+import config from '@/services/config';
+
+export const resend = new Resend(config.resendApiKey);
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
