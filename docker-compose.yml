@@ -1,6 +1,6 @@
 services:
   climate-db:
-    image: postgres:12.20
+    image: postgres:16
     container_name: climate-db
     ports:
       - '5432:5432'
@@ -14,12 +14,12 @@ services:
   web:
     image: node:22-alpine
     container_name: climate-web
+    environment:
+      DATABASE_URL: 'postgresql://climate-db:climate-db@climate-db:5432/climate-db'
     build:
       context: .
       dockerfile: Dockerfile
     command: sh -lc "npm ci --prefer-offline --no-audit --progress=false && npm run dev"
-    env_file:
-      - .env.test
     ports:
       - '3000:3000'
     working_dir: /app
