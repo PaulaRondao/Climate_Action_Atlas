@@ -2,7 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
@@ -21,13 +21,15 @@ const ForgetPasswordFormSchema = z.object({
 export default function ForgetPasswordForm(): JSX.Element {
   const [loginError, setLoginError] = useState<string | null>(null);
 
+  const router = useRouter();
   const searchParams = useSearchParams();
   const error = searchParams.get('error');
   const register = searchParams.get('register');
 
   const methods = useForm<UserForgetPassword>({
     resolver: zodResolver(ForgetPasswordFormSchema),
-    mode: 'all',
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
   });
 
   const {
@@ -36,10 +38,21 @@ export default function ForgetPasswordForm(): JSX.Element {
   } = methods;
 
   const onSubmit: SubmitHandler<UserForgetPassword> = async ({ email }) => {
-    await authClient.requestPasswordReset({
-      email,
-      redirectTo: '/reinitialisation-mot-de-passe',
-    });
+    await authClient.requestPasswordReset(
+      {
+        email,
+        redirectTo: '/reinitialisation-mot-de-passe',
+      },
+      {
+        onSuccess: () => {
+          router.push('/verification-email?email=${email}');
+          router.refresh();
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
   };
 
   useEffect(() => {

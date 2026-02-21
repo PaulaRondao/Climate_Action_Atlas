@@ -1,26 +1,56 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
-// import { nextCookies } from 'better-auth/next-js';
 import prisma from './prisma';
 import { customSession } from 'better-auth/plugins';
 import { getUser } from '@/services/User/getUser';
-// import { UserRole } from '@/types/enums/userRole';
-// import { Resend } from "resend";
-// import { Pool } from "pg";
-// import { headers } from 'next/headers';
-
-// const resend = new Resend(process.env.RESEND_API_KEY!);
+import { resend } from './resend';
+import { nextCookies } from 'better-auth/next-js';
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
-  basePath: 'api/auth',
+  basePath: '/api/auth',
   baseURL: process.env.BETTER_AUTH_URL!,
   database: prismaAdapter(prisma, {
     provider: 'postgresql',
   }),
   emailAndPassword: {
     enabled: true,
-    // sendResetPassword: async ({ user, token }) => {}
+    sendResetPassword: async ({ user, url }) => {
+      await resend.emails.send({
+        to: user.email,
+        subject: 'Réinitialisation de votre mot de passe',
+        // text: `Click the link to reset your password: ${url}`,
+        html: `
+          <h2>Réinitialisation de mot de passe</h2>
+          <p>Bonjour ${user.name},</p>
+          <p>Clique sur le lien ci-dessous pour réinitialiser ton mot de passe :</p>
+          <a href="${url}" style="...">Réinitialiser mon mot de passe</a>
+          <p>Ce lien expire dans 1 heure.</p>
+          <p>Si tu n'as pas demandé cette réinitialisation, ignore cet email.</p>
+        `,
+        from: 'noreply@resend.climate-action-atlas.fr',
+      });
+    },
+    onPasswordReset: async ({ user }) => {
+      // your logic here
+      console.log(`Password for user ${user.email} has been reset.`);
+    },
+  },
+  emailVerification: {
+    sendOnSignUp: true,
+    autoSignInAfterVerification: true,
+    sendVerificationEmail: async ({ user, url, token }) => {
+      await resend.emails.send({
+        from: 'noreply@resend.climate-action-atlas.fr',
+        to: user.email,
+        subject: 'Vérifie ton adresse email',
+        html: `
+        <h2>Bienvenue ${user.email} !</h2>
+        <p>Clique sur le lien pour vérifier ton email :</p>
+        <a href="${url}">Vérifier mon email</a>
+      `,
+      });
+    },
   },
   user: {
     changeEmail: {
@@ -51,6 +81,7 @@ export const auth = betterAuth({
     //
   },
   plugins: [
+    nextCookies(),
     customSession(async ({ user, session }) => {
       const registerUser = await getUser(user.id);
       return {
@@ -62,14 +93,5 @@ export const auth = betterAuth({
       };
     }),
   ],
-  // emailVerification: {
-  //     // Required to send the verification email
-  //     sendVerificationEmail: async ({ user, url, token }) => {
-  //         void sendEmail({
-  //             to: user.email,
-  //         })
-  //     }
-  // },
-  // resetPasswordTokenExpiresIn: 3600,
-  // plugins: [nextCookies()],
+  resetPasswordTokenExpiresIn: 3600,
 });
