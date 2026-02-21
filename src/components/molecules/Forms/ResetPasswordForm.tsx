@@ -1,8 +1,7 @@
 'use client';
 
 import { zodResolver } from '@hookform/resolvers/zod';
-import { z } from 'zod';
-import { useSearchParams } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/atoms';
@@ -22,6 +21,7 @@ import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 import { ResetPasswordFormSchema } from '@/validation/userSchema';
 
 export default function ResetPasswordForm(): JSX.Element {
+  const router = useRouter();
   const [loginError, setLoginError] = useState<string | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState(false);
@@ -34,7 +34,8 @@ export default function ResetPasswordForm(): JSX.Element {
 
   const methods = useForm<UserResetPassword>({
     resolver: zodResolver(ResetPasswordFormSchema),
-    mode: 'all',
+    mode: 'onBlur',
+    reValidateMode: 'onChange',
   });
 
   const {
@@ -47,13 +48,27 @@ export default function ResetPasswordForm(): JSX.Element {
     password,
     token,
   }) => {
-    await authClient.resetPassword({
-      newPassword: password,
-      token,
-    });
+    if (!token) {
+      alert('Invalid token');
+      return;
+    }
+
+    await authClient.resetPassword(
+      {
+        newPassword: password,
+        token,
+      },
+      {
+        onSuccess: () => {
+          router.push('/connexion');
+        },
+        onError: (ctx) => {
+          alert(ctx.error.message);
+        },
+      },
+    );
   };
 
-  // if valid router.push('/connexion')
   useEffect(() => {
     if (!token) {
       setLoginError(error);
