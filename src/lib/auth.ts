@@ -5,6 +5,7 @@ import { customSession } from 'better-auth/plugins';
 import { getUser } from '@/services/User/getUser';
 import { resend } from './resend';
 import { nextCookies } from 'better-auth/next-js';
+import { warn } from 'console';
 
 export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
@@ -33,13 +34,13 @@ export const auth = betterAuth({
     },
     onPasswordReset: async ({ user }) => {
       // your logic here
-      console.log(`Password for user ${user.email} has been reset.`);
+      warn(`Password for user ${user.email} has been reset.`);
     },
   },
   emailVerification: {
     sendOnSignUp: true,
     autoSignInAfterVerification: true,
-    sendVerificationEmail: async ({ user, url, token }) => {
+    sendVerificationEmail: async ({ user, url }) => {
       await resend.emails.send({
         from: 'noreply@resend.climate-action-atlas.fr',
         to: user.email,

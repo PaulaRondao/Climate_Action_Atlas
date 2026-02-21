@@ -16,6 +16,7 @@ services:
     container_name: climate-web
     environment:
       DATABASE_URL: 'postgresql://climate-db:climate-db@climate-db:5432/climate-db'
+      RESEND_API_KEY: 're_hQcBQzya_2yp5ZuFWLruwrdLooYjJDfuL'
     build:
       context: .
       dockerfile: Dockerfile
