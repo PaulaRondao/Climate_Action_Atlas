@@ -5,6 +5,7 @@ import { customSession } from 'better-auth/plugins';
 import { getUser } from '@/services/User/getUser';
 import { nextCookies } from 'better-auth/next-js';
 import { warn } from 'console';
+import { UserRole } from '@prisma/client';
 // import { Resend } from 'resend';
 // import config from '@/services/config';
 
@@ -79,7 +80,7 @@ export const auth = betterAuth({
     additionalFields: {
       role: {
         type: 'string',
-        // defaultValue: UserRole.CONTRIBUTOR,
+        defaultValue: UserRole.CONTRIBUTOR,
       },
     },
     //

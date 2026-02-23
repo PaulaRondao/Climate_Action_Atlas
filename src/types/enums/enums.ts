@@ -17,6 +17,7 @@ export enum Description {
   InitiativeToAdd = 'Chaque geste compte. En ajoutant une initiative, vous participez activement à un projet commun qui peut inspirer d’autres à s’engager. Ensemble, nous pouvons faire la différence, une initiative à la fois.',
   CommitmentToUser = 'Découvrez comment votre engagement peut contribuer à un avenir durable et respectueux des limites planétaires.',
   CommitmentToAssociation = 'Votre engagement fait la différence. Ensemble, nous pouvons dépasser les défis environnementaux.',
+  AccountDelete = 'La suppression de votre compte entraine la désactivation de votre accès à votre espace personnel, la suppression des initiatives que vous aurez créé ainsi que la suppression de vos données personnelles liées. Conformément à la réglementation, certaines données sont obligatoirement conservées pour une durée déterminée avant suppression définitive : ces données seront archivées et anonymisées dans le respect de notre politique de confidentialité.',
 }
 
 export enum InitiativesLabel {
