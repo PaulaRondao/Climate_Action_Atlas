@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { theme } from '@/styles/theme';
 
 export const ImageContainer = styled.div`
@@ -9,11 +9,20 @@ export const ImageContainer = styled.div`
   width: 100%;
 `;
 
-export const CardWrapper = styled.div`
+interface CardWrapperProps {
+  $marginTop?: boolean;
+}
+
+export const CardWrapper = styled.div<CardWrapperProps>`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 12px;
+  ${({ $marginTop: $marginTop }) =>
+    $marginTop &&
+    css`
+      margin-top: 60px;
+    `};
 `;
 
 export const CardContent = styled.div`
