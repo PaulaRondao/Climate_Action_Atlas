@@ -103,8 +103,8 @@ export default function Card({ value, onChange, initiatives }: CardProps) {
           )}
         </main>
         <Footer role="contentinfo">
-          {initiative.user && (
-            <span>Ajouté par {initiative.user?.name} · </span>
+          {initiative.contributor && (
+            <span>Ajouté par {initiative.contributor?.name} · </span>
           )}
           <span>Mise à jour le {formattedDate(initiative)}</span>
         </Footer>
