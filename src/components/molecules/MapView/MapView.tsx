@@ -29,7 +29,7 @@ L.Icon.Default.imagePath = '.';
 interface MapViewProps {
   position: LatLngExpression | LatLngTuple;
   zoom?: number;
-  filteredInitiativeType: InitiativesLabel;
+  filteredInitiativeType?: InitiativesLabel;
 }
 
 const MapView = ({
@@ -45,10 +45,14 @@ const MapView = ({
       const allInitiatives = await getInitiatives();
       if (!allInitiatives) return;
 
-      const mappedType = LabelToInitiativeType[filteredInitiativeType];
-      const initiativeList = allInitiatives.filter((initiative) =>
-        initiative.initiativeType?.includes(mappedType),
-      );
+      const mappedType = filteredInitiativeType
+        ? LabelToInitiativeType[filteredInitiativeType]
+        : undefined;
+      const initiativeList = mappedType
+        ? allInitiatives.filter((initiative) =>
+            initiative.initiativeType?.includes(mappedType),
+          )
+        : allInitiatives;
 
       setInitiatives(initiativeList);
     };
