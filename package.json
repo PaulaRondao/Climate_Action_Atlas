@@ -8,6 +8,7 @@
     "build": "prisma generate && next build",
     "seed": "ts-node prisma/seed.ts",
     "start": "next start",
+    "test": "jest",
     "test:prisma": "jest ./src/services",
     "test:api": "jest --config jest.config-api.ts ./__tests__/api --forceExit",
     "test:component": "jest",

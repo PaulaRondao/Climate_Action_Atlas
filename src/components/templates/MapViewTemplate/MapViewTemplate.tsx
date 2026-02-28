@@ -58,7 +58,7 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
           <MapWrapper>
             <MapView
               position={position}
-              filteredInitiativeType={selectedType}
+              filteredInitiativeType={selectedType ?? undefined}
             />
           </MapWrapper>
         </ContentWrapper>

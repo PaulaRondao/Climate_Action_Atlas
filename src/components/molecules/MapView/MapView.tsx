@@ -29,7 +29,7 @@ L.Icon.Default.imagePath = '.';
 interface MapViewProps {
   position: LatLngExpression | LatLngTuple;
   zoom?: number;
-  filteredInitiativeType: InitiativesLabel | null;
+  filteredInitiativeType?: InitiativesLabel;
 }
 
 const MapView = ({
@@ -42,17 +42,17 @@ const MapView = ({
 
   useEffect(() => {
     const fetchData = async () => {
-      const response = await getInitiatives(1, 100);
-      if (!response || !response.initiatives) return;
+      const allInitiatives = await getInitiatives();
+      if (!allInitiatives) return;
 
-      let initiativeList = response.initiatives;
-
-      if (filteredInitiativeType) {
-        const mappedType = LabelToInitiativeType[filteredInitiativeType];
-        initiativeList = initiativeList.filter((initiative) =>
-          initiative.initiativeType?.includes(mappedType),
-        );
-      }
+      const mappedType = filteredInitiativeType
+        ? LabelToInitiativeType[filteredInitiativeType]
+        : undefined;
+      const initiativeList = mappedType
+        ? allInitiatives.filter((initiative) =>
+            initiative.initiativeType?.includes(mappedType),
+          )
+        : allInitiatives;
 
       setInitiatives(initiativeList);
     };
@@ -127,8 +127,10 @@ const MapView = ({
                 </main>
                 <hr></hr>
                 <footer role="contentinfo">
-                  {initiative.user && (
-                    <Paragraphe>Ajouté par {initiative.user?.name},</Paragraphe>
+                  {initiative.contributor && (
+                    <Paragraphe>
+                      Ajouté par {initiative.contributor?.name},
+                    </Paragraphe>
                   )}
                   <span>Mise à jour le {formattedDate(initiative)}</span>
                 </footer>

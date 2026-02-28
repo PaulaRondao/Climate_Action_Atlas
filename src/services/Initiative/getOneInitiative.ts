@@ -11,9 +11,13 @@ export const getOneInitiative = async (
         select: {
           id: true,
           email: true,
+          emailVerified: true,
           name: true,
+          image: true,
           createdAt: true,
           updatedAt: true,
+          loginAttempts: true,
+          role: true,
         },
       },
       initiativeLocation: true,

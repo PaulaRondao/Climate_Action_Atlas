@@ -23,7 +23,6 @@ interface AlertDialogProps {
   description?: string;
   confirmLabel?: string;
   cancelLabel?: string;
-  /** Element to focus after dialog closes */
   triggerRef?: React.RefObject<HTMLElement>;
 }
 
@@ -184,7 +183,6 @@ function getFocusableElements(container: HTMLElement): HTMLElement[] {
 export const AlertDialog: React.FC<AlertDialogProps> = ({
   isOpen,
   onClose,
-  // onConfirm,
   title,
   description,
   confirmLabel = 'Confirmer',

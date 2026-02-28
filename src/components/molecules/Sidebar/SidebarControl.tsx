@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import { FiMenu, FiX } from 'react-icons/fi';
 import Image from 'next/image';
 import { InitiativesLabel } from '@/constants';
+import { theme } from '@/styles/theme';
 
 const SidebarContainer = styled.div<{ $open: boolean }>`
   position: absolute;
@@ -18,7 +19,7 @@ const SidebarContainer = styled.div<{ $open: boolean }>`
   overflow-x: hidden;
   transition: width 0.3s ease;
   z-index: 1000;
-  border-radius: 4px;
+  border-radius: 12px;
 
   @media (max-width: 768px) {
     width: ${({ $open }) => ($open ? '100%' : '0')};
@@ -62,12 +63,19 @@ const List = styled.li<{ $active?: boolean }>`
   background-color: ${({ $active }) => ($active ? '#d9ead3' : 'white')};
   border: ${({ $active }) =>
     $active ? '1px solid var(--foreground-green)' : '1px solid white'};
-  border-radius: 8px;
+  border-radius: 12px;
+  border: 1.5px solid var(--border);
 
   button {
     align-items: center;
     display: flex;
     gap: 8px;
+
+    &:focus-visible {
+      outline: 2px solid ${theme.colors.backgroundGreen};
+      outline-offset: -2px;
+      border-radius: 10px;
+    }
   }
 `;
 

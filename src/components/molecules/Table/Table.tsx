@@ -102,13 +102,12 @@ const Table = (): JSX.Element => {
   const load = useCallback(async () => {
     if (!userId) return;
 
-    const result = await getInitiatives(1, 5);
+    const result = await getInitiatives();
     if (!result) return;
 
-    const initiativeByUser =
-      result?.initiatives?.filter(
-        (initiative) => initiative.contributorId === userId,
-      ) || [];
+    const initiativeByUser = result?.filter(
+      (initiative) => initiative.contributorId === userId || [],
+    );
 
     setInitiatives(initiativeByUser);
   }, [userId, getInitiatives]);
