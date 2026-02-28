@@ -1,11 +1,14 @@
+export { default as SwaggerClient } from './ApiDocumentation/SwaggerClient';
+export { default as CookiesTemplate } from './CookiesTemplate/CookiesTemplate';
 export { default as DashboardPage } from './DashboardPage/DashboardPage';
 export { default as ForgetPasswordTemplate } from './ForgetPasswordTemplate/ForgetPasswordTemplate';
-// import { default as DeletePage } from './GlobalTemplate/DeletePage';
 export { default as HomePage } from './HomePage/HomePage';
 export { default as InitiativeCreationTemplate } from './InitiativeCreationTemplate/InitiativeCreationTemplate';
+export { default as InitiativeLisTemplate } from './InitiativeListTemplate/InitiativeListTemplate';
 export { default as LegacyPolicyTemplate } from './LegacyPolicyTemplate/LegacyPolicyTemplate';
 export { default as LegalNoticesTemplate } from './LegalNoticesTemplate/LegalNoticesTemplate';
 export { default as MapViewTemplate } from './MapViewTemplate/MapViewTemplate';
 export { default as RegisterTemplate } from './RegisterTemplate/RegisterTemplate';
 export { default as ResetPasswordTemplate } from './ResetPasswordTemplate/ResetPasswordTemplate';
 export { default as SignInTemplate } from './SignInTemplate/SignInTemplate';
+export { default as VerifyEmailTemplate } from './VerifyEmailTemplate/VerifyEmailTemplate';

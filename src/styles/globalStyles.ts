@@ -39,6 +39,16 @@ export const GlobalStyle = createGlobalStyle`
     --text-xxxxxl: 5.625rem;
 
     --font-myLocalFont: ${myFont.style.fontFamily};
+
+    --bg: #F4F1EA;
+    --ink: #1C1C1C;
+    --muted: #7A7167;
+    --border: #D9D3C7;
+    --card: #FDFAF5;
+    --tag-bg: #EDE9E0;
+    --badge-bg: "#EEF4EC",
+    --badge--text: "#3A7D44",
+    --highlight: "#FFE8B3",
   }
 
   * {

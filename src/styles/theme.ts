@@ -6,6 +6,16 @@ export const theme = {
     green: 'var(--foreground-green)',
     red: 'var(--error-red)',
 
+    bg: 'var(--gb)',
+    ink: 'var(--ink)',
+    muted: 'var(--muted)',
+    border: 'var(--border)',
+    card: 'var(--card)',
+    tagBg: 'var(--tag-bg)',
+    badgeBg: 'var(--badge-bg)',
+    badgeText: 'var(--badge-text)',
+    highlight: 'var(--highlight)',
+
     backgroundBeige: 'var(--color-background-beige)',
     backgroundGreen: 'var(--color-background-green)',
 
@@ -57,9 +67,13 @@ export const theme = {
     small: '8px',
     medium: '16px',
     large: '25px',
+    pill: '999px',
   },
   transitions: {
     default: 'all 0.3s ease-in-out',
+    fast: '0.15s ease',
+    base: '0.2s ease',
+    slow: '0.3s ease',
   },
   breakpoints: {
     mobile: '320px',

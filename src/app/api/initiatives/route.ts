@@ -41,9 +41,7 @@ export async function GET(request: NextRequest) {
       },
     });
 
-    return NextResponse.json({
-      initiatives,
-    });
+    return NextResponse.json(initiatives);
   } catch (error) {
     logger.error(error, "Erreur lors de la récupération d'une initiative");
     return NextResponse.json(

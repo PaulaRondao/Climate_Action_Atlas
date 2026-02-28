@@ -1,5 +1,6 @@
 import { useState, useCallback } from 'react';
 import type { Initiative } from '@prisma/client';
+import { InitiativeWithRelations } from '@/types/initiatives';
 
 interface PaginatedResponse {
   initiatives: Initiative[];
@@ -16,21 +17,13 @@ export const useInitiatives = () => {
   const [error, setError] = useState<string | null>(null);
 
   const getInitiatives = useCallback(
-    async (
-      page = 1,
-      limit = 10,
-      search = '',
-    ): Promise<PaginatedResponse | null> => {
+    async (search = ''): Promise<InitiativeWithRelations[] | null> => {
       try {
         setLoading(true);
         setError(null);
-        const searchParams = new URLSearchParams({
-          page: page.toString(),
-          limit: limit.toString(),
-          ...(search && { search }),
-        });
+        const url = search ? `/api/initiatives?${search}` : `/api/initiatives`;
 
-        const response = await fetch(`/api/initiatives?${searchParams}`);
+        const response = await fetch(url);
         if (!response.ok) {
           throw new Error('Failed to fetch initiatives');
         }
