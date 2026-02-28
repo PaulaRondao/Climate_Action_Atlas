@@ -17,6 +17,7 @@ export const getOneInitiative = async (
         },
       },
       initiativeLocation: true,
+      user: true,
     },
   });
 };
