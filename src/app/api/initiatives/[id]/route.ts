@@ -16,6 +16,20 @@ import {
 } from '@/validation/initiativeSchema';
 import { UserRole } from '@/types/enums/userRole';
 
+/**
+ * @swagger
+ * /api/initiatives/{initiativeId}:
+ *   get:
+ *     summary: Get an initiative by ID
+ *     tags: [Initiatives]
+ *     security:
+ *      - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Success
+ *       400:
+ *         description: Non autorisé
+ */
 const get = async (
   request: NextRequest,
   body: undefined,
@@ -56,6 +70,20 @@ export const GET = apiHandler({
   authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
+/**
+ * @swagger
+ * /api/initiatives/{initiativeId}:
+ *   delete:
+ *     summary: Delete an initiative by ID
+ *     tags: [Initiatives]
+ *     security:
+ *      - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Success
+ *       400:
+ *         description: Non autorisé
+ */
 const deleted = async (
   request: NextRequest,
   body: undefined,
@@ -90,6 +118,20 @@ export const DELETE = apiHandler({
   authorizeRoles: [UserRole.CONTRIBUTOR],
 });
 
+/**
+ * @swagger
+ * /api/initiatives/{initiativeId}:
+ *   patch:
+ *     summary: Update an initiative by ID
+ *     tags: [Initiatives]
+ *     security:
+ *      - cookieAuth: []
+ *     responses:
+ *       200:
+ *         description: Success
+ *       400:
+ *         description: Non autorisé
+ */
 const patch = async (
   request: NextRequest,
   body: UpdateInitiativeBody,

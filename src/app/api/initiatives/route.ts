@@ -12,6 +12,16 @@ import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
 import { UserRole } from '@/types/enums/userRole';
 
+/**
+ * @swagger
+ * /api/initiatives:
+ *   get:
+ *     summary: Get all initiatives
+ *     tags: [Initiatives]
+ *     responses:
+ *       200:
+ *         description: Success
+ */
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
@@ -51,6 +61,20 @@ export async function GET(request: NextRequest) {
   }
 }
 
+/**
+ * @swagger
+ * /api/initiatives:
+ *   post:
+ *     summary: Create an initiative
+ *     tags: [Initiatives]
+ *     security:
+ *      - BearerAuth: []
+ *     responses:
+ *       201:
+ *         description: Success
+ *       400:
+ *         description: Non autorisé
+ */
 const post = async (request: NextRequest, body: InitiativeCreationFormData) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;

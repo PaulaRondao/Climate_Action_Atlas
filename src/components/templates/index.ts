@@ -1,4 +1,3 @@
-export { default as SwaggerClient } from './ApiDocumentation/SwaggerClient';
 export { default as CookiesTemplate } from './CookiesTemplate/CookiesTemplate';
 export { default as DashboardPage } from './DashboardPage/DashboardPage';
 export { default as ForgetPasswordTemplate } from './ForgetPasswordTemplate/ForgetPasswordTemplate';
