@@ -26,6 +26,7 @@
     "@next/eslint-plugin-next": "^16.1.6",
     "@prisma/client": "^6.19.2",
     "@react-icons/all-files": "^4.1.0",
+    "@scalar/nextjs-api-reference": "^0.9.24",
     "@testing-library/user-event": "^14.6.1",
     "bcryptjs": "^3.0.2",
     "better-auth": "^1.4.18",
@@ -41,6 +42,7 @@
     "jsonwebtoken": "^9.0.2",
     "leaflet": "^1.9.4",
     "next": "^15.5.11",
+    "next-swagger-doc": "^0.4.0",
     "pino": "^10.1.0",
     "qs": "^6.14.1",
     "react": "^19.0.0-rc.1",
@@ -53,7 +55,6 @@
     "react-select": "^5.10.2",
     "resend": "^6.9.2",
     "styled-components": "^6.1.13",
-    "swagger-ui-react": "^5.31.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
@@ -74,7 +75,6 @@
     "@types/react-dom": "^18.0.0",
     "@types/react-router-dom": "^5.3.3",
     "@types/supertest": "^6.0.3",
-    "@types/swagger-ui-react": "^5.18.0",
     "eslint-config-next": "^16.1.6",
     "jest": "^30.2.0",
     "jest-environment-jsdom": "^30.2.0",

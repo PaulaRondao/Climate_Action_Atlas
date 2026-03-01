@@ -1,7 +1,7 @@
 import { betterAuth } from 'better-auth';
 import { prismaAdapter } from 'better-auth/adapters/prisma';
 import prisma from './prisma';
-import { customSession } from 'better-auth/plugins';
+import { customSession, openAPI } from 'better-auth/plugins';
 import { getUser } from '@/services/User/getUser';
 import { nextCookies } from 'better-auth/next-js';
 import { warn } from 'console';
@@ -97,6 +97,7 @@ export const auth = betterAuth({
         session,
       };
     }),
+    openAPI(),
   ],
   resetPasswordTokenExpiresIn: 3600,
 });
