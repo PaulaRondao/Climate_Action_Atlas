@@ -2,16 +2,6 @@ import { useState, useCallback } from 'react';
 import type { Initiative } from '@prisma/client';
 import { InitiativeWithRelations } from '@/types/initiatives';
 
-interface PaginatedResponse {
-  initiatives: Initiative[];
-  pagination: {
-    total: number;
-    pages: number;
-    currentPage: number;
-    perPage: number;
-  };
-}
-
 export const useInitiatives = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -41,7 +31,7 @@ export const useInitiatives = () => {
   );
 
   const getInitiativeById = useCallback(
-    async (id: number): Promise<Initiative | null> => {
+    async (id: string): Promise<InitiativeWithRelations | null> => {
       try {
         setLoading(true);
         setError(null);

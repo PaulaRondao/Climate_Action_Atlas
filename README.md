@@ -158,7 +158,7 @@ docker compose exec web npx prisma migrate reset --force
 ### Créer une nouvelle migration
 
 ```
-npx prisma migrate dev --name <un nom parlant de migration>
+docker compose exec web npx prisma migrate dev --name <un nom parlant de migration>
 ```
 
 <un nom parlant de migration> c'est par exemple "update-<un nom en lien avec la table>"

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 function isObject(val: string | object) {
   return val.constructor === Object;
 }

@@ -73,7 +73,7 @@ const DashboardPage = () => {
       </>
     );
   }
-  if (session) {
+  if (session.user.id) {
     return (
       <>
         <Navigation session={isLoggedIn} />

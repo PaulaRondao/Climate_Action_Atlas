@@ -29,6 +29,7 @@ import { NUMBER_OF_REGIONS, regions } from '@/types/enums/regions';
 export type FilterType = 'all' | 'departemental';
 export type FilterByImpactType =
   | 'ClimateAgricultureEnergy'
+  | 'NatureAndBiodiversity'
   | 'UrbanismAndTechnology'
   | 'SolidarityAndCommunities'
   | 'CultureAndTransmission'

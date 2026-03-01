@@ -80,20 +80,20 @@ const List = styled.li<{ $active?: boolean }>`
 `;
 
 interface SidebarControlProps {
-  onChange: (type: InitiativesLabel | null) => void;
+  onChange: (type: InitiativesLabel[]) => void;
 }
 
 const SidebarControl = ({ onChange }: SidebarControlProps) => {
   const [open, setOpen] = useState(false);
 
-  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
-    null,
-  );
+  const [selectedTypes, setSelectedTypes] = useState<InitiativesLabel[]>([]);
 
-  const handleSelect = (type: InitiativesLabel) => {
-    const newType = selectedType === type ? null : type;
-    setSelectedType(newType);
-    onChange(newType);
+  const handleSelect = (types: InitiativesLabel) => {
+    const newTypes = selectedTypes.includes(types)
+      ? selectedTypes.filter((type) => type !== types)
+      : [...selectedTypes, types];
+    setSelectedTypes(newTypes);
+    onChange(newTypes);
   };
 
   return (
@@ -111,9 +111,9 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             }}
           >
             <List
-              $active={
-                selectedType === InitiativesLabel.ClimateAgricultureEnergy
-              }
+              $active={selectedTypes.includes(
+                InitiativesLabel.ClimateAgricultureEnergy,
+              )}
             >
               <button
                 onClick={() =>
@@ -126,7 +126,24 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === InitiativesLabel.CultureAndTransmission}
+              $active={selectedTypes.includes(
+                InitiativesLabel.NatureAndBiodiversity,
+              )}
+            >
+              <button
+                onClick={() =>
+                  handleSelect(InitiativesLabel.NatureAndBiodiversity)
+                }
+              >
+                <Image src="/icons/nature.svg" alt="" width={34} height={34} />
+                Nature et Biodiversité
+              </button>
+            </List>
+
+            <List
+              $active={selectedTypes.includes(
+                InitiativesLabel.CultureAndTransmission,
+              )}
             >
               <button
                 onClick={() =>
@@ -139,7 +156,9 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === InitiativesLabel.EducationAndAwareness}
+              $active={selectedTypes.includes(
+                InitiativesLabel.EducationAndAwareness,
+              )}
             >
               <button
                 onClick={() =>
@@ -157,9 +176,9 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={
-                selectedType === InitiativesLabel.SolidarityAndCommunities
-              }
+              $active={selectedTypes.includes(
+                InitiativesLabel.SolidarityAndCommunities,
+              )}
             >
               <button
                 onClick={() =>
@@ -177,9 +196,9 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={
-                selectedType === InitiativesLabel.SocialAndSolidarityEconomy
-              }
+              $active={selectedTypes.includes(
+                InitiativesLabel.SocialAndSolidarityEconomy,
+              )}
             >
               <button
                 onClick={() =>
@@ -197,7 +216,9 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
             </List>
 
             <List
-              $active={selectedType === InitiativesLabel.UrbanismAndTechnology}
+              $active={selectedTypes.includes(
+                InitiativesLabel.UrbanismAndTechnology,
+              )}
             >
               <button
                 onClick={() =>

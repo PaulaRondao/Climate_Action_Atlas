@@ -95,6 +95,7 @@ const Button = styled.button<ButtonProps>`
 const Table = (): JSX.Element => {
   const { getInitiatives, deleteInitiative } = useInitiatives();
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
+  const [isLoadingId, setIsLoadingId] = useState<number | null>(null);
 
   const { data: session } = useSession();
   const userId = session?.user?.id;
@@ -106,14 +107,16 @@ const Table = (): JSX.Element => {
     if (!result) return;
 
     const initiativeByUser = result?.filter(
-      (initiative) => initiative.contributorId === userId || [],
+      (initiative) => initiative.contributorId === userId,
     );
 
     setInitiatives(initiativeByUser);
   }, [userId, getInitiatives]);
 
   const handleDelete = async (initiativeId: number) => {
+    setIsLoadingId(initiativeId);
     const deletedInitiative = await deleteInitiative(initiativeId);
+    setIsLoadingId(null);
 
     if (!deletedInitiative) {
       alert("Une erreur est survenue lors de la suppression de l'initiative");
@@ -158,9 +161,13 @@ const Table = (): JSX.Element => {
                 ))}
                 <CellSpan>
                   <ButtonContainer>
-                    <Button onClick={() => handleDelete(initiative.id)}>
-                      Supprimer
-                    </Button>
+                    {isLoadingId === initiative.id ? (
+                      <Button>Suppresion en cours</Button>
+                    ) : (
+                      <Button onClick={() => handleDelete(initiative.id)}>
+                        Supprimer
+                      </Button>
+                    )}
                     <Button
                       $color="#127A27"
                       $backgroundColor="#127A272e"

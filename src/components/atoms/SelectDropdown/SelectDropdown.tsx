@@ -19,7 +19,6 @@ const SelectDropdown: React.FC<SelectDropdownProps> = ({
   const inputRef = useRef<HTMLDivElement | null>(null);
 
   const dropdownStyles = {
-    /* eslint-disable @typescript-eslint/no-explicit-any */
     control: (styles: any) => ({
       ...styles,
       width: '100%',

@@ -57,118 +57,114 @@ export const checkContributorValidity = async (
 };
 
 export const apiHandler =
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  <TBody = any, TParams = any>(handler: Handler<TBody, TParams>) =>
+  async (
+    req: NextRequest,
+    { params }: { params: Promise<Record<string, string>> },
+  ): Promise<Response> => {
+    const asyncParams: Record<string, string> = await params;
+    const sessionData = await getSession();
 
-
-    <TBody = any, TParams = any>(handler: Handler<TBody, TParams>) =>
-    async (
-      req: NextRequest,
-      { params }: { params: Promise<Record<string, string>> },
-    ): Promise<Response> => {
-      const asyncParams: Record<string, string> = await params;
-      const sessionData = await getSession();
-
-      try {
-        if (!handler) {
-          Response.json(
-            { error: 'Méthode non permise' },
-            { status: HttpStatusCode.HTTP_NOT_ALLOWED },
-          );
-        }
-
-        if (handler.authorizeRoles && handler.authorizeRoles.length) {
-          checkSessionValidity(sessionData?.session);
-          checkRoleValidity(
-            sessionData?.user.role as UserRole | undefined,
-            handler.authorizeRoles,
-          );
-        }
-
-        // BODY
-        let body = undefined as TBody;
-        if (
-          handler.bodySchema &&
-          ['POST', 'PATCH', 'DELETE'].includes(req.method)
-        ) {
-          const rawBody = await req.json();
-          try {
-            body = handler.bodySchema.parse(rawBody);
-          } catch (error) {
-            if (error instanceof z.ZodError) {
-              return NextResponse.json(
-                {
-                  error: 'Invalid body parameters',
-                  details: error.errors,
-                },
-                { status: HttpStatusCode.HTTP_BAD_REQUEST },
-              );
-            }
-            throw error;
-          }
-        }
-
-        // QUERY
-        let queryParams = undefined as TParams;
-        if (handler.querySchema) {
-          try {
-            queryParams = handler.querySchema.parse(
-              convertQueryParams(req.nextUrl.searchParams),
-            );
-          } catch (error) {
-            if (error instanceof z.ZodError) {
-              return NextResponse.json(
-                {
-                  error: 'Invalid query parameters',
-                  details: error.errors,
-                },
-                { status: HttpStatusCode.HTTP_BAD_REQUEST },
-              );
-            }
-            throw error;
-          }
-        }
-
-        // PARAMS
-        let pathParams = undefined as TParams;
-        if (handler.paramsSchema) {
-          try {
-            pathParams = handler.paramsSchema.parse(asyncParams);
-          } catch (error) {
-            if (error instanceof z.ZodError) {
-              return NextResponse.json(
-                {
-                  error: 'Invalid params parameters',
-                  details: error.errors,
-                },
-                { status: HttpStatusCode.HTTP_BAD_REQUEST },
-              );
-            }
-            throw error;
-          }
-        }
-
-        const reqParams: TParams = {
-          ...pathParams,
-          ...queryParams,
-        };
-
-        if (sessionData?.user) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          (req as any).user = sessionData.user;
-        }
-
-        return await handler.fn(req, body, reqParams);
-      } catch (error) {
-        if (error instanceof Error) {
-          return NextResponse.json(
-            { error: error.message },
-            { status: HttpStatusCode.HTTP_BAD_REQUEST },
-          );
-        }
-
-        return NextResponse.json(
-          { error: 'Error server interne' },
-          { status: HttpStatusCode.HTTP_SERVER_ERROR },
+    try {
+      if (!handler) {
+        Response.json(
+          { error: 'Méthode non permise' },
+          { status: HttpStatusCode.HTTP_NOT_ALLOWED },
         );
       }
-    };
+
+      if (handler.authorizeRoles && handler.authorizeRoles.length) {
+        checkSessionValidity(sessionData?.session);
+        checkRoleValidity(
+          sessionData?.user.role as UserRole | undefined,
+          handler.authorizeRoles,
+        );
+      }
+
+      // BODY
+      let body = undefined as TBody;
+      if (
+        handler.bodySchema &&
+        ['POST', 'PATCH', 'DELETE'].includes(req.method)
+      ) {
+        const rawBody = await req.json();
+        try {
+          body = handler.bodySchema.parse(rawBody);
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            return NextResponse.json(
+              {
+                error: 'Invalid body parameters',
+                details: error.errors,
+              },
+              { status: HttpStatusCode.HTTP_BAD_REQUEST },
+            );
+          }
+          throw error;
+        }
+      }
+
+      // QUERY
+      let queryParams = undefined as TParams;
+      if (handler.querySchema) {
+        try {
+          queryParams = handler.querySchema.parse(
+            convertQueryParams(req.nextUrl.searchParams),
+          );
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            return NextResponse.json(
+              {
+                error: 'Invalid query parameters',
+                details: error.errors,
+              },
+              { status: HttpStatusCode.HTTP_BAD_REQUEST },
+            );
+          }
+          throw error;
+        }
+      }
+
+      // PARAMS
+      let pathParams = undefined as TParams;
+      if (handler.paramsSchema) {
+        try {
+          pathParams = handler.paramsSchema.parse(asyncParams);
+        } catch (error) {
+          if (error instanceof z.ZodError) {
+            return NextResponse.json(
+              {
+                error: 'Invalid params parameters',
+                details: error.errors,
+              },
+              { status: HttpStatusCode.HTTP_BAD_REQUEST },
+            );
+          }
+          throw error;
+        }
+      }
+
+      const reqParams: TParams = {
+        ...pathParams,
+        ...queryParams,
+      };
+
+      if (sessionData?.user) {
+        (req as any).user = sessionData.user;
+      }
+
+      return await handler.fn(req, body, reqParams);
+    } catch (error) {
+      if (error instanceof Error) {
+        return NextResponse.json(
+          { error: error.message },
+          { status: HttpStatusCode.HTTP_BAD_REQUEST },
+        );
+      }
+
+      return NextResponse.json(
+        { error: 'Error server interne' },
+        { status: HttpStatusCode.HTTP_SERVER_ERROR },
+      );
+    }
+  };

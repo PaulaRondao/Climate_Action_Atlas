@@ -127,11 +127,6 @@ const MapView = ({
                 </main>
                 <hr></hr>
                 <footer role="contentinfo">
-                  {initiative.contributor && (
-                    <Paragraphe>
-                      Ajouté par {initiative.contributor?.name},
-                    </Paragraphe>
-                  )}
                   <span>Mise à jour le {formattedDate(initiative)}</span>
                 </footer>
               </Popup>

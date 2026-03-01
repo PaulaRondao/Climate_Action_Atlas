@@ -1,7 +1,7 @@
 import prisma from '@/lib/prisma';
 import { InitiativeWithRelations } from '@/types/initiatives';
 
-export const getOneInitiative = async (
+export const getInitiativeById = async (
   initiativeId: number,
 ): Promise<InitiativeWithRelations | null> => {
   return await prisma.initiative.findUnique({

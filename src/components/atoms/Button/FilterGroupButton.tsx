@@ -62,6 +62,10 @@ const FILTERS_IMPACT: { label: string; value: FilterByImpactType }[] = [
     label: 'Économie Sociale et Solidaire',
     value: 'SocialAndSolidarityEconomy',
   },
+  {
+    label: 'Nature et Biodiversité',
+    value: 'NatureAndBiodiversity',
+  },
 ];
 
 interface FilterGroupProps {

@@ -191,7 +191,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 }) => {
   const [closing, setClosing] = useState(false);
   const [notification, setNotification] = useState<Notification | null>(null);
-  const { deleteUser, loading } = useUser();
+  const { deleteUser } = useUser();
 
   const dialogRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
