@@ -51,6 +51,7 @@ export const Content = styled.div`
   justify-content: left;
   flex-direction: column;
   gap: 24px;
+  z-index: 1100;
 
   ul {
     width: 100%;

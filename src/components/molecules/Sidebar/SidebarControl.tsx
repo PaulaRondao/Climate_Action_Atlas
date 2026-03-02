@@ -40,7 +40,7 @@ const ToggleButton = styled.button<{ $open: boolean }>`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
   padding: 0.6rem;
   cursor: pointer;
-  z-index: 1100;
+  z-index: 999;
   transition: left 0.3s ease;
 
   @media (max-width: 768px) {
