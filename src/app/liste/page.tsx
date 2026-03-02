@@ -1,6 +1,6 @@
 import InitiativeListTemplate from '@/components/templates/InitiativeListTemplate/InitiativeListTemplate';
 import React from 'react';
 
-export default async function InitiativeListPage() {
+export default function InitiativeListPage() {
   return <InitiativeListTemplate />;
 }
