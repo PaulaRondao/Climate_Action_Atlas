@@ -19,11 +19,11 @@ export const MainFooterLinks = {
   links: [
     {
       label: 'À propos',
-      url: '/about',
+      url: '/a-propos',
     },
     {
-      label: 'Page du site',
-      url: '/page-du-site',
+      label: 'Plan du site',
+      url: '/plan-du-site',
     },
   ],
 };

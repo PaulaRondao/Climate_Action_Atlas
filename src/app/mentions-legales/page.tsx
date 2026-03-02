@@ -1,6 +1,6 @@
 import { LegalNoticesTemplate } from '@/components/templates';
 import React from 'react';
 
-export default async function LegacyPolicy() {
+export default function LegacyPolicy() {
   return <LegalNoticesTemplate />;
 }

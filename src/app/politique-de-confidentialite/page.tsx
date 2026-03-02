@@ -1,6 +1,6 @@
 import LegacyPolicyTemplate from '@/components/templates/LegacyPolicyTemplate/LegacyPolicyTemplate';
 import React from 'react';
 
-export default async function LegacyPolicy() {
+export default function LegacyPolicy() {
   return <LegacyPolicyTemplate />;
 }
