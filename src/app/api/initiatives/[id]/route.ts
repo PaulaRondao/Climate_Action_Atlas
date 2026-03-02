@@ -7,7 +7,7 @@ import {
   apiHandler,
   checkContributorValidity,
 } from '@/services/api/api-handler';
-import { getOneInitiative } from '@/services/Initiative/getOneInitiative';
+import { getInitiativeById } from '@/services/Initiative/getInitiativeById';
 import { pathIdTypeParamsSchema } from '@/validation/commonSchema';
 import {
   InitiativeParams,
@@ -35,7 +35,6 @@ const get = async (
   body: undefined,
   params: InitiativeParams & { id: string },
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   const initiativeId = parseInt(params.id, 10);
@@ -49,7 +48,7 @@ const get = async (
 
   await checkContributorValidity(user.id, initiativeId);
 
-  const initiative = await getOneInitiative(initiativeId);
+  const initiative = await getInitiativeById(initiativeId);
 
   if (!initiative) {
     return NextResponse.json(
@@ -89,7 +88,6 @@ const deleted = async (
   body: undefined,
   params: InitiativeParams & { id: string },
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   const initiativeId = parseInt(params.id, 10);
@@ -137,7 +135,6 @@ const patch = async (
   body: UpdateInitiativeBody,
   params: InitiativeParams & { id: string },
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   const initiativeId = parseInt(params.id, 10);

@@ -60,12 +60,10 @@ export const Footer = styled.footer`
 `;
 
 interface CardProps {
-  value: string;
-  onChange: (v: string) => void;
   initiatives: InitiativeWithRelations[];
 }
 
-export default function Card({ value, onChange, initiatives }: CardProps) {
+export default function Card({ initiatives }: CardProps) {
   return initiatives.map((initiative, index) => {
     return (
       <Wrapper key={index}>

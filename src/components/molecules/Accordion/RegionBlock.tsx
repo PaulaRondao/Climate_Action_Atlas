@@ -5,10 +5,6 @@ import { useState, useId } from 'react';
 import styled from 'styled-components';
 import { DepartmentGrid } from './DepartmentGrid';
 import { EnrichedRegion } from '@/types/Regions';
-import {
-  FilterType,
-  FilterByImpactType,
-} from '@/components/templates/InitiativeListTemplate/InitiativeListTemplate';
 
 const Block = styled.div<{ $open: boolean }>`
   border: 1.5px solid var(--border);

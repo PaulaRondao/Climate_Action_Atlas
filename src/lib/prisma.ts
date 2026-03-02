@@ -5,7 +5,6 @@ let prisma: PrismaClient;
 if (process.env.NODE_ENV === 'production') {
   prisma = new PrismaClient();
 } else {
-  /* eslint-disable @typescript-eslint/no-explicit-any */
   if (!(global as any).prisma) {
     (global as any).prisma = new PrismaClient();
   }

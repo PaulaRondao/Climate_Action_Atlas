@@ -65,7 +65,7 @@ export default [
         'warn',
         { argsIgnorePattern: '^_' },
       ],
-      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-explicit-any': 'off',
 
       // Next / React
       'react/react-in-jsx-scope': 'off',

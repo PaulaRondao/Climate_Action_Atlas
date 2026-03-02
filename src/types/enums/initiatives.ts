@@ -1,5 +1,6 @@
 export enum Initiatives {
   ClimateAgricultureEnergy = 'ClimateAgricultureEnergy',
+  NatureAndBiodiversity = 'NatureAndBiodiversity',
   UrbanismAndTechnology = 'UrbanismAndTechnology',
   SolidarityAndCommunities = 'SolidarityAndCommunities',
   CultureAndTransmission = 'CultureAndTransmission',

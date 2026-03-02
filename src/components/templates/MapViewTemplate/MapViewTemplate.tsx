@@ -46,9 +46,7 @@ interface MapViewTemplateProps {
   position: [number, number];
 }
 export default function MapViewTemplate({ position }: MapViewTemplateProps) {
-  const [selectedType, setSelectedType] = useState<InitiativesLabel | null>(
-    null,
-  );
+  const [selectedType, setSelectedType] = useState<InitiativesLabel[]>([]);
 
   return (
     <>
@@ -58,7 +56,7 @@ export default function MapViewTemplate({ position }: MapViewTemplateProps) {
           <MapWrapper>
             <MapView
               position={position}
-              filteredInitiativeType={selectedType ?? undefined}
+              filteredInitiativeType={selectedType ?? []}
             />
           </MapWrapper>
         </ContentWrapper>

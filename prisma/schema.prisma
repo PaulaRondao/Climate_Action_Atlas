@@ -129,6 +129,7 @@ enum InitiativeType {
   CultureAndTransmission
   EducationAndAwareness
   SocialAndSolidarityEconomy
+  NatureAndBiodiversity
 }
 
 enum UserRole {

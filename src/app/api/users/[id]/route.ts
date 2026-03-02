@@ -26,7 +26,6 @@ import { UserRole } from '@/types/enums/userRole';
  */
 
 const get = async (request: NextRequest, { id }: { id: string }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   if (user.id !== id) {
@@ -76,7 +75,6 @@ const update = async (
   body: UpdateUserBody,
   params: UserParams,
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   if (user.id !== params) {
@@ -124,7 +122,6 @@ const deletedUser = async (
   body: UserProfil,
   params: UserParams & { id: string },
 ) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   if (user.id !== params.id) {

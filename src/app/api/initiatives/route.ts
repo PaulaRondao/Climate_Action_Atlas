@@ -11,6 +11,7 @@ import prisma from '@/lib/prisma';
 import { InitiativeType, Prisma } from '@prisma/client';
 import logger from '@/lib/pino/logger.server';
 import { UserRole } from '@/types/enums/userRole';
+import { getInitiativeByUser } from '@/services/Initiative/getInitiativesByUser';
 
 /**
  * @swagger
@@ -27,6 +28,12 @@ export async function GET(request: NextRequest) {
     const { searchParams } = new URL(request.url);
     const search = searchParams.get('search') || '';
     const type = searchParams.get('type') || '';
+    const user = searchParams.get('userId') || '';
+
+    if (user) {
+      const initiativesFromUser = getInitiativeByUser(user);
+      return NextResponse.json(initiativesFromUser);
+    }
 
     const where: Prisma.InitiativeWhereInput = {
       AND: [
@@ -76,7 +83,6 @@ export async function GET(request: NextRequest) {
  *         description: Non autorisé
  */
 const post = async (request: NextRequest, body: InitiativeCreationFormData) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const user = (request as any).user;
 
   if (!user?.id) {

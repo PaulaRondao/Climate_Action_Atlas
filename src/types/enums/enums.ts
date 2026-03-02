@@ -22,6 +22,7 @@ export enum Description {
 
 export enum InitiativesLabel {
   ClimateAgricultureEnergy = 'Climat, Agriculture et Énergie',
+  NatureAndBiodiversity = 'Nature et Biodiversité',
   UrbanismAndTechnology = 'Urbanisme et Technologie',
   SolidarityAndCommunities = 'Solidarité et Communautés',
   CultureAndTransmission = 'Culture et Transmission',
@@ -49,8 +50,14 @@ export const InitiativeOptions: {
   {
     label: InitiativesLabel.ClimateAgricultureEnergy,
     description:
-      'Actions pour préserver l’environnement, la biodiversité et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
+      'Actions pour préserver l’environnement, et les ressources naturelles, en promouvant une agriculture durable et des solutions énergétiques respectueuses du vivant.',
     logo: '/icons/climat.svg',
+  },
+  {
+    label: InitiativesLabel.NatureAndBiodiversity,
+    description:
+      'Actions pour préserver la biodiversité, toutes formes de vie sur Terre, en proposant des actions pour protéger le vivant.',
+    logo: '/icons/nature.svg',
   },
   {
     label: InitiativesLabel.UrbanismAndTechnology,
@@ -101,6 +108,7 @@ export const InitiativeTypeToLabel: Record<
   InitiativesLabel
 > = {
   ClimateAgricultureEnergy: InitiativesLabel.ClimateAgricultureEnergy,
+  NatureAndBiodiversity: InitiativesLabel.NatureAndBiodiversity,
   UrbanismAndTechnology: InitiativesLabel.UrbanismAndTechnology,
   SolidarityAndCommunities: InitiativesLabel.SolidarityAndCommunities,
   CultureAndTransmission: InitiativesLabel.CultureAndTransmission,
@@ -113,6 +121,7 @@ export const LabelToInitiativeType: Record<
   $Enums.InitiativeType
 > = {
   [InitiativesLabel.ClimateAgricultureEnergy]: 'ClimateAgricultureEnergy',
+  [InitiativesLabel.NatureAndBiodiversity]: 'NatureAndBiodiversity',
   [InitiativesLabel.UrbanismAndTechnology]: 'UrbanismAndTechnology',
   [InitiativesLabel.SolidarityAndCommunities]: 'SolidarityAndCommunities',
   [InitiativesLabel.CultureAndTransmission]: 'CultureAndTransmission',

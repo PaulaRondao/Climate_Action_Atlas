@@ -37,18 +37,27 @@ export default function SignInForm(): JSX.Element {
 
   const {
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = methods;
 
   const onSubmit: SubmitHandler<UserLogin> = async ({ email, password }) => {
     setLoading(true);
 
-    await authClient.signIn.email({
-      email,
-      password,
-      callbackURL: '/profil',
-      rememberMe: false,
-    });
+    await authClient.signIn.email(
+      {
+        email,
+        password,
+        callbackURL: '/profil',
+        rememberMe: false,
+      },
+      {
+        onError: (ctx) => {
+          setLoading(false);
+          setLoginError('Email ou mot de passe incorrect');
+          alert(ctx.error.message);
+        },
+      },
+    );
   };
 
   useEffect(() => {
@@ -109,9 +118,7 @@ export default function SignInForm(): JSX.Element {
             Connexion en cours
           </Button>
         ) : (
-          <Button type="submit" disabled={!isValid}>
-            Me connecter
-          </Button>
+          <Button type="submit">Me connecter</Button>
         )}
       </FormProvider>
     </FormContainer>

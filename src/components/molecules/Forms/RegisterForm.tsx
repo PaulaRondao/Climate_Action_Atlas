@@ -46,7 +46,7 @@ const RegisterForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors },
   } = methods;
 
   const onSubmit: SubmitHandler<UserRegister> = async (data) => {
@@ -156,7 +156,7 @@ const RegisterForm = () => {
               <ErrorMessage>{errors.confirmPassword.message}</ErrorMessage>
             )}
           </FormGroup>
-          <Button type="submit" disabled={!isValid} fullWidth>
+          <Button type="submit" fullWidth>
             S'inscrire
           </Button>
         </FormContainer>
