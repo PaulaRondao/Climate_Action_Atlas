@@ -22,7 +22,6 @@ export const LogoContainer = styled.div`
   height: 60px;
 
   img {
-    width: 100%;
     height: 100%;
     object-fit: contain;
   }

@@ -2,12 +2,7 @@ import { Options } from '@/types/Form';
 import { $Enums } from '@prisma/client';
 
 export enum PageTitle {
-  MovementForChange = 'Un mouvement pour changer',
-  HowToGetInvolved = 'Ajouter une initiative',
-  UserForm = 'Agir maintenant',
   InitiativeForm = 'Engagez-vous',
-  MentionsLegales = 'Mentions légales - Climate Action Atlas',
-  PolitiqueDeConfidentialite = 'Politique de confidentialité - Climate Action Atlas',
 }
 
 export enum Description {
@@ -137,7 +132,7 @@ export const ActionsOption: {
   {
     title: 'Agir local penser global',
     description:
-      'Découvrez les initiatives près de chez vous pour lutter contre le changement climatique.',
+      'Découvrez les initiatives près de chez vous qui milite pour un mieux vivre.',
     image: '/images/agirLocal.png',
   },
   {

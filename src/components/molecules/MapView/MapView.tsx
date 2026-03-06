@@ -66,7 +66,6 @@ const MapView = ({
   }, [getInitiatives, filteredInitiativeType]);
 
   if (loading) return <p>Chargement des initiatives...</p>;
-  if (error) return <p>Erreur : {error}</p>;
 
   return (
     <>
