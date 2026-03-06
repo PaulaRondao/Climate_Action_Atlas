@@ -24,8 +24,8 @@ const CardWithLogo: React.FC<CardSectionProps> = ({ initiatives }) => (
               <Image
                 src={initiative.logo}
                 alt=""
-                width="34"
-                height="34"
+                width="50"
+                height="50"
               ></Image>
             </LogoContainer>
             <p>{initiative.label}</p>

@@ -92,7 +92,9 @@ export default function HomePage() {
               <hr />
               <p>
                 Trouvez et rejoignez facilement des projets concrets et
-                inspirants autour de vous.
+                inspirants autour de vous. Pour faciliter votre recherche, vous
+                avez la possibilité de retrouver toutes initiatives sous forme
+                de liste.
               </p>
             </TitleSection>
             <ButtonContainer>

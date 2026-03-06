@@ -26,6 +26,9 @@ const MainFooterContainer = styled.div`
 `;
 
 const MainFooterWrapper = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   
   ul {
     list-style: none;
