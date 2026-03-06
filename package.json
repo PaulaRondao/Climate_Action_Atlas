@@ -18,7 +18,8 @@
     "eslint-check": "eslint .",
     "lint-fix": "eslint --fix .",
     "prettier-fix": "prettier --write .",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "vercel-build": "prisma generate && prisma migrate deploy && next build"
   },
   "dependencies": {
     "@emotion/styled": "^11.14.0",
