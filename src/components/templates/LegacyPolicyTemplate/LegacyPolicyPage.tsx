@@ -89,30 +89,30 @@ const LegacyPolicyPage = (): JSX.Element => (
       Dans le cadre de la souscription au formulaire d'inscription, nous
       collectons les données suivantes :
     </p>
-    <u>
-      <li>Votre prénom ou surnom</li>
-      <li>Votre email</li>
-    </u>
+    <ul>
+      <li>- Votre prénom ou surnom</li>
+      <li>- Votre email</li>
+    </ul>
     <p>
       Dans le cadre d'ajout de formulaire d'ajout d'une initiative, nous
       collectons les données suivantes :
     </p>
     <ul>
-      <li>Le nom de l'association</li>
-      <li>l'email</li>
-      <li>Le site web porteuse de l'initiative</li>
-      <li>L'adresse postale</li>
+      <li>- Le nom de l'association</li>
+      <li>- l'email</li>
+      <li>- Le site web porteuse de l'initiative</li>
+      <li>- L'adresse postale</li>
     </ul>
     <h4>Caractère de la collecte de données :</h4>
     <p>La collecte de données peut avoir :</p>
     <ul>
       <li>
-        un caractère obligatoire (signalé lors de la collecte par un
+        - un caractère obligatoire (signalé lors de la collecte par un
         astérisque);
       </li>
-      <li>un caractère facultatif (ce qui n'est pas obligatoire);</li>
+      <li> un caractère facultatif (ce qui n'est pas obligatoire);</li>
       <li>
-        un caractère automatique du fait de vos actions sur le site (cookies).
+        - un caractère automatique du fait de vos actions sur le site (cookies).
       </li>
     </ul>
     <h4>Quand ?</h4>
@@ -121,10 +121,10 @@ const LegacyPolicyPage = (): JSX.Element => (
     </p>
     <ul>
       <li>
-        vous devenz contributeur de Climate Action Atlas, c'est à dire lors de
+        - vous devenz contributeur de Climate Action Atlas, c'est à dire lors de
         votre création de compte
       </li>
-      <li>vous naviguez sur notre site</li>
+      <li>- vous naviguez sur notre site</li>
     </ul>
     <h3>
       Sur quelle base légale et pour quelles durées vos données personnelles

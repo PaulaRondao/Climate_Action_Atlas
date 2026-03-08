@@ -16,7 +16,7 @@ export const ContentInfoContainer = styled.div`
 export const InfoSection = styled.div`
   h3 {
     color: ${theme.colors.fluoGreen};
-    font-size: ${theme.typography.fontSizes.lg};
+    font-size: ${theme.typography.fontSizes.xl};
     margin-bottom: ${theme.spacing.md};
   }
 `;
