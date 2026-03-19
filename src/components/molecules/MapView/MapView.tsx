@@ -24,8 +24,6 @@ L.Icon.Default.mergeOptions({
   shadowUrl: shadowUrl.src,
 });
 
-L.Icon.Default.imagePath = '.';
-
 interface MapViewProps {
   position: LatLngExpression | LatLngTuple;
   zoom?: number;
@@ -37,7 +35,7 @@ const MapView = ({
   zoom = 6,
   filteredInitiativeType,
 }: MapViewProps) => {
-  const { getInitiatives, loading, error } = useInitiatives();
+  const { getInitiatives, loading } = useInitiatives();
   const [initiatives, setInitiatives] = useState<InitiativeWithRelations[]>([]);
 
   useEffect(() => {

@@ -155,7 +155,6 @@ export default function InitiativeListTemplate() {
           ))
         )}
       </Main>
-      {/* </PageWrap> */}
     </>
   );
 }

@@ -150,10 +150,12 @@ export const seedDatabase = async () => {
         },
       });
     }
+    
 
     console.log('✅ Seeding completed successfully');
   } catch (error) {
     console.error('Error while seeding database: ', error);
+    throw error;
   } finally {
     await prisma.$disconnect();
   }

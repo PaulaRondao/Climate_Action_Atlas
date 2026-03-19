@@ -200,16 +200,14 @@ npx prisma migrate deploy
 
 ## Roadmap
 - [ ] Affichage des initiatives sur une carte intéractive
+- [ ] Affichage des initiatives via une liste
 - [ ] Filtre avancé par type d'impact
 - [ ] Page de profil contributeur avec ses initiatives
-- [ ] Système de favoris pour sauvegarder des initiatives
-- [ ] Mode hors ligne (PWA)
-- [ ] Export des données en CSV/JSON
 - [ ] API publique pour accéder aux données
-
 
 
 
 ## Screenshots
 
-![App Screenshot]()
+![Page d'acceuil](public/images/screen-shot-homepage.png)
+![Page d'acceuil](public/images/screen-shot-map.png)

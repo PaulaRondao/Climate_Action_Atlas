@@ -25,11 +25,6 @@ export enum InitiativesLabel {
   SocialAndSolidarityEconomy = 'Économie Sociale et Solidaire',
 }
 
-export const initiativesLabelTypeObject = Object.values(InitiativesLabel) as [
-  InitiativesLabel,
-  ...InitiativesLabel[],
-];
-
 export const TypeImpact = Object.entries(InitiativesLabel).map(
   ([key, label]) => ({
     label,

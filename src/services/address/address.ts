@@ -9,7 +9,13 @@ export const searchAddresses = async (
     const res = await fetch(
       `/api/adresse?q=${encodeURIComponent(searchedValue)}`,
     );
-    const data: ApiAddressResponse = await res.json();
+
+    if (!res.ok) throw new Error(`Erreur HTTP : ${res.status}`);
+
+    const text = await res.text();
+    if (!text?.trim()) return [];
+    
+    const data: ApiAddressResponse = await JSON.parse(text);
 
     if (!data.features || !Array.isArray(data.features)) return [];
 
