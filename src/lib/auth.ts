@@ -100,7 +100,7 @@ export const auth = betterAuth({
     openAPI(),
     multiSession({
       maximumSessions: 2,
-    })
+    }),
   ],
   resetPasswordTokenExpiresIn: 3600,
 });

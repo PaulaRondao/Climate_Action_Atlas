@@ -127,7 +127,11 @@ const RegisterForm = () => {
                 aria-label="Montrer le mot de passe"
                 onClick={() => setShowPassword(!showPassword)}
               >
-                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                {showPassword ? (
+                  <RiEyeOffFill role="img" />
+                ) : (
+                  <RiEyeFill role="img" />
+                )}
               </button>
             </PasswordWrapper>
             {errors.password && (
@@ -149,7 +153,11 @@ const RegisterForm = () => {
                 aria-label="Montrer le mot de passe"
                 onClick={() => setShowConfirmPassword(!showConfirmPassword)}
               >
-                {showConfirmPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                {showConfirmPassword ? (
+                  <RiEyeOffFill role="img" />
+                ) : (
+                  <RiEyeFill role="img" />
+                )}
               </button>
             </PasswordWrapper>
             {errors.confirmPassword && (

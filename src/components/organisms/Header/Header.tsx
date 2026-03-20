@@ -48,7 +48,7 @@ interface HeaderProps {
 
 const Header: React.FC<HeaderProps> = ({ pageTitle, description }) => {
   return (
-    <HeaderContainer>
+    <HeaderContainer role="banner">
       <HeaderContent>
         {(pageTitle || description) && (
           <Content>

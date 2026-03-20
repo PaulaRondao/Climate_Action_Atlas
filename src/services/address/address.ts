@@ -14,7 +14,7 @@ export const searchAddresses = async (
 
     const text = await res.text();
     if (!text?.trim()) return [];
-    
+
     const data: ApiAddressResponse = await JSON.parse(text);
 
     if (!data.features || !Array.isArray(data.features)) return [];

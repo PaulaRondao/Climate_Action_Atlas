@@ -47,8 +47,8 @@ interface SearchBarProps {
 
 export default function SearchBar({ value, onChange }: SearchBarProps) {
   return (
-    <Wrapper>
-      <IconWrap aria-hidden="true">
+    <Wrapper role="search">
+      <IconWrap>
         <svg
           width="16"
           height="16"
@@ -56,6 +56,8 @@ export default function SearchBar({ value, onChange }: SearchBarProps) {
           fill="none"
           stroke="currentColor"
           strokeWidth="2"
+          role="img"
+          aria-hidden="true"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />

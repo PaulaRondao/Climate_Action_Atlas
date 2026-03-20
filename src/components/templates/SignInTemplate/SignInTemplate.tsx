@@ -14,8 +14,8 @@ export default function SignInTemplate(): JSX.Element {
   return (
     <>
       <Navigation session={isLoggedIn} />
-      <SignContainer $backgroundImage="/images/topographic-map.jpg">
-        <MainContent>
+      <SignContainer $backgroundImage="/images/topographic-map.webp">
+        <MainContent role="main">
           <Container>
             <SignInForm />
           </Container>

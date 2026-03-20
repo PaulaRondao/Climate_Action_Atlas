@@ -25,7 +25,11 @@ import { UserRole } from '@/types/enums/userRole';
  *         description: Non autorisé
  */
 
-const get = async (request: NextRequest, body: undefined, params: UserParams,) => {
+const get = async (
+  request: NextRequest,
+  body: undefined,
+  params: UserParams,
+) => {
   const user = (request as any).user;
 
   if (user.id !== params.id) {

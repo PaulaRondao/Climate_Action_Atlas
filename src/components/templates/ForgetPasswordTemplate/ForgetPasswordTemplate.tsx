@@ -19,7 +19,7 @@ export default function ForgetPasswordTemplate(): JSX.Element {
     <>
       <Navigation session={isLoggedIn} />
       <SignContainer>
-        <MainContent>
+        <MainContent role="main">
           <Container>
             <ForgetPasswordForm />
           </Container>

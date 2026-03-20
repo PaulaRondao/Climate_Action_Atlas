@@ -19,7 +19,6 @@ export const theme = {
     badgeText: 'var(--badge-text)',
     highlight: 'var(--highlight)',
     red: 'var(--error-red)',
-
   },
   typography: {
     fontSizes: {

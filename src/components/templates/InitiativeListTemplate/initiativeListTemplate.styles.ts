@@ -89,7 +89,7 @@ export const ResultInfo = styled.div`
   }
 `;
 
-export const Main = styled.main`
+export const MainContent = styled.div`
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 2rem 4rem;
