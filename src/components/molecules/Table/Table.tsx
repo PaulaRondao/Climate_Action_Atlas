@@ -139,7 +139,7 @@ const Table = (): JSX.Element => {
   return (
     <>
       {initiatives.length > 0 ? (
-        <TableContainer role="table" aria-label="mes initiatives">
+        <TableContainer role="table">
           <Caption>
             <h2>Mes initiatives</h2>
           </Caption>

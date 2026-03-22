@@ -267,7 +267,7 @@ export const AlertDialog: React.FC<AlertDialogProps> = ({
 
   useEffect(() => {
     if (notification?.status === 'success') {
-      router.push('/suppression');
+      router.push('/compte-supprime');
     }
   }, [notification]);
 

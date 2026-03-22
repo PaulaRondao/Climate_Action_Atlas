@@ -21,7 +21,7 @@ interface EmptyStateProps {
 
 export default function EmptyState({ value }: EmptyStateProps) {
   return (
-    <Wrap role="status">
+    <Wrap>
       <Icon>
         <svg
           width="48"
@@ -30,6 +30,8 @@ export default function EmptyState({ value }: EmptyStateProps) {
           fill="none"
           stroke="currentColor"
           strokeWidth="1.5"
+          role="img"
+          aria-hidden="true"
         >
           <circle cx="11" cy="11" r="8" />
           <path d="m21 21-4.35-4.35" />

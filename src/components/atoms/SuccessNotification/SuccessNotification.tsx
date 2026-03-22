@@ -34,7 +34,7 @@ const SuccessNotification: React.FC<SuccessNotificationProps> = ({
   message,
 }) => (
   <NotificationContainer>
-    <FaCheckCircle aria-hidden="true" />
+    <FaCheckCircle role="img" aria-hidden="true" />
     <p>{message}</p>
   </NotificationContainer>
 );

@@ -26,11 +26,11 @@ export default function InitiativeCreationTemplate() {
   return (
     <>
       <Navigation session={isLoggedIn} />
-      <MainContent>
-        <Header
-          pageTitle={PageTitle.InitiativeForm}
-          description={Description.InitiativeToAdd}
-        ></Header>
+      <Header
+        pageTitle={PageTitle.InitiativeForm}
+        description={Description.InitiativeToAdd}
+      ></Header>
+      <MainContent role="main">
         <InitiativeCreationContainer>
           <InitiativeCreationForm />
         </InitiativeCreationContainer>

@@ -1,0 +1,5 @@
+# User-agent: * signifie que l'accès est accordé à tous les agents (tous les spiders), quels qu'ils soient.
+User-agent: *
+Disallow: /api/auth/
+
+Sitemap: https://climate-action-atlas.vercel.app/sitemap.xml

@@ -22,6 +22,10 @@ export const Container = styled.div`
   li {
     padding: 8px 0;
   }
+
+  p {
+    margin-bottom: 12px;
+  }
 `;
 
 export const Wrapper = styled.div`

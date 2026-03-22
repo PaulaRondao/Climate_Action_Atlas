@@ -31,12 +31,12 @@ export default function HomePage() {
   return (
     <>
       <Navigation session={isLoggedIn} />
-      <main>
+      <header role="banner">
         <HeroSection>
           <ImageWrapper>
             <Image
-              src="/images/forest-sky-view.png"
-              alt="Header background"
+              src="/images/forest-sky-view.webp"
+              alt=""
               width={1920}
               height={1080}
               style={{
@@ -59,7 +59,9 @@ export default function HomePage() {
             </p>
           </HeroContent>
         </HeroSection>
+      </header>
 
+      <main role="main">
         <Section $backgroundColorGreen $colorBeige>
           <TitleSection
             $fontSize="5rem"

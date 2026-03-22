@@ -25,11 +25,6 @@ export enum InitiativesLabel {
   SocialAndSolidarityEconomy = 'Économie Sociale et Solidaire',
 }
 
-export const initiativesLabelTypeObject = Object.values(InitiativesLabel) as [
-  InitiativesLabel,
-  ...InitiativesLabel[],
-];
-
 export const TypeImpact = Object.entries(InitiativesLabel).map(
   ([key, label]) => ({
     label,
@@ -133,24 +128,24 @@ export const ActionsOption: {
     title: 'Agir local penser global',
     description:
       'Découvrez les initiatives près de chez vous qui milite pour un mieux vivre.',
-    image: '/images/agirLocal.png',
+    image: '/images/agirLocal.webp',
   },
   {
     title: 'Carte intéraction',
     description:
       'Trouvez et rejoignez facilement des projets concrets et inspirants autour de vous.',
-    image: '/images/carteInteractive.png',
+    image: '/images/carteInteractive.webp',
   },
   {
     title: 'Mobilisation citoyenne',
     description:
       'Partagez, créez et collaborez avec une communauté engagée pour l’humain et la planète.',
-    image: '/images/mobilisation.png',
+    image: '/images/mobilisation.webp',
   },
   {
     title: 'Impact réel',
     description:
       'Chaque action compte : faites la différence aujourd’hui, pour un demain durable.',
-    image: '/images/impact.png',
+    image: '/images/impact.webp',
   },
 ];

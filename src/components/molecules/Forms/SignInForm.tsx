@@ -84,7 +84,7 @@ export default function SignInForm(): JSX.Element {
         </FormGroup>
 
         <FormGroup>
-          <Label htmlFor="mot de passe">Mot de passe</Label>
+          <Label htmlFor="password">Mot de passe</Label>
           <PasswordWrapper>
             <Input
               id="password"
@@ -99,7 +99,11 @@ export default function SignInForm(): JSX.Element {
               aria-label="Montrer le mot de passe"
               onClick={() => setShowPassword(!showPassword)}
             >
-              {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+              {showPassword ? (
+                <RiEyeOffFill role="img" />
+              ) : (
+                <RiEyeFill role="img" />
+              )}
             </button>
           </PasswordWrapper>
           {errors.password && (

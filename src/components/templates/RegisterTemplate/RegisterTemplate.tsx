@@ -17,8 +17,8 @@ export default function RegisterTemplate() {
   return (
     <>
       <Navigation session={isLoggedIn} />
-      <SignContainer $backgroundImage="/images/glacier.jpg">
-        <MainContent>
+      <SignContainer $backgroundImage="/images/glacier.webp">
+        <MainContent role="main">
           <Container>
             <RegisterForm />
           </Container>

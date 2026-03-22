@@ -5,7 +5,7 @@ import {
   Controls,
   Legend,
   LegendItem,
-  Main,
+  MainContent,
   Overline,
   ResultInfo,
   Subtitle,
@@ -100,7 +100,7 @@ export default function InitiativeListTemplate() {
         <a href="#main-content" className="skip-link">
           Aller au contenu principal
         </a> */}
-      <Wrapper>
+      <Wrapper role="banner">
         <Overline>Annuaire des initiatives</Overline>
         <Title>
           Initiatives locales
@@ -113,49 +113,50 @@ export default function InitiativeListTemplate() {
         </Subtitle>
       </Wrapper>
 
-      <Controls>
-        <SearchBar value={searchValue} onChange={setSearchValue} />
-        <FilterGroupButton
-          current={filter}
-          currentImpact={typeFilter}
-          onChange={(value) => {
-            setFilter(value);
-            setTypeFilter('all');
-          }}
-          onChangeImpact={(value) => {
-            setTypeFilter(value);
-            setFilter('all');
-          }}
-        />
-      </Controls>
+      <main role="main">
+        <Controls>
+          <SearchBar value={searchValue} onChange={setSearchValue} />
+          <FilterGroupButton
+            current={filter}
+            currentImpact={typeFilter}
+            onChange={(value) => {
+              setFilter(value);
+              setTypeFilter('all');
+            }}
+            onChangeImpact={(value) => {
+              setTypeFilter(value);
+              setFilter('all');
+            }}
+          />
+        </Controls>
 
-      <Legend aria-label="Légende">
-        <LegendItem>
-          <FaCircle aria-hidden="true" />
-          Initiatives actives
-        </LegendItem>
-        <span>· Le nombre indiqué correspond aux initiatives recensées</span>
-      </Legend>
+        <Legend aria-label="Légende">
+          <LegendItem>
+            <FaCircle aria-hidden="true" />
+            Initiatives actives
+          </LegendItem>
+          <span>· Le nombre indiqué correspond aux initiatives recensées</span>
+        </Legend>
 
-      <ResultInfo role="status" aria-live="polite">
-        {defaultResultLabel}
-      </ResultInfo>
+        <ResultInfo role="status" aria-live="polite">
+          {defaultResultLabel}
+        </ResultInfo>
 
-      <Main id="main-content">
-        {filteredInitiatives().length === 0 ? (
-          <EmptyState value={searchValue} />
-        ) : (
-          filteredInitiatives().map((data) => (
-            <RegionBlock
-              key={data.id}
-              data={data}
-              value={searchValue}
-              defaultOpen={false}
-            />
-          ))
-        )}
-      </Main>
-      {/* </PageWrap> */}
+        <MainContent id="main-content">
+          {filteredInitiatives().length === 0 ? (
+            <EmptyState value={searchValue} />
+          ) : (
+            filteredInitiatives().map((data) => (
+              <RegionBlock
+                key={data.id}
+                data={data}
+                value={searchValue}
+                defaultOpen={false}
+              />
+            ))
+          )}
+        </MainContent>
+      </main>
     </>
   );
 }

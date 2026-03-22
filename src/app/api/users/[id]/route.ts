@@ -7,7 +7,7 @@ import { pathIdTypeParamsSchema } from '@/validation/commonSchema';
 import { updateUser } from '@/services/User/update';
 import { deleteUser } from '@/services/User/delete';
 import { updateUserSchema, UpdateUserBody } from '@/validation/userSchema';
-import { UserParams, UserProfil } from '@/types/User';
+import { UserParams } from '@/types/User';
 import { UserRole } from '@/types/enums/userRole';
 
 /**
@@ -25,17 +25,21 @@ import { UserRole } from '@/types/enums/userRole';
  *         description: Non autorisé
  */
 
-const get = async (request: NextRequest, { id }: { id: string }) => {
+const get = async (
+  request: NextRequest,
+  body: undefined,
+  params: UserParams,
+) => {
   const user = (request as any).user;
 
-  if (user.id !== id) {
+  if (user.id !== params.id) {
     return NextResponse.json(
       { type: BackendApiResponseType.ERROR, error: 'Utilisateur non trouvé' },
       { status: HttpStatusCode.HTTP_BAD_REQUEST },
     );
   }
 
-  const result = await getUser(id);
+  const result = await getUser(params.id);
 
   if (!result) {
     return NextResponse.json(
@@ -119,8 +123,8 @@ export const PATCH = apiHandler({
  */
 const deletedUser = async (
   request: NextRequest,
-  body: UserProfil,
-  params: UserParams & { id: string },
+  body: undefined,
+  params: UserParams,
 ) => {
   const user = (request as any).user;
 

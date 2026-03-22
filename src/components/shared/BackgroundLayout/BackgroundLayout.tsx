@@ -17,7 +17,7 @@ interface BackgroundLayoutProps {
 const BackgroundLayout: React.FC<BackgroundLayoutProps> = ({
   children,
   imageSrc,
-  imageAlt = 'Background image',
+  imageAlt = '',
 }) => {
   return (
     <BackgroundContainer>

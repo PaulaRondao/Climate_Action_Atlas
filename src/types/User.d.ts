@@ -14,17 +14,6 @@ export interface UserRegister {
   // role: UserRole,
 }
 
-export interface UserForgetPassword {
-  email: string;
-  newPassword?: string;
-}
-
-export interface UserResetPassword {
-  password: string;
-  token: string;
-  confirmPassword: string;
-}
-
 export interface UserProfil {
   id: string;
   name: string;
@@ -68,4 +57,15 @@ export interface UserSession {
 
 export interface UserParams {
   id: string;
+}
+
+export interface UserForgetPassword {
+  email: string;
+  newPassword?: string;
+}
+
+export interface UserResetPassword {
+  password: string;
+  token: string;
+  confirmPassword: string;
 }

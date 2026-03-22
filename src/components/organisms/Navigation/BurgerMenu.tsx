@@ -48,9 +48,9 @@ const BurgerMenu = ({
       data-test-id="burger-menu"
     >
       {isBurgerMenuOpen ? (
-        <FaTimes aria-label="Fermer le menu" />
+        <FaTimes role="img" />
       ) : (
-        <FaBars aria-hidden />
+        <FaBars role="img" aria-hidden />
       )}
     </BurgerMenuButton>
   );

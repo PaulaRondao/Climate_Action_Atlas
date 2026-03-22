@@ -24,7 +24,7 @@ export default function VerifyEmailTemplate({
     <>
       <Navigation session={isLoggedIn} />
       <SignContainer>
-        <MainContent>
+        <MainContent role="main">
           <Container>
             <VerifyEmailForm email={email} />
           </Container>

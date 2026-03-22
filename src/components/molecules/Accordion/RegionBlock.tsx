@@ -147,6 +147,7 @@ export function RegionBlock({
             stroke="currentColor"
             strokeWidth="2"
             aria-hidden="true"
+            role="img"
           >
             <path d="m6 9 6 6 6-6" />
           </Chevron>

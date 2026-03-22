@@ -243,7 +243,7 @@ const SidebarControl = ({ onChange }: SidebarControlProps) => {
         onClick={() => setOpen((prev) => !prev)}
         aria-label={open ? 'Fermer le menu' : 'Ouvrir le menu'}
       >
-        {open ? <FiX /> : <FiMenu />}
+        {open ? <FiX role="img" /> : <FiMenu role="img" />}
       </ToggleButton>
     </>
   );

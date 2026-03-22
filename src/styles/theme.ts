@@ -4,7 +4,10 @@ export const theme = {
     fluoGreen: 'var(--foreground-fluo-green)',
     darkBlue: 'var(--foreground-dark-blue)',
     green: 'var(--foreground-green)',
-    red: 'var(--error-red)',
+
+    backgroundBeige: 'var(--color-background-beige)',
+    backgroundGreen: 'var(--color-background-green)',
+    backgroundKingBlue: 'var(--color-background-king-blue)',
 
     bg: 'var(--gb)',
     ink: 'var(--ink)',
@@ -15,11 +18,7 @@ export const theme = {
     badgeBg: 'var(--badge-bg)',
     badgeText: 'var(--badge-text)',
     highlight: 'var(--highlight)',
-
-    backgroundBeige: 'var(--color-background-beige)',
-    backgroundGreen: 'var(--color-background-green)',
-
-    backgroundKingBlue: 'var(--color-background-king-blue)',
+    red: 'var(--error-red)',
   },
   typography: {
     fontSizes: {

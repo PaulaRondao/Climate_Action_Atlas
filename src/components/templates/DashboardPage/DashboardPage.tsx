@@ -53,7 +53,7 @@ const DashboardPage = () => {
     return (
       <>
         <Navigation session={isLoggedIn} />
-        <Main>
+        <Main role="main">
           <Wrapper>
             <Loading> Redirection...</Loading>
           </Wrapper>
@@ -65,7 +65,7 @@ const DashboardPage = () => {
     return (
       <>
         <Navigation session={!isLoggedIn} />
-        <Main>
+        <Main role="main">
           <Wrapper>
             <Loading> Chargement en cours...</Loading>
           </Wrapper>
@@ -77,7 +77,7 @@ const DashboardPage = () => {
     return (
       <>
         <Navigation session={isLoggedIn} />
-        <Main>
+        <Main role="main">
           <Wrapper>
             <h1>Bienvenue {session.user?.name}, sur votre espace personnel</h1>
             <Table></Table>
