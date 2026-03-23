@@ -126,7 +126,7 @@ export default function HomePage() {
           </EngagementSection>
           <MapWrapper>
             <Image
-              src="/images/France-map.svg"
+              src="/images/france-map.svg"
               alt=""
               width={500}
               height={500}

@@ -2,7 +2,6 @@
 
 import React from 'react';
 import Head from 'next/head';
-import Script from 'next/script';
 import { PageTitle } from '@/constants';
 
 interface AppHeadProps {
@@ -38,14 +37,6 @@ const AppHead = ({
           <meta name="robots" content="noindex" />
         )}
       </Head>
-      <Script src="/scripts/api-engagement.js" />
-      {process.env.NEXT_PUBLIC_CLOUDFLARE_TRACKING_ID && (
-        <Script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={`{ "token": "${process.env.NEXT_PUBLIC_CLOUDFLARE_TRACKING_ID}" }`}
-        />
-      )}
     </>
   );
 };

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Wrapper } from '../LegalNoticesTemplate/legalyPage.styles';
 import Link from 'next/link';
 import styled from 'styled-components';
 
