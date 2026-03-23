@@ -32,4 +32,9 @@ jobs:
         run: npx prisma generate
       - name: Build Next.js
         run: npx next build
-      # - run: npm test
+      - name: Run test Prisma
+        run: npm run test:prisma
+      - name: Run test API
+        run: npm run test:api
+      - name: Run ESLint check
+        run: npm run lint
