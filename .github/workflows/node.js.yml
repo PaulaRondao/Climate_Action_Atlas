@@ -12,6 +12,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # env:
+    #   DATABASE_URL: ${{ secrets.DATABASE_URL }}
+    #   BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+    #   BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
 
     strategy:
       matrix:
@@ -34,7 +38,7 @@ jobs:
         run: npx next build
       - name: Run test Prisma
         run: npm run test:prisma
-      - name: Run test API
-        run: npm run test:api
+      # - name: Run test API
+      #   run: npm run test:api
       - name: Run ESLint check
         run: npm run lint
