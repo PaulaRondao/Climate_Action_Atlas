@@ -175,7 +175,7 @@ docker compose exec web npx prisma studio --port 5555
 ## Tests
 ```bash
 # Tests unitaires
-npm run test
+npm run test:prisma
 
 # Tests API (nécessite la DB en cours d'exécution)
 npm run test:api
