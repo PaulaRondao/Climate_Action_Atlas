@@ -13,4 +13,8 @@ coverage
 # Fichiers locaux et temporaires
 .DS_Store
 .env
+.env.local
+.env.prod
+.env.test
+.env.sample
 *.local
