@@ -37,12 +37,6 @@ const users = [
     role: UserRole.CONTRIBUTOR,
   },
   {
-    id: '9876',
-    name: 'Sarah',
-    email: 'sarah@mail.com',
-    role: UserRole.CONTRIBUTOR,
-  },
-  {
     id: '2468',
     name: 'Fatima',
     email: 'fatima@mail.com',
@@ -70,12 +64,6 @@ const users = [
 
 // Données des initiatives
 const initiatives = [
-  {
-    name: 'Roule ma frite',
-    type: InitiativeType.ClimateAgricultureEnergy,
-    locationIndex: 0,
-    contributorId: '9876',
-  },
   {
     name: 'Cinema le Kursaal',
     type: InitiativeType.CultureAndTransmission,

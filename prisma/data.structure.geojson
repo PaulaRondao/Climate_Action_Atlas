@@ -3,27 +3,6 @@
   "features": [
     {
       "type": "Feature",
-      "geometry": { "type": "Point", "coordinates": [-1.260216, 45.90482] },
-      "properties": {
-        "label": "Route de l’Ecuissière 17550 Dolus-d'Oléron",
-        "score": 0.8611545454545454,
-        "id": "17140_0347",
-        "banId": "1da0889e-725b-455f-a3ff-5b7aae79913d",
-        "name": "Route de l’Ecuissière",
-        "postcode": "17550",
-        "citycode": "17140",
-        "x": 369879.27,
-        "y": 6542811.65,
-        "city": "Dolus-d'Oléron",
-        "context": "17, Charente-Maritime, Nouvelle-Aquitaine",
-        "type": "street",
-        "importance": 0.4727,
-        "street": "Route de l’Ecuissière",
-        "_type": "address"
-      }
-    },
-    {
-      "type": "Feature",
       "geometry": {
         "type": "Point",
         "coordinates": [-1.146199, 43.882002]

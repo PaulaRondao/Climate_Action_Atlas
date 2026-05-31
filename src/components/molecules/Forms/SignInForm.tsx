@@ -88,10 +88,10 @@ export default function SignInForm(): JSX.Element {
           <PasswordWrapper>
             <Input
               id="password"
+              type={showPassword ? 'text' : 'password'}
               {...methods.register('password')}
               name="password"
               placeholder="Saisissez votre de passe"
-              type="password"
               aria-required={true}
             />
             <button
