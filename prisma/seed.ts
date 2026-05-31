@@ -147,4 +147,9 @@ export const seedDatabase = async () => {
   }
 };
 
+if (process.env.NODE_ENV === 'production') {
+  console.error('❌ Seed interdit en production !');
+  process.exit(1);
+}
+
 seedDatabase();
